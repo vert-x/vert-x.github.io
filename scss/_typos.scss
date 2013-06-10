@@ -1,0 +1,42 @@
+/* typos
+// ------------------------------------ */
+
+html {
+    // background:url(../images/agsquare.png) repeat;
+}
+body { 
+    font:75% "Helvetica", Arial, sans-serif; 
+    font-size:14px; color:#888; 
+}
+a { color:$vertxGreen; }
+img { max-width:100%; }
+p {  }
+p.info { 
+    position:relative; 
+    padding:12px 12px 12px 50px; 
+    font-size:13px; 
+    border:1px solid #ddd; 
+    border-radius:4px; 
+    &:before { content:'i';
+        font-size:26px; font-style:italic; color:white; text-align:center; 
+        font-family:'Times New Roman', Arial, sans-serif;
+        position:absolute; top:12px; left:12px;
+        border-radius:100%; background:$vertxGreen; 
+        width:30px; height:30px; line-height:30px; 
+    }
+}
+h1 { 
+    margin:0px; padding:40px 0 34px; 
+    font-family:'codebold', Arial, sans-serif; font-weight:normal; 
+    color:$vertxGreen; font-size:26px; text-indent:30px; 
+    background-color:#f7f7f7; border-bottom:1px solid #ddd; 
+}
+h2 { 
+    margin-bottom:30px; 
+    font-family:'codebold', Arial, sans-serif; 
+    color:$vertxGreen; font-size:26px; font-weight:normal; 
+}
+.main h1 { margin:40px -30px 30px; padding:20px 30px 15px; text-indent:0; background:none; border-top:1px solid #ddd; border-bottom:1px solid #ddd; }
+.main h2 { margin:30px 0 15px; font-family:Arial, sans-serif; font-size:18px; color:$vertxGreen; }
+.main h3 { margin:20px 0 5px; font-size:16px; }
+.main h4 { margin:20px 0 5px; font-size:14px; }

@@ -1,0 +1,37 @@
+/* footer 
+// ------------------------------------ */
+
+footer {
+    @extend .clearfix;
+    background-color:$footerBgColor; 
+    font-size:12px; 
+    
+    .wraper { width:$siteWidth; margin:0 auto; padding:30px 0; }
+    .div { background-color:darken($footerBgColor,5%); border-bottom:1px solid black; }
+    
+    .copy { 
+        overflow:hidden; padding:5px; float:right; text-align:right; 
+        font-size:10px; display:block; width:320px; 
+        //img {  }
+        a { color:inherit; text-decoration:none; }
+    }
+    
+    .footer-logo {
+        img { 
+            width:80px; @include transition(all .4s ease); 
+            -webkit-filter: blur(2px); 
+            &:hover { -webkit-filter: blur(0); }
+        }
+    }
+    
+    .links {
+        float:right; 
+        a { color:#ccc; text-decoration:none; font-size:25px; margin:0 5px -5px; @include transition(color .5s); }
+        a:hover { color:$vertxGreen; }
+        a:focus { text-decoration:none; }
+        .icon-twitter { font-size:26px; position:relative; top:2px; }
+    }
+    
+    .cloudbees img { margin:0 0 0 -14px; width:160px; }
+    .credit-jkneb { font-size:11px; text-align:center; margin:0 auto; width:300px; position:relative; top:30px; }
+}

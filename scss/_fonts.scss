@@ -1,0 +1,28 @@
+/* fonts
+// ------------------------------------ */
+
+@font-face {
+    font-family:'codelight';
+    src: url('../fonts/codelight/code_light-webfont.eot');
+    src: url('../fonts/codelight/code_light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/codelight/code_light-webfont.woff') format('woff'),
+         url('../fonts/codelight/code_light-webfont.ttf') format('truetype'),
+         url('../fonts/codelight/code_light-webfont.svg#code_lightregular') format('svg');
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face {
+    font-family:'codebold';
+    src: url('../fonts/codebold/code_bold-webfont.eot');
+    src: url('../fonts/codebold/code_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/codebold/code_bold-webfont.woff') format('woff'),
+         url('../fonts/codebold/code_bold-webfont.ttf') format('truetype'),
+         url('../fonts/codebold/code_bold-webfont.svg#code_boldregular') format('svg');
+    font-weight:normal;
+    font-style:normal;
+}
+
+.codebold  { font-family: 'codebold', Arial, sans-serif; }
+.codelight { font-family: 'codelight', Arial, sans-serif; }
+

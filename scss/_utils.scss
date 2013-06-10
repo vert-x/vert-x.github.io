@@ -1,0 +1,33 @@
+/* utils 
+// ------------------------------------ */
+
+.hidden { display:none !important; visibility:hidden; }
+.invisible { visibility:hidden; }
+.fleft { float:left; }
+.fright { float:right; }
+.upper { text-transform:uppercase; }
+.bold { font-weight:bold; }
+.aleft { text-align:left; }
+.aright { text-align:right; }
+.acenter { text-align:center; }
+.unselectable { 
+     -webkit-user-select:none;
+        -moz-user-select:none;
+         -ms-user-select:none;
+             user-select:none;
+}
+.clearfix {
+    &:before, &:after { content:''; display:table; }
+    &:after { clear:both; }
+}
+// text highlight animation
+.highlight {
+    @include animation(hightlight .4s);
+}
+@include keyframes(hightlight) {
+    50% { 
+        opacity:1; 
+        background:lighten(yellow,30%); 
+        box-shadow:0px 0px 8px lighten(yellow,20%); 
+    }
+}

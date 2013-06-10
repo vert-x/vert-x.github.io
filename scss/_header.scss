@@ -1,0 +1,37 @@
+/* header
+// ------------------------------------ */
+
+header {
+    @extend .clearfix;
+    position:fixed; top:0; width:100%; z-index:111; 
+    background-color:$headerBgColor; max-height:50px;
+    border-top:6px solid $vertxGreen;
+    border-bottom:1px solid #aaa;
+    box-shadow:0px 1px 1px rgba(0,0,0,.2);
+    .wraper { width:$siteWidth; margin:0 auto; }
+    h1 { position:absolute; z-index:-1; text-indent:-9999px; margin:0; padding:0; background:none; border-bottom:none; }
+    .logo { width:100px; margin-top:3px; float:left; }
+}
+
+.nav {
+    @extend .clearfix;
+    margin:0; padding:0; list-style-type:none; float:right; 
+    li { 
+        float:left; position:relative; 
+        // subnav reveal mecanism
+        &:hover > .nav { opacity:1; height:auto; }
+    }
+    a  { 
+        display:block; padding:15px 25px; white-space:nowrap; 
+        font-weight:bold; font-size:13px; text-decoration:none; text-transform:uppercase; color:#999; 
+        &:hover, &.active { background-color:#444; }
+    }
+    // nav inside a nav = subnav
+    .nav { 
+        opacity:0; height:0; overflow:hidden; // hidden by default
+        position:absolute; top:100%; z-index:10; 
+        @include transition( opacity .3s ease );
+        li { float:none; background-color:#111; }
+        li:nth-child(even) { background-color:#222; }
+    }
+}

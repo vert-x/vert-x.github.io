@@ -1,0 +1,51 @@
+/*  Solarized Prettify color scheme - dark version
+// -------------------------------------------------------------- */
+
+pre, 
+code { font-family:Monaco, Courier, monospace; font-size:12px; }
+
+pre::selection, code::selection, 
+.prettyprint span::selection,
+.prettyprint li::selection, 
+.prettyprint ol::selection { background:#004652; text-shadow:none; }
+
+.prettyprint { 
+    padding:8px 12px; margin-bottom:20px; 
+    color:#839496; border:1px solid #05232b;
+    background-color:#002b36; 
+    border-radius:4px; 
+    //background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAIAAABv85FHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACxJREFUeNpiZNA24+Dn/fHxMwMDAxqDESjHgAMwMeAGTBATIBw0xmAyEyDAAKYhC2vvXtr5AAAAAElFTkSuQmCC');
+    //background-repeat:repeat;
+}
+.prettyprint.linenums { box-shadow:inset 40px 0 0 #073642, inset 41px 0 0 #00232c; padding:8px; }
+.prettyprint ol.linenums { margin-top:0; margin-bottom:0 } 
+.prettyprint ol.linenums li { line-height:18px; padding-left:10px; }
+.prettyprint .pln { color:inherit; }
+.prettyprint .str,
+.prettyprint .lit,
+.prettyprint .atv { color:#2aa198; }
+.prettyprint .kwd { color:#268bd2; }
+.prettyprint .com,
+.prettyprint .dec { color:#586e75; font-style:italic; }
+.prettyprint .typ { color:#b58900; }
+.prettyprint .pun { color:inherit; }
+.prettyprint .opn { color:inherit; }
+.prettyprint .clo { color:inherit; }
+.prettyprint .tag { color:#268bd2; font-weight:bold; }
+.prettyprint .atn { color:inherit; }
+.prettyprint::-webkit-scrollbar { height:.6em; background:rgba(255,255,255,0.15); }
+.prettyprint::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.15); border-radius:10px; }
+/* print version */
+@media print, projection {
+    .prettyprint .str { color:#060 }
+    .prettyprint .kwd { color:#006; font-weight:bold }
+    .prettyprint .com { color:#600; font-style:italic }
+    .prettyprint .typ { color:#404; font-weight:bold }
+    .prettyprint .lit { color:#044 }
+    .prettyprint .pun, 
+    .prettyprint .opn, 
+    .prettyprint .clo { color:#440 }
+    .prettyprint .tag { color:#006; font-weight:bold }
+    .prettyprint .atn { color:#404 }
+    .prettyprint .atv { color:#060 }
+}

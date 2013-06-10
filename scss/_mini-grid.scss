@@ -1,0 +1,11 @@
+.line { @extend .clearfix; }
+
+.g-1-2 { float:left; width:46%; margin-right:3%; }
+.g-1-3 { float:left; width:29%; margin-right:3%; }
+.g-2-3 { 
+    float:left; width:62%; margin-right:4%; 
+    + .g-1-3 { width:30%; margin-right:0%; }
+}
+.g-1-4 { float:left; width:21%; margin-right:3%; }
+.g-2-4 { float:left; width:46%; margin-right:3%; }
+.g-3-4 { float:left; width:71%; margin-right:3%; }
