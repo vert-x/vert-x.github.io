@@ -254,6 +254,14 @@ button:active, button.active, .button:active, .button.active { background: #eeee
 .green:hover, button.active:hover, .button.active:hover { background: #33a098; }
 .green:active, .green.active, button.active:active, button.active.active, .button.active:active, .button.active.active { background: #33a098; box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2); }
 
+/* Tables */
+table { background: white; margin-bottom: 1.25em; border: solid 1px #dddddd; width: 100%; }
+table thead, table tfoot { background: whitesmoke; font-weight: bold; }
+table thead tr th, table thead tr td, table tfoot tr th, table tfoot tr td { padding: 0.5em 0.625em 0.625em; font-size: 0.875em; color: #222222; text-align: left; }
+table tr th, table tr td { padding: 0.5625em 0.625em; font-size: 0.875em; color: #222222; }
+table tr.even, table tr.alt, table tr:nth-of-type(even) { background: #f9f9f9; }
+table thead tr th, table tfoot tr th, table tbody tr td, table tr td, table tfoot tr td { display: table-cell; line-height: 1.125em; }
+
 .g-1-2 { float: left; width: 46%; margin-right: 3%; }
 
 .g-1-3 { float: left; width: 29%; margin-right: 3%; }

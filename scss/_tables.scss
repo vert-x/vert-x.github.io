@@ -1,0 +1,44 @@
+// Tables styles from Foundation 4
+// ------------------------------------------ /
+
+/* Tables */
+table {
+    background:white;
+    margin-bottom:1.25em;
+    border:solid 1px #dddddd; 
+    width:100%;
+
+    thead,
+    tfoot {
+        background:whitesmoke;
+        font-weight:bold; 
+    }
+    thead tr th,
+    thead tr td,
+    tfoot tr th,
+    tfoot tr td {
+        padding:0.5em 0.625em 0.625em;
+        font-size:0.875em;
+        color:#222222;
+        text-align:left; 
+    }
+    tr th,
+    tr td {
+        padding:0.5625em 0.625em;
+        font-size:0.875em;
+        color:#222222; 
+    }
+    tr.even, 
+    tr.alt, 
+    tr:nth-of-type(even) {
+        background:#f9f9f9; 
+    }
+    thead tr th,
+    tfoot tr th,
+    tbody tr td,
+    tr td,
+    tfoot tr td {
+        display:table-cell;
+        line-height:1.125em; 
+    }
+}
