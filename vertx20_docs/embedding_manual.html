@@ -1,0 +1,175 @@
+<!doctype html public="♥">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Vert.x - Effortless asynchronous application development for the modern web and enterprise</title>
+  <link href="../css/style.css" rel="stylesheet">
+  <link rel="shortcut icon" href="../images/favicon.ico">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="wraper">
+      <h1>Vert.X - Effortless asynchronous application development for the modern web and enterprise</h1>
+      <a href="/"><img class="logo" src="../images/logo-black.png" alt="" /></a>
+      <ul class="nav">
+        <li><a href="../downloads.html">Download</a></li>
+        <li>
+          <a href="../docs.html">Documentation</a>
+          <ul class="nav">
+            <li><a href="../install.html">How to install</a></li>
+            <li><a href="../tutorials.html">Tutorials</a></li>
+            <li><a href="../examples.html">Examples</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../community.html">Community</a>
+          <ul class="nav">
+            <li><a href="https://github.com/vert-x/vert.x">Source code</a></li>
+            <li><a href="http://groups.google.com/group/vertx">Google Group</a></li>
+          </ul>
+        </li>
+        <li><a href="http://vertxproject.wordpress.com/">Blog</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <h1><div class="wraper">Embedding Vert.x</div></h1>
+  <div class="main">
+<div class="content">
+
+
+<div class="toc">
+<ul>
+<li><a href="#embedding-vertx">Embedding Vert.x</a><ul>
+<li><a href="#embedding-the-vertx-platform">Embedding the Vert.x platform</a></li>
+<li><a href="#embedding-vertx-core">Embedding Vert.x core</a><ul>
+<li><a href="#core-thread-safety">Core thread safety</a><ul>
+<li><a href="#event-loops-and-scaling-vertx-embedded">Event loops and scaling Vert.x embedded</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="embedding-vertx">Embedding Vert.x</h1><br/>
+<p>It's highly recommended that you run Vert.x applications as modules using the <code>vertx</code> command at the command line, however it is possible to embed Vert.x inside pre-existing Java applications. There are two ways this can be done:</p>
+<h2 id="embedding-the-vertx-platform">Embedding the Vert.x platform</h2><br/>
+<p>The Vert.x platform is the container which knows how to run Vert.x modules and verticles, it also contains the Vert.x module system functionality. You use an instance of the interface <code>org.vertx.java.platform.PlatformManager</code> to control the platform.</p>
+<p>To get an instance of <code>PlatformManager</code> you use the <code>org.vertx.java.platform.PlatformLocator</code> class:</p>
+<pre class="prettyprint linenums">PlatformManager pm = PlatformLocator.factory.createPlatformManager();
+</pre>
+<p>Once you have an instance of <code>PlatformManager</code> you can deploy and undeploy modules and verticles, install modules and various other actions. See the JavaDoc for more information on the available methods.</p>
+<p>Here are some examples:</p>
+<p>Deploy a module</p>
+<pre class="prettyprint linenums">pm.deployModule("com.mycompany~my-module~1.0");
+</pre>
+<p>Deploy 10 instances of a raw JS verticle</p>
+<pre class="prettyprint linenums">pm.deployVerticle("app.js", 10);
+</pre>
+<p>The methods available on <code>PlatformManager</code> roughly map to the actions performed by the <code>vertx</code> command at the command line.</p>
+<p>When using the platform manager the following system properties can be set:</p>
+<ul>
+<li><code>vertx.home</code> - When installing system modules, vert.x will install them in a directory <code>sys-mods</code> in this directory.</li>
+<li><code>vertx.mods</code> - When looking for or installing non system modules Vert.x will look in the directory <code>mods</code> in the current working directory. If <code>vertx.mods</code> is set this will tell Vert.x to instead look in the provided directory.</li>
+</ul>
+<h2 id="embedding-vertx-core">Embedding Vert.x core</h2><br/>
+<p><strong><em> Please note this feature is intended for power users only. </em></strong></p>
+<p>It's also possible to embed the Vert.x core classes directly and bypass the Vert.x platform altogether.</p>
+<p>If you are embedding this way you should be aware that</p>
+<ul>
+<li>You will only be able to use Vert.x with Java, not any of the other languages that Vert.x suppports.</li>
+<li>You will not have access to the Vert.x module system so you will be able to easily benefit from functionality provided by the community in the form of modules. Consider that most  functionality in Vert.x will be in the form of modules.</li>
+<li>You will not benefit from the automatic compilation of Java verticles at run-time. You will have to compile your classes manually.</li>
+<li>You will have to manage scaling of your application manually by programmatically creating more instances of your servers. You will not be able to benefit from the <code>-instances</code> option of the <code>vertx</code> command or in the <code>PlatformManager</code> API.</li>
+<li>You will need to manually ensure you do not have concurrent access to non thread-safe core objects in your application. The Vert.x platform would normally protect you against this.</li>
+</ul>
+<p>If you are happy with the above limitations then Vert.x can be used directly in a Java application as the following echo server example demonstrates</p>
+<pre class="prettyprint linenums">public class Embedded {
+  public static void main(String[] args) throws Exception {
+
+    Vertx vertx = VertxFactory.newVertx();
+
+    // Create an echo server
+    vertx.createNetServer().connectHandler(new Handler&lt;NetSocket&gt;() {
+      public void handle(final NetSocket socket) {
+        Pump.createPump(socket, socket).start();
+      }
+    }).listen(1234);
+
+    // Prevent the JVM from exiting
+    System.in.read();
+
+  }
+}
+</pre>
+<p>You first get a reference to the <code>Vertx</code> object using the <code>VertxFactory</code> class, then you use the core classes as you wish.</p>
+<p>Note that all Vert.x threads are daemon threads and they will <em>not</em> prevent the JVM for exiting. Therefore you must ensure that the <code>main()</code> method does not run to completion, e.g. in this example we have used <code>System.in.read()</code> to block the main thread waiting for IO from the console.</p>
+<h3 id="core-thread-safety">Core thread safety</h3><br/>
+<p>Many of the Vert.x core classes are <em>not</em> thread-safe. When running Vert.x in the Vert.x platform you don't have to worry about that as Vert.x guarantees that your verticle code is never executed by more than one thread concurrently.</p>
+<p>When running core embedded you have to be more careful as there is no container to make such guarantees. Therefore it's up to you the developer that you don't allow concurrent access to non thread-safe classes.</p>
+<p>Please consult the JavaDoc to see which classe are thread-safe and which are not.</p>
+<h4 id="event-loops-and-scaling-vertx-embedded">Event loops and scaling Vert.x embedded</h4><br/>
+<p>When running your Vert.x code in a standard verticle, Vert.x ensures it's all executed by the exact same thread (event loop).</p>
+<p>When running Vert.x embedded you will start off on one of your own application threads which won't be a Vert.x event loop. When Vert.x calls the handlers of any of the core objects that you create, they <em>will</em> be called on an event loop.</p>
+<p>Vert.x determines which event loops to use according to the following rules:</p>
+<p>If the calling thread is not an event loop then:</p>
+<ul>
+<li>Instances of <code>NetServer</code>, <code>NetClient</code>, <code>HttpServer</code> and <code>HttpClient</code> will be assigned an event loop when they are created. When any of their handlers are subsequently called they will be called using that event loop.</li>
+<li>When a handler is registered on the event bus an event loop will be assigned to it. This event loop will then be used every time the handler is called.</li>
+<li>File system operation handlers are called using an event loop determined by Vert.x</li>
+</ul>
+<p>If the calling thread is an event loop, then that current event loop will be used.</p>
+<p>Since a particular instance of <code>NetServer</code>, <code>HttpServer</code> will have all their handlers executed on the same event loop, if you want to scale your servers across multiple cores you need to create multiple instances of them, from a thread that is not an event loop.</p></div>
+  </div>
+</div><!-- .wrap -->
+
+<footer>
+  <div class="div">
+    <div class="wraper">
+      <div class="links">
+        <a href="https://twitter.com/vertx_project" class="icon-twitter"></a>
+        <a href="https://github.com/vert-x/vert.x" class="icon-github"></a>
+        <a href="http://groups.google.com/group/vertx" class="icon-support"></a>
+      </div>
+              
+      <div class="footer-logo">
+        <a href="#"><img src="../images/logo-black-mono.png" alt="" /></a>
+      </div>
+    </div>
+  </div>
+  <div class="wraper">
+    <div class="copy">
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" align="right" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png"></a>
+      <br><br>The website + docs are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+    </div>
+          
+    <div class="credit-jkneb">
+      design + front ☛ <a href="https://twitter.com/julienknebel">jkneb</a>
+    </div>
+          
+    <div class="cloudbees">
+      <img src="../images/Button-Built-on-CB-1.png">
+    </div>
+  </div>
+</footer>
+
+<script src="../js/libs/prettyprint/prettify.js"></script>
+<script src="../js/libs/jquery-2.0.0.min.js"></script>
+<script src="../js/app.js"></script>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30144458-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>
