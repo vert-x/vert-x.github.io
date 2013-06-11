@@ -80,7 +80,7 @@ body { padding-top:50px; }
     background:#fff; border-top:1px solid #ddd;
     @extend .clearfix;
 
-    pre { margin:0; /*background:none;*/ border:none; padding:0; border-radius:0 0 5px 5px; min-height:270px; }
+    pre { margin:0; border:none; border-radius:0 0 5px 5px; min-height:270px; }
     .code-side-panel { padding-top:15px; }
 
     // reveal mecanism
