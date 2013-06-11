@@ -28,25 +28,54 @@ $iconBorderColor: #f7f7f7;
     top:36px; left:73px; 
     width:80px; height:100px; 
     > div {
-        top:20px; left:10px; 
-        padding:10px 20px; width:50px; height:50px; background-color:$iconColor; border-radius:100%; 
-        &:nth-child(1) {  }
-        &:nth-child(2) {  }
+        &:nth-child(1) { 
+            top:10px; left:-4px; z-index:2; 
+            width:80px; height:60px;
+            background-color:$iconColor;
+            border-radius:50%;
+        }
+        &:nth-child(2) { 
+            bottom:25px; left:3px; z-index:0;
+            border-radius:50%; background:$iconColor; padding:13px;
+        }
+        &:nth-child(3) { // mask
+            bottom:22px; left:-8px; z-index:1;
+            border-radius:50%; background:$iconBgColor; padding:13px;
+        }
     }
+    .dots { 
+        div { width:12px; height:12px; border-radius:50%; top:34px; background:$iconBgColor; z-index:2; @include box-sizing(border-box); }
+        div:nth-child(1) { left:10px; }
+        div:nth-child(2) { left:30px; @include transform(rotate(-45deg)); }
+        div:nth-child(3) { left:50px; }
+    }
+    
     &.active {
         > div:nth-child(1) { 
+            padding:10px 20px; 
             top:-36px; left:-74px; width:219px; height:50px; 
             border:0 solid $iconBorderColor; border-radius:5px 5px 0 0; 
             background-color:#022b37; 
         }
+        
         > div:nth-child(2), 
-        > div:nth-child(3) { 
-            top:14px; left:-74px; width:219px; height:140px; 
-            border:0 solid $iconBorderColor; border-radius:0 0 5px 5px; 
-            background-color:#33a098; 
-            @include transform(rotateX(0deg) rotate(0deg)); 
+        > div:nth-child(3), 
+        .dots div:nth-child(1), 
+        .dots div:nth-child(3) { opacity:0; height:0px; }
+        
+        .dots { 
+            div:nth-child(1), 
+            div:nth-child(3), 
+            div:nth-child(2) { 
+                padding:10px 20px; 
+                @include transform(rotate(0deg));
+                top:14px; left:-74px; width:219px; height:140px; 
+                border:0 solid $iconBorderColor; border-radius:0 0 5px 5px; 
+                background-color:#33a098; 
+            }
         }
     }
+    
 }
 
 

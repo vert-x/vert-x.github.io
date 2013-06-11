@@ -32,6 +32,7 @@ body { padding-top:50px; }
 
 .blocks { 
     padding:50px 0; 
+    overflow:hidden; 
     .block {
         position:relative; display:inline-block; margin-left:25px; 
         width:218px; height:192px; //overflow:hidden;
