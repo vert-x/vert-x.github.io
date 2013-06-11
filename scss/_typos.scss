@@ -40,3 +40,12 @@ h2 {
 .main h2 { margin:30px 0 15px; font-family:Arial, sans-serif; font-size:18px; color:$vertxGreen; }
 .main h3 { margin:20px 0 5px; font-size:16px; }
 .main h4 { margin:20px 0 5px; font-size:14px; }
+
+.content {
+    // ugly fix 
+    h1 + br,
+    h2 + br,
+    h3 + br,
+    h4 + br,
+    h5 + br { display:none; }
+}
