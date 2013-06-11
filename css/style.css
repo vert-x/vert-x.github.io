@@ -378,7 +378,7 @@ body > .wrap { min-height: 100%; height: auto !important; height: 100%; margin: 
 
 body { padding-top: 50px; }
 
-.main { width: 960px; margin: 0px auto; background: #f7f7f7; border-right: 1px solid #ddd; }
+.main { width: 960px; margin: 0px auto; background: #f7f7f7; border-right: 1px solid #ddd; position: relative; }
 
 .main .content { padding: 20px 30px 30px; margin-right: 220px; background: white; border: 1px solid #ddd; border-top: none; border-bottom: none; }
 
@@ -416,3 +416,12 @@ body { padding-top: 50px; }
 .features .features-blocks li:before { content: ''; position: absolute; bottom: -3px; left: 3px; right: 3px; height: 1px; background-color: white; border: 1px solid #ddd; }
 .features .features-blocks li.last { color: white; background: #33a098; border-color: #2d8d86; }
 .features .features-blocks li.last:before { border: 1px solid #2d8d86; background-color: #277973; }
+
+.toc { width: 220px; font-size: 12px; position: absolute; top: 0; right: 0; }
+.toc ul { padding: 0 25px; margin: 0; list-style: none; }
+.toc ul ul { padding: 0 0 0 10px; margin: 10px 0 0; }
+.toc li a { display: block; }
+.toc li a:hover { background: #eee; }
+.toc > ul > li > a { padding: 15px; margin: -1px -25px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+.toc > ul > li li a { padding: 5px 0; }
+

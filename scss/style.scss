@@ -23,7 +23,7 @@ body > .wrap { min-height:100%; height:auto !important; height:100%; margin:0 au
 
 body { padding-top:50px; }
 
-.main { width:$siteWidth; margin:0px auto; background:#f7f7f7; border-right:1px solid #ddd; }
+.main { width:$siteWidth; margin:0px auto; background:#f7f7f7; border-right:1px solid #ddd; position:relative; }
 .main .content { 
     padding:20px 30px 30px; margin-right:220px; 
     background:white; border:1px solid #ddd; border-top:none; border-bottom:none; 
@@ -119,4 +119,20 @@ body { padding-top:50px; }
     }
 }
 
+.toc {
+    width:220px; font-size:12px; 
+    position:absolute; top:0; right:0; 
+    
+    ul { padding:0 25px; margin:0; list-style:none; }
+    ul ul { padding:0 0 0 10px; margin:10px 0 0; }
+    li a { display:block; }
+    li a:hover { background:#eee; }
+    > ul > li > a { 
+        padding:15px; margin:-1px -25px; 
+        border-top:1px solid #ddd; border-bottom:1px solid #ddd; 
+    }
+    > ul > li li a { 
+        padding:5px 0; 
+    }
+}
 
