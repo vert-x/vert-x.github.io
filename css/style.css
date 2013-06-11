@@ -421,9 +421,11 @@ body { padding-top: 50px; }
 .features .features-blocks li.last:before { border: 1px solid #2d8d86; background-color: #277973; }
 
 .toc { width: 220px; font-size: 12px; position: absolute; top: 0; right: 0; }
-.toc ul { padding: 0 25px; margin: 0; list-style: none; }
-.toc ul ul { padding: 0 0 0 10px; margin: 10px 0 0; }
+.toc > ul { list-style: none; }
+.toc ul { padding: 0 25px; margin: 0; }
+.toc ul ul { padding: 0 0 0 10px; margin: 10px 0; }
+.toc ul > ul { padding: 0 0 0 0px; }
 .toc li a { display: block; }
 .toc li a:hover { background: #eee; }
-.toc > ul > li > a { padding: 15px; margin: -1px -25px; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; }
-.toc > ul > li li a { padding: 5px 0; }
+.toc > ul > li > a { padding: 15px; margin: -1px -25px; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; font-size: 14px; text-decoration: none; }
+.toc > ul > li li a { padding: 0 0 5px; }

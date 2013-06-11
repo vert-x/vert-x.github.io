@@ -123,16 +123,22 @@ body { padding-top:50px; }
     width:220px; font-size:12px; 
     position:absolute; top:0; right:0; 
     
-    ul { padding:0 25px; margin:0; list-style:none; }
-    ul ul { padding:0 0 0 10px; margin:10px 0 0; }
+    > ul { list-style:none; }
+    ul { padding:0 25px; margin:0; }
+    ul ul { padding:0 0 0 10px; margin:10px 0; }
+    ul > ul { padding:0 0 0 0px; }
+    
     li a { display:block; }
     li a:hover { background:#eee; }
+    // first level links
     > ul > li > a { 
         padding:15px; margin:-1px -25px; 
         border-top:1px solid $bordersColor; border-bottom:1px solid $bordersColor; 
+        font-size:14px; text-decoration:none; 
     }
+    // every other non-first level links
     > ul > li li a { 
-        padding:5px 0; 
+        padding:0 0 5px; 
     }
 }
 
