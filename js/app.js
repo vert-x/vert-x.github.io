@@ -23,10 +23,9 @@ $(document).ready(function(){
 
 
     // handle active states on the home page blocks
-    var $plusSigns = $('.plus-sign');
-    $plusSigns.on('click', function(){
+    $('.blocks').on('click', '.block', function(){
         $this = $(this);
-        $this.toggleClass('active').next().toggleClass('active');
+        $this.children('.plus-sign').toggleClass('active').next().toggleClass('active');
     });
 
 

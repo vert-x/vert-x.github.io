@@ -385,7 +385,7 @@ body { padding-top: 50px; }
 .wraper { width: 960px; margin: 0 auto; }
 
 .blocks { padding: 50px 0; overflow: hidden; }
-.blocks .block { position: relative; display: inline-block; margin-left: 25px; width: 218px; height: 192px; background-color: #f7f7f7; border-radius: 4px; }
+.blocks .block { cursor: pointer; position: relative; display: inline-block; margin-left: 25px; width: 218px; height: 192px; background-color: #f7f7f7; border-radius: 4px; }
 .blocks .block:first-child { margin-left: 0; }
 .blocks .block h2 { color: #aaa; font-weight: normal; font-size: 16px; text-align: center; font-family: 'Helvetica',Arial,sans-serif; margin: 148px 0 0; padding-top: 12px; border-top: 1px solid white; }
 .blocks .block > i { width: 25px; height: 25px; display: inline-block; text-align: center; cursor: pointer; font-style: normal; position: absolute; top: -20px; right: 10px; z-index: 10; background: #33a098; border-radius: 100%; border: 7px solid white; -webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease; }
