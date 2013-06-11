@@ -441,3 +441,8 @@ body { padding-top: 50px; }
 .toc li a:hover { background: #eee; }
 .toc > ul > li > a { padding: 15px; margin: -1px -25px; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; font-size: 14px; text-decoration: none; }
 .toc > ul > li li a { padding: 0 0 5px; }
+
+.joinus { text-align: center; }
+.joinus p { margin: -1px -30px; padding: 40px; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; }
+.joinus p:first-child { margin-top: -21px; }
+.joinus [class*="icon-"] { display: block; margin-bottom: 10px; font-size: 220px; color: #f1f1f1; text-shadow: -1px -1px 0px #ddd; }

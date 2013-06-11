@@ -143,3 +143,19 @@ body { padding-top:50px; }
     }
 }
 
+.joinus {
+    text-align:center;
+    
+    p { 
+        margin:-1px -30px; padding:40px;
+        border-top:1px solid $bordersColor; 
+        border-bottom:1px solid $bordersColor; 
+        &:first-child { margin-top:-21px; }
+    }
+    
+    [class*="icon-"] {
+        display:block; margin-bottom:10px;
+        font-size:220px; color:#f1f1f1;
+        text-shadow:-1px -1px 0px #ddd;
+    }
+}
