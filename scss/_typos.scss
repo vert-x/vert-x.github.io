@@ -15,7 +15,7 @@ p.info {
     position:relative; 
     padding:12px 12px 12px 50px; 
     font-size:13px; 
-    border:1px solid #ddd; 
+    border:1px solid $bordersColor; 
     border-radius:4px; 
     &:before { content:'i';
         font-size:26px; font-style:italic; color:white; text-align:center; 
@@ -29,14 +29,14 @@ h1 {
     margin:0px; padding:40px 0 34px; 
     font-family:'codebold', Arial, sans-serif; font-weight:normal; 
     color:$vertxGreen; font-size:26px; text-indent:30px; 
-    background-color:#f7f7f7; border-bottom:1px solid #ddd; 
+    background-color:#f7f7f7; border-bottom:1px solid $bordersColor; 
 }
 h2 { 
     margin-bottom:30px; 
     font-family:'codebold', Arial, sans-serif; 
     color:$vertxGreen; font-size:26px; font-weight:normal; 
 }
-.main h1 { margin:40px -30px 30px; padding:20px 30px 15px; text-indent:0; background:none; border-top:1px solid #ddd; border-bottom:1px solid #ddd; }
+.main h1 { margin:40px -30px 30px; padding:20px 30px 15px; text-indent:0; background:none; border-top:1px solid $bordersColor; border-bottom:1px solid $bordersColor; }
 .main h2 { margin:30px 0 15px; font-family:Arial, sans-serif; font-size:18px; color:$vertxGreen; }
 .main h3 { margin:20px 0 5px; font-size:16px; }
 .main h4 { margin:20px 0 5px; font-size:14px; }
@@ -48,4 +48,6 @@ h2 {
     h3 + br,
     h4 + br,
     h5 + br { display:none; }
+    
+    img { border:2px solid $bordersColor; }
 }

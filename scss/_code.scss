@@ -34,13 +34,13 @@ pre {
 .tabs {
     .tabs-footer { 
         display:block; padding:2px; background:#f7f7f7; 
-        border:1px solid #ddd; border-top-color:#ccc; 
+        border:1px solid $bordersColor; border-top-color:#ccc; 
     }
     a {
         display:inline-block; //vertical-align:top; 
         position:relative; padding:6px 12px 5px 12px; 
         color:#666; font-size:12px; text-decoration:none;
-        border-top:1px solid #ddd; border-radius:5px; 
+        border-top:1px solid $bordersColor; border-radius:5px; 
         margin:0 8px -1px 0;
         &:first-child { margin-left:21px; }
         &:focus { outline:none; }
@@ -58,7 +58,7 @@ pre {
             position:absolute; top:-1px; z-index:0; 
             height:100%; width:15px; 
             background-color:#eee; 
-            border:1px solid #ddd; 
+            border:1px solid $bordersColor; 
             border-bottom:none; 
         }
         
