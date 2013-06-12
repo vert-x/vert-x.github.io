@@ -120,6 +120,7 @@ In some cases you *don't want* the module to see its module directory as its cwd
 
 This preserves the current working directory of the caller.
 
+<a id="auto-redeploy"> </a>
 ### auto-redeploy
 
 Modules can be configured to auto-redeploy if Vert.x detects that any of the module resources have changed. This can be really useful during deployment. For more information see the documentation on [auto redeploy](dev_guide.html#auto-redeploy).
@@ -399,17 +400,17 @@ You can then run the following command against the installed module to tell Vert
 
 Before calling `vertx pulldeps` your module might have the structure on disk:
 
-./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mod.json 
-./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/app.js
+    ./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mod.json 
+    ./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/app.js
 
 After calling `vertx pulldeps` it would have the following structure
 
-./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mod.json 
-./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/app.js
-./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mod.json
-./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/[...rest of the stuff in that module]
-./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mods/org.foo~mod-nuclear~2.2/mod.json
-./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mods/org.foo~mod-nuclear~2.2/[...rest of the stuff in that module]
+    ./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mod.json 
+    ./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/app.js
+    ./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mod.json
+    ./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/[...rest of the stuff in that module]
+    ./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mods/org.foo~mod-nuclear~2.2/mod.json
+    ./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mods/org.foo~mod-nuclear~2.2/[...rest of the stuff in that module]
 
 The module directory `./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1` can then be zipped and deployed a self contained module and it won't have to download any dependencies at runtime since they will all be found *inside * the module already.
 
