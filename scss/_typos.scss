@@ -36,7 +36,19 @@ h2 {
     font-family:'codebold', Arial, sans-serif; 
     color:$vertxGreen; font-size:26px; font-weight:normal; 
 }
-.main h1 { margin:40px -30px 30px; padding:20px 30px 15px; text-indent:0; background:none; border-top:1px solid $bordersColor; border-bottom:1px solid $bordersColor; }
+
+.main h1 { 
+    margin-top:40px; margin-bottom:30px; 
+    margin-left:-30px !important; margin-right:-30px !important; 
+    padding:20px 30px 15px; text-indent:0; background:none; 
+    border-top:1px solid $bordersColor; 
+    border-bottom:1px solid $bordersColor; 
+    // border-top fix
+    &:before { content:'';
+       position:absolute; top:-2px; left:0; right:0;
+       border-top:1px solid $bordersColor;
+    }
+}
 .main h2 { margin:30px 0 15px; font-family:Arial, sans-serif; font-size:18px; color:$vertxGreen; }
 .main h3 { margin:20px 0 5px; font-size:16px; }
 .main h4 { margin:20px 0 5px; font-size:14px; }
@@ -50,4 +62,15 @@ h2 {
     h5 + br { display:none; }
     
     img { border:2px solid $bordersColor; }
+    
+    // target anchor links margin fix
+    h1, h2, h3, h4, h5, h6 {
+        position:relative;
+        border-top:52px solid transparent;
+        margin:-30px 0 0;
+        -webkit-background-clip:padding-box;
+        -moz-background-clip:padding;
+        background-clip:padding-box;
+        pointer-events:none;
+    }
 }
