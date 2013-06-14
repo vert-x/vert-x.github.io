@@ -410,7 +410,7 @@ body { padding-top: 50px; }
 .blocks .block > i:hover { background: #43c3ba; }
 .blocks .block > i.active { background: #999; -webkit-transform: rotate(405deg); -moz-transform: rotate(405deg); -ms-transform: rotate(405deg); -o-transform: rotate(405deg); transform: rotate(405deg); }
 
-.mega { text-align: center; padding: 75px 0; background: #f7f7f7; border-bottom: 1px solid #dddddd; }
+.mega { text-align: center; padding: 75px 0; background: #f7f7f7; border-bottom: 1px solid #dddddd; position: relative; }
 .mega img { width: 280px; }
 .mega .baseline { margin: 30px 0; color: #999; font-size: 20px; }
 .mega .links a { font-size: 12px; margin-left: 50px; color: #022b37; font-weight: bold; text-decoration: none; }
@@ -418,6 +418,7 @@ body { padding-top: 50px; }
 .mega .links a:before { color: #33a098; margin-right: 5px; font-size: 20px; line-height: 23px; vertical-align: middle; font-weight: normal; }
 .mega .links a:hover { color: #33a098; }
 .mega .button { margin-top: 30px; margin-bottom: -10px; }
+.mega .plop { position: absolute; top: 10px; width: 160px; height: 35px; border-radius: 3px; background: #33a098; }
 
 .cta { margin: 50px 0 0; text-align: center; }
 
