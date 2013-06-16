@@ -61,28 +61,101 @@ body { padding-top:50px; }
     text-align:center; padding:75px 0; 
     background:#f7f7f7; border-bottom:1px solid $bordersColor; 
     position:relative; 
+    -webkit-perspective:2500px; 
+    -moz-perspective:2500px; 
     
-    img { width:280px; }
-    .baseline { margin:30px 0; color:#999; font-size:20px; }
+    img { width:220px; }
+    .baseline { margin:20px auto 30px; max-width:600px; color:#777; font-size:25px; }
+    .poly {
+        position:relative; cursor:pointer; 
+        .icon-caret-down { 
+            font-size:17px; display:inline-block; 
+        }
+        .pane {
+            padding:10px 15px;
+            visibility:hidden; opacity:0; 
+            position:absolute; top:0; left:0;
+            font-size:14px; font-style:normal; color:white; text-align:left; 
+            background:lighten($vertxRed,6%); border-radius:3px; 
+            @include transition(all .3s ease);
+            i { font-style:normal; display:block; padding:1px 0; }
+            i:first-child { color:darken($vertxRed,20%); }
+        }
+        &:hover {
+            color:white; 
+            .pane { visibility:visible; opacity:1; top:-30px; }
+        }
+    }
     .links {
-        a { font-size:12px; margin-left:50px; color:$vertxDarkBlue; font-weight:bold; text-decoration:none; }
-        a:first-child { margin-left:0; }
+        display:inline-block; 
+        vertical-align:top; 
+        
+        a { font-size:12px; color:$vertxDarkBlue; font-weight:bold; text-decoration:none; 
+            width:170px; display:block; text-align:left; 
+            border:1px dashed #ddd; border-right:none; border-left:none; 
+            padding:8px 8px 8px 25px; margin-bottom:-1px; 
+        }
+        //a:first-child { margin-left:0; }
         a:before { color:$vertxGreen; margin-right:5px; font-size:20px; line-height:23px; vertical-align:middle; font-weight:normal; }
         a:hover { color:$vertxGreen; }
     }
     .button { margin-top:30px; margin-bottom:-10px; }
-    
-    
-    .plop {
-        position:absolute; top:10px;
-        width:160px; height:35px;
-        border-radius:3px;
-        background:$vertxGreen;
-    }
 }
 
+
 .cta {
-    margin:50px 0 0; text-align:center;  
+    margin:20px 30px 0;
+    
+    .plop { 
+        position:relative; 
+        display:inline-block; 
+        cursor:pointer;
+        &:hover { 
+            .left-part  { 
+                //@include transform( rotateX( 360deg) ); 
+            }
+            //.right-part { @include transform( rotateX(-90deg) ); bottom:-(35/2); }
+        }
+    }
+    .left-part, 
+    .right-part {
+        display:inline-block; height:35px; 
+        min-width:35px; margin-right:-4px; 
+        vertical-align:top; color:white; 
+        position:relative; 
+        
+        a { color:white; font-size:12px; text-decoration:none; padding:0 12px; }
+        > * { line-height:35px; }
+        @include transition(all .6s ease);
+        
+        -webkit-transform-style:preserve-3d; 
+        -moz-transform-style:preserve-3d;
+        transform-style:preserve-3d;
+    }
+    
+    .left-part  { 
+        border-radius:3px 0 0 3px; background:lighten($vertxGreen,6%); 
+        border:1px solid $vertxGreen; border-right:1px solid white; 
+        [class*="face-"] { background:darken($vertxGreen,5%); }
+    }
+    .right-part { 
+        border-radius:0 3px 3px 0; background:lighten($vertxRed,6%); 
+        border:1px solid $vertxRed;
+        [class*="face-"] { background:darken($vertxRed,5%); }
+    }
+    
+    // 3d faces 
+    $faceLength:35px; 
+    [class*="face-"] { 
+        position:absolute; opacity:.5;
+    }
+    .face-left, .face-right { top:0; bottom:0; width:$faceLength; @include transform(translateZ(-$faceLength/2) rotateY(90deg)); }
+    .face-left { left:-$faceLength/2; }
+    .face-right { right:-$faceLength/2; }
+    .face-top, .face-bott { left:0; right:0; height:$faceLength; @include transform(translateZ(-$faceLength/2) rotateX(90deg)); }
+    .face-top { top:-$faceLength/2; }
+    .face-bott { bottom:-$faceLength/2; }
+    .face-back { top:0; bottom:0; left:0; right:0; background-color:#f1f1f1; @include transform(translateZ(-$faceLength)); }
 }
 
 .code-module {

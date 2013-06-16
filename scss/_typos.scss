@@ -25,6 +25,13 @@ p.info {
         width:30px; height:30px; line-height:30px; 
     }
 }
+
+.vgreen     { color:$vertxGreen; }
+.vdkblue    { color:$vertxDarkBlue; }
+.vblue      { color:$vertxBlue; }
+.vorange    { color:$vertxOrange; }
+.vred       { color:$vertxRed; }
+
 h1 { 
     margin:0px; padding:40px 0 34px; 
     font-family:'codebold', Arial, sans-serif; font-weight:normal; 
