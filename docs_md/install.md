@@ -29,11 +29,12 @@ For example
     tar -zxf ~/Downloads/vert.x-2.0.0-final.tar.gz
 
 or
+
     unzip ~/Downloads/vert.x-2.0.0-final.tar.gz
 
 ## Check the version
 
-To make sure you've installed it correctly, type the following in a console:
+To make sure you've installed it correctly, use `vertx version` to display the version.
 
     $ vertx version
     vert.x 2.0.0-final
@@ -56,6 +57,6 @@ Open a console in the directory where you saved it, and type:
 
     vertx run server.js
 
-Open your browser and point it at `http://localhost:8080`
+Open your browser and point it at <a href="http://localhost:8080">http://localhost:8080</a>
 
 If you see "Hello World!" in the browser then you're all set to go!
