@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>Attribute List Extension &#8212; Python Markdown</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+</head>
+<body>
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="definition_lists.html" title="Definition List Extension"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="abbreviations.html" title="Abbreviation Extension"
+         accesskey="P">previous</a> |</li>
+    <li><img src="../py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="../index.html">Python Markdown v2.2.0 documentation</a> &raquo;</li>
+    <li><a href="index.html">Extensions</a> &raquo;</li>
+<li><a href="attr_list.html">Attribute List Extension</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="document">
+  <div class="documentwrapper">
+    <div class="bodywrapper">
+      <div class="body">
+<h1 id="attribute-lists">Attribute Lists</h1>
+<h2 id="summary">Summary</h2>
+<p>An extension to Python-Markdown that adds a syntax to define attributes on
+the various HTML elements in markdown's output.</p>
+<p>This extension is included in the standard Markdown library.</p>
+<h2 id="syntax">Syntax</h2>
+<p>The basic syntax was inspired by <a href="http://maruku.rubyforge.org/proposal.html#attribute_lists">Maruku</a>'s Attribute List feature.</p>
+<h3 id="the-list">The List</h3>
+<p>An example attribute list might look like this:</p>
+<pre><code>{: #someid .someclass somekey='some values' }
+</code></pre>
+<p>A word which starts with a hash <code>#</code> will set the id of an element.</p>
+<p>A word which starts with a dot <code>.</code> will add to the list of classes assigned to
+an element.</p>
+<p>A key/value pair will assign that pair to the element.</p>
+<p>Be aware that while the dot syntax will add to a class, using key/value pairs
+will always override the previously defined attribute. Consider the following:</p>
+<pre><code>{: #id1 .class1 id=id2 class="class2 class3" .class4 }
+</code></pre>
+<p>The above example would result in the following attributes being defined:</p>
+<pre><code>id="id2 class="class2 class3 class4"
+</code></pre>
+<h3 id="block-level">Block Level</h3>
+<p>To define attributes for a block level element, the attribute list should
+be defined on the last line of the block by itself.</p>
+<pre><code>This is a paragraph.
+{: #an_id .a_class }
+</code></pre>
+<p>The above results in the following output:</p>
+<pre><code>&lt;p id="an_id" class="a_class"&gt;This is a paragraph.&lt;/p&gt;
+</code></pre>
+<p>The one exception is headers, as they are only ever allowed on one line.</p>
+<pre><code>A setext style header {: #setext}
+=================================
+
+### A hash style header ### {: #hash }
+</code></pre>
+<p>The above results in the following output:</p>
+<pre><code>&lt;h1 id="setext"&gt;A setext style header&lt;/h1&gt;
+&lt;h3 id="hash"&gt;A hash style header&lt;/h3&gt;
+</code></pre>
+<h3 id="inline">Inline</h3>
+<p>To define attributes on inline elements, the attribute list should be defined 
+immediately after the inline element with no whitespace.</p>
+<pre><code>[link](http://example.com){: class="foo bar" title="Some title! }
+</code></pre>
+<p>The above results in the following output:</p>
+<pre><code>&lt;p&gt;&lt;a href="http://example.com" class="foo bar" title="Some title!"&gt;link&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+      </div> <!-- .body -->
+    </div> <!-- .bodywrapper -->
+  </div> <!-- .documentwrapper -->
+
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+    <h3>Table Of Contents</h3>
+    <div class="toc">
+<ul>
+<li><a href="#attribute-lists">Attribute Lists</a><ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#syntax">Syntax</a><ul>
+<li><a href="#the-list">The List</a></li>
+<li><a href="#block-level">Block Level</a></li>
+<li><a href="#inline">Inline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+    <h4>Previous topic</h4>
+      <p class="topless"><a href="abbreviations.html"
+         title="previous chapter">Abbreviation Extension</a></p>
+    <h4>Next topic</h4>
+      <p class="topless"><a href="definition_lists.html"
+         title="next chapter">Definition List Extension</a></p>
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="https://github.com/waylan/Python-Markdown/issues"
+             >Report a Bug</a></li>
+      <li><a href="attr_list.txt"
+             rel="nofollow">Show Source</a></li>
+    </ul>
+    </div> <!-- .sphinxsidebarwrapper -->
+  </div> <!-- .sphinxsidebar -->
+
+  <div class="clearer"></div>
+</div> <!-- .document -->
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="definition_lists.html" title="Definition List Extension"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="abbreviations.html" title="Abbreviation Extension"
+         accesskey="P">previous</a> |</li>
+    <li><img src="../py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="../index.html">Python Markdown v2.2.0 documentation</a> &raquo;</li>
+    <li><a href="index.html">Extensions</a> &raquo;</li>
+<li><a href="attr_list.html">Attribute List Extension</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="footer">&copy; 2010-2012 Python Markdown Project</div>
+</body>
+</html>

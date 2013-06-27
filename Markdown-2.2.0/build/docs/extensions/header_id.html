@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>HeaderId Extension &#8212; Python Markdown</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+</head>
+<body>
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="meta_data.html" title="Meta-Data Extension"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="html_tidy.html" title="HTML Tidy Extension"
+         accesskey="P">previous</a> |</li>
+    <li><img src="../py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="../index.html">Python Markdown v2.2.0 documentation</a> &raquo;</li>
+    <li><a href="index.html">Extensions</a> &raquo;</li>
+<li><a href="header_id.html">HeaderId Extension</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="document">
+  <div class="documentwrapper">
+    <div class="bodywrapper">
+      <div class="body">
+<h1 id="headerid">HeaderId</h1>
+<h2 id="summary">Summary</h2>
+<p>An extension to Python-Markdown that automatically generates 'id' attributes
+for HTML header elements (h1-h6) in markdown's output.</p>
+<p>This extension is included in the standard Markdown library.</p>
+<h2 id="syntax">Syntax</h2>
+<p>By default, all headers will automatically have unique "id" attributes 
+generated based upon the text of the header (See below to turn this off). 
+Note this example in which all three headers would have the same "id":</p>
+<pre><code>#Header
+#Header
+#Header
+</code></pre>
+<p>Results in:</p>
+<pre><code>&lt;h1 id="header"&gt;Header&lt;/h1&gt;
+&lt;h1 id="header_1"&gt;Header&lt;/h1&gt;
+&lt;h1 id="header_2"&gt;Header&lt;/h1&gt;
+</code></pre>
+<h2 id="configuring-the-output">Configuring the Output</h2>
+<p>The HeaderId extension has four configuration settings:</p>
+<ul>
+<li>
+<p><strong>level</strong>: Base level for headers.</p>
+<p>Default: <code>1</code></p>
+<p>The <code>level</code> setting allows you to automatically adjust the header levels to
+fit within the hierarchy of your html templates. For example, suppose the 
+markdown text for a page should not contain any headers higher than level 3
+(<code>&lt;h3&gt;</code>). The following will accomplish that:</p>
+<pre><code>&gt;&gt;&gt;  text = '''
+... #Some Header
+... ## Next Level'''
+&gt;&gt;&gt; html = markdown.markdown(text, extensions=['headerid(level=3)'])
+&gt;&gt;&gt; print html
+&lt;h3 id="some_header"&gt;Some Header&lt;/h3&gt;
+&lt;h4 id="next_level"&gt;Next Level&lt;/h4&gt;'
+</code></pre>
+</li>
+<li>
+<p><strong>forceid</strong>: Force all headers to have an id.</p>
+<p>Default: <code>True</code></p>
+<p>The <code>forceid</code> setting turns on or off the automatically generated ids for 
+headers that do not have one explicitly defined (using the attr_list 
+extension).</p>
+<pre><code>&gt;&gt;&gt; text = '''
+... # Some Header
+... # Header with ID # { #foo }'''
+&gt;&gt;&gt; html = markdown.markdown(text, 
+                extensions=['attr_list', 'headerid(forceid=False)'])
+&gt;&gt;&gt; print html
+&lt;h1&gt;Some Header&lt;/h1&gt;
+&lt;h1 id="foo"&gt;Header with ID&lt;/h1&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>separator</strong>: Word separator. Character which replaces whitespace in id.</p>
+<p>Default: <code>-</code></p>
+</li>
+<li>
+<p><strong>slugify</strong>: Callable to generate anchors.</p>
+<p>Default: <code>markdown.extensions.headerid.slugify</code></p>
+<p>If you would like to use a different algorithm to define the ids, you can
+pass in a callable which takes two arguments:</p>
+<ul>
+<li><code>value</code>: The string to slugify.</li>
+<li><code>separator</code>: The Word Separator.</li>
+</ul>
+</li>
+</ul>
+<h2 id="using-with-meta-data">Using with Meta-Data</h2>
+<p>The HeaderId Extension also supports the <a href="meta_data.html">Meta-Data</a> Extension.
+Please see the documentation for that extension for specifics. The supported 
+meta-data keywords are:</p>
+<ul>
+<li><code>header_level</code></li>
+<li><code>header_forceid</code></li>
+</ul>
+<p>When used, the meta-data will override the settings provided through the<br />
+<code>extension_configs</code> interface. </p>
+<p>This document:</p>
+<pre><code>header_level: 2
+header_forceid: Off
+
+# A Header
+</code></pre>
+<p>Will result in the following output:</p>
+<pre><code>&lt;h2&gt;A Header&lt;/h2&gt;
+</code></pre>
+      </div> <!-- .body -->
+    </div> <!-- .bodywrapper -->
+  </div> <!-- .documentwrapper -->
+
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+    <h3>Table Of Contents</h3>
+    <div class="toc">
+<ul>
+<li><a href="#headerid">HeaderId</a><ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#configuring-the-output">Configuring the Output</a></li>
+<li><a href="#using-with-meta-data">Using with Meta-Data</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+    <h4>Previous topic</h4>
+      <p class="topless"><a href="html_tidy.html"
+         title="previous chapter">HTML Tidy Extension</a></p>
+    <h4>Next topic</h4>
+      <p class="topless"><a href="meta_data.html"
+         title="next chapter">Meta-Data Extension</a></p>
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="https://github.com/waylan/Python-Markdown/issues"
+             >Report a Bug</a></li>
+      <li><a href="header_id.txt"
+             rel="nofollow">Show Source</a></li>
+    </ul>
+    </div> <!-- .sphinxsidebarwrapper -->
+  </div> <!-- .sphinxsidebar -->
+
+  <div class="clearer"></div>
+</div> <!-- .document -->
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="meta_data.html" title="Meta-Data Extension"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="html_tidy.html" title="HTML Tidy Extension"
+         accesskey="P">previous</a> |</li>
+    <li><img src="../py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="../index.html">Python Markdown v2.2.0 documentation</a> &raquo;</li>
+    <li><a href="index.html">Extensions</a> &raquo;</li>
+<li><a href="header_id.html">HeaderId Extension</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="footer">&copy; 2010-2012 Python Markdown Project</div>
+</body>
+</html>

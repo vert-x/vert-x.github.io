@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>Installation &#8212; Python Markdown</title>
+<link rel="stylesheet" href="default.css" type="text/css">
+</head>
+<body>
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="reference.html" title="Library Reference"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="index.html" title="Summary"
+         accesskey="P">previous</a> |</li>
+    <li><img src="py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="index.html">Python Markdown v2.2.1 documentation</a> &raquo;</li>
+    <li><a href="install.html">Installation</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="document">
+  <div class="documentwrapper">
+    <div class="bodywrapper">
+      <div class="body">
+<h1 id="installing-python-markdown">Installing Python-Markdown</h1>
+<h2 id="the-easy-way">The Easy Way</h2>
+<p>The easiest way to install Python-Markdown is simply to type one of the 
+following commands from the command line as an Admin/Root user:</p>
+<pre><code>pip install markdown
+</code></pre>
+<p>or</p>
+<pre><code>easy_install markdown
+</code></pre>
+<p>That's it! Your ready to <a href="reference.html">use</a> Python-Markdown. Enjoy!</p>
+<h2 id="windows">Installing on Windows</h2>
+<p>Download the Windows installer (.exe) from 
+<a href="http://pypi.python.org/pypi/Markdown">PyPI</a></p>
+<p>Double-click the file and follow the instructions.</p>
+<p>If you prefer to manually install Python-Markdown in Windows, download the
+Zip file, unzip it, and on the command line in the directory you unzipped to,
+run the following command:</p>
+<pre><code>C://path/to/python.exe setup.py install
+</code></pre>
+<p>If you plan to use the provided command line script, you need to make sure your
+script directory is on your system path. On a typical Python install of Windows
+the Scripts directory is <code>C:\PythonXX\Scripts\</code> (were "XX" is the Python version
+number, i.e., "27"). Adjust the path according to your system and add to your 
+system path.</p>
+<h2 id="linux">Installing on *nix Systems</h2>
+<p>From the command line do the following (where 2.x is the version number):</p>
+<pre><code>wget http://pypi.python.org/packages/source/M/Markdown/Markdown-2.x.tar.gz
+tar xvzf Markdown-2.x.tar.gz
+cd markdown-2.x/
+sudo python setup.py install
+</code></pre>
+<p>See <a href="http://pypi.python.org/pypi/Markdown">PyPI</a> for all available versions.</p>
+<h2 id="git">Using the Git Repository</h2>
+<p>If you're the type that likes to live on the edge, you may want to keep up with 
+the latest additions and bug fixes in the repository between releases.
+Python-Markdown is maintained in a Git repository on github.com. To
+get a copy of Python-Markdown from the repository do the following from the
+command line:</p>
+<pre><code>git clone git://github.com/waylan/Python-Markdown.git python-markdown
+cd python-markdown
+python setup.py install
+</code></pre>
+<h2 id="dependencies">Dependencies</h2>
+<p>Python-Markdown requires the ElementTree module to be installed. In Python 2.5+ 
+ElementTree is included as part of the standard library at 
+<code>xml.etree.ElementTree</code> and/or <code>xml.etree.cElementTree</code>. For earlier versions 
+of Python, the library needs to be installed.  However, Python-Markdown's 
+install script will automaticaly detect the missing library and download and 
+install the "ElementTree" library for you if your system has internet access. 
+If you would like to use the "cElementTree" library (which is faster), you can 
+install it manually. Markdown will check for the faster "c" library first and 
+fall back to the slower python implementation when it is not available.</p>
+<p>See <a href="http://effbot.org/zone/element-index.htm">http://effbot.org/zone/element-index.htm</a> for more information or to 
+download the latest version of ElementTree.</p>
+      </div> <!-- .body -->
+    </div> <!-- .bodywrapper -->
+  </div> <!-- .documentwrapper -->
+
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+    <h3>Table Of Contents</h3>
+    <div class="toc">
+<ul>
+<li><a href="#installing-python-markdown">Installing Python-Markdown</a><ul>
+<li><a href="#the-easy-way">The Easy Way</a></li>
+<li><a href="#windows">Installing on Windows</a></li>
+<li><a href="#linux">Installing on *nix Systems</a></li>
+<li><a href="#git">Using the Git Repository</a></li>
+<li><a href="#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+    <h4>Previous topic</h4>
+      <p class="topless"><a href="index.html"
+         title="previous chapter">Summary</a></p>
+    <h4>Next topic</h4>
+      <p class="topless"><a href="reference.html"
+         title="next chapter">Library Reference</a></p>
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="https://github.com/waylan/Python-Markdown/issues"
+             >Report a Bug</a></li>
+      <li><a href="install.txt"
+             rel="nofollow">Show Source</a></li>
+    </ul>
+    </div> <!-- .sphinxsidebarwrapper -->
+  </div> <!-- .sphinxsidebar -->
+
+  <div class="clearer"></div>
+</div> <!-- .document -->
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="reference.html" title="Library Reference"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="index.html" title="Summary"
+         accesskey="P">previous</a> |</li>
+    <li><img src="py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="index.html">Python Markdown v2.2.1 documentation</a> &raquo;</li>
+    <li><a href="install.html">Installation</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="footer">&copy; 2010-2012 Python Markdown Project</div>
+</body>
+</html>

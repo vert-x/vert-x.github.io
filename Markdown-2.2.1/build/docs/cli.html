@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>Command Line &#8212; Python Markdown</title>
+<link rel="stylesheet" href="default.css" type="text/css">
+</head>
+<body>
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="extensions/index.html" title="Extensions"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="reference.html" title="Library Reference"
+         accesskey="P">previous</a> |</li>
+    <li><img src="py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="index.html">Python Markdown v2.2.1 documentation</a> &raquo;</li>
+    <li><a href="cli.html">Command Line</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="document">
+  <div class="documentwrapper">
+    <div class="bodywrapper">
+      <div class="body">
+<h1 id="using-python-markdown-on-the-command-line">Using Python-Markdown on the Command Line</h1>
+<p>While Python-Markdown is primarily a python library, a command line script is 
+included as well. While there are many other command line implementations 
+of Markdown, you may not have them installed, or you may prefer to use 
+Python-Markdown's various extensions.</p>
+<p>Generally, you will want to have the Markdown library fully installed on your
+system to run the command line script. See the 
+<a href="install.html">Installation instructions</a> for details.</p>
+<p>Assuming the <code>python</code> executable is on your system path, just run the following:</p>
+<pre><code>python -m markdown [options] [args]
+</code></pre>
+<p>That will run the module as a script. Note that on older Python versions (2.5 
+and 2.6), you may need to specify the appropriate module:</p>
+<pre><code>python -m markdown.__main__ [options] [args]
+</code></pre>
+<p>Use the <code>--help</code> option for available options:</p>
+<pre><code>python -m markdown --help
+</code></pre>
+<p>If you are using Python 2.4 or you don't want to have to call the python
+executable directly, follow the instructions below:</p>
+<h2 id="setup">Setup</h2>
+<p>Upon installation, the <code>markdown_py</code> script will have been copied to
+your Python "Scripts" directory. Different systems require different methods to
+ensure that any files in the Python "Scripts" directory are on your system 
+path.</p>
+<ul>
+<li>
+<p><strong>Windows</strong>:</p>
+<p>Assuming a default install of Python on Windows, your "Scripts" directory 
+is most likely something like <code>C:\\Python26\Scripts</code>. Verify the location
+of your "Scripts" directory and add it to you system path.</p>
+<p>Calling <code>markdown_py</code> from the command line will call the wrapper batch 
+file <code>markdown_py.bat</code> in the "Scripts" directory created during install.</p>
+</li>
+<li>
+<p><strong>*nix</strong> (Linux, OSX, BSD, Unix, etc.):</p>
+<p>As each *nix distribution is different and we can't possibly document all 
+of them here, we'll provide a few helpful pointers:</p>
+<ul>
+<li>
+<p>Some systems will automatically install the script on your path. Try it 
+  and see if it works. Just run <code>markdown_py</code> from the command line.</p>
+</li>
+<li>
+<p>Other systems may maintain a separate "Scripts" directory which you
+  need to add to your path. Find it (check with your distribution) and
+  either add it to your path or make a symbolic link to it from your path.</p>
+</li>
+<li>
+<p>If you are sure <code>markdown_py</code> is on your path, but it still isn't being
+  found, check the permissions of the file and make sure it is executable.</p>
+</li>
+</ul>
+<p>As an alternative, you could just <code>cd</code> into the directory which contains
+the source distribution, and run it from there. However, remember that your
+markdown text files will not likely be in that directory, so it is much 
+more convenient to have <code>markdown_py</code> on your path.</p>
+</li>
+</ul>
+<p><strong>Note:</strong> Python-Markdown uses "markdown_py" as a script name because
+the Perl implementation has already taken the more obvious name "markdown".
+Additionally, the default Python configuration on some systems would cause a 
+script named "markdown.py" to fail by importing itself rather than the markdown
+library. Therefore, the script has been named "markdown_py" as a compromise. If
+you prefer a different name for the script on your system, it is suggested that
+you create a symbolic link to <code>markdown_py</code> with your preferred name.</p>
+<h2 id="usage">Usage</h2>
+<p>To use <code>markdown_py</code> from the command line, run it as </p>
+<pre><code>$ markdown_py input_file.txt
+</code></pre>
+<p>or </p>
+<pre><code>$ markdown_py input_file.txt &gt; output_file.html
+</code></pre>
+<p>For a complete list of options, run</p>
+<pre><code>$ markdown_py --help
+</code></pre>
+<h2 id="using-extensions">Using Extensions</h2>
+<p>For an extension to be run from the command line it must be provided in a module
+on your python path (see the <a href="extensions/api.html">Extension API</a> for details).
+It can then be invoked by the name of that module:</p>
+<pre><code>$ markdown_py -x footnotes text_with_footnotes.txt &gt; output.html
+</code></pre>
+<p>If the extension supports config options, you can pass them in as well:</p>
+<pre><code>$ markdown_py -x "footnotes(PLACE_MARKER=~~~~~~~~)" input.txt
+</code></pre>
+      </div> <!-- .body -->
+    </div> <!-- .bodywrapper -->
+  </div> <!-- .documentwrapper -->
+
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+    <h3>Table Of Contents</h3>
+    <div class="toc">
+<ul>
+<li><a href="#using-python-markdown-on-the-command-line">Using Python-Markdown on the Command Line</a><ul>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#using-extensions">Using Extensions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+    <h4>Previous topic</h4>
+      <p class="topless"><a href="reference.html"
+         title="previous chapter">Library Reference</a></p>
+    <h4>Next topic</h4>
+      <p class="topless"><a href="extensions/index.html"
+         title="next chapter">Extensions</a></p>
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="https://github.com/waylan/Python-Markdown/issues"
+             >Report a Bug</a></li>
+      <li><a href="cli.txt"
+             rel="nofollow">Show Source</a></li>
+    </ul>
+    </div> <!-- .sphinxsidebarwrapper -->
+  </div> <!-- .sphinxsidebar -->
+
+  <div class="clearer"></div>
+</div> <!-- .document -->
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="extensions/index.html" title="Extensions"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="reference.html" title="Library Reference"
+         accesskey="P">previous</a> |</li>
+    <li><img src="py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="index.html">Python Markdown v2.2.1 documentation</a> &raquo;</li>
+    <li><a href="cli.html">Command Line</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="footer">&copy; 2010-2012 Python Markdown Project</div>
+</body>
+</html>

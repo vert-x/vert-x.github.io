@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>CodeHilite Extension &#8212; Python Markdown</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+</head>
+<body>
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="../siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="html_tidy.html" title="HTML Tidy Extension"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="smart_strong.html" title="Smart Strong Extension"
+         accesskey="P">previous</a> |</li>
+    <li><img src="../py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="../index.html">Python Markdown v2.2.1 documentation</a> &raquo;</li>
+    <li><a href="index.html">Extensions</a> &raquo;</li>
+<li><a href="code_hilite.html">CodeHilite Extension</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="document">
+  <div class="documentwrapper">
+    <div class="bodywrapper">
+      <div class="body">
+<h1 id="codehilite">CodeHilite</h1>
+<h2 id="summary">Summary</h2>
+<p>The CodeHilite Extension adds code/syntax highlighting to standard 
+Python-Markdown code blocks using <a href="http://pygments.org/">Pygments</a>.</p>
+<p>This extension is included in the  Markdown library.</p>
+<h2 id="setup">Setup</h2>
+<p>You will also need to <a href="http://pygments.org/download/">download</a> and install the Pygments package on your 
+<code>PYTHONPATH</code>. You will need to determine the appropriate CSS classes and create
+appropriate rules for them, which are either defined in or linked from the 
+header of your HTML templates. See the excellent <a href="http://pygments.org/docs">documentation</a> for more 
+details. If no language is defined, Pygments will attempt to guess the 
+language. When that fails, the code block will display as un-highlighted code.</p>
+<p><strong>Note:</strong> The css and/or javascript is not included as part of this extension 
+but shall always be provided by the end user.</p>
+<h2 id="syntax">Syntax</h2>
+<p>The CodeHilite Extension follows the same <a href="http://daringfireball.net/projects/markdown/syntax#precode">syntax</a> as regular Markdown code 
+blocks, with one exception. The hiliter needs to know what language to use for 
+the code block. There are three ways to tell the hiliter what language the code 
+block contains and each one has a different result.</p>
+<h3 id="shebang-with-path">SheBang (with path)</h3>
+<p>If the first line of the codeblock contains a shebang, the language is derived 
+from that and line numbers are used.</p>
+<pre><code>    #!/usr/bin/python
+    # Code goes here ...
+</code></pre>
+<p>Will result in:</p>
+<pre><code>#!/usr/bin/python
+# Code goes here ...
+</code></pre>
+<h3 id="shebang-no-path">SheBang (no path)</h3>
+<p>If the first line contains a shebang, but the shebang line does not contain a 
+path (a single <code>/</code> or even a space), then that line is removed from the code 
+block before processing. Line numbers are used.</p>
+<pre><code>    #!python
+    # Code goes here ...
+</code></pre>
+<p>Will result in:</p>
+<pre><code># Code goes here ...
+</code></pre>
+<h4 id="colons">Colons</h4>
+<p>If the first line begins with three or more colons, the text following the 
+colons identifies the language. The first line is removed from the code block 
+before processing and line numbers are not used.</p>
+<pre><code>    :::python
+    # Code goes here ...
+</code></pre>
+<p>Will result in:</p>
+<pre><code># Code goes here ...
+</code></pre>
+<h3 id="when-no-language-is-defined">When No Language is Defined</h3>
+<p>CodeHilite is completely backward compatible so that if a code block is 
+encountered that does not define a language, the block is simple wrapped in 
+<code>&lt;pre&gt;</code> tags and output. Note: one exception would be that the Pygments 
+highlighting engine will try to guess the language. Upon failure, the same 
+behavior will happen as described here.</p>
+<pre><code>    # Code goes here ...
+</code></pre>
+<p>Will result in:</p>
+<pre><code># Code goes here ...
+</code></pre>
+<p>Lets see the source for that:</p>
+<pre><code>&lt;div class="codehilite" &gt;&lt;pre&gt;&lt;code&gt;# Code goes here ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</code></pre>
+<h2 id="usage">Usage</h2>
+<p>From the Python interpreter:</p>
+<pre><code>&gt;&gt;&gt; html = markdown.markdown(text, ['codehilite'])
+</code></pre>
+<p>If you want every code block to have line numbers, even when using colons 
+(<code>:::</code>) for language identification, the setting <code>force_linenos</code> is available 
+to do so.</p>
+<pre><code>&gt;&gt;&gt; html = markdown.markdown(text, 
+...     ['codehilite(force_linenos=True)']
+... )
+</code></pre>
+<p>If you want to prevent Pygments from guessing the language, only highlighting
+blocks when you explicitly request it, set the <code>guess_lang</code> setting to 'False'.</p>
+<pre><code>&gt;&gt;&gt; html = markdown.markdown(text,
+...     ['codehilite(guess_lang=False)']
+... )
+</code></pre>
+      </div> <!-- .body -->
+    </div> <!-- .bodywrapper -->
+  </div> <!-- .documentwrapper -->
+
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+    <h3>Table Of Contents</h3>
+    <div class="toc">
+<ul>
+<li><a href="#codehilite">CodeHilite</a><ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#syntax">Syntax</a><ul>
+<li><a href="#shebang-with-path">SheBang (with path)</a></li>
+<li><a href="#shebang-no-path">SheBang (no path)</a><ul>
+<li><a href="#colons">Colons</a></li>
+</ul>
+</li>
+<li><a href="#when-no-language-is-defined">When No Language is Defined</a></li>
+</ul>
+</li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+    <h4>Previous topic</h4>
+      <p class="topless"><a href="smart_strong.html"
+         title="previous chapter">Smart Strong Extension</a></p>
+    <h4>Next topic</h4>
+      <p class="topless"><a href="html_tidy.html"
+         title="next chapter">HTML Tidy Extension</a></p>
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="https://github.com/waylan/Python-Markdown/issues"
+             >Report a Bug</a></li>
+      <li><a href="code_hilite.txt"
+             rel="nofollow">Show Source</a></li>
+    </ul>
+    </div> <!-- .sphinxsidebarwrapper -->
+  </div> <!-- .sphinxsidebar -->
+
+  <div class="clearer"></div>
+</div> <!-- .document -->
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="../siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="html_tidy.html" title="HTML Tidy Extension"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="smart_strong.html" title="Smart Strong Extension"
+         accesskey="P">previous</a> |</li>
+    <li><img src="../py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="../index.html">Python Markdown v2.2.1 documentation</a> &raquo;</li>
+    <li><a href="index.html">Extensions</a> &raquo;</li>
+<li><a href="code_hilite.html">CodeHilite Extension</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="footer">&copy; 2010-2012 Python Markdown Project</div>
+</body>
+</html>

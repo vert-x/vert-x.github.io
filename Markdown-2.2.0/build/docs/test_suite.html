@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>Test Suite &#8212; Python Markdown</title>
+<link rel="stylesheet" href="default.css" type="text/css">
+</head>
+<body>
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="change_log.html" title="Change Log"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="extensions/api.html" title="Extension API"
+         accesskey="P">previous</a> |</li>
+    <li><img src="py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="index.html">Python Markdown v2.2.0 documentation</a> &raquo;</li>
+    <li><a href="test_suite.html">Test Suite</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="document">
+  <div class="documentwrapper">
+    <div class="bodywrapper">
+      <div class="body">
+<h1 id="test-suite">Test Suite</h1>
+<p>Python-Markdown comes with a test suite which uses the <a href="http://somethingaboutorange.com/mrl/projects/nose/">Nose</a> testing
+framework.The test suite primarily serves to ensure that new bugs are not
+introduced as existing bugs are patched or new features are added. It also
+allows Python-Markdown to be tested with the tests from other implementations
+such as John Gruber's <a href="http://daringfireball.net/projects/markdown/">Perl</a> implementation or Michel Fortin's <a href="http://michelf.com/projects/php-markdown/">PHP</a>
+implementation.</p>
+<p>The test suite can be run by calling the <code>run_tests.py</code> command at the root of
+the distribution tarball or by calling the <code>nosetests</code> command directly. Either
+way, Nose will need to be installed on your system first (run <code>easy_install
+nose</code>). Any standard nosetests config options can be passed in on the command
+line (i.e.: verbosity level or use of a plugin like coverage).</p>
+<p>Additionally, a nicely formatted HTML report of all output is written to a
+temporary file in <code>tmp/test-output.html</code>. Open the file in a browser to view
+the report.</p>
+<p>The test suite contains three kinds of tests: Markdown Syntax Tests, Unit
+Tests, and Doc Tests.</p>
+<h1 id="markdown-syntax-tests">Markdown Syntax Tests</h1>
+<p>The Syntax Tests are in the various directories contained within the 'tests'
+directory of the packaged tarball. Each test consists of a matching pair of txt
+and html files. The txt file contains a snippet of Markdown source text
+formated for a specific syntax feature and the html file contains the expected
+HTML output of that snippet. When the test suite is run, each txt file is run
+through Markdown and the output is compared with the html file as a separate
+Unit Test.</p>
+<p>In fact, this is the primary reason for using Nose, it gives us an easy way to
+treat each of these tests as a separate unit test which is reported on
+separately. Additionally, with the help of a couple custom Nose plugins which
+are included with the Markdown Test Suite, we are able to get back an easy to
+read diff of the actual output compared to expected output when a test fails.</p>
+<p>Here is some sample output with a test that is failing because of some
+insignificant white space differences:</p>
+<pre><code>$ ./run-tests.py
+..........................................................M...........
+............................SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+SSSSSSSSSS.................S..........................................
+.........
+======================================================================
+MarkdownSyntaxError: TestSyntax: "misc/lists3"
+----------------------------------------------------------------------
+MarkdownSyntaxError: Output from "/home/waylan/code/python-markdown/te
+sts/misc/lists3.txt" failed to match expected output.
+
+--- /home/waylan/code/python-markdown/tests/misc/lists3.html 
++++ actual_output.html 
+@@ -1,5 +1,5 @@ 
+ &lt;ul&gt; 
+ &lt;li&gt;blah blah blah 
+-sdf asdf asdf asdf asdf 
+-asda asdf asdfasd&lt;/li&gt; 
++    sdf asdf asdf asdf asdf 
++    asda asdf asdfasd&lt;/li&gt; 
+ &lt;/ul&gt;
+
+---------------------------------------------------------------------- 
+Ran 219 tests in 7.698s
+
+FAILED (MarkdownSyntaxError=1, SKIP=53)
+</code></pre>
+<p>Note that 219 tests were run, one of which failed with a <code>MarkdownSyntaxError</code>.
+Only Markdown Syntax Tests should fail with a <code>MarkdownSyntaxError</code>. Nose then
+formats the error reports for <code>MarkdownSyntaxError</code>s so that they only include
+useful information. Namely the txt file which failed and a unified diff showing
+the failure. Without the plugin, you would also get a useless traceback showing
+how the code stepped through the test framework, but nothing about how Markdown
+actually ran.</p>
+<p>If, on the other hand, a Syntax Test failed because some other exception gets
+raised by either Markdown or the test suite, then that would be reported as per
+a normal unit test failure with the appropriate traceback for debugging
+purposes.</p>
+<h3 id="syntax-test-config-settings">Syntax Test Config Settings</h3>
+<p>The other thing to note about the above example is that 53 tests were skipped.
+Those tests have been explicitly configured to be skipped as they are primarily
+tests from either PHP or Perl which are known to fail for various reasons. In
+fact, a number of different configuration settings can be set for any specific
+test.</p>
+<p>Each Syntax Test directory contains a <code>test.cfg</code> file in the ini format. The
+file may contain a separate section for each txt file named exactly as the file
+is named minus the file extension (i.e.; the section for a test in <code>foo.txt</code>
+would be <code>[foo]</code>). All settings are optional. Default settings for the entire
+directory can be set under the <code>[DEFAULT]</code> section (must be all caps). Any
+settings under a specific file section will override anything in the
+<code>[DEFAULT]</code> section for that specific test only.</p>
+<p>Below are each of the config options available and the defaults used when they
+are not explicitly set.</p>
+<ul>
+<li><code>normalize</code>: Switches whitespace normalization of the test output on or off. 
+  Defaults to <code>0</code> (off). Note: This requires that <a href="http://utidylib.berlios.de/">uTidylib</a> be installed on 
+  the system. Otherwise the test will be skipped, regardless of any other 
+  settings.<br />
+</li>
+<li><code>skip</code>: Switches skipping of the test on and off. Defaults to <code>0</code> (off).<br />
+</li>
+<li><code>input_ext</code>: Extension of input file. Defaults to <code>.txt</code>. Useful for tests 
+  from other implementations.</li>
+<li><code>output_ext</code>: Extension of output file. Defaults to <code>.html</code>. Useful for tests
+  from other implementations.</li>
+<li>Any keyword arguement accepted my Markdown. If not set, Markdown's defaults
+  are used. </li>
+</ul>
+<h2 id="unit-tests">Unit Tests</h2>
+<p>All Unit Tests shipped with Python-Markdown are standard Python Unit Tests and
+are currently all contained in <code>tests/test_apis.py</code>. Standard discovery methods
+are used to find and run the tests. Therefor, when writing new tests, those
+standards and naming conventions should be followed.</p>
+<h2 id="doc-tests">Doc Tests</h2>
+<p>Some Python-Markdown extensions also include standard Python doctests, which
+are discovered and run in the standard manner; one Unit Test for each file.</p>
+      </div> <!-- .body -->
+    </div> <!-- .bodywrapper -->
+  </div> <!-- .documentwrapper -->
+
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+    <h3>Table Of Contents</h3>
+    <div class="toc">
+<ul>
+<li><a href="#test-suite">Test Suite</a></li>
+<li><a href="#markdown-syntax-tests">Markdown Syntax Tests</a><ul>
+<li><a href="#syntax-test-config-settings">Syntax Test Config Settings</a></li>
+<li><a href="#unit-tests">Unit Tests</a></li>
+<li><a href="#doc-tests">Doc Tests</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+    <h4>Previous topic</h4>
+      <p class="topless"><a href="extensions/api.html"
+         title="previous chapter">Extension API</a></p>
+    <h4>Next topic</h4>
+      <p class="topless"><a href="change_log.html"
+         title="next chapter">Change Log</a></p>
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="https://github.com/waylan/Python-Markdown/issues"
+             >Report a Bug</a></li>
+      <li><a href="test_suite.txt"
+             rel="nofollow">Show Source</a></li>
+    </ul>
+    </div> <!-- .sphinxsidebarwrapper -->
+  </div> <!-- .sphinxsidebar -->
+
+  <div class="clearer"></div>
+</div> <!-- .document -->
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="change_log.html" title="Change Log"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="extensions/api.html" title="Extension API"
+         accesskey="P">previous</a> |</li>
+    <li><img src="py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="index.html">Python Markdown v2.2.0 documentation</a> &raquo;</li>
+    <li><a href="test_suite.html">Test Suite</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="footer">&copy; 2010-2012 Python Markdown Project</div>
+</body>
+</html>

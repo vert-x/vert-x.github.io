@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>Release Notes for v2.0 &#8212; Python Markdown</title>
+<link rel="stylesheet" href="default.css" type="text/css">
+</head>
+<body>
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="authors.html" title="Authors"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="release-2.0.1.html" title="Release Notes for v2.0.1"
+         accesskey="P">previous</a> |</li>
+    <li><img src="py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="index.html">Python Markdown v2.2.1 documentation</a> &raquo;</li>
+    <li><a href="release-2.0.html">Release Notes for v2.0</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="document">
+  <div class="documentwrapper">
+    <div class="bodywrapper">
+      <div class="body">
+<h1 id="python-markdown-20-release-notes">Python-Markdown 2.0 Release Notes</h1>
+<p>We are happy to release Python-Markdown 2.0, which has been over a year in the 
+making. We have rewritten significant portions of the code, dramatically 
+extending the extension API, increased performance, and added numerous 
+extensions to the distribution (including an extension that mimics PHP Markdown
+Extra), all while maintaining backward compatibility with the end user API in
+version 1.7.</p>
+<p>Python-Markdown supports Python versions 2.3, 2.4, 2.5, and 2.6. We've even 
+released a version converted to Python 3.0!</p>
+<h2 id="backwards-incompatible-changes">Backwards-incompatible Changes</h2>
+<p>While Python-Markdown has experienced numerous internal changes, those changes 
+should only affect extension authors. If you have not written your own 
+extensions, then you should not need to make any changes to your code. 
+However, you may want to ensure that any third party extensions you are using
+are compatible with the new API.</p>
+<p>The new extension API is fully <a href="extensions/api.html">documented</a> in the docs. 
+Below is a summary of the significant changes:</p>
+<ul>
+<li>The old home-grown NanoDOM has been replaced with ElementTree. Therefore all
+  extensions must use ElementTree rather than the old NanoDOM.</li>
+<li>The various processors and patterns are now stored with OrderedDicts rather 
+  than lists. Any code adding processors and/or patterns into Python-Markdown 
+  will need to be adjusted to use the new API using OrderedDicts.</li>
+<li>The various types of processors available have been either combined, added, 
+  or removed. Ensure that your processors match the currently supported types.</li>
+</ul>
+<h2 id="whats-new-in-python-markdown-20">What's New in Python-Markdown 2.0</h2>
+<p>Thanks to the work of Artem Yunusov as part of GSoC 2008, Python-Markdown uses
+ElementTree internally to build the (X)HTML document from markdown source text.
+This has resolved various issues with the older home-grown NanoDOM and made
+notable increases in performance.</p>
+<p>Artem also refactored the Inline Patterns to better support nested patterns 
+which has resolved many inconsistencies in Python-Markdown's parsing of the 
+markdown syntax.</p>
+<p>The core parser had been completely rewritten, increasing performance and, for 
+the first time, making it possible to override/add/change the way block level
+content is parsed.</p>
+<p>Python-Markdown now parses markdown source text more closely to the other 
+popular implementations (Perl, PHP, etc.) than it ever has before. With the
+exception of a few minor insignificant differences, any difference should be
+considered a bug, rather than a limitation of the parser.</p>
+<p>The option to return HTML4 output as apposed to XHTML has been added. In 
+addition, extensions should be able to easily add additional output formats.</p>
+<p>As part of implementing markdown in the Dr. Project project (a Trac fork), among
+other things, David Wolever refactored the "extension" keyword so that it
+accepts either the extension names as strings or instances of extensions. This
+makes it possible to include multiple extensions in a single module.</p>
+<p>Numerous extensions are included in the distribution by default. See
+<a href="extensions/index.html">available_extensions</a> for a complete list.</p>
+<p>See the <a href="change_log.html">Change Log</a> for a full list of changes.</p>
+      </div> <!-- .body -->
+    </div> <!-- .bodywrapper -->
+  </div> <!-- .documentwrapper -->
+
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+    <h3>Table Of Contents</h3>
+    <div class="toc">
+<ul>
+<li><a href="#python-markdown-20-release-notes">Python-Markdown 2.0 Release Notes</a><ul>
+<li><a href="#backwards-incompatible-changes">Backwards-incompatible Changes</a></li>
+<li><a href="#whats-new-in-python-markdown-20">What's New in Python-Markdown 2.0</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+    <h4>Previous topic</h4>
+      <p class="topless"><a href="release-2.0.1.html"
+         title="previous chapter">Release Notes for v2.0.1</a></p>
+    <h4>Next topic</h4>
+      <p class="topless"><a href="authors.html"
+         title="next chapter">Authors</a></p>
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="https://github.com/waylan/Python-Markdown/issues"
+             >Report a Bug</a></li>
+      <li><a href="release-2.0.txt"
+             rel="nofollow">Show Source</a></li>
+    </ul>
+    </div> <!-- .sphinxsidebarwrapper -->
+  </div> <!-- .sphinxsidebar -->
+
+  <div class="clearer"></div>
+</div> <!-- .document -->
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="authors.html" title="Authors"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="release-2.0.1.html" title="Release Notes for v2.0.1"
+         accesskey="P">previous</a> |</li>
+    <li><img src="py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="index.html">Python Markdown v2.2.1 documentation</a> &raquo;</li>
+    <li><a href="release-2.0.html">Release Notes for v2.0</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="footer">&copy; 2010-2012 Python Markdown Project</div>
+</body>
+</html>

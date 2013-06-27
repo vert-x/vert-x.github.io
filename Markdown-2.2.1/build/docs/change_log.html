@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>Change Log &#8212; Python Markdown</title>
+<link rel="stylesheet" href="default.css" type="text/css">
+</head>
+<body>
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="release-2.2.1.html" title="Release Notes for v2.2.1"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="test_suite.html" title="Test Suite"
+         accesskey="P">previous</a> |</li>
+    <li><img src="py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="index.html">Python Markdown v2.2.1 documentation</a> &raquo;</li>
+    <li><a href="change_log.html">Change Log</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="document">
+  <div class="documentwrapper">
+    <div class="bodywrapper">
+      <div class="body">
+<h1 id="python-markdown-changelog">Python-Markdown Changelog</h1>
+<p>Nov 4, 2012: Released version 2.2.1 (<a href="release-2.2.1.html">Notes</a>).</p>
+<p>Jul 5, 2012: Released version 2.2.0 (Notes](release-2.2.0.html)).</p>
+<p>Jan 22, 2012: Released version 2.1.1 (<a href="release-2.1.1.html">Notes</a>).</p>
+<p>Nov 24, 2011: Released version 2.1.0 (<a href="release-2.1.0.html">Notes</a>).</p>
+<p>Oct 7, 2009: Released version 2.0.3.</p>
+<p>Sept 28, 2009: Released version 2.0.2 (<a href="release-2.0.2.html">Notes</a>).</p>
+<p>May 20, 2009: Released version 2.0.1 (<a href="release-2.0.1.html">Notes</a>).</p>
+<p>Mar 30, 2009: Released version 2.0 (<a href="release-2.0.html">Notes</a>).</p>
+<p>Mar 8, 2009: Release Candidate 2.0-rc-1.</p>
+<p>Feb 2009: Added support for multi-level lists to new Blockprocessors.</p>
+<p>Jan 2009: Added HTML 4 output as an option (thanks Eric Abrahamsen)</p>
+<p>Nov 2008: Added Definistion List ext. Replaced old core with BlockProcessors.
+Broken up into multiple files.</p>
+<p>Oct 2008: Changed logging behavior to work better with other systems.
+Refactored tree tarversing. Added treap implementation, then replaced with
+OrderedDEict. Renamed various processors to better reflect what they actually
+do. Refactored footnote ext to match php Extra's output.</p>
+<p>Sept 2008: Moved prettifyTree to a Postprocessor, replaced wikilink ext
+with wikilinks (note the s) ext (uses bracketed links instead of CamelCase)
+and various bug fixes.</p>
+<p>August 18 2008: Reorganized directory structure. Added a 'docs' dir
+and moved all extensions into a 'markdown-extensions' package.
+Added additional documentation and a few bug fixes. (v2.0-beta)</p>
+<p>August 4 2008: Updated included extensions to ElementTree. Added a
+seperate commanline script. (v2.0-alpha)</p>
+<p>July 2008: Switched from home-grown NanoDOM to ElementTree and
+various related bugs (thanks Artem Yunusov).</p>
+<p>June 2008: Fixed issues with nested inline patterns and cleaned
+up testing framework (thanks Artem Yunusov).</p>
+<p>May 2008: Added a number of additional extensions to the
+distribution and other minor changes. Moved repo to git from svn.</p>
+<p>Mar 2008: Refactored extension api to accept either an
+extension name (as a string) or an instance of an extension
+(Thanks David Wolever). Fixed various bugs and added doc strings.</p>
+<p>Feb 2008: Various bugfixes mostly regarding extensions.</p>
+<p>Feb 18, 2008: Version 1.7.</p>
+<p>Feb 13, 2008: A little code cleanup and better documentation
+and inheritance for pre/post proccessors.</p>
+<p>Feb 9, 2008: Doublequotes no longer html escaped and rawhtml
+honors <code>&lt;?foo&gt;</code>, <code>&lt;@foo&gt;</code>, and <code>&lt;%foo&gt;</code> for those who run markdown on
+template syntax.</p>
+<p>Dec 12, 2007: Updated docs. Removed encoding arg from Markdown
+and markdown as per list discussion. Clean up in prep for 1.7.</p>
+<p>Nov 29, 2007: Added support for images inside links. Also fixed
+a few bugs in the footnote extension.</p>
+<p>Nov 19, 2007: <code>message</code> now uses python's logging module. Also removed
+limit imposed by recursion in <code>_process_section()</code>. You can now parse as
+long of a document as your memory can handle.</p>
+<p>Nov 5, 2007: Moved safe_mode code to a textPostprocessor and added
+escaping option.</p>
+<p>Nov 3, 2007: Fixed convert method to accept empty strings.</p>
+<p>Oct 30, 2007: Fixed BOM removal (thanks Malcolm Tredinnick). Fixed
+infinite loop in bracket regex for inline links.</p>
+<p>Oct 11, 2007: LineBreaks is now an inlinePattern. Fixed HR in
+blockquotes. Refactored _processSection method (see tracker #1793419).</p>
+<p>Oct 9, 2007: Added textPreprocessor (from 1.6b).</p>
+<p>Oct 8, 2008: Fixed Lazy Blockquote. Fixed code block on first line.
+Fixed empty inline image link.</p>
+<p>Oct 7, 2007: Limit recursion on inlinePatterns. Added a 'safe' tag
+to htmlStash.</p>
+<p>March 18, 2007: Fixed or merged a bunch of minor bugs, including
+multi-line comments and markup inside links. (Tracker #s: 1683066,
+1671153, 1661751, 1627935, 1544371, 1458139.) -&gt; v. 1.6b</p>
+<p>Oct 10, 2006: Fixed a bug that caused some text to be lost after
+comments.  Added "safe mode" (user's html tags are removed).</p>
+<p>Sept 6, 2006: Added exception for PHP tags when handling html blocks.</p>
+<p>August 7, 2006: Incorporated Sergej Chodarev's patch to fix a problem
+with ampersand normalization and html blocks.</p>
+<p>July 10, 2006: Switched to using optparse.  Added proper support for
+unicode.</p>
+<p>July 9, 2006: Fixed the <code>&lt;!--@address.com&gt;</code> problem (Tracker #1501354).</p>
+<p>May 18, 2006: Stopped catching unquoted titles in reference links.
+Stopped creating blank headers.</p>
+<p>May 15, 2006: A bug with lists, recursion on block-level elements,
+run-in headers, spaces before headers, unicode input (thanks to Aaron
+Swartz). Sourceforge tracker #s: 1489313, 1489312, 1489311, 1488370,
+1485178, 1485176. (v. 1.5)</p>
+<p>Mar. 24, 2006: Switched to a not-so-recursive algorithm with
+_handleInline.  (Version 1.4)</p>
+<p>Mar. 15, 2006: Replaced some instance variables with class variables
+(a patch from Stelios Xanthakis).  Chris Clark's new regexps that do
+not trigger midword underlining.</p>
+<p>Feb. 28, 2006: Clean-up and command-line handling by Stewart
+Midwinter. (Version 1.3)</p>
+<p>Feb. 24, 2006: Fixed a bug with the last line of the list appearing
+again as a separate paragraph.  Incorporated Chris Clark's "mailto"
+patch.  Added support for <code>&lt;br /&gt;</code> at the end of lines ending in two or
+more spaces.  Fixed a crashing bug when using ImageReferencePattern.
+Added several utility methods to Nanodom.  (Version 1.2)</p>
+<p>Jan. 31, 2006: Added <code>hr</code> and <code>hr/</code> to BLOCK_LEVEL_ELEMENTS and
+changed <code>&lt;hr/&gt;</code> to <code>&lt;hr /&gt;</code>.  (Thanks to Sergej Chodarev.)</p>
+<p>Nov. 26, 2005: Fixed a bug with certain tabbed lines inside lists
+getting wrapped in <code>&lt;pre&gt;&lt;code&gt;</code>.  (v. 1.1)</p>
+<p>Nov. 19, 2005: Made <code>&lt;!...</code>, <code>&lt;?...</code>, etc. behave like block-level
+HTML tags.</p>
+<p>Nov. 14, 2005: Added entity code and email autolink fix by Tiago
+Cogumbreiro.  Fixed some small issues with backticks to get 100%
+compliance with John's test suite.  (v. 1.0)</p>
+<p>Nov. 7, 2005: Added an unlink method for documents to aid with memory
+collection (per Doug Sauder's suggestion).</p>
+<p>Oct. 29, 2005: Restricted a set of html tags that get treated as
+block-level elements.</p>
+<p>Sept. 18, 2005: Refactored the whole script to make it easier to
+customize it and made footnote functionality into an extension.
+(v. 0.9)</p>
+<p>Sept. 5, 2005: Fixed a bug with multi-paragraph footnotes.  Added
+attribute support.</p>
+<p>Sept. 1, 2005: Changed the way headers are handled to allow inline
+syntax in headers (e.g. links) and got the lists to use p-tags
+correctly (v. 0.8)</p>
+<p>Aug. 29, 2005: Added flexible tabs, fixed a few small issues, added
+basic support for footnotes.  Got rid of xml.dom.minidom and added
+pretty-printing. (v. 0.7)</p>
+<p>Aug. 13, 2005: Fixed a number of small bugs in order to conform to the
+test suite.  (v. 0.6)</p>
+<p>Aug. 11, 2005: Added support for inline html and entities, inline
+images, autolinks, underscore emphasis. Cleaned up and refactored the
+code, added some more comments.</p>
+<p>Feb. 19, 2005: Rewrote the handling of high-level elements to allow
+multi-line list items and all sorts of nesting.</p>
+<p>Feb. 3, 2005: Reference-style links, single-line lists, backticks,
+escape, emphasis in the beginning of the paragraph.</p>
+<p>Nov. 2004: Added links, blockquotes, html blocks to Manfred
+Stienstra's code</p>
+<p>Apr. 2004: Manfred's version at <a href="http://www.dwerg.net/projects/markdown/">http://www.dwerg.net/projects/markdown/</a></p>
+      </div> <!-- .body -->
+    </div> <!-- .bodywrapper -->
+  </div> <!-- .documentwrapper -->
+
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+    <h3>Table Of Contents</h3>
+    <div class="toc">
+<ul>
+<li><a href="#python-markdown-changelog">Python-Markdown Changelog</a></li>
+</ul>
+</div>
+
+
+    <h4>Previous topic</h4>
+      <p class="topless"><a href="test_suite.html"
+         title="previous chapter">Test Suite</a></p>
+    <h4>Next topic</h4>
+      <p class="topless"><a href="release-2.2.1.html"
+         title="next chapter">Release Notes for v2.2.1</a></p>
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="https://github.com/waylan/Python-Markdown/issues"
+             >Report a Bug</a></li>
+      <li><a href="change_log.txt"
+             rel="nofollow">Show Source</a></li>
+    </ul>
+    </div> <!-- .sphinxsidebarwrapper -->
+  </div> <!-- .sphinxsidebar -->
+
+  <div class="clearer"></div>
+</div> <!-- .document -->
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="release-2.2.1.html" title="Release Notes for v2.2.1"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="test_suite.html" title="Test Suite"
+         accesskey="P">previous</a> |</li>
+    <li><img src="py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="index.html">Python Markdown v2.2.1 documentation</a> &raquo;</li>
+    <li><a href="change_log.html">Change Log</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="footer">&copy; 2010-2012 Python Markdown Project</div>
+</body>
+</html>

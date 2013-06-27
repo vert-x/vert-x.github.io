@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>Extensions API &#8212; Python Markdown</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+</head>
+<body>
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="../test_suite.html" title="Test Suite"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="wikilinks.html" title="Wikilinks Extension"
+         accesskey="P">previous</a> |</li>
+    <li><img src="../py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="../index.html">Python Markdown v2.2.0 documentation</a> &raquo;</li>
+    <li><a href="index.html">Extensions</a> &raquo;</li>
+<li><a href="api.html">Extensions API</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="document">
+  <div class="documentwrapper">
+    <div class="bodywrapper">
+      <div class="body">
+<h1 id="writing-extensions-for-python-markdown">Writing Extensions for Python-Markdown</h1>
+<p>Python-Markdown includes an API for extension writers to plug their own 
+custom functionality and/or syntax into the parser. There are preprocessors
+which allow you to alter the source before it is passed to the parser, 
+inline patterns which allow you to add, remove or override the syntax of
+any inline elements, and postprocessors which allow munging of the
+output of the parser before it is returned. If you really want to dive in, 
+there are also blockprocessors which are part of the core BlockParser.</p>
+<p>As the parser builds an <a href="http://effbot.org/zone/element-index.htm">ElementTree</a> object which is later rendered 
+as Unicode text, there are also some helpers provided to ease manipulation of 
+the tree. Each part of the API is discussed in its respective section below. 
+Additionally, reading the source of some <a href="index.html">Available Extensions</a> may be 
+helpful. For example, the <a href="footnotes.html">Footnotes</a> extension uses most of the features 
+documented here.</p>
+<h2 id="preprocessors">Preprocessors</h2>
+<p>Preprocessors munge the source text before it is passed into the Markdown 
+core. This is an excellent place to clean up bad syntax, extract things the 
+parser may otherwise choke on and perhaps even store it for later retrieval.</p>
+<p>Preprocessors should inherit from <code>markdown.preprocessors.Preprocessor</code> and 
+implement a <code>run</code> method with one argument <code>lines</code>. The <code>run</code> method of 
+each Preprocessor will be passed the entire source text as a list of Unicode 
+strings. Each string will contain one line of text. The <code>run</code> method should 
+return either that list, or an altered list of Unicode strings.</p>
+<p>A pseudo example:</p>
+<pre><code>from markdown.preprocessors import Preprocessor
+
+class MyPreprocessor(Preprocessor):
+    def run(self, lines):
+        new_lines = []
+        for line in lines:
+            m = MYREGEX.match(line)
+            if m:
+                # do stuff
+            else:
+                new_lines.append(line)
+        return new_lines
+</code></pre>
+<h2 id="inlinepatterns">Inline Patterns</h2>
+<p>Inline Patterns implement the inline HTML element syntax for Markdown such as
+<code>*emphasis*</code> or <code>[links](http://example.com)</code>. Pattern objects should be 
+instances of classes that inherit from <code>markdown.inlinepatterns.Pattern</code> or 
+one of its children. Each pattern object uses a single regular expression and 
+must have the following methods:</p>
+<ul>
+<li>
+<p><strong><code>getCompiledRegExp()</code></strong>: </p>
+<p>Returns a compiled regular expression.</p>
+</li>
+<li>
+<p><strong><code>handleMatch(m)</code></strong>: </p>
+<p>Accepts a match object and returns an ElementTree element of a plain 
+Unicode string.</p>
+</li>
+</ul>
+<p>Note that any regular expression returned by <code>getCompiledRegExp</code> must capture
+the whole block. Therefore, they should all start with <code>r'^(.*?)'</code> and end
+with <code>r'(.*?)!'</code>. When using the default <code>getCompiledRegExp()</code> method 
+provided in the <code>Pattern</code> you can pass in a regular expression without that 
+and <code>getCompiledRegExp</code> will wrap your expression for you and set the 
+<code>re.DOTALL</code> and <code>re.UNICODE</code> flags. This means that the first group of your 
+match will be <code>m.group(2)</code> as <code>m.group(1)</code> will match everything before the
+pattern.</p>
+<p>For an example, consider this simplified emphasis pattern:</p>
+<pre><code>from markdown.inlinepatterns import Pattern
+from markdown.util import etree
+
+class EmphasisPattern(Pattern):
+    def handleMatch(self, m):
+        el = etree.Element('em')
+        el.text = m.group(3)
+        return el
+</code></pre>
+<p>As discussed in <a href="#integrating_into_markdown">Integrating Your Code Into Markdown</a>, an instance of this
+class will need to be provided to Markdown. That instance would be created
+like so:</p>
+<pre><code># an oversimplified regex
+MYPATTERN = r'\*([^*]+)\*'
+# pass in pattern and create instance
+emphasis = EmphasisPattern(MYPATTERN)
+</code></pre>
+<p>Actually it would not be necessary to create that pattern (and not just because
+a more sophisticated emphasis pattern already exists in Markdown). The fact is,
+that example pattern is not very DRY. A pattern for <code>**strong**</code> text would
+be almost identical, with the exception that it would create a 'strong' element.
+Therefore, Markdown provides a number of generic pattern classes that can 
+provide some common functionality. For example, both emphasis and strong are
+implemented with separate instances of the <code>SimpleTagPettern</code> listed below. 
+Feel free to use or extend any of the Pattern classes found at <code>markdown.inlinepatterns</code>.</p>
+<p><strong>Generic Pattern Classes</strong></p>
+<ul>
+<li>
+<p><strong><code>SimpleTextPattern(pattern)</code></strong>:</p>
+<p>Returns simple text of <code>group(2)</code> of a <code>pattern</code>.</p>
+</li>
+<li>
+<p><strong><code>SimpleTagPattern(pattern, tag)</code></strong>:</p>
+<p>Returns an element of type "<code>tag</code>" with a text attribute of <code>group(3)</code>
+of a <code>pattern</code>. <code>tag</code> should be a string of a HTML element (i.e.: 'em').</p>
+</li>
+<li>
+<p><strong><code>SubstituteTagPattern(pattern, tag)</code></strong>:</p>
+<p>Returns an element of type "<code>tag</code>" with no children or text (i.e.: 'br').</p>
+</li>
+</ul>
+<p>There may be other Pattern classes in the Markdown source that you could extend
+or use as well. Read through the source and see if there is anything you can 
+use. You might even get a few ideas for different approaches to your specific
+situation.</p>
+<h2 id="treeprocessors">Treeprocessors</h2>
+<p>Treeprocessors manipulate an ElemenTree object after it has passed through the
+core BlockParser. This is where additional manipulation of the tree takes
+place. Additionally, the InlineProcessor is a Treeprocessor which steps through
+the tree and runs the InlinePatterns on the text of each Element in the tree.</p>
+<p>A Treeprocessor should inherit from <code>markdown.treeprocessors.Treeprocessor</code>,
+over-ride the <code>run</code> method which takes one argument <code>root</code> (an Elementree 
+object) and returns either that root element or a modified root element.</p>
+<p>A pseudo example:</p>
+<pre><code>from markdown.treprocessors import Treeprocessor
+
+class MyTreeprocessor(Treeprocessor):
+    def run(self, root):
+        #do stuff
+        return my_modified_root
+</code></pre>
+<p>For specifics on manipulating the ElementTree, see 
+<a href="#working_with_et">Working with the ElementTree</a> below.</p>
+<h2 id="postprocessors">Postprocessors</h2>
+<p>Postprocessors manipulate the document after the ElementTree has been 
+serialized into a string. Postprocessors should be used to work with the
+text just before output.</p>
+<p>A Postprocessor should inherit from <code>markdown.postprocessors.Postprocessor</code> 
+and over-ride the <code>run</code> method which takes one argument <code>text</code> and returns 
+a Unicode string.</p>
+<p>Postprocessors are run after the ElementTree has been serialized back into 
+Unicode text.  For example, this may be an appropriate place to add a table of 
+contents to a document:</p>
+<pre><code>from markdown.postprocessors import Postprocessor
+
+class TocPostprocessor(Postprocessor):
+    def run(self, text):
+        return MYMARKERRE.sub(MyToc, text)
+</code></pre>
+<h2 id="blockparser">BlockParser</h2>
+<p>Sometimes, pre/tree/postprocessors and Inline Patterns aren't going to do what 
+you need. Perhaps you want a new type of block type that needs to be integrated 
+into the core parsing. In such a situation, you can add/change/remove 
+functionality of the core <code>BlockParser</code>. The BlockParser is composed of a
+number of Blockproccessors. The BlockParser steps through each block of text
+(split by blank lines) and passes each block to the appropriate Blockprocessor.
+That Blockprocessor parses the block and adds it to the ElementTree. The
+<a href="definition_lists.html">Definition Lists</a> extension would be a good example of an extension that
+adds/modifies Blockprocessors.</p>
+<p>A Blockprocessor should inherit from <code>markdown.blockprocessors.BlockProcessor</code>
+and implement both the <code>test</code> and <code>run</code> methods.</p>
+<p>The <code>test</code> method is used by BlockParser to identify the type of block.
+Therefore the <code>test</code> method must return a boolean value. If the test returns
+<code>True</code>, then the BlockParser will call that Blockprocessor's <code>run</code> method.
+If it returns <code>False</code>, the BlockParser will move on to the next 
+BlockProcessor.</p>
+<p>The <strong><code>test</code></strong> method takes two arguments:</p>
+<ul>
+<li>
+<p><strong><code>parent</code></strong>: The parent etree Element of the block. This can be useful as
+  the block may need to be treated differently if it is inside a list, for
+  example.</p>
+</li>
+<li>
+<p><strong><code>block</code></strong>: A string of the current block of text. The test may be a 
+  simple string method (such as <code>block.startswith(some_text)</code>) or a complex 
+  regular expression.</p>
+</li>
+</ul>
+<p>The <strong><code>run</code></strong> method takes two arguments:</p>
+<ul>
+<li>
+<p><strong><code>parent</code></strong>: A pointer to the parent etree Element of the block. The run 
+  method will most likely attach additional nodes to this parent. Note that
+  nothing is returned by the method. The Elementree object is altered in place.</p>
+</li>
+<li>
+<p><strong><code>blocks</code></strong>: A list of all remaining blocks of the document. Your run 
+  method must remove (pop) the first block from the list (which it altered in
+  place - not returned) and parse that block. You may find that a block of text
+  legitimately contains multiple block types. Therefore, after processing the 
+  first type, your processor can insert the remaining text into the beginning
+  of the <code>blocks</code> list for future parsing.</p>
+</li>
+</ul>
+<p>Please be aware that a single block can span multiple text blocks. For example,
+The official Markdown syntax rules state that a blank line does not end a
+Code Block. If the next block of text is also indented, then it is part of
+the previous block. Therefore, the BlockParser was specifically designed to 
+address these types of situations. If you notice the <code>CodeBlockProcessor</code>,
+in the core, you will note that it checks the last child of the <code>parent</code>.
+If the last child is a code block (<code>&lt;pre&gt;&lt;code&gt;...&lt;/code&gt;&lt;/pre&gt;</code>), then it
+appends that block to the previous code block rather than creating a new 
+code block.</p>
+<p>Each BlockProcessor has the following utility methods available:</p>
+<ul>
+<li>
+<p><strong><code>lastChild(parent)</code></strong>: </p>
+<p>Returns the last child of the given etree Element or <code>None</code> if it had no 
+children.</p>
+</li>
+<li>
+<p><strong><code>detab(text)</code></strong>: </p>
+<p>Removes one level of indent (four spaces by default) from the front of each
+line of the given text string.</p>
+</li>
+<li>
+<p><strong><code>looseDetab(text, level)</code></strong>: </p>
+<p>Removes "level" levels of indent (defaults to 1) from the front of each line 
+of the given text string. However, this methods allows secondary lines to 
+not be indented as does some parts of the Markdown syntax.</p>
+</li>
+</ul>
+<p>Each BlockProcessor also has a pointer to the containing BlockParser instance at
+<code>self.parser</code>, which can be used to check or alter the state of the parser.
+The BlockParser tracks it's state in a stack at <code>parser.state</code>. The state
+stack is an instance of the <code>State</code> class.</p>
+<p><strong><code>State</code></strong> is a subclass of <code>list</code> and has the additional methods:</p>
+<ul>
+<li>
+<p><strong><code>set(state)</code></strong>: </p>
+<p>Set a new state to string <code>state</code>. The new state is appended to the end 
+of the stack.</p>
+</li>
+<li>
+<p><strong><code>reset()</code></strong>: </p>
+<p>Step back one step in the stack. The last state at the end is removed from 
+the stack.</p>
+</li>
+<li>
+<p><strong><code>isstate(state)</code></strong>: </p>
+<p>Test that the top (current) level of the stack is of the given string 
+<code>state</code>.</p>
+</li>
+</ul>
+<p>Note that to ensure that the state stack doesn't become corrupted, each time a
+state is set for a block, that state <em>must</em> be reset when the parser finishes
+parsing that block.</p>
+<p>An instance of the <strong><code>BlockParser</code></strong> is found at <code>Markdown.parser</code>.
+<code>BlockParser</code> has the following methods:</p>
+<ul>
+<li>
+<p><strong><code>parseDocument(lines)</code></strong>: </p>
+<p>Given a list of lines, an ElementTree object is returned. This should be 
+passed an entire document and is the only method the <code>Markdown</code> class 
+calls directly.</p>
+</li>
+<li>
+<p><strong><code>parseChunk(parent, text)</code></strong>: </p>
+<p>Parses a chunk of markdown text composed of multiple blocks and attaches 
+those blocks to the <code>parent</code> Element. The <code>parent</code> is altered in place 
+and nothing is returned. Extensions would most likely use this method for 
+block parsing.</p>
+</li>
+<li>
+<p><strong><code>parseBlocks(parent, blocks)</code></strong>: </p>
+<p>Parses a list of blocks of text and attaches those blocks to the <code>parent</code>
+Element. The <code>parent</code> is altered in place and nothing is returned. This 
+method will generally only be used internally to recursively parse nested 
+blocks of text.</p>
+</li>
+</ul>
+<p>While is is not recommended, an extension could subclass or completely replace
+the <code>BlockParser</code>. The new class would have to provide the same public API.
+However, be aware that other extensions may expect the core parser provided
+and will not work with such a drastically different parser.</p>
+<h2 id="working_with_et">Working with the ElementTree</h2>
+<p>As mentioned, the Markdown parser converts a source document to an 
+<a href="http://effbot.org/zone/element-index.htm">ElementTree</a> object before serializing that back to Unicode text. 
+Markdown has provided some helpers to ease that manipulation within the context 
+of the Markdown module.</p>
+<p>First, to get access to the ElementTree module import ElementTree from 
+<code>markdown</code> rather than importing it directly. This will ensure you are using 
+the same version of ElementTree as markdown. The module is found at 
+<code>markdown.util.etree</code> within Markdown.</p>
+<pre><code>from markdown.util import etree
+</code></pre>
+<p><code>markdown.util.etree</code> tries to import ElementTree from any known location, 
+first as a standard library module (from <code>xml.etree</code> in Python 2.5), then as 
+a third party package (<code>Elementree</code>). In each instance, <code>cElementTree</code> is 
+tried first, then <code>ElementTree</code> if the faster C implementation is not 
+available on your system.</p>
+<p>Sometimes you may want text inserted into an element to be parsed by 
+<a href="#inlinepatterns">InlinePatterns</a>. In such a situation, simply insert the text as you normally
+would and the text will be automatically run through the InlinePatterns. 
+However, if you do <em>not</em> want some text to be parsed by InlinePatterns,
+then insert the text as an <code>AtomicString</code>.</p>
+<pre><code>from markdown.util import AtomicString
+some_element.text = AtomicString(some_text)
+</code></pre>
+<p>Here's a basic example which creates an HTML table (note that the contents of 
+the second cell (<code>td2</code>) will be run through InlinePatterns latter):</p>
+<pre><code>table = etree.Element("table") 
+table.set("cellpadding", "2")                      # Set cellpadding to 2
+tr = etree.SubElement(table, "tr")                 # Add child tr to table
+td1 = etree.SubElement(tr, "td")                   # Add child td1 to tr
+td1.text = markdown.AtomicString("Cell content")   # Add plain text content
+td2 = etree.SubElement(tr, "td")                   # Add second td to tr
+td2.text = "*text* with **inline** formatting."    # Add markup text
+table.tail = "Text after table"                    # Add text after table
+</code></pre>
+<p>You can also manipulate an existing tree. Consider the following example which 
+adds a <code>class</code> attribute to <code>&lt;a&gt;</code> elements:</p>
+<pre><code>def set_link_class(self, element):
+    for child in element: 
+        if child.tag == "a":
+            child.set("class", "myclass") #set the class attribute
+        set_link_class(child) # run recursively on children
+</code></pre>
+<p>For more information about working with ElementTree see the ElementTree
+<a href="http://effbot.org/zone/element-index.htm">Documentation</a> 
+(<a href="http://docs.python.org/lib/module-xml.etree.ElementTree.html">Python Docs</a>).</p>
+<h2 id="integrating_into_markdown">Integrating Your Code Into Markdown</h2>
+<p>Once you have the various pieces of your extension built, you need to tell 
+Markdown about them and ensure that they are run in the proper sequence. 
+Markdown accepts a <code>Extension</code> instance for each extension. Therefore, you
+will need to define a class that extends <code>markdown.extensions.Extension</code> and 
+over-rides the <code>extendMarkdown</code> method. Within this class you will manage 
+configuration options for your extension and attach the various processors and 
+patterns to the Markdown instance. </p>
+<p>It is important to note that the order of the various processors and patterns 
+matters. For example, if we replace <code>http://...</code> links with <code>&lt;a&gt;</code> elements, 
+and <em>then</em> try to deal with  inline html, we will end up with a mess. 
+Therefore, the various types of processors and patterns are stored within an 
+instance of the Markdown class in <a href="#ordereddict">OrderedDict</a>s. Your <code>Extension</code> class 
+will need to manipulate those OrderedDicts appropriately. You may insert 
+instances of your processors and patterns into the appropriate location in an 
+OrderedDict, remove a built-in instance, or replace a built-in instance with 
+your own.</p>
+<h3 id="extendmarkdown">extendMarkdown</h3>
+<p>The <code>extendMarkdown</code> method of a <code>markdown.extensions.Extension</code> class 
+accepts two arguments:</p>
+<ul>
+<li>
+<p><strong><code>md</code></strong>:</p>
+<p>A pointer to the instance of the Markdown class. You should use this to 
+access the <a href="#ordereddict">OrderedDict</a>s of processors and patterns. They are found 
+under the following attributes:</p>
+<ul>
+<li><code>md.preprocessors</code></li>
+<li><code>md.inlinePatterns</code></li>
+<li><code>md.parser.blockprocessors</code></li>
+<li><code>md.treepreprocessors</code></li>
+<li><code>md.postprocessors</code></li>
+</ul>
+<p>Some other things you may want to access in the markdown instance are:</p>
+<ul>
+<li><code>md.htmlStash</code></li>
+<li><code>md.output_formats</code></li>
+<li><code>md.set_output_format()</code></li>
+<li><code>md.registerExtension()</code></li>
+<li><code>md.html_replacement_text</code></li>
+<li><code>md.tab_length</code></li>
+<li><code>md.enable_attributes</code></li>
+<li><code>md.smart_emphasis</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>md_globals</code></strong>:</p>
+<p>Contains all the various global variables within the markdown module.</p>
+</li>
+</ul>
+<p>Of course, with access to those items, theoretically you have the option to 
+changing anything through various <a href="http://en.wikipedia.org/wiki/Monkey_patch">monkey_patching</a> techniques. However, you 
+should be aware that the various undocumented or private parts of markdown 
+may change without notice and your monkey_patches may break with a new release.
+Therefore, what you really should be doing is inserting processors and patterns
+into the markdown pipeline. Consider yourself warned.</p>
+<p>A simple example:</p>
+<pre><code>from markdown.extensions import Extension
+
+class MyExtension(Extension):
+    def extendMarkdown(self, md, md_globals):
+        # Insert instance of 'mypattern' before 'references' pattern
+        md.inlinePatterns.add('mypattern', MyPattern(md), '&lt;references')
+</code></pre>
+<h3 id="ordereddict">OrderedDict</h3>
+<p>An OrderedDict is a dictionary like object that retains the order of it's
+items. The items are ordered in the order in which they were appended to
+the OrderedDict. However, an item can also be inserted into the OrderedDict
+in a specific location in relation to the existing items.</p>
+<p>Think of OrderedDict as a combination of a list and a dictionary as it has 
+methods common to both. For example, you can get and set items using the 
+<code>od[key] = value</code> syntax and the methods <code>keys()</code>, <code>values()</code>, and 
+<code>items()</code> work as expected with the keys, values and items returned in the 
+proper order. At the same time, you can use <code>insert()</code>, <code>append()</code>, and 
+<code>index()</code> as you would with a list.</p>
+<p>Generally speaking, within Markdown extensions you will be using the special 
+helper method <code>add()</code> to add additional items to an existing OrderedDict. </p>
+<p>The <code>add()</code> method accepts three arguments:</p>
+<ul>
+<li>
+<p><strong><code>key</code></strong>: A string. The key is used for later reference to the item.</p>
+</li>
+<li>
+<p><strong><code>value</code></strong>: The object instance stored in this item.</p>
+</li>
+<li>
+<p><strong><code>location</code></strong>: Optional. The items location in relation to other items. </p>
+<p>Note that the location can consist of a few different values:</p>
+<ul>
+<li>
+<p>The special strings <code>"_begin"</code> and <code>"_end"</code> insert that item at the 
+  beginning or end of the OrderedDict respectively. </p>
+</li>
+<li>
+<p>A less-than sign (<code>&lt;</code>) followed by an existing key (i.e.: 
+  <code>"&lt;somekey"</code>) inserts that item before the existing key.</p>
+</li>
+<li>
+<p>A greater-than sign (<code>&gt;</code>) followed by an existing key (i.e.: 
+  <code>"&gt;somekey"</code>) inserts that item after the existing key. </p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Consider the following example:</p>
+<pre><code>&gt;&gt;&gt; from markdown.odict import OrderedDict
+&gt;&gt;&gt; od = OrderedDict()
+&gt;&gt;&gt; od['one'] =  1           # The same as: od.add('one', 1, '_begin')
+&gt;&gt;&gt; od['three'] = 3          # The same as: od.add('three', 3, '&gt;one')
+&gt;&gt;&gt; od['four'] = 4           # The same as: od.add('four', 4, '_end')
+&gt;&gt;&gt; od.items()
+[("one", 1), ("three", 3), ("four", 4)]
+</code></pre>
+<p>Note that when building an OrderedDict in order, the extra features of the
+<code>add</code> method offer no real value and are not necessary. However, when 
+manipulating an existing OrderedDict, <code>add</code> can be very helpful. So let's 
+insert another item into the OrderedDict.</p>
+<pre><code>&gt;&gt;&gt; od.add('two', 2, '&gt;one')         # Insert after 'one'
+&gt;&gt;&gt; od.values()
+[1, 2, 3, 4]
+</code></pre>
+<p>Now let's insert another item.</p>
+<pre><code>&gt;&gt;&gt; od.add('twohalf', 2.5, '&lt;three') # Insert before 'three'
+&gt;&gt;&gt; od.keys()
+["one", "two", "twohalf", "three", "four"]
+</code></pre>
+<p>Note that we also could have set the location of "twohalf" to be 'after two'
+(i.e.: <code>'&gt;two'</code>). However, it's unlikely that you will have control over the 
+order in which extensions will be loaded, and this could affect the final 
+sorted order of an OrderedDict. For example, suppose an extension adding 
+'twohalf' in the above examples was loaded before a separate  extension which 
+adds 'two'. You may need to take this into consideration when adding your 
+extension components to the various markdown OrderedDicts.</p>
+<p>Once an OrderedDict is created, the items are available via key:</p>
+<pre><code>MyNode = od['somekey']
+</code></pre>
+<p>Therefore, to delete an existing item:</p>
+<pre><code>del od['somekey']
+</code></pre>
+<p>To change the value of an existing item (leaving location unchanged):</p>
+<pre><code>od['somekey'] = MyNewObject()
+</code></pre>
+<p>To change the location of an existing item:</p>
+<pre><code>t.link('somekey', '&lt;otherkey')
+</code></pre>
+<h3 id="registerextension">registerExtension</h3>
+<p>Some extensions may need to have their state reset between multiple runs of the
+Markdown class. For example, consider the following use of the <a href="footnotes.html">Footnotes</a> 
+extension:</p>
+<pre><code>md = markdown.Markdown(extensions=['footnotes'])
+html1 = md.convert(text_with_footnote)
+md.reset()
+html2 = md.convert(text_without_footnote)
+</code></pre>
+<p>Without calling <code>reset</code>, the footnote definitions from the first document will
+be inserted into the second document as they are still stored within the class
+instance. Therefore the <code>Extension</code> class needs to define a <code>reset</code> method
+that will reset the state of the extension (i.e.: <code>self.footnotes = {}</code>).
+However, as many extensions do not have a need for <code>reset</code>, <code>reset</code> is only
+called on extensions that are registered.</p>
+<p>To register an extension, call <code>md.registerExtension</code> from within your 
+<code>extendMarkdown</code> method:</p>
+<pre><code>def extendMarkdown(self, md, md_globals):
+    md.registerExtension(self)
+    # insert processors and patterns here
+</code></pre>
+<p>Then, each time <code>reset</code> is called on the Markdown instance, the <code>reset</code> 
+method of each registered extension will be called as well. You should also
+note that <code>reset</code> will be called on each registered extension after it is
+initialized the first time. Keep that in mind when over-riding the extension's
+<code>reset</code> method.</p>
+<h3 id="configsettings">Config Settings</h3>
+<p>If an extension uses any parameters that the user may want to change,
+those parameters should be stored in <code>self.config</code> of your 
+<code>markdown.Extension</code> class in the following format:</p>
+<pre><code>self.config = {parameter_1_name : [value1, description1],
+               parameter_2_name : [value2, description2] }
+</code></pre>
+<p>When stored this way the config parameters can be over-ridden from the
+command line or at the time Markdown is initiated:</p>
+<pre><code>markdown.py -x myextension(SOME_PARAM=2) inputfile.txt &gt; output.txt
+</code></pre>
+<p>Note that parameters should always be assumed to be set to string
+values, and should be converted at run time. For example:</p>
+<pre><code>i = int(self.getConfig("SOME_PARAM"))
+</code></pre>
+<h3 id="makeextension">makeExtension</h3>
+<p>Each extension should ideally be placed in its own module starting
+with the  <code>mdx_</code> prefix (e.g. <code>mdx_footnotes.py</code>).  The module must
+provide a module-level function called <code>makeExtension</code> that takes
+an optional parameter consisting of a dictionary of configuration over-rides 
+and returns an instance of the extension.  An example from the footnote 
+extension:</p>
+<pre><code>def makeExtension(configs=None) :
+    return FootnoteExtension(configs=configs)
+</code></pre>
+<p>By following the above example, when Markdown is passed the name of your 
+extension as a string (i.e.: <code>'footnotes'</code>), it will automatically import
+the module and call the <code>makeExtension</code> function initiating your extension.</p>
+<p>You may have noted that the extensions packaged with Python-Markdown do not
+use the <code>mdx_</code> prefix in their module names. This is because they are all
+part of the <code>markdown.extensions</code> package. Markdown will first try to import
+from <code>markdown.extensions.extname</code> and upon failure, <code>mdx_extname</code>. If both
+fail, Markdown will continue without the extension.</p>
+<p>However, Markdown will also accept an already existing instance of an extension.
+For example:</p>
+<pre><code>import markdown
+import myextension
+configs = {...}
+myext = myextension.MyExtension(configs=configs)
+md = markdown.Markdown(extensions=[myext])
+</code></pre>
+<p>This is useful if you need to implement a large number of extensions with more
+than one residing in a module.</p>
+      </div> <!-- .body -->
+    </div> <!-- .bodywrapper -->
+  </div> <!-- .documentwrapper -->
+
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+    <h3>Table Of Contents</h3>
+    <div class="toc">
+<ul>
+<li><a href="#writing-extensions-for-python-markdown">Writing Extensions for Python-Markdown</a><ul>
+<li><a href="#preprocessors">Preprocessors</a></li>
+<li><a href="#inlinepatterns">Inline Patterns</a></li>
+<li><a href="#treeprocessors">Treeprocessors</a></li>
+<li><a href="#postprocessors">Postprocessors</a></li>
+<li><a href="#blockparser">BlockParser</a></li>
+<li><a href="#working_with_et">Working with the ElementTree</a></li>
+<li><a href="#integrating_into_markdown">Integrating Your Code Into Markdown</a><ul>
+<li><a href="#extendmarkdown">extendMarkdown</a></li>
+<li><a href="#ordereddict">OrderedDict</a></li>
+<li><a href="#registerextension">registerExtension</a></li>
+<li><a href="#configsettings">Config Settings</a></li>
+<li><a href="#makeextension">makeExtension</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+    <h4>Previous topic</h4>
+      <p class="topless"><a href="wikilinks.html"
+         title="previous chapter">Wikilinks Extension</a></p>
+    <h4>Next topic</h4>
+      <p class="topless"><a href="../test_suite.html"
+         title="next chapter">Test Suite</a></p>
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="https://github.com/waylan/Python-Markdown/issues"
+             >Report a Bug</a></li>
+      <li><a href="api.txt"
+             rel="nofollow">Show Source</a></li>
+    </ul>
+    </div> <!-- .sphinxsidebarwrapper -->
+  </div> <!-- .sphinxsidebar -->
+
+  <div class="clearer"></div>
+</div> <!-- .document -->
+
+<div class="related">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="right" style="margin-right: 10px">
+      <a href="siteindex.html" title="General Index">index</a></li>
+    <li class="right">
+      <a href="../test_suite.html" title="Test Suite"
+         accesskey="N">next</a> |</li>
+    <li class="right">
+      <a href="wikilinks.html" title="Wikilinks Extension"
+         accesskey="P">previous</a> |</li>
+    <li><img src="../py.png" alt=""
+             style="vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="../index.html">Python Markdown v2.2.0 documentation</a> &raquo;</li>
+    <li><a href="index.html">Extensions</a> &raquo;</li>
+<li><a href="api.html">Extensions API</a> &raquo;</li>
+  </ul>
+</div> <!-- .related -->
+
+<div class="footer">&copy; 2010-2012 Python Markdown Project</div>
+</body>
+</html>
