@@ -4,8 +4,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/
 a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 -->
 
-Before you can do anything with Vert.x you need to install it, so let's describe how to do that.
-
 # Getting a distro
 
 The easiest way to get hold of a distribution is to [download a binary distro](downloads.html).
