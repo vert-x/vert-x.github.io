@@ -70,7 +70,7 @@ We want you to be able to develop your verticles in a choice of programming lang
 
 ### Concurrency
 
-A Vert.x instance guarantees that a particular verticle instance is never executed by more than one thread concurrently. This gives you a huge advantage as a developer, since you can program all your code as single threaded. If you're used to traditional this may come as a huge relief since you don't have to synchronize access to your state. This means a whole class of race conditions disappear, and OS thread deadlocks are a thing of the past. 
+A Vert.x instance guarantees that a particular verticle instance is never executed by more than one thread concurrently. This gives you a huge advantage as a developer, since you can program all your code as single threaded. If you're used to traditional this may come as a relief since you don't have to synchronize access to your state. This means a whole class of race conditions disappear, and OS thread deadlocks are a thing of the past.
 
 ### Asynchronous Programming Model
 
