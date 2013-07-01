@@ -20,15 +20,21 @@ To get an instance of `PlatformManager` you use the `org.vertx.java.platform.Pla
 
 Once you have an instance of `PlatformManager` you can deploy and undeploy modules and verticles, install modules and various other actions. See the JavaDoc for more information on the available methods.
 
-Here are some examples:
+Here's an example:
 
-Deploy a module
+Deploy 10 instances of a module passing in some config
 
-    pm.deployModule("com.mycompany~my-module~1.0");
+    JsonObject conf = new JsonObject().putString("foo", "wibble");
 
-Deploy 10 instances of a raw JS verticle
-
-    pm.deployVerticle("app.js", 10);
+    pm.deployModule("com.mycompany~my-module~1.0", conf, 10, new AsyncResultHandler<String>() {
+        public void handle(AsyncResult<String> asyncResult) {
+            if (asyncResult.succeeded()) {
+                System.out.println("Deployment ID is " + asyncResult.result());
+            } else {
+                asyncResult.cause().printStackTrace();
+            }
+        }
+    });
 
 The methods available on `PlatformManager` roughly map to the actions performed by the `vertx` command at the command line.
 

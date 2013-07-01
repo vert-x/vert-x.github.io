@@ -93,21 +93,23 @@
             </p>
           </div>
         </li>
-        <div class="keeptogether">
+        
           <li>
+	   <div class="keeptogether">
             <p>
             <strong>WebSockets</strong> and <strong>SockJS</strong> support for real-time <i>server-push</i>
             applications.
             </p>
+           </div
           </li>
-        </div>
-        <div class="keeptogether">
+        
           <li>
+           <div class="keeptogether">
               <p>If you don't want the whole platform, Vert.x can be <strong>embedded</strong> as a library in your
             existing Java or Groovy applications.
               </p>
+           </div>
           </li>
-        </div>
         <li>
             <div class="keeptogether">
               <p>
@@ -142,10 +144,11 @@
           </div>
         </li>
 
-        <div class="keeptogether">
-          <li><p><strong>100% open source</strong>. Licensed under the Apache Software License 2.0</p></li>
-        </div>
-
+        <li>
+          <div class="keeptogether">
+            <p><strong>100% open source</strong>. Licensed under the Apache Software License 2.0</p>
+          </div>
+        </li>
       </ul>
 
     </div>
@@ -163,10 +166,12 @@
   <div class="span12">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#ws_js" data-toggle="tab">JavaScript</a></li>
-      <li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>
-      <li><a href="#ws_python" data-toggle="tab">Python</a></li>
-      <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
       <li><a href="#ws_java" data-toggle="tab">Java</a></li>
+      <li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>
+      <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
+      <li><a href="#ws_python" data-toggle="tab">Python</a></li>
+      
+      
     </ul>
 
     <div class="well">
@@ -186,56 +191,8 @@
 
           <p><code>vertx run server.js</code></p>
         </div>
-        <div class="tab-pane" id="ws_ruby">
+        
 
-          <p>Save the following in <code>server.rb</code></p>
-                  <pre class="prettyprint">
-  require "vertx"
-
-  Vertx::HttpServer.new.request_handler do |req|
-      file = req.uri == "/" ? "index.html" : req.uri
-      req.response.send_file "webroot/#{file}"
-  end.listen(8080)
-                  </pre>
-
-          <p>Run it:</p>
-
-          <p><code>vertx run server.rb</code></p>
-
-        </div>
-        <div class="tab-pane" id="ws_python">
-
-          <p>Save the following in <code>server.py</code></p>
-                  <pre class="prettyprint">
-  import vertx
-
-  server = vertx.create_http_server()
-
-  @server.request_handler
-  def request_handler(req):
-      file = "index.html" if req.uri == "/" else req.uri
-      req.response.send_file("webroot/%s"%file)
-  server.listen(8080)
-                  </pre>
-
-          <p>Run it:</p>
-
-          <p><code>vertx run server.py</code></p>
-
-        </div>
-        <div class="tab-pane" id="ws_groovy">
-
-          <p>Save the following in <code>Server.groovy</code></p>
-                  <pre class="prettyprint">
-  vertx.createHttpServer().requestHandler { req ->
-      def file = req.uri == "/" ? "index.html" : req.uri
-      req.response.sendFile "webroot/$file"
-  }.listen(8080)
-                  </pre>
-
-          <p>Run it:</p>
-
-        </div>
         <div class="tab-pane" id="ws_java">
           <p>Save the following in <code>Server.java</code></p>
                   <pre class="prettyprint">
@@ -261,6 +218,63 @@
 
 
         </div>
+
+<div class="tab-pane" id="ws_ruby">
+
+          <p>Save the following in <code>server.rb</code></p>
+                  <pre class="prettyprint">
+  require "vertx"
+
+  Vertx::HttpServer.new.request_handler do |req|
+      file = req.uri == "/" ? "index.html" : req.uri
+      req.response.send_file "webroot/#{file}"
+  end.listen(8080)
+                  </pre>
+
+          <p>Run it:</p>
+
+          <p><code>vertx run server.rb</code></p>
+
+        </div>
+
+<div class="tab-pane" id="ws_groovy">
+
+          <p>Save the following in <code>Server.groovy</code></p>
+                  <pre class="prettyprint">
+  vertx.createHttpServer().requestHandler { req ->
+      def file = req.uri == "/" ? "index.html" : req.uri
+      req.response.sendFile "webroot/$file"
+  }.listen(8080)
+                  </pre>
+
+          <p>Run it:</p>
+
+          <p><code>vertx run Server.groovy</code></p>
+
+        </div>
+
+        <div class="tab-pane" id="ws_python">
+
+          <p>Save the following in <code>server.py</code></p>
+                  <pre class="prettyprint">
+  import vertx
+
+  server = vertx.create_http_server()
+
+  @server.request_handler
+  def request_handler(req):
+      file = "index.html" if req.uri == "/" else req.uri
+      req.response.send_file("webroot/%s"%file)
+  server.listen(8080)
+                  </pre>
+
+          <p>Run it:</p>
+
+          <p><code>vertx run server.py</code></p>
+
+        </div>
+        
+        
       </div>
 
     </div>

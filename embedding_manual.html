@@ -105,12 +105,19 @@
 <pre class="prettyprint">PlatformManager pm = PlatformLocator.factory.createPlatformManager();
 </pre>
 <p>Once you have an instance of <code>PlatformManager</code> you can deploy and undeploy modules and verticles, install modules and various other actions. See the JavaDoc for more information on the available methods.</p>
-<p>Here are some examples:</p>
-<p>Deploy a module</p>
-<pre class="prettyprint">pm.deployModule("com.mycompany~my-module~1.0");
-</pre>
-<p>Deploy 10 instances of a raw JS verticle</p>
-<pre class="prettyprint">pm.deployVerticle("app.js", 10);
+<p>Here's an example:</p>
+<p>Deploy 10 instances of a module passing in some config</p>
+<pre class="prettyprint">JsonObject conf = new JsonObject().putString("foo", "wibble");
+
+pm.deployModule("com.mycompany~my-module~1.0", conf, 10, new AsyncResultHandler&lt;String&gt;() {
+    public void handle(AsyncResult&lt;String&gt; asyncResult) {
+        if (asyncResult.succeeded()) {
+            System.out.println("Deployment ID is " + asyncResult.result());
+        } else {
+            asyncResult.cause().printStackTrace();
+        }
+    }
+});
 </pre>
 <p>The methods available on <code>PlatformManager</code> roughly map to the actions performed by the <code>vertx</code> command at the command line.</p>
 <h3 id="jars">Jars</h3><br/>
