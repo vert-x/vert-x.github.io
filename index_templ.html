@@ -78,62 +78,72 @@
     <div class="well">
       <br/>
       <ul class="features">
-        <div class="keeptogether">
-          <li>
+        
+        <li>
+           <div class="keeptogether">
+             <p>
             The <strong>Distributed Event Bus</strong> is the nervous system of Vert.x and connects your
             server-side components.
-          </li>
-        </div>
-        <div class="keeptogether">
-          <li>Write your components in whatever language you want, and put them
-            where you want on your network. It even penetrates into JavaScript running in the browser!
-          </li>
-        </div>
+             </p>
+          </div>
+          <div class="keeptogether">
+            <p>
+            Write your components in whatever language you want, and put them
+            where you want on your network. It even penetrates into JavaScript running in the browser!            
+            </p>
+          </div>
+        </li>
         <div class="keeptogether">
           <li>
+            <p>
             <strong>WebSockets</strong> and <strong>SockJS</strong> support for real-time <i>server-push</i>
             applications.
+            </p>
           </li>
         </div>
         <div class="keeptogether">
           <li>
-            If you don't want the whole platform, Vert.x can be <strong>embedded</strong> as a library in your
+              <p>If you don't want the whole platform, Vert.x can be <strong>embedded</strong> as a library in your
             existing Java or Groovy applications.
+              </p>
           </li>
         </div>
-        <div class="keeptogether">
-          <li>Vert.x has a powerful <strong>module system</strong>. Package your Vert.x components into modules for encapsulation and
-            reuse.</li>
-        </div>
-        <div class="keeptogether">
-          <li>Share them with the community by putting them in Maven Central, any other Maven repository,
-            or in Bintray.</li>
-        </div>
-        <div class="keeptogether">
-          <li>Advertise your module in the <strong>module registry</strong>.
-          </li>
-        </div>
-        <div class="keeptogether">
-          <li>Seamlessly code, run, debug and test your Vert.x applications in your
-            favourite IDE.</li>
-        </div>
-        <div class="keeptogether">
-          <li>Get started with Gradle using the example <strong>Gradle template project.</strong>
-            Get started with Maven using the <strong>Maven archetype</strong>.</li>
-        </div>
-        <div class="keeptogether">
-          <li>Use <strong>auto-redeploy</strong> to see your changes instantly in a running module.
-          </li>
-        </div>
+        <li>
+            <div class="keeptogether">
+              <p>
+              Vert.x has a powerful <strong>module system</strong>. Package your Vert.x components into modules for encapsulation and
+              reuse.
+              </p>
+           </div>
+           <div class="keeptogether">
+             <p>Share them with the community by putting them in Maven Central, any other Maven repository,
+              or in Bintray.
+             </p>
+           </div>
+           <div class="keeptogether">
+             <p>Advertise your module in the <strong>module registry</strong>.
+             </p>
+           </div>
+        </li>
+        <li>        
+          <div class="keeptogether">
+            <p>Seamlessly code, run, debug and test your Vert.x applications in your
+              favourite IDE.
+            </p>
+          </div>
+          <div class="keeptogether">
+            <p>Get started with Gradle using the example <strong>Gradle template project.</strong>
+              Get started with Maven using the <strong>Maven archetype</strong>.
+            </p>
+          </div>
+          <div class="keeptogether">
+            <p>Use <strong>auto-redeploy</strong> to see your changes instantly in a running module.
+            </p>
+          </div>
+        </li>
 
-        <!--
         <div class="keeptogether">
-          <li>Choose from a growing number of modules in the Vert.x eco-system.</li>
-        </div>
-        -->
-
-        <div class="keeptogether">
-          <li><strong>100% open source</strong>. Licensed under the Apache Software License 2.0</li>
+          <li><p><strong>100% open source</strong>. Licensed under the Apache Software License 2.0</p></li>
         </div>
 
       </ul>
@@ -165,10 +175,10 @@
 
           <p>Save the following in <code>server.js</code></p>
                   <pre class="prettyprint">
-  load('vertx.js')
+  var vertx = require('vertx');
 
   vertx.createHttpServer().requestHandler(function(req) {
-      var file = req.path === '/' ? 'index.html' : req.path;
+      var file = req.path() === '/' ? 'index.html' : req.path();
       req.response.sendFile('webroot/' + file);
   }).listen(8080)
                   </pre>
@@ -231,14 +241,14 @@
                   <pre class="prettyprint">
   import org.vertx.java.core.Handler;
   import org.vertx.java.core.http.HttpServerRequest;
-  import org.vertx.java.deploy.Verticle;
+  import org.vertx.java.platform.Verticle;
 
   public class Server extends Verticle {
       public void start() {
-          vertx.createHttpServer().requestHandler(new Handler&lt;HttpServerRequest&gt;() {
+          vertx.createHttpServer().requestHandler(new Handler<HttpServerRequest>() {
               public void handle(HttpServerRequest req) {
-                  String file = req.path.equals("/") ? "index.html" : req.path;
-                  req.response.sendFile("webroot/" + file);
+                  String file = req.path().equals("/") ? "index.html" : req.path();
+                  req.response().sendFile("webroot/" + file);
               }
           }).listen(8080);
       }

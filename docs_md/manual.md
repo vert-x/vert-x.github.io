@@ -78,7 +78,7 @@ At the core, Vert.x provides an asychronous programming model. This means that m
 
 You also set handlers to receive messages from the event bus, to receive HTTP requests and responses, to be notified when a connection is closed, or to be notified when a timer fires. There are many examples throughout the Vert.x api.
 
-We use an asynchronous API so that we can scale to handle many verticles using a small number of operating system threads. In fact Vert.x sets the number of threads to be equal to the number of available cores on the machine. With a prefectly non blocking application you would never need any more threads than that.
+We use an asynchronous API so that we can scale to handle many verticles using a small number of operating system threads. In fact Vert.x sets the number of threads to be equal to the number of available cores on the machine. With a perfectly non blocking application you would never need any more threads than that.
 
 With a traditional synchronous API, threads block on API operations, and while they are blocked they cannot do any other work. A good example is a blocking read from a socket. While code is waiting for data to arrive on a socket it cannot do anything else. This means that if we want to support 1 million concurrent connections (not a crazy idea for the next generation of mobile applications) then we would need 1 million threads. This approach clearly doesn't scale.
 
