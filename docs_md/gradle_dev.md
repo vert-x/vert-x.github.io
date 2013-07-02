@@ -78,9 +78,8 @@ If you don't want it to be included in the `lib` directory you should add it as 
 Once you've changed your dependencies just run `./gradlew idea` or `./gradlew eclipse` again to update your IDE project files with the new dependencies.
 
 
-
 # Next steps
 
-Now you've got the project all set-up and running, it's time to [explore the project](example_project.html) itself.
+Now you've got the project all set-up and running, it's time to [explore the standard project layout](dev_guide.html) itself.
 
 

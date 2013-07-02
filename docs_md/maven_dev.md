@@ -32,7 +32,7 @@ You'll also be prompted for:
 
 If you prefer you can specify these parameters on the command line, for example:
 
-    mvn archetype:generate -Dfilter=io.vertx: -DgroupId=com.mycompany -DartifactId=my-vertx-module -Dversion=0.1-SNAPSHOT
+    mvn archetype:generate -Dfilter=io.vertx: -DgroupId=com.mycompany -DartifactId=my-module -Dversion=0.1
 
 A directory with a name corresponding to `artifactId` will be created for you, with the example project in it. Let's go into it:
 
@@ -68,11 +68,19 @@ It also contains various properties used to configure versions of various depend
 
 To run the module using Maven, using the dependencies declared in the project (This does not need Vert.x to be installed on your system already)
 
-   mvn vertx:runmod
+    mvn vertx:runmod
 
 To run the integration tests
 
-   mvn integration-test
+    mvn integration-test
+
+To run the Vert.x module from the resources in Eclipse
+
+    mvn vertx:runModEclipse
+
+If you're using IntelliJ IDEA:
+
+    mvn vertx:runModIDEA
 
 
 # Setup your IDE
@@ -99,7 +107,7 @@ Once you've changed your dependencies just run `mvn idea:idea` or `mvn eclipse:e
 
 # Next steps
 
-Now you've got the project all set-up and running, it's time to [explore the project](example_project.html) itself.
+Now you've got the project all set-up and running, it's time to [explore the standard project layout](dev_guide.html) itself.
 
 
 

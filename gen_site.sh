@@ -25,7 +25,6 @@
 ./gen_section.sh docs_md/dev_guide.md dev_guide_templ.html dev_guide.html
 ./gen_section.sh docs_md/gradle_dev.md gradle_dev_templ.html gradle_dev.html
 ./gen_section.sh docs_md/maven_dev.md maven_dev_templ.html maven_dev.html
-./gen_section.sh docs_md/example_project.md example_project_templ.html example_project.html
 ./gen_section.sh docs_md/embedding_manual.md embedding_manual_templ.html embedding_manual.html
 ./gen_section.sh docs_md/language_support.md language_support_templ.html language_support.html
 

@@ -101,7 +101,7 @@
 <li><code>version</code>. This is the <code>version</code> for the module that we're going to generate, e.g. <code>2.0</code>, or <code>0.1-SNAPSHOT</code>.</li>
 </ul>
 <p>If you prefer you can specify these parameters on the command line, for example:</p>
-<pre class="prettyprint">mvn archetype:generate -Dfilter=io.vertx: -DgroupId=com.mycompany -DartifactId=my-vertx-module -Dversion=0.1-SNAPSHOT
+<pre class="prettyprint">mvn archetype:generate -Dfilter=io.vertx: -DgroupId=com.mycompany -DartifactId=my-module -Dversion=0.1
 </pre>
 <p>A directory with a name corresponding to <code>artifactId</code> will be created for you, with the example project in it. Let's go into it:</p>
 <pre class="prettyprint">cd my-vertx-module
@@ -130,9 +130,17 @@
 <p>It also contains various properties used to configure versions of various dependencies.</p>
 <h1 id="other-useful-maven-targets">Other useful Maven targets</h1><br/>
 <p>To run the module using Maven, using the dependencies declared in the project (This does not need Vert.x to be installed on your system already)</p>
-<p>mvn vertx:runmod</p>
+<pre class="prettyprint">mvn vertx:runmod
+</pre>
 <p>To run the integration tests</p>
-<p>mvn integration-test</p>
+<pre class="prettyprint">mvn integration-test
+</pre>
+<p>To run the Vert.x module from the resources in Eclipse</p>
+<pre class="prettyprint">mvn vertx:runModEclipse
+</pre>
+<p>If you're using IntelliJ IDEA:</p>
+<pre class="prettyprint">mvn vertx:runModIDEA
+</pre>
 <h1 id="setup-your-ide">Setup your IDE</h1><br/>
 <p>You can use the <code>idea</code> and <code>eclipse</code> goals to create IDE projects from your Maven project, for example</p>
 <pre class="prettyprint">mvn idea:idea
@@ -149,7 +157,7 @@
 <p>If you don't want it to be included in the <code>lib</code> directory you should add it as <code>provided</code>.</p>
 <p>Once you've changed your dependencies just run <code>mvn idea:idea</code> or <code>mvn eclipse:eclipse</code> again to update your IDE project files with the new dependencies.</p>
 <h1 id="next-steps">Next steps</h1><br/>
-<p>Now you've got the project all set-up and running, it's time to <a href="example_project.html">explore the project</a> itself.</p></div>
+<p>Now you've got the project all set-up and running, it's time to <a href="dev_guide.html">explore the standard project layout</a> itself.</p></div>
       </div>
     </div>
   </div>
