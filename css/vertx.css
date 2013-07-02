@@ -1,43 +1,43 @@
 body {
   padding-top: 60px;
   padding-bottom: 40px;
-  background-color: #000000;
+  background-color: #222;
 }
 
 .title {
   font-size: 22px;
   font-weight: 200;
-  color: #33A151;
+  color: #33a098;
 }
 
 .highlight_title {
   font-size: 20px;
   font-weight: 200;
-  color: #4CED77;
+  color: #33a098;
 }
 
 .highlight {
   color: #FFFFFF;
 }
 
-.nav {
-  color: #4CED77;
-}
+.nav { color: #33a098; }
+.nav a { color:#33a098 !important; }
+.navbar-inner { background:#333; border-bottom:1px solid #444; }
 
 h1 {
-  color: #33A151;
+  color: #33a098;
   font-weight: 200;
   font-size: 22px;
 }
 
 h2 {
-  color: #33A151;
+  color: #33a098;
   font-weight: 200;
   font-size: 18px;
 }
 
 h3 {
-  color: #33A151;
+  color: #33a098;
   font-weight: 200;
   font-size: 16px;
 }
@@ -74,3 +74,4 @@ div.keeptogether {
 }
 
 .hp .features li:first-child { margin-top:0; }
+
