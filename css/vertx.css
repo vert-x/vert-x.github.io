@@ -7,41 +7,41 @@ body {
 .title {
   font-size: 20px;
   font-weight: 200;
-  color: #660bab;
+  color: #33a098;
 }
 
 .highlight_title {
   font-size: 20px;
   font-weight: 200;
-  color: #a668d5;
+  color: #33a098;
 }
 
 .highlight {
   color: #FFFFFF;
 }
 
-.nav { color: #bfbb30; }
-.nav a { color:#bfbb30 !important; }
+.nav { color: #3283a0; }
+.nav a { color:#3283a0 !important; }
 .navbar-inner { background:#333; border-bottom:1px solid #444; }
 .well {background: #FFFFFF}
 .hero-unit {background: #FFFFFF}
 
-a {color:#660bab}
+a {color:#33a098}
 
 h1 {
-  color: #660bab;
+  color: #33a098;
   font-weight: 200;
   font-size: 24px;
 }
 
 h2 {
-  color: #660bab;
+  color: #33a098;
   font-weight: 200;
   font-size: 20px;
 }
 
 h3 {
-  color: #660bab;
+  color: #33a098;
   font-weight: 200;
   font-size: 16px;
 }
