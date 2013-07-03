@@ -1,57 +1,60 @@
 body {
   padding-top: 60px;
   padding-bottom: 40px;
-  background-color: #222;
+  background-color: #111;
 }
 
 .title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 200;
-  color: #33a098;
+  color: #d30068;
 }
 
 .highlight_title {
   font-size: 20px;
   font-weight: 200;
-  color: #33a098;
+  color: #d30068;
 }
 
 .highlight {
   color: #FFFFFF;
 }
 
-.nav { color: #33a098; }
-.nav a { color:#33a098 !important; }
+.nav { color: #00c12b; }
+.nav a { color:#00c12b !important; }
 .navbar-inner { background:#333; border-bottom:1px solid #444; }
+.well {background: #FFFFFF}
+.hero-unit {background: #FFFFFF}
+
+a {color:#00c12b}
 
 h1 {
-  color: #33a098;
+  color: #00c12b;
   font-weight: 200;
-  font-size: 22px;
+  font-size: 24px;
 }
 
 h2 {
-  color: #33a098;
+  color: #00c12b;
   font-weight: 200;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 h3 {
-  color: #33a098;
+  color: #00c12b;
   font-weight: 200;
   font-size: 16px;
 }
 
 .hp img[src*="logo"] {
     float: left;
-    width: 200px; 
+    width: 220px;
     background: white;
     padding: 50px 30px;
     margin: 0 25px 25px 0;
-    box-shadow: 0px 0px 5px rgba(0,0,0,.2);
 }
 .hp .hero-unit .title { 
-    font-size:33px; line-height:40px !important; 
+    font-size:33px; line-height:40px !important;
 }
 .hp .features { 
     -webkit-column-count:4; 
