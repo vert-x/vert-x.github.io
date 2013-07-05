@@ -288,7 +288,8 @@ In order to scale across cores you need to deploy more verticle instances. The e
 
 You can deploy more verticle instances programmatically or on the command line when deploying your module using the `-instances` command line option.
 
-            
+         
+<a id="event-bus"> </a>   
 # The Event Bus
 
 The event bus is the nervous system of Vert.x.
@@ -2129,6 +2130,7 @@ You can use the `noMatch` method to specify a handler that will be called if not
         }
     });
     
+<a id="web-sockets"> </a>
 # WebSockets
 
 [WebSockets](http://en.wikipedia.org/wiki/WebSocket) are a web technology that allows a full duplex socket-like connection between HTTP servers and HTTP clients (typically browsers).
@@ -2235,6 +2237,7 @@ To use WebSockets from a compliant browser, you use the standard WebSocket API. 
     
 For more information see the [WebSocket API documentation](http://dev.w3.org/html5/websockets/) 
 
+<a id="sockjs"> </a>
 # SockJS
 
 WebSockets are a new technology, and many users are still using browsers that do not support them, or which support older, pre-final, versions.

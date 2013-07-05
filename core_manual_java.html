@@ -504,6 +504,7 @@ container.deployWorkerVerticle("verticle5.js", verticle5Config, 10);
 <p>A verticle instance is almost always single threaded (the only exception is multi-threaded worker verticles which are an advanced feature not intended for normal development), this means a single instance can at most utilise one core of your server.</p>
 <p>In order to scale across cores you need to deploy more verticle instances. The exact numbers depend on your application - how many verticles there are and of what type.</p>
 <p>You can deploy more verticle instances programmatically or on the command line when deploying your module using the <code>-instances</code> command line option.</p>
+<p><a id="event-bus"> </a>   </p>
 <h1 id="the-event-bus">The Event Bus</h1><br/>
 <p>The event bus is the nervous system of Vert.x.</p>
 <p>It allows verticles to communicate with each other irrespective of what language they are written in, and whether they're in the same Vert.x instance, or in a different Vert.x instance.</p>
@@ -1854,6 +1855,7 @@ server.requestHandler(routeMatcher).listen(8080, "localhost");
     }
 });
 </pre>
+<p><a id="web-sockets"> </a></p>
 <h1 id="websockets">WebSockets</h1><br/>
 <p><a href="http://en.wikipedia.org/wiki/WebSocket">WebSockets</a> are a web technology that allows a full duplex socket-like connection between HTTP servers and HTTP clients (typically browsers).</p>
 <h2 id="websockets-on-the-server">WebSockets on the server</h2><br/>
@@ -1935,6 +1937,7 @@ client.connectWebsocket("/some-uri", new Handler&lt;WebSocket&gt;() {
 &lt;/script&gt;
 </pre>
 <p>For more information see the <a href="http://dev.w3.org/html5/websockets/">WebSocket API documentation</a> </p>
+<p><a id="sockjs"> </a></p>
 <h1 id="sockjs">SockJS</h1><br/>
 <p>WebSockets are a new technology, and many users are still using browsers that do not support them, or which support older, pre-final, versions.</p>
 <p>Moreover, WebSockets do not work well with many corporate proxies. This means that's it's not possible to guarantee a WebSockets connection is going to succeed for every user.</p>
