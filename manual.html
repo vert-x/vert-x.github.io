@@ -251,18 +251,18 @@
 <p>The <code>vertx run</code> command can take a few optional parameters, they are:</p>
 <ul>
 <li>
-<p><code>-conf &amp;lt;config_file&amp;gt;</code> Provide some configuration to the verticle. <code>config_file</code> is the name of a text file containing a JSON object that represents the configuration for the verticle. This is optional.</p>
+<p><code>-conf &lt;config_file&gt;</code> Provide some configuration to the verticle. <code>config_file</code> is the name of a text file containing a JSON object that represents the configuration for the verticle. This is optional.</p>
 </li>
 <li>
-<p><code>-cp &amp;lt;path&amp;gt;</code> The path on which to search for the main and any other resources used by the verticle. This defaults to <code>.</code> (current directory). If your verticle references other scripts, classes or other resources (e.g. jar files) then make sure these are on this path. The path can contain multiple path entries separated by <code>:</code> (colon). Each path entry can be an absolute or relative path to a directory containing scripts, or absolute or relative filenames for jar or zip files.
+<p><code>-cp &lt;path&gt;</code> The path on which to search for the main and any other resources used by the verticle. This defaults to <code>.</code> (current directory). If your verticle references other scripts, classes or other resources (e.g. jar files) then make sure these are on this path. The path can contain multiple path entries separated by <code>:</code> (colon). Each path entry can be an absolute or relative path to a directory containing scripts, or absolute or relative filenames for jar or zip files.
     An example path might be <code>-cp classes:lib/otherscripts:jars/myjar.jar:jars/otherjar.jar</code>
     Always use the path to reference any resources that your verticle requires. Please, <strong>do not</strong> put them on the system classpath as this can cause isolation issues between deployed verticles.</p>
 </li>
 <li>
-<p><code>-instances &amp;lt;instances&amp;gt;</code> The number of instances of the verticle to instantiate in the Vert.x server. Each verticle instance is strictly single threaded so to scale your application across available cores you might want to deploy more than one instance. If omitted a single instance will be deployed. We'll talk more about scaling later on in this user manual.</p>
+<p><code>-instances &lt;instances&gt;</code> The number of instances of the verticle to instantiate in the Vert.x server. Each verticle instance is strictly single threaded so to scale your application across available cores you might want to deploy more than one instance. If omitted a single instance will be deployed. We'll talk more about scaling later on in this user manual.</p>
 </li>
 <li>
-<p><code>-includes &amp;lt;mod_list&amp;gt;</code> A comma separated list of module names to include in the classpath of this verticle.
+<p><code>-includes &lt;mod_list&gt;</code> A comma separated list of module names to include in the classpath of this verticle.
 For more information on what including a module means please see the modules manual.</p>
 </li>
 <li>
@@ -311,13 +311,13 @@ vertx run sender.js -cluster
 </pre>
 <h2 id="running-modules-from-the-command-line">Running modules from the command line</h2><br/>
 <p>It's highly recommended that you package any non trivial Vert.x functionality into a module. For detailed information on how to package your code as a module please see the <a href="mods_manual.html">modules manual</a>.</p>
-<p>Instead of <code>vertx run</code> you use <code>vertx runmod &amp;lt;module name&amp;gt;</code> to directly run a module. This takes some of the same options as <code>vertx run</code>. They are:</p>
+<p>Instead of <code>vertx run</code> you use <code>vertx runmod &lt;module name&gt;</code> to directly run a module. This takes some of the same options as <code>vertx run</code>. They are:</p>
 <ul>
 <li>
-<p><code>-conf &amp;lt;config_file&amp;gt;</code></p>
+<p><code>-conf &lt;config_file&gt;</code></p>
 </li>
 <li>
-<p><code>-instances &amp;lt;instances&amp;gt;</code></p>
+<p><code>-instances &lt;instances&gt;</code></p>
 </li>
 <li>
 <p><code>-cluster</code></p>
@@ -341,10 +341,11 @@ vertx runmod com.acme~my-mod~2.1
 </pre>
 <h2 id="running-modules-directory-from-zip-files">Running modules directory from .zip files</h2><br/>
 <p>The command <code>vert.x runzip</code> can also be used to run a module directly from a module zip file, i.e. the module doesn't have to be pre-installed either locally or in a module repository somewhere. To do this just type</p>
-<pre class="prettyprint">vertx runzip &amp;lt;zip_file_name&amp;gt;
+<pre class="prettyprint">vertx runzip &lt;zip_file_name&gt;
 </pre>
 <p>For example</p>
-<p>vertx runzip my-mod~2.0.1.zip</p>
+<pre class="prettyprint">vertx runzip my-mod~2.0.1.zip
+</pre>
 <h2 id="displaying-version-of-vertx">Displaying version of Vert.x</h2><br/>
 <p>To display the installed version of Vert.x type</p>
 <pre class="prettyprint">vertx version

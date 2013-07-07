@@ -181,15 +181,15 @@ If you're running a verticle written in JavaScript, Ruby, Groovy or Python then 
 
 The `vertx run` command can take a few optional parameters, they are:
 
-* `-conf &lt;config_file&gt;` Provide some configuration to the verticle. `config_file` is the name of a text file containing a JSON object that represents the configuration for the verticle. This is optional.
+* `-conf <config_file>` Provide some configuration to the verticle. `config_file` is the name of a text file containing a JSON object that represents the configuration for the verticle. This is optional.
 
-* `-cp &lt;path&gt;` The path on which to search for the main and any other resources used by the verticle. This defaults to `.` (current directory). If your verticle references other scripts, classes or other resources (e.g. jar files) then make sure these are on this path. The path can contain multiple path entries separated by `:` (colon). Each path entry can be an absolute or relative path to a directory containing scripts, or absolute or relative filenames for jar or zip files.
+* `-cp <path>` The path on which to search for the main and any other resources used by the verticle. This defaults to `.` (current directory). If your verticle references other scripts, classes or other resources (e.g. jar files) then make sure these are on this path. The path can contain multiple path entries separated by `:` (colon). Each path entry can be an absolute or relative path to a directory containing scripts, or absolute or relative filenames for jar or zip files.
     An example path might be `-cp classes:lib/otherscripts:jars/myjar.jar:jars/otherjar.jar`
     Always use the path to reference any resources that your verticle requires. Please, **do not** put them on the system classpath as this can cause isolation issues between deployed verticles.
     
-* `-instances &lt;instances&gt;` The number of instances of the verticle to instantiate in the Vert.x server. Each verticle instance is strictly single threaded so to scale your application across available cores you might want to deploy more than one instance. If omitted a single instance will be deployed. We'll talk more about scaling later on in this user manual.
+* `-instances <instances>` The number of instances of the verticle to instantiate in the Vert.x server. Each verticle instance is strictly single threaded so to scale your application across available cores you might want to deploy more than one instance. If omitted a single instance will be deployed. We'll talk more about scaling later on in this user manual.
 
-* `-includes &lt;mod_list&gt;` A comma separated list of module names to include in the classpath of this verticle.
+* `-includes <mod_list>` A comma separated list of module names to include in the classpath of this verticle.
 For more information on what including a module means please see the modules manual.
 
 * `-worker` This options determines whether the verticle is a worker verticle or not. Default is false (not a worker). This is discussed in detail later on in the manual.  
@@ -247,11 +247,11 @@ Vert.x works out what language implementation module to use based on the file pr
 
 It's highly recommended that you package any non trivial Vert.x functionality into a module. For detailed information on how to package your code as a module please see the [modules manual](mods_manual.html).
 
-Instead of `vertx run` you use `vertx runmod &lt;module name&gt;` to directly run a module. This takes some of the same options as `vertx run`. They are:
+Instead of `vertx run` you use `vertx runmod <module name>` to directly run a module. This takes some of the same options as `vertx run`. They are:
 
-* `-conf &lt;config_file&gt;`
+* `-conf <config_file>`
 
-* `-instances &lt;instances&gt;`
+* `-instances <instances>`
 
 * `-cluster`
 
@@ -277,11 +277,11 @@ Run a module called `com.acme~other-mod~1.0.beta1` specifying number of instance
 
 The command `vert.x runzip` can also be used to run a module directly from a module zip file, i.e. the module doesn't have to be pre-installed either locally or in a module repository somewhere. To do this just type
 
-    vertx runzip &lt;zip_file_name&gt;
+    vertx runzip <zip_file_name>
 
 For example
 
-   vertx runzip my-mod~2.0.1.zip
+    vertx runzip my-mod~2.0.1.zip
 
 
 ## Displaying version of Vert.x
