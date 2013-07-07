@@ -384,7 +384,7 @@ logger.info 'I am logging something'
 <h2 id="deploying-worker-verticles">Deploying Worker Verticles</h2><br/>
 <p>The <code>Vertx.deploy_verticle</code> method deploys standard (non worker) verticles. If you want to deploy worker verticles use the <code>Vertx.deploy_worker_verticle</code> method. This method takes the same parameters as <code>Vertx.deploy_verticle</code> with the same meanings.</p>
 <h2 id="deploying-a-module-programmatically">Deploying a module programmatically</h2><br/>
-<p>You should use <code>deployModule</code> to deploy a module, for example:</p>
+<p>You should use <code>deploy_module</code> to deploy a module, for example:</p>
 <pre class="prettyprint">Vertx.deploy_module("io.vertx~mod-mailer~2.0.0-beta1", config)
 </pre>
 <p>Would deploy an instance of the <code>io.vertx~mod-mailer~2.0.0-beta1</code> module with the specified configuration. Please see the <a href="">modules manual</a> for more information about modules.</p>
@@ -435,10 +435,10 @@ Vertx.deploy_worker_verticle("verticle5.rb", appConfig[:verticle5_config], 10)
 <p>By default, when you deploy a verticle only one instance of the verticle is deployed. Verticles instances are strictly single threaded so this means you will use at most one core on your server.</p>
 <p>Vert.x scales by deploying many verticle instances concurrently.</p>
 <p>If you want more than one instance of a particular verticle or module to be deployed, you can specify the number of instances as follows:</p>
-<pre class="prettyprint">container.deployVerticle("foo.ChildVerticle", 10)
+<pre class="prettyprint">container.deploy_verticle("foo.ChildVerticle", 10)
 </pre>
 <p>Or</p>
-<pre class="prettyprint">container.deployModule("io.vertx~some-mod~1.0", 10)
+<pre class="prettyprint">container.deploy_module("io.vertx~some-mod~1.0", 10)
 </pre>
 <p>The above examples would deploy 10 instances.</p>
 <h2 id="getting-notified-when-deployment-is-complete">Getting Notified when Deployment is complete</h2><br/>
@@ -490,7 +490,7 @@ end
 <h2 id="event-bus-api">Event Bus API</h2><br/>
 <p>Let's jump into the API</p>
 <h3 id="registering-and-unregistering-handlers">Registering and Unregistering Handlers</h3><br/>
-<p>To set a message handler on the address <code>test.address</code>, you call the method <code>registerHandler</code> on the <code>EventBus</code> class</p>
+<p>To set a message handler on the address <code>test.address</code>, you call the method <code>register_handler</code> on the <code>EventBus</code> class</p>
 <pre class="prettyprint">id = Vertx::EventBus.register_handler('test.address') do |message|
     puts "Got message body #{message.body}" 
 end
@@ -513,7 +513,7 @@ end
 <p>If you want your handler to live for the full lifetime of your verticle there is no need to unregister it explicitly - vert.x will automatically unregister any handlers when the verticle is stopped.  </p>
 <h3 id="publishing-messages">Publishing messages</h3><br/>
 <p>Publishing a message is also trivially easy. Just publish it specifying the address, for example:</p>
-<pre class="prettyprint">Vertx::EventBus.send('test.address", 'hello world')
+<pre class="prettyprint">Vertx::EventBus.publish('test.address", 'hello world')
 </pre>
 <p>That message will then be delivered to all handlers registered against the address "test.address".</p>
 <h3 id="sending-messages">Sending messages</h3><br/>
@@ -525,7 +525,7 @@ end
 <p>To do this you send a message, and specify a block as a reply handler. When the receiver receives the message there is a method <code>reply</code> on the <code>Message</code> instance that is passed into the handler.</p>
 <p>When this method is invoked it causes a reply to be sent back to the sender where the reply handler is invoked. An example will make this clear:</p>
 <p>The receiver:</p>
-<pre class="prettyprint">Vertx::EventBus.registerHandler('test.address') do |message|
+<pre class="prettyprint">Vertx::EventBus.register_handler('test.address') do |message|
   puts "I received a message #{message.body}"
 
   # Do some stuff...
@@ -1778,7 +1778,7 @@ end
 
     socket.onopen = function(event) {
         alert("Web Socket opened");
-        socket.send("Hello World");
+        socket.write("Hello World");
     };
 
     socket.onclose = function(event) {
@@ -1897,7 +1897,7 @@ server.listen(8080)
 
     eb.onopen = function() {
 
-      eb.registerHandler('some-address', function(message) {
+      eb.register_handler('some-address', function(message) {
 
         console.log('received a message: ' + JSON.stringify(message);
 

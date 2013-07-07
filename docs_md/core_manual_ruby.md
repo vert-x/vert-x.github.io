@@ -132,7 +132,7 @@ The `Vertx.deploy_verticle` method deploys standard (non worker) verticles. If y
     
 ## Deploying a module programmatically
 
-You should use `deployModule` to deploy a module, for example:
+You should use `deploy_module` to deploy a module, for example:
 
     Vertx.deploy_module("io.vertx~mod-mailer~2.0.0-beta1", config)
 
@@ -198,11 +198,11 @@ Vert.x scales by deploying many verticle instances concurrently.
 
 If you want more than one instance of a particular verticle or module to be deployed, you can specify the number of instances as follows:
 
-    container.deployVerticle("foo.ChildVerticle", 10) 
+    container.deploy_verticle("foo.ChildVerticle", 10) 
 
 Or
 
-    container.deployModule("io.vertx~some-mod~1.0", 10)   
+    container.deploy_module("io.vertx~some-mod~1.0", 10)   
   
 The above examples would deploy 10 instances.
 
@@ -297,7 +297,7 @@ Let's jump into the API
 
 ### Registering and Unregistering Handlers
 
-To set a message handler on the address `test.address`, you call the method `registerHandler` on the `EventBus` class
+To set a message handler on the address `test.address`, you call the method `register_handler` on the `EventBus` class
 
     id = Vertx::EventBus.register_handler('test.address') do |message|
         puts "Got message body #{message.body}" 
@@ -329,7 +329,7 @@ If you want your handler to live for the full lifetime of your verticle there is
 
 Publishing a message is also trivially easy. Just publish it specifying the address, for example:
 
-    Vertx::EventBus.send('test.address", 'hello world')
+    Vertx::EventBus.publish('test.address", 'hello world')
 
 That message will then be delivered to all handlers registered against the address "test.address".
 
@@ -349,7 +349,7 @@ When this method is invoked it causes a reply to be sent back to the sender wher
 
 The receiver:
 
-    Vertx::EventBus.registerHandler('test.address') do |message|
+    Vertx::EventBus.register_handler('test.address') do |message|
       puts "I received a message #{message.body}"
 
       # Do some stuff...
@@ -2063,7 +2063,7 @@ To use WebSockets from a compliant browser, you use the standard WebSocket API. 
 
         socket.onopen = function(event) {
             alert("Web Socket opened");
-            socket.send("Hello World");
+            socket.write("Hello World");
         };
 
         socket.onclose = function(event) {
@@ -2217,7 +2217,7 @@ In your web page, you need to load the script `vertxbus.js`, then you can access
         
         eb.onopen = function() {
         
-          eb.registerHandler('some-address', function(message) {
+          eb.register_handler('some-address', function(message) {
 
             console.log('received a message: ' + JSON.stringify(message);
 
