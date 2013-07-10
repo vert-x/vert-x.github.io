@@ -6,8 +6,6 @@ a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, Calif
 
 [TOC]
 
-# Developing Vert.x Modules using the Standard Project Layout
-
 This document describes *best practice* for developing Vert.x applications as one or more Vert.x modules using the standard Vert.x project layout. It's highly recommended that you write any non-trivial Vert.x applications as one or more modules. 
 
 Creating your application as module(s) gives you the following benefits:
@@ -34,7 +32,7 @@ If you prefer to use some other build tool (e.g. ant), that's fine - Vert.x is a
 
 We'll now explore the standard layout.
 
-## The module
+# The module
 
 All Vert.x modules contain a `mod.json` descriptor. This a file containing some JSON which describes the module. Amongst other things it usually contains a `main` field.
 This tells Vert.x which verticle to run when the module is deployed.
@@ -49,17 +47,17 @@ The verticle has a `start()` method which is called when the verticle is deploye
 
 The standard project layout also contains equivalents of the ping verticle written in JavaScript, Groovy (both compiled and script), Ruby and Python. You can edit `main` in `mod.json` to tell it to you use one of the other versions of the ping verticle.
 
-## The tests
+# The tests
 
 The rest of the stuff in the example project is a set of example tests.
 
-### Unit tests
+## Unit tests
 
 Unit tests are tests that run outside the Vert.x container and which work with your module's Java classes directly. They go by convention in `src/test/unit`.
 
 You can run unit tests in your IDE as normal by right clicking on the test or on the command line.
 
-### Integration tests
+## Integration tests
 
 We define *integration tests* here to mean Vert.x tests that are run *inside* the Vert.x container.
 
@@ -69,7 +67,7 @@ You can even write your tests in JavaScript, Groovy, Ruby or Python and still us
 
 There are example integration tests for each language in the example project. If you are not interested in writing tests in different languages you can safely delete the files you're not interested in.
 
-#### Java integration tests
+### Java integration tests
 
 The example Java integration tests are in `src/test/java/com/mycompany/integration/java`
 
@@ -83,31 +81,31 @@ If your test deploys other verticles you can also assert from there and call `te
 
 Please see the example tests for more examples.
 
-#### JavaScript integration tests
+### JavaScript integration tests
 
 The example Java integration tests are in `src/test/resources/integration_tests/javascript`
 
 The class in `src/test/java/com/mycompany/integration/javascript` is just a stub class that tells JUnit where the real JavaScript tests are. You can safely ignore it.
 
-#### Ruby integration tests
+### Ruby integration tests
 
 The example Java integration tests are in `src/test/resources/integration_tests/ruby`
 
 The class in `src/test/java/com/mycompany/integration/ruby` is just a stub class that tells JUnit where the real Ruby tests are. You can safely ignore it.
 
-#### Groovy integration tests
+### Groovy integration tests
 
 The example Java integration tests are in `src/test/resources/integration_tests/groovy`
 
 The class in `src/test/java/com/mycompany/integration/groovy` is just a stub class that tells JUnit where the real Groovy tests are. You can safely ignore it.
 
-#### Python integration tests
+### Python integration tests
 
 The example Java integration tests are in `src/test/resources/integration_tests/python`
 
 The class in `src/test/java/com/mycompany/integration/python` is just a stub class that tells JUnit where the real Python tests are. You can safely ignore it.
 
-#### Run tests in your IDE
+### Run tests in your IDE
 
 To run Vert.x integration tests in your IDE, simply open the folder `src/test/java/com/mycompany/integration` in your IDE and right click it and chose to run all tests as JUnit tests (how this is done depends on your IDE). Or you can select individual test classes.
 
@@ -118,7 +116,7 @@ You can also run the tests at the command line if you prefer (using `mvn integra
 You can also set breakpoints in your Java code for seamless debugging into your Vert.x verticles and modules as you would expect in an IDE.
 
 <a id="auto-redeploy"> </a>
-## Auto redeploy and see your changes immediately
+# Auto redeploy and see your changes immediately
 
 When developing a Vert.x module, especially if it has a web interface, it's often useful to have your module running and have it automatically pick up any changes in classes or other resources in the module *without you having to rebuild the module*.
 
@@ -128,7 +126,7 @@ To get this to work your module must be marked as:
 
 In your `mod.json`. See the [modules manual](mods_manual.html#auto-redeploy) for more information on this.
 
-### Gradle users
+## Gradle users
 
 Then, if you're using the standard Vert.x Gradle Template project, and you're using Eclipse you can run the following from a console in your project directory:
 
@@ -141,7 +139,7 @@ If you're using IntelliJ IDEA:
 This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.
 
 
-### Maven users
+## Maven users
 
 If you're using the Vert.x Maven Plugin you can just run, and you're using Eclipse you can run the following from a console in your project directory:
 
@@ -171,7 +169,7 @@ And edit the `classpath` configuration parameter in the pom.xml for the plugin, 
 
 So it points to the directories where your module resources are.
 
-### Non Maven or Gradle users:
+## Non Maven or Gradle users:
 
 If you don't use Maven or Gradle but still want to see your changes in a running module immediately you can run the following from a console in your project directory:
 
@@ -198,11 +196,11 @@ Or
 
     ./gradlew install
 
-From any of the projects to push install that module in your local Maven repository, and it will be automatically picked up by your other modules which use it. Vert.x module system understands how to pull modules from local (as well as remote) Maven repositories.
+From any of the projects to install that module in your local Maven repository, and it will be automatically picked up by your other modules which use it. Vert.x module system understands how to pull modules from local (as well as remote) Maven repositories.
 
-## Other best practices
+# Other best practices
 
-### Using a Verticle to co-ordinate loading of an application
+## Using a Verticle to co-ordinate loading of an application
 
 If you have an application that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.
 

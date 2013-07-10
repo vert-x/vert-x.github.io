@@ -82,6 +82,8 @@
 <li><a href="#other-useful-maven-targets">Other useful Maven targets</a></li>
 <li><a href="#setup-your-ide">Setup your IDE</a></li>
 <li><a href="#changing-the-dependencies-of-your-project">Changing the dependencies of your project</a></li>
+<li><a href="#pushing-your-module-to-maven">Pushing your module to Maven</a></li>
+<li><a href="#registering-your-module-in-the-module-registry">Registering your module in the Module Registry</a></li>
 <li><a href="#next-steps">Next steps</a></li>
 </ul>
 </div>
@@ -158,6 +160,10 @@
 <p>If your project needs a third party jar to build and you want to include it in the <code>lib</code> directory of your module you can add the dependency in the <code>dependencies</code> section of <code>pom.xml</code> with a scope of <code>compile</code>.</p>
 <p>If you don't want it to be included in the <code>lib</code> directory you should add it as <code>provided</code>.</p>
 <p>Once you've changed your dependencies just run <code>mvn idea:idea</code> or <code>mvn eclipse:eclipse</code> again to update your IDE project files with the new dependencies.</p>
+<h1 id="pushing-your-module-to-maven">Pushing your module to Maven</h1><br/>
+<p>Use <code>mvn deploy</code> as normal to push your module to a Maven repository.</p>
+<h1 id="registering-your-module-in-the-module-registry">Registering your module in the Module Registry</h1><br/>
+<p>If you've pushed your module to a public Maven or Bintray repository you can register it in the <a href="http://modulereg.vertx.io">Module Registry</a> so others can search for and discover it.</p>
 <h1 id="next-steps">Next steps</h1><br/>
 <p>Now you've got the project all set-up and running, it's time to <a href="dev_guide.html">explore the standard project layout</a> itself.</p></div>
       </div>

@@ -37,7 +37,7 @@ or
 To make sure you've installed it correctly, use `vertx version` to display the version.
 
     $ vertx version
-    vert.x 2.0.0-final
+    vert.x 2.0.0-final (built ...)
 
 You should see output something like the above.
 

@@ -105,6 +105,14 @@ If you don't want it to be included in the `lib` directory you should add it as 
 
 Once you've changed your dependencies just run `mvn idea:idea` or `mvn eclipse:eclipse` again to update your IDE project files with the new dependencies.
 
+# Pushing your module to Maven
+
+Use `mvn deploy` as normal to push your module to a Maven repository.
+
+# Registering your module in the Module Registry
+
+If you've pushed your module to a public Maven or Bintray repository you can register it in the [Module Registry](http://modulereg.vertx.io) so others can search for and discover it.
+
 # Next steps
 
 Now you've got the project all set-up and running, it's time to [explore the standard project layout](dev_guide.html) itself.
