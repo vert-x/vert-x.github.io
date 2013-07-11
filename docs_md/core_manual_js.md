@@ -1982,11 +1982,11 @@ You can then add different matches to the route matcher. For example, to send al
     var routeMatcher = new vertx.RouteMatcher();
     
     routeMatcher.get('/animals/dogs', function(req) {
-        req.response().end('You requested dogs');
+        req.response.end('You requested dogs');
     });
     
     routeMatcher.get('/animals/cats', function(req) {
-        req.response().end('You requested cats');    
+        req.response.end('You requested cats');    
     });
         
     server.requestHandler(routeMatcher).listen(8080, 'localhost');
@@ -2012,7 +2012,7 @@ If you want to extract parameters from the path, you can do this too, by using t
     routeMatcher.put('/:blogname/:post', function(req) {        
         var blogName = req.params().get('blogname');
         var post = req.params().get('post');
-        req.response().end('blogname is ' + blogName + ', post is ' + post);
+        req.response.end('blogname is ' + blogName + ', post is ' + post);
     });
     
     server.requestHandler(routeMatcher).listen(8080, 'localhost');
@@ -2056,7 +2056,7 @@ It will display 'first is animals and second is cats'.
 You can use the `noMatch` method to specify a handler that will be called if nothing matches. If you don't specify a no match handler and nothing matches, a 404 will be returned.
 
     routeMatcher.noMatch(function(req) {
-        req.response().end('Nothing matched');
+        req.response.end('Nothing matched');
     });
     
 # WebSockets
