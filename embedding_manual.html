@@ -76,18 +76,18 @@
 <div class="toc">
 <ul>
 <li><a href="#embedding-the-vertx-platform">Embedding the Vert.x platform</a><ul>
-<li><a href="#jars">Jars</a></li>
+<li><a href="#required-jars">Required jars</a></li>
 <li><a href="#system-properties">System Properties</a></li>
 <li><a href="#config-files">Config files</a><ul>
-<li><a href="#langsproperties">langs.properties</a></li>
-<li><a href="#clusterxml">cluster.xml</a></li>
-<li><a href="#repostxt">repos.txt</a></li>
+<li><a href="#file-langsproperties">File langs.properties</a></li>
+<li><a href="#file-clusterxml">File cluster.xml</a></li>
+<li><a href="#file-repostxt">File repos.txt</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#embedding-vertx-core">Embedding Vert.x core</a><ul>
-<li><a href="#jars_1">Jars</a></li>
+<li><a href="#required-jars_1">Required jars</a></li>
 <li><a href="#core-thread-safety">Core thread safety</a><ul>
 <li><a href="#event-loops-and-scaling-vertx-embedded">Event loops and scaling Vert.x embedded</a></li>
 </ul>
@@ -96,9 +96,10 @@
 </li>
 </ul>
 </div>
-<p>It's highly recommended that you run Vert.x applications as modules using the <code>vertx</code> command at the command line, however it is possible to embed Vert.x inside pre-existing Java applications. There are two ways this can be done:</p>
+<p>It's highly recommended that you run Vert.x applications as modules using the <code>vertx runmod</code> command at the command line, however it is possible to embed Vert.x inside pre-existing Java applications. There are two ways this can be done:</p>
 <h1 id="embedding-the-vertx-platform">Embedding the Vert.x platform</h1><br/>
-<p>The Vert.x platform is the container which knows how to run Vert.x modules and verticles, it also contains the Vert.x module system functionality. You use an instance of the interface <code>org.vertx.java.platform.PlatformManager</code> to control the platform.</p>
+<p>The Vert.x platform is the container which knows how to run Vert.x modules and verticles, it also contains the Vert.x module system.</p>
+<p>You use an instance of the interface <code>org.vertx.java.platform.PlatformManager</code> to control the platform.</p>
 <p>To get an instance of <code>PlatformManager</code> you use the <code>org.vertx.java.platform.PlatformLocator</code> class:</p>
 <pre class="prettyprint">PlatformManager pm = PlatformLocator.factory.createPlatformManager();
 </pre>
@@ -118,21 +119,21 @@ pm.deployModule("com.mycompany~my-module~1.0", conf, 10, new AsyncResultHandler&
 });
 </pre>
 <p>The methods available on <code>PlatformManager</code> roughly map to the actions performed by the <code>vertx</code> command at the command line.</p>
-<h2 id="jars">Jars</h2><br/>
-<p>To embed the Vert.x platform you will need all the jars from the Vert.x install lib directory on your classpath. You won't need the hazelcast jar if you aren't using clustering.</p>
+<h2 id="required-jars">Required jars</h2><br/>
+<p>To embed the Vert.x platform you will need all the jars from the Vert.x install <code>lib</code> directory on your classpath. You won't need the hazelcast jar if you aren't using clustering.</p>
 <h2 id="system-properties">System Properties</h2><br/>
 <p>When using the platform manager the following system properties can be set:</p>
 <ul>
-<li><code>vertx.home</code> - When installing system modules, vert.x will install them in a directory <code>sys-mods</code> in this directory.</li>
-<li><code>vertx.mods</code> - When looking for or installing non system modules Vert.x will look in the directory <code>mods</code> in the current working directory. If <code>vertx.mods</code> is set this will tell Vert.x to instead look in the provided directory.</li>
+<li><code>vertx.home</code> - When installing system modules, vert.x will install them in a directory <code>sys-mods</code> which is in the directory given by this property.</li>
+<li><code>vertx.mods</code> - When looking for or installing non system modules Vert.x will look in the directory <code>mods</code> in the current working directory. If this property is set this will tell Vert.x to instead look in the provided directory.</li>
 </ul>
 <h2 id="config-files">Config files</h2><br/>
 <p>The Vert.x platform will look for various config files on the classpath. The vert.x platform .jar contains the default files inside it, but if you want to override any settings you can provide your own versions - just make sure you put them on the classpath ahead of the vert.x platform jar.</p>
-<h3 id="langsproperties"><code>langs.properties</code></h3><br/>
+<h3 id="file-langsproperties">File <code>langs.properties</code></h3><br/>
 <p>This config file tells Vert.x which modules contain the language implementations for particular languages. It's described in the <a href="language_support.html">Support a New Language Guide</a></p>
-<h3 id="clusterxml"><code>cluster.xml</code></h3><br/>
+<h3 id="file-clusterxml">File <code>cluster.xml</code></h3><br/>
 <p>This configures Hazelcast clustering. It's described in the <a href="manual.html">main manual</a>.</p>
-<h3 id="repostxt"><code>repos.txt</code></h3><br/>
+<h3 id="file-repostxt">File <code>repos.txt</code></h3><br/>
 <p>This configures which repositories the Vert.x module system will look in for modules. It's described in the <a href="mods_manual.html">modules manual</a>.</p>
 <h1 id="embedding-vertx-core">Embedding Vert.x core</h1><br/>
 <p><strong><em> Please note this feature is intended for power users only. </em></strong></p>
@@ -140,7 +141,7 @@ pm.deployModule("com.mycompany~my-module~1.0", conf, 10, new AsyncResultHandler&
 <p>If you are embedding this way you should be aware that</p>
 <ul>
 <li>You will only be able to use Vert.x with Java, not any of the other languages that Vert.x suppports.</li>
-<li>You will not have access to the Vert.x module system so you will be able to easily benefit from functionality provided by the community in the form of modules. Consider that most  functionality in Vert.x will be in the form of modules.</li>
+<li>You will not have access to the Vert.x module system so you will not be able to easily benefit from functionality provided by the community in the form of modules.</li>
 <li>You will not benefit from the automatic compilation of Java verticles at run-time. You will have to compile your classes manually.</li>
 <li>You will have to manage scaling of your application manually by programmatically creating more instances of your servers. You will not be able to benefit from the <code>-instances</code> option of the <code>vertx</code> command or in the <code>PlatformManager</code> API.</li>
 <li>You will need to manually ensure you do not have concurrent access to non thread-safe core objects in your application. The Vert.x platform would normally protect you against this.</li>
@@ -166,12 +167,12 @@ pm.deployModule("com.mycompany~my-module~1.0", conf, 10, new AsyncResultHandler&
 </pre>
 <p>You first get a reference to the <code>Vertx</code> object using the <code>VertxFactory</code> class, then you use the core classes as you wish.</p>
 <p>Note that all Vert.x threads are daemon threads and they will <em>not</em> prevent the JVM for exiting. Therefore you must ensure that the <code>main()</code> method does not run to completion, e.g. in this example we have used <code>System.in.read()</code> to block the main thread waiting for IO from the console.</p>
-<h2 id="jars_1">Jars</h2><br/>
+<h2 id="required-jars_1">Required jars</h2><br/>
 <p>To embed the Vert.x platform you will need all the jars from the Vert.x install lib directory apart from <code>vertx-platform-*.jar</code> on your classpath. You won't need the hazelcast jar if you aren't using clustering.</p>
 <h2 id="core-thread-safety">Core thread safety</h2><br/>
 <p>Many of the Vert.x core classes are <em>not</em> thread-safe. When running Vert.x in the Vert.x platform you don't have to worry about that as Vert.x guarantees that your verticle code is never executed by more than one thread concurrently.</p>
-<p>When running core embedded you have to be more careful as there is no container to make such guarantees. Therefore it's up to you the developer that you don't allow concurrent access to non thread-safe classes.</p>
-<p>Please consult the JavaDoc to see which classe are thread-safe and which are not.</p>
+<p>When running core embedded you have to be more careful as there is no container to make such guarantees. Therefore it's up to you the developer to guard against concurrent access to non thread-safe classes.</p>
+<p>Please consult the JavaDoc to see which classes are thread-safe and which are not.</p>
 <h3 id="event-loops-and-scaling-vertx-embedded">Event loops and scaling Vert.x embedded</h3><br/>
 <p>When running your Vert.x code in a standard verticle, Vert.x ensures it's all executed by the exact same thread (event loop).</p>
 <p>When running Vert.x embedded you will start off on one of your own application threads which won't be a Vert.x event loop. When Vert.x calls the handlers of any of the core objects that you create, they <em>will</em> be called on an event loop.</p>

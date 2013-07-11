@@ -6,27 +6,19 @@ a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, Calif
 
 [TOC]
 
-This document describes *best practice* for developing Vert.x applications as one or more Vert.x modules using the standard Vert.x project layout. It's highly recommended that you write any non-trivial Vert.x applications as one or more modules. 
-
-Creating your application as module(s) gives you the following benefits:
-
-* Your classpath is encapsulated so modules are easier to run. You don't need to craft any long command lines.
-* Your dependencies are encapsulated in a single artifact (the module zip file)
-* Your module can be pushed to any Maven repository or Bintray.
-* Your module can be catalogued in the Vert.x [module registry](https://vertxmodulereg-vertxmodulereg.rhcloud.com/) so others can discover and use it
-* Vert.x can automatically download and install modules from any repository given just the module identifier.
+This document describes *best practice* for developing Vert.x applications as one or more Vert.x modules using the standard Vert.x project layout. It's highly recommended that you write any non-trivial Vert.x applications as one or more modules.
 
 If your application is relatively small it might make sense to create it as a single module. If your application is large split it up into a set of modules.
 
-It's also recommended you read the Vert.x [main manual](manual.html) and the Vert.x [module manual](mods_manual.html) so you understand the basics of Vert.x and modules before starting out.
+It's also recommended you read the Vert.x [main manual](manual.html) and the Vert.x [modules manual](mods_manual.html) so you understand the basics of Vert.x and modules before starting out.
 
 There should be only one output module per project, so for each module in your application (simple applications may well only have one module) you should create a new project.
 
 The standard layout has a "Maven-style" directory structure that will probably be already familiar with you.
 
-If you're a Gradle user you can clone the Maven Gradle Template Project to get you started quickly.
+If you're a Gradle user you can clone the [Gradle Template Project](gradle_dev.html) to get you started quickly.
 
-If you're a Maven user you'll get the same structure if you use the Vert.x Maven Archetype to create your project (without the Gradle files of course!).
+If you're a Maven user you'll get the same structure if you use the Vert.x [Maven Archetype](maven_dev.html) to create your project (without the Gradle files of course!).
 
 If you prefer to use some other build tool (e.g. ant), that's fine - Vert.x is agnostic about build tool, but you'll have to provide your own build script (perhaps someone could contribute one?) for now.
 
@@ -45,7 +37,7 @@ If you've created your project using the Vert.x Maven Archetype or Vert.x Gradle
 
 The verticle has a `start()` method which is called when the verticle is deployed. In the `start()` method the verticle simply registers a handler on the event bus against address `ping-address`. The handler will be called when a message is received at that address. When a message is received the verticle simply replies to the `ping!` with a `pong!`. 
 
-The standard project layout also contains equivalents of the ping verticle written in JavaScript, Groovy (both compiled and script), Ruby and Python. You can edit `main` in `mod.json` to tell it to you use one of the other versions of the ping verticle.
+The standard project layout also contains equivalents of the ping verticle written in JavaScript, Groovy (both compiled and script), Ruby and Python. You can edit `main` in `mod.json` to tell it to use one of the other versions of the ping verticle.
 
 # The tests
 
@@ -120,7 +112,7 @@ You can also run the tests at the command line if you prefer (using `mvn integra
 You can also set breakpoints in your Java code for seamless debugging into your Vert.x verticles and modules as normal. No special set-up is required
 
 <a id="auto-redeploy"> </a>
-# Auto redeploy and see your changes immediately
+# Run your module and see your changes immediately
 
 When developing a Vert.x module, especially if it has a web interface, it's often useful to have your module running and have it automatically pick up any changes in classes or other resources in the module *without you having to rebuild the module*.
 
@@ -129,8 +121,6 @@ To get this to work your module must be marked as:
     "auto-redeploy": true
 
 In your `mod.json`. See the [modules manual](mods_manual.html#auto-redeploy) for more information on this.
-
-## Gradle users
 
 Then, if you're using the standard Vert.x Gradle Template project, and you're using Eclipse you can run the following from a console in your project directory:
 
@@ -142,10 +132,7 @@ If you're using IntelliJ IDEA:
 
 This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.
 
-
-## Maven users
-
-If you're using the Vert.x Maven Plugin you can just run, and you're using Eclipse you can run the following from a console in your project directory:
+If you're using Maven and you're using Eclipse you can run the following from a console in your project directory:
 
     mvn vertx:runModEclipse
 
@@ -172,8 +159,6 @@ And edit the `classpath` configuration parameter in the pom.xml for the plugin, 
             ....
 
 So it points to the directories where your module resources are.
-
-## Non Maven or Gradle users:
 
 If you don't use Maven or Gradle but still want to see your changes in a running module immediately you can run the following from a console in your project directory:
 
