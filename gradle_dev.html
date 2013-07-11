@@ -88,25 +88,31 @@
 </ul>
 </div>
 <h1 id="developing-vertx-modules-with-gradle">Developing Vert.x modules with Gradle</h1><br/>
-<p>In this HOWTO we'll show you how to develop a Vert.x project using Gradle.</p>
+<p>In this guide we'll show you how to develop a Vert.x project using Gradle.</p>
 <h1 id="fork-and-clone-the-template-project">Fork and clone the template project</h1><br/>
 <p>We provide a template <a href="https://github.com/vert-x/vertx-gradle-template">Gradle project</a> which you can clone to get you started.</p>
-<p>Fork it in github, then clone it locally</p>
-<pre class="prettyprint">git clone https://github.com/&lt;your_user_name&gt;/vertx-gradle-template.git my-vertx-module
+<p>Clone it locally</p>
+<pre class="prettyprint">git clone https://github.com/vert-x/vertx-gradle-template.git my-vertx-module
 </pre>
 <p>Where <code>my-vertx-module</code> is the name you want to give your project.</p>
+<p>Remove the origin</p>
+<pre class="prettyprint">git remote rm origin
+</pre>
+<p>And add your new origin</p>
+<pre class="prettyprint">git remote add origin &lt;path to your repo&gt;
+</pre>
 <p>Let's run the tests to make sure everything is working</p>
 <pre class="prettyprint">cd my-vertx-module
 ./gradlew test
 </pre>
-<p>You should use the Gradle Wrapper (<code>./gradlew</code>) to run all Gradle tasks. Take a look at <code>build.gradle</code> for a list of the available tasks.</p>
+<p>You should use the Gradle Wrapper (<code>./gradlew</code>) to run all Gradle tasks. You do not need to install Gradle manually. Take a look at <code>build.gradle</code> for a list of the available tasks.</p>
 <h1 id="outputs">Outputs</h1><br/>
 <p>The outputs of the project are:</p>
 <ul>
 <li>The Vert.x module zip file.</li>
-<li>If <code>produceJar = true</code> in <code>gradle.properties</code> A jar that corresponds to the module will also be produced. This is useful when you have another project which depends on the classes from your module, as it allows you to add it as a dependency to your other project.</li>
+<li>A jar that corresponds to the module will also be produced. This is useful when you have another project which depends on the classes from your module, as it allows you to add it as a standard Gradle build dependency in your other project.</li>
 </ul>
-<p>The outputs are created in the <code>build</code> directory as normal.</p>
+<p>The outputs are created in the <code>build</code> directory as per normal.</p>
 <h1 id="configuring-the-project">Configuring the project</h1><br/>
 <p>You configure many things in <code>gradle.properties</code>:</p>
 <ul>
@@ -115,9 +121,6 @@
 </li>
 <li>
 <p><code>pullInDeps</code> determines whether all module dependencies should be packaged into the module as <a href="mods_manual.html#nested-mods">nested modules</a>. </p>
-</li>
-<li>
-<p><code>produceJar</code> determines whether the build should produce a jar as well as a module zip - this is useful when your modules are non runnable so you can add them as normal Maven dependencies to your build and have access to their resources at build-time.</p>
 </li>
 </ul>
 <p>It also contains various properties used to configure versions of various dependencies.</p>
@@ -130,11 +133,9 @@
 <p>Or</p>
 <pre class="prettyprint">./gradlew eclipse
 </pre>
-<p>Once the IDE files have been created you can open the project in your IDE.</p>
+<p>Once the IDE files have been created you can open the project files in your IDE.</p>
 <p>Note: You can run the <code>idea</code> or <code>eclipse</code> tasks again if you change your project dependencies - in this way the IDE project files will be brought up-to-date.</p>
-<blockquote>
-<p>"You may have to tell your IDE to use Java source compatibility level of Java 7, as Maven seems to default to Java 5 (!)"</p>
-</blockquote>
+<p><em>"You may have to tell your IDE to use Java source compatibility level of Java 7, as Gradle seems to default to Java 6 (!)</em></p>
 <h1 id="changing-the-dependencies-of-your-project">Changing the dependencies of your project</h1><br/>
 <p>If your project needs a third party jar to build and you want to include it in the <code>lib</code> directory of your module you can add the dependency in the <code>dependencies</code> section of <code>build.gradle</code> with a type of <code>compile</code>.</p>
 <p>If you don't want it to be included in the <code>lib</code> directory you should add it as <code>provided</code>.</p>

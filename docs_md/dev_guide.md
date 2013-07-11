@@ -109,11 +109,15 @@ The class in `src/test/java/com/mycompany/integration/python` is just a stub cla
 
 To run Vert.x integration tests in your IDE, simply open the folder `src/test/java/com/mycompany/integration` in your IDE and right click it and chose to run all tests as JUnit tests (how this is done depends on your IDE). Or you can select individual test classes.
 
-You can also run the tests at the command line if you prefer (using `mvn integration-tests` or `./gradlew test`)
+You'll need to make sure you don't have a module built using the command line when running tests in the IDE. Execute `./gradlew clean` or `mvn clean` to make sure or the test run will pick up resources from there instead.
 
 *Note that you can change your code or config and re-run the tests and Vert.x will pick up the changes without you having to rebuild at the command line!*
 
-You can also set breakpoints in your Java code for seamless debugging into your Vert.x verticles and modules as you would expect in an IDE.
+You can also run the tests at the command line if you prefer (using `mvn integration-tests` or `./gradlew test`)
+
+### Debug tests in your IDE
+
+You can also set breakpoints in your Java code for seamless debugging into your Vert.x verticles and modules as normal. No special set-up is required
 
 <a id="auto-redeploy"> </a>
 # Auto redeploy and see your changes immediately

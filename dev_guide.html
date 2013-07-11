@@ -85,6 +85,7 @@
 <li><a href="#groovy-integration-tests">Groovy integration tests</a></li>
 <li><a href="#python-integration-tests">Python integration tests</a></li>
 <li><a href="#run-tests-in-your-ide">Run tests in your IDE</a></li>
+<li><a href="#debug-tests-in-your-ide">Debug tests in your IDE</a></li>
 </ul>
 </li>
 </ul>
@@ -158,9 +159,11 @@ This tells Vert.x which verticle to run when the module is deployed.</p>
 <p>The class in <code>src/test/java/com/mycompany/integration/python</code> is just a stub class that tells JUnit where the real Python tests are. You can safely ignore it.</p>
 <h3 id="run-tests-in-your-ide">Run tests in your IDE</h3><br/>
 <p>To run Vert.x integration tests in your IDE, simply open the folder <code>src/test/java/com/mycompany/integration</code> in your IDE and right click it and chose to run all tests as JUnit tests (how this is done depends on your IDE). Or you can select individual test classes.</p>
-<p>You can also run the tests at the command line if you prefer (using <code>mvn integration-tests</code> or <code>./gradlew test</code>)</p>
+<p>You'll need to make sure you don't have a module built using the command line when running tests in the IDE. Execute <code>./gradlew clean</code> or <code>mvn clean</code> to make sure or the test run will pick up resources from there instead.</p>
 <p><em>Note that you can change your code or config and re-run the tests and Vert.x will pick up the changes without you having to rebuild at the command line!</em></p>
-<p>You can also set breakpoints in your Java code for seamless debugging into your Vert.x verticles and modules as you would expect in an IDE.</p>
+<p>You can also run the tests at the command line if you prefer (using <code>mvn integration-tests</code> or <code>./gradlew test</code>)</p>
+<h3 id="debug-tests-in-your-ide">Debug tests in your IDE</h3><br/>
+<p>You can also set breakpoints in your Java code for seamless debugging into your Vert.x verticles and modules as normal. No special set-up is required</p>
 <p><a id="auto-redeploy"> </a></p>
 <h1 id="auto-redeploy-and-see-your-changes-immediately">Auto redeploy and see your changes immediately</h1><br/>
 <p>When developing a Vert.x module, especially if it has a web interface, it's often useful to have your module running and have it automatically pick up any changes in classes or other resources in the module <em>without you having to rebuild the module</em>.</p>

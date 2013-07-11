@@ -8,7 +8,7 @@ a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, Calif
 
 # Developing Vert.x modules with Maven
 
-In this HOWTO we'll show you how to develop a Vert.x project using Maven.
+In this guide we'll show you how to develop a Vert.x project using Maven.
 
 # Generate the project
 
@@ -17,10 +17,6 @@ Vert.x provides a Maven Archetype that can generate an example Vert.x Maven proj
 To generate a project type the following at the command line, in your project's root directory:
 
     mvn archetype:generate -Dfilter=io.vertx:
-
-If the archetype you want is not yet in Maven Central, but in `oss.sonatype` (for example), you use the following command line:
-
-    mvn archetype:generate -Dfilter=io.vertx: -DarchetypeCatalog=http://oss.sonatype.org/content/repositories/snapshots/archetype-catalog.xml
 
 This will search for any artifacts with group id `io.vertx` and interactively prompt you as to which one you want.
 
@@ -51,7 +47,7 @@ The outputs of the project are:
 * The Vert.x module zip file.
 * A jar that corresponds to the module. This is useful when you have another project which depends on the classes from your module, as it allows you to add it as a dependency to your other project.
 
-The outputs are created in the `target` directory as normal.
+The outputs are created in the `target` directory as per normal.
 
 # Configuring the project
 
@@ -59,7 +55,7 @@ You configure several things as properties in `pom.xml` including
 
 * `module.name` determines the name of the module as described in the [modules manual](mods_manual.html#mod-id)
 
-* `vertx.pullindeps` determines whether all module dependencies should be packaged into the module as [nested modules](mods_manual.html#nested-mods). 
+* `vertx.pullInDeps` determines whether all module dependencies should be packaged into the module as [nested modules](mods_manual.html#nested-mods). 
 
 It also contains various properties used to configure versions of various dependencies.
 
@@ -68,7 +64,7 @@ It also contains various properties used to configure versions of various depend
 
 To run the module using Maven, using the dependencies declared in the project (This does not need Vert.x to be installed on your system already)
 
-    mvn vertx:runmod
+    mvn vertx:runMod
 
 To run the integration tests
 
@@ -95,7 +91,7 @@ Or
 
 Once the IDE files have been created you can open the project in your IDE.
 
-> "You may have to tell your IDE to use Java source compatibility level of Java 7, as Maven seems to default to Java 5 (!)"
+* You may have to tell your IDE to use Java source compatibility level of Java 7, as Maven seems to default to Java 5 (!)*
 
 # Changing the dependencies of your project
 
