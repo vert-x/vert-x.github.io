@@ -274,7 +274,7 @@ Vert.x works out what language implementation module to use based on the file pr
 
     vertx run groovy:com.mycompany.MyGroovyMainVerticle
 
-       
+<a id="running-mods"> </a>       
 ## Running modules from the command line
 
 It's highly recommended that you package any non trivial Vert.x functionality into a module. For detailed information on how to package your code as a module please see the [modules manual](mods_manual.html).

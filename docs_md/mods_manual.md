@@ -14,35 +14,39 @@ Creating your app as module(s) gives you the following benefits:
 
 * Your classpath is encapsulated so modules are easier to run. You don't need to craft any long command lines.
 * Your dependencies are encapsulated in a single artifact (the module zip file)
-* Your module can be pushed to any Maven repository or Bintray.
-* Your module can be catalogued in the Vert.x [module registry](https://vertxmodulereg-vertxmodulereg.rhcloud.com/) so others can discover and use it
+* Your module can be pushed to any Maven repository or [Bintray](http://bintray.com).
+* Your module can be catalogued in the Vert.x [module registry](https://modulereg.vertx.io) so others can discover and use it
 * Vert.x can automatically download and install modules from any repository given just the module identifier.
 
-For these reasons it is highly recommend that you always assemble your applications as modules and you don't use raw Verticles for anything other than trivial prototyping and examples.
+For these reasons it is highly recommend that you always assemble your applications as modules and you don't use raw verticles (i.e. using `vertx run` from the command line to run a verticle) for anything other than trivial prototyping and examples.
 
-# Runnable and non runnable modules
+<a id="runnable"> </a>
+# Runnable Modules
 
-Modules can be either *runnable* or *non runnable*.
+Many types of modules are *runnable* - this means they have a `main` field specified in the `mod.json` descriptor. This means instances of the module can be deployed and run at the command line using `vertx runmod` or programmatically using `container.deployModule(...)`.
 
-A *runnable* module has a *main* and can be deployed at the command line using `vertx runmod` or programmatically using `container.deployModule(...)`.
-
-A *non runnable* module does not have a *main* and cannot be deployed, but is instead used to [include](#includes) resources from one module into another.
+Modules don't have to be runnable. It is valid for a module not to specify a `main` - this means the module is *non-runnable*. Non runnable modules are useful when you want to [include](#including) the resources of one module into another.
 
 <a id="mod-id"> </a>
 # Module Identifier
 
 Each module has a unique identifier. The identifier is a string that is composed of three parts:
 
-* Owner - represents the owner of the module. Often this will be a reverse domain name (like a Maven groupID or Java package), but it doesn't have to be - it's just a string.
+* Owner - represents the owner of the module. Often this will be a reverse domain name (like a Maven GroupID or Java package), but it doesn't have to be - it's just a string.
 * Name - the name of the module - again just a string
 * Version - the version of the module - also just a string - Vert.x doesn't enforce any particular version naming conventions.
 
-Three parts are separated by the tilda character '~' and concatenating together to form the module identifier string. Why tilda? We experimented with other characters (e.g. `#`, `:`) but it's hard to find something that works on all operating systems (e.g. `:` is a reserved char in Windows filenames) and language implementations.
+The three parts are separated by the tilda character '~' and concatenated together to form the module identifier string. Why do we use tilda? We experimented with other characters (e.g. `#`, `:`) but it's hard to find something that works on all operating systems (e.g. `:` is a reserved char in Windows filenames) and language implementations.
 
-Examples:
+Examples of modul identifiers:
+
+Here are a couple of example of modules that are stored in Maven repositories:
 
     io.vertx~mod-mongo-persistor~2.0.0-beta1
     com.mycompany~toaster-mod~1.2.1-final
+
+Here's an example that's stored in [Bintray](http://bintray.com)
+
     purplefox~foomod~1.0
 
 # The structure of a module
@@ -59,7 +63,7 @@ Let's go through the fields in turn:
 
 ### main
 
-If the module is runnable then a `main` must be specified. The main represents the verticle that will be run to start the module. The main can be the FQCN of a compiled Java or Groovy verticle or it can be the name of a JavaScript, Groovy, Ruby or Python script verticle. The script/class must be in the module.
+If the module is [runnable](#runnable) then a `main` must be specified. The main represents the verticle that will be run to start the module. The main can be the fully qualified class name of a compiled Java or Groovy verticle or it can be the name of a JavaScript, Groovy, Ruby or Python script verticle.
 
 Here are some example:
 
@@ -73,7 +77,9 @@ or
 
     "main": "somedir/starter.rb"
 
-In order to determine which language implementation module to use to run the main, Vert.x usually looks at the file extension, and uses the mapping defined in the file `langs.properties` in the Vert.x installation `conf` directory to look up the language implementation. In some cases there is ambiguity, for example given a FQCN should we assume the class is Java or Groovy? In these cases the main can be prefixed with the name of the language implementation to use, for example:
+All language implementations in Vert.x are themselves implemented as modules. In order to determine which language implementation module to use to run the main, Vert.x usually looks at the file extension, and uses the mapping defined in the file `langs.properties` in the Vert.x installation `conf` directory to look up the language implementation.
+
+In some cases there is ambiguity, for example given a FQCN should we assume the class is Java or Groovy? In these cases the main can be prefixed with the name of the language implementation to use, for example:
 
     "main": "groovy:org.mycompany.mymod.MyCompiledGroovyClass"
 
@@ -85,14 +91,14 @@ If the module is a worker this should be set to `true`. Worker modules run using
 
 ### multi-threaded
 
-If the module is a worker then setting this to `true` makes the worker multi-threaded, i.e. the code in the module can be executed concurrently by different worker threads. This can be useful when writing modules that wrap things like JDBC connection pools. Use this with caution - this a power user feature not intended to be used in normal Vert.x development.
+If the module is a worker then setting this to `true` makes the worker multi-threaded, i.e. the code in the module can be executed concurrently by different worker threads. This can be useful when writing modules that wrap things like JDBC connection pools. Use this with caution - this a power user feature not intended to be used in normal Vert.x development. Default is `false`.
 
 <a id="includes"> </a>
 ### includes
 
-A module can include zero or more other modules. Including a module means the included modules classloaders are added as parents of the including module class loader. This means classes and resources from other modules can be accessed as if they were available in the including module. In some ways it's similar to importing packages in Java.
+A module can *include* zero or more other modules. Including a module means the included modules classloaders are added as parents of the including module class loader. This means classes and resources from other modules can be accessed as if they were available in the including module. In some ways it's similar to importing packages in Java.
 
-The `includes` is a comma separated string of modules to include.
+The `includes` is a comma separated string of module identifiers corresponding to the modules you want to include.
 
     "includes": "io.vertx~some-module~1.1,org.aardvarks~foo-mod~3.21-beta1"
 
@@ -140,7 +146,7 @@ For most modules this is not an issue, but for some modules, in particular langu
 
 To avoid this, we allow modules to be marked as `resident` which means that Vert.x will load the module the first time it is referenced but will not unload it from memory until the Vert.x instance terminates.
 
-This is an advanced feature and is not intended to be used in normal module development. Default is `false.
+This is an advanced feature and is not intended to be used unless you're writing a language implementation module. Default is `false.
 
     "resident": true
 
@@ -156,17 +162,17 @@ This is an advanced feature and is not intended to be used in normal module deve
 
 ### deploys
 
-Contains a comma separated list of the modules that this module deploys at runtime. It's optional and can be used when [creating self contained modules]().
+Contains a comma separated list of the modules that this module deploys at runtime. It's optional and can be used when [creating nested modules](#nested-mods).
 
 ### description
 
-Text description of the module. This field is mandatory if you want to register the module in the [Vert.x module registry]()
+Text description of the module. This field is mandatory if you want to register the module in the Vert.x [module registry](http://modulereg.vertx.io)
 
     "description": "This module implements a highly scalable toaster. The toaster....."
 
 ### licenses
 
-JSON array of strings containing the names of the license(s) used in the the module. This field is mandatory if you want to register the module in the [Vert.x module registry]()
+JSON array of strings containing the names of the license(s) used in the the module. This field is mandatory if you want to register the module in the Vert.x [module registry](http://modulereg.vertx.io)
 
     "licenses": ["The Apache Software License Version 2.0", "Some other license"]
 
@@ -178,7 +184,7 @@ The primary author of the module. This field is mandatory if you want to registe
 
 ### keywords
 
-JSON array of strings representing keywords that describe the module. This field is highly recommended if you want to register the module in the [Vert.x module registry](), as it is used when searching for modules.
+JSON array of strings representing keywords that describe the module. This field is highly recommended if you want to register the module in the Vert.x [module registry](http://modulereg.vertx.io), as it is used when searching for modules.
 
     "keywords": ["bread", "toasting", "toasters", "nuclear"]
 
@@ -203,7 +209,7 @@ Or
 
 If your module directly uses other `jar` or `zip` files these should be placed in a `lib` directory which is in the root of the module. Any `jar` or `zip` files in the lib directory will be added to the module classpath.
 
-If you have a particular `jar` which is used by several different modules, instead of adding it to the `lib` directory of each of the modules that uses it you can place it in its own module and *include* that module from the using module. This allows your modules to be smaller in size since they don't all contain the `jar`, and it also means the `jar` classes are only loaded into memory once, and not once for each module type that uses it.
+If you have a particular `jar` which is used by several different modules, instead of adding it to the `lib` directory of each of the modules that uses it you can place it in its own module and [include](#including) that module from the using module. This allows your modules to be smaller in size since they don't all contain the `jar`, and it also means the `jar` classes are only loaded into memory once, and not once for each module type that uses it.
 
 ## Examples
 
@@ -230,7 +236,7 @@ Where mod.json contains:
       "main": "com.mycompany.mymod.App"
     }
 
-Another java module which also references some jars:
+Another java module which also contains some jars:
 
     /mod.json
     /com/mycompany/myothermod/App.class
@@ -247,33 +253,34 @@ And you can put other resources in the module too, e.g.
 
 # Module classpath
 
-Each module type is given its own class loader by Vert.x. The root of the module and any `jar` or `zip` files in the `lib` directory (if any) comprise the module classpath. This means your code running in a module can reference any classes or other resources on this classpath.
+Each module is given its own class loader by Vert.x. The root of the module and any `jar` or `zip` files in the `lib` directory (if any) comprise the module classpath. This means your code running in a module can reference any classes or other resources on this classpath.
 
 # Module classloaders
 
-Each module *type* is given its own class loader. For example, all deployed module instances of the module `com.mycompany~foo-mod~1.0` will share the same class loader, and all deployed module instances of the module `com.mycompany~bar-mod~2.1` will share another (different) class loader.
+Each module is given its own class loader. For example, all deployed module instances of the module `com.mycompany~foo-mod~1.0` will share the same class loader, and all deployed module instances of the module `com.mycompany~bar-mod~2.1` will share another (different) class loader.
 
-This means that code from different modules is isolated from each other. E.g. you cannot use globals or static members to share data between `com.mycompany~foo-mod~1.0` and `com.mycompany~bar-mod~2.1`.
+This means that different modules are isolated from each other. E.g. you cannot use globals or static members to share data between `com.mycompany~foo-mod~1.0` and `com.mycompany~bar-mod~2.1`. However you can use global and statics to share data between two instances of `com.mycompany~foo-mod~1.0`.
 
 This means you can run multiple versions of the same module or have multiple versions of the same jar running in different modules in the same Vert.x instance at the same time.
 
 Raw verticles that are run from the command line also run in their own class loader.
 
-Any verticles *types* deployed from a module will also have a their own clasloader based on the main that is being deployed. For example all instances of `foo.js` deployed as verticles from inside `com.mycompany~foo-mod~1.0` will share a class loader, and all instances of (different) `foo.js` deployed as verticles from inside `com.mycompany~bar-mod~2.1` will share a different class loader.
+Any verticles deployed from a module will also have a their own class loader based on the main that is being deployed. For example all instances of `foo.js` deployed as verticles from inside `com.mycompany~foo-mod~1.0` will share a class loader, and all instances of (different) `foo.js` deployed as verticles from inside `com.mycompany~bar-mod~2.1` will share a different class loader.
 
 Module class loaders are also arranged in a hierarchy. A particular module classloader can have zero or more parent class loaders. When loading classes or other resources a module class loader will first look on its *own* classpath for those resources, if it cannot find them it will ask each of its parents in turn, and they in turn will ask their parents. Note that this differs from the standard Java class loading protocol which usually asks its parents *first* before looking for resources itself.
 
-If classes or resources cannot be found by any of the module class loaders in the hierarchy the platform class loader (i.e. the class loader that Vert.x itself uses) will be asked.
+If classes or resources cannot be found by any of the module class loaders in the hierarchy the platform class loader (i.e. the class loader that loaded the Vert.x platform itself) will be asked.
 
 A raw verticle that is run directly on the command line will not have any parent module class loaders. A verticle that is deployed from inside a module will have the module class loader set as a parent of the class loader used to deploy the verticle.
 
 If a module [includes](#includes) any other modules than each of the modules that it includes will be set as a parent class loader of the module class loader. Doing this allows us to load the classes for any included module only once.
 
-# Non runnable modules - Including the resources of modules
+<a id="including"> </a>
+# Including the resources of modules
 
 Sometimes you might find that different modules are using the same or similar sets of resources, e.g. `.jar` files or scripts, or other resources.
 
-Instead of including the same resources in every module that needs them, you can put those resources in a module of their own, and then declare that other modules `includes` them.
+Instead of copying the same resources into every module that needs them, you can put those resources in a module of their own, and then declare that other modules `includes` them.
 
 Doing this adds the class loader of the included module as a parent to the class loader of the including module, in effect meaning you can reference the resources in the included module s if they were present in the including module.
 
@@ -298,7 +305,7 @@ Modules that *only* contain resources for re-use are called *non-runnable* modul
 
 # Running a module from the command line
 
-Modules can be run directly by using the command `vertx runmod`. Please see the [main manual]() for a full description of this.
+Modules can be run directly by using the command `vertx runmod`. Please see the [main manual](manual.html#running-mods) for a full description of this.
 
 E.g.
 
@@ -325,7 +332,7 @@ When you attempt to deploy or [include](#includes) a module, Vert.x will first l
 
 Vert.x looks in the following places:
 
-1. If the module is being deployed from another module it will look for a nested `mods` directory inside the current module. More on this [later]().
+1. If the module is being deployed from another module it will look for a nested `mods` directory inside the current module. See the section on [nested modules](#nested-mods).
 2. In the local `mods` directory on the filesystem, or in the directory specified by the `VERTX_MODS` environment variable, if set.
 3. In the `sys-mods` directory of the Vert.x installation. 
 
@@ -363,7 +370,7 @@ E.g. for the module identifier `com.mycompany~my-mod~1.2-beta` the Maven co-ordi
     ArtifactID: my-mod
     Version: 1.2-beta
 
-The artifact type is always assumed to be a `zip`.
+The artifact type is always assumed to be a `zip` and to have a Maven classifier of `mod`.
 
 ## Mapping a Module Identifier to Bintray co-ordinates
 
@@ -388,7 +395,7 @@ This gives a download url for the module:
 <a id="nested-mods"> </a>
 # Nested modules - Packaging all module dependencies in the module
 
-The usual behaviour of Vert.x is to download and install module dependencies the first time they are referenced at runtime, if they're not already installed. For some production deployments this is not necessarily desirable - there may be a requirement that modules deployed on a production server must contain everything necessary to run then without calling out to download more stuff at runtime.
+The usual behaviour of Vert.x is to download and install module dependencies the first time they are referenced at runtime, if they're not already installed. For some production deployments this is not necessarily desirable - there may be a requirement that modules deployed on a production server must contain everything necessary to run then without calling out to download more artifacts at runtime.
 
 For these situations Vert.x supports packaging a module, along with all the other modules that it references inside the same module to give a single self contained deployment unit.
 
@@ -414,21 +421,21 @@ After calling `vertx pulldeps` it would have the following structure
     ./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mods/org.foo~mod-nuclear~2.2/mod.json
     ./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1/mods/org.foo~mod-nuclear~2.2/[...rest of the stuff in that module]
 
-The module directory `./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1` can then be zipped and deployed a self contained module and it won't have to download any dependencies at runtime since they will all be found *inside * the module already.
+The module directory `./mods/io.vertx~mod-mongo-persistor~2.0.0-beta1` can then be zipped and deployed as a self contained module and it won't have to download any dependencies at runtime since they will all be found *inside* the module already.
 
-If you're using the standard Gradle template project or used the Vert.x Maven Archetype to create your project then this all happens automatically for you if you enable it in the `pom.xml` or `gradle.properties` file.
+*If you're using the standard Gradle template project or used the Vert.x Maven Archetype to create your project then this all happens automatically for you if you enable it in the `pom.xml` or `gradle.properties` file.*
 
 ## Installing modules manually from the repository
 
 In some cases, you do not want to wait until a module is first referenced by the application before it is installed, you want to install it *ahead of time*. This can be done using the command `vertx install`
 
-To install a module manually from a repository use `vertx install &lt;module name&gt;`. For example:
+To install a module manually from a repository use `vertx install <module name>`. For example:
 
     vertx install io.vertx~mod-mongo-persistor~2.0.0-beta1
     
 # Uninstalling modules
 
-To uninstall a module from your local `mods` directory (or `VERTX_MODS`) use the `vertx uninstall &lt;module name&gt;` command. E.g.
+To uninstall a module from your local `mods` directory (or `VERTX_MODS`) use the `vertx uninstall <module name>` command. E.g.
 
     vertx uninstall io.vertx~mod-mongo-persistor~2.0.0-beta1
 
@@ -438,7 +445,7 @@ If you want to make your modules public (and this is highly recommended) you can
 
 ## Publishing to Maven repositories
 
-Many JVM developers will already be familiar with working with Nexus repositories and Maven Central and Vert.x modules can be effortlessly published there when using the [Gradle template project](gradle_dev.html) or a project created by the Vert.x [Maven Archetype](maven_dev.html).
+Many JVM developers will already be familiar with working with Nexus repositories and Maven Central. Vert.x modules can be effortlessly published there when using the [Gradle template project](gradle_dev.html) or a project created by the Vert.x [Maven Archetype](maven_dev.html).
 
 For Maven projects this is accomplished by executing `mvn deploy` as is normal for any Maven project.
 
@@ -450,21 +457,21 @@ If you're going to use Sonatype Nexus you will need to obtain an account with th
 
 ## Publishing to Bintray
 
-[Bintray](http://bintray.com) is a new binary repository site which arguably is easier to get started with if you're not already used to dealing with publishing artifacts to Maven repositories. You simply need to register for an account on their website then you can immediately start uploading binaries either through their web UI or using command line tools.
+[Bintray](http://bintray.com) is a new binary repository site which is arguably is easier to get started with if you're not already used to dealing with publishing artifacts to Maven repositories. You simply need to register for an account on their website then you can immediately start uploading binaries either through their web UI or using command line tools.
 
 # Telling the world about your module - Introducing the Vert.x Module Registry
 
 So you've pushed your module to Maven Central, Bintray or perhaps some other public Maven repository. That's sufficient for any Vert.x user to use it, but how are you going to tell the Vert.x community about it?
 
-Enter the [module registry](https://vertxmodulereg-vertxmodulereg.rhcloud.com/). The Vert.x module registry is a web application that keeps a directory of publicly available Vert.x modules. It allows you to list and search for modules that have been published by other Vert.x users and that might be of interest to you in your applications.
+Enter the [module registry](http://modulereg.vertx.io). The Vert.x module registry is a web application that keeps a directory of publicly available Vert.x modules. It allows you to list and search for modules that have been published by other Vert.x users and that might be of interest to you in your applications.
 
 We want to encourage an ecosystem of modules for Vert.x, and the module registry is a key part of that.
 
-The module registry doesn't actually store the modules itself, you store your module in any Maven or Binatray repository, it simply stores meta-data for the module so people can find it.
+The module registry doesn't actually store the modules itself, you store your module in any Maven or Bintray repository, it simply stores meta-data for the module so people can find it.
 
-Once a user has found a module they like, you simply take note of the module identifier and use that in your application. Based on the module identifier Vert.x will download and install the module lazily the first time it is used by your program.
+Once a user has found a module they like, you simply take note of the module identifier and use that in your application. Based on the module identifier Vert.x will download and install the module at build or run-time (depending on how your build is configured).
 
-Anyone can register a module with the module registry by filling out a very simple form. Once a regsitration request has been submitted and email will be sent to a moderator who will approve the submission if all is ok.
+Anyone can register a module with the module registry by filling out a very simple form. Once a registration request has been submitted an email will be sent to a moderator who will approve the submission if all is ok.
 
 Any modules that are to be registered in the module registry must have the following fields in `mod.json`:
 
@@ -477,7 +484,7 @@ It's also *highly recommended* that the following fields are added too:
 * `keywords` - useful when searching
 * `homepage` - url to the project homepage.
 
-> Piece of Trivia: The Vert.x module registry is itself a Vert.x module, and you can find it.. it in the Vert.x module registry! 
+> Piece of Trivia: The Vert.x module registry is itself a Vert.x module, and you can find it... it in the Vert.x module registry! 
 
 
 # Module configuration
