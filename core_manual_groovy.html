@@ -306,7 +306,7 @@
 </div>
 <h1 id="writing-verticles">Writing Verticles</h1><br/>
 <p>As was described in the <a href="manual.html#verticle">main manual</a>, a verticle is the execution unit of Vert.x.</p>
-<p>To recap, Vert.x is a container which executed packages of code called Verticles, and it ensures that the code in the verticle is never executed concurrently by more than one thread. You can write your verticles in any of the languages that Vert.x supports, and Vert.x supports running many verticle instances concurrently in the same Vert.x instance.</p>
+<p>To recap, Vert.x is a container which executes packages of code called Verticles, and it ensures that the code in the verticle is never executed concurrently by more than one thread. You can write your verticles in any of the languages that Vert.x supports, and Vert.x supports running many verticle instances concurrently in the same Vert.x instance.</p>
 <p>All the code you write in a Vert.x application runs inside a Verticle instance.</p>
 <p>For simple prototyping and trivial tasks you can write raw verticles and run them directly on the command line, but in most cases you will always wrap your verticles inside Vert.x <a href="mods_manual.html">modules</a>.</p>
 <p>For now, let's try writing a simple raw verticle.</p>
@@ -327,7 +327,7 @@ vertx.createNetServer().connectHandler { socket -&gt;
 <p>And notice how data you send (and hit enter) is echoed back to you. </p>
 <p>Congratulations! You've written your first verticle.</p>
 <p>A Groovy script verticle is simply a Groovy script that is executed when the verticle is deployed.</p>
-<p>In the rest of this manual we'll assume the code snippets are running inside a verticle.</p>
+<p><em>In the rest of this manual we'll assume the code snippets are running inside a verticle.</em></p>
 <h2 id="compiled-groovy-verticles">Compiled Groovy verticles</h2><br/>
 <p>You can also write Vert.x verticles as compiled Groovy classes. Here's an example of the source for a compiled Groovy verticle:</p>
 <pre class="prettyprint">package examples
@@ -510,7 +510,7 @@ container.deployWorkerVerticle("verticle5.js", appConfig["verticle5_conf"], 10)
 <p>The event bus is the nervous system of Vert.x.</p>
 <p>It allows verticles to communicate with each other irrespective of what language they are written in, and whether they're in the same Vert.x instance, or in a different Vert.x instance.</p>
 <p>It even allows client side JavaScript running in a browser to communicate on the same event bus. (More on that later).</p>
-<p>The event bus forms a distributed polyglot overlay network spanning multiple server nodes and multiple browsers.</p>
+<p>The event bus forms a distributed peer-to-peer network spanning multiple server nodes and multiple browsers.</p>
 <p>The event bus API is incredibly simple. It basically involves registering handlers, unregistering handlers and sending and publishing messages.</p>
 <p>First some theory:</p>
 <h2 id="the-theory">The Theory</h2><br/>

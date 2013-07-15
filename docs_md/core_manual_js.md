@@ -10,7 +10,7 @@ a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, Calif
 
 As was described in the [main manual](manual.html#verticle), a verticle is the execution unit of Vert.x.
 
-To recap, Vert.x is a container which executed packages of code called Verticles, and it ensures that the code in the verticle is never executed concurrently by more than one thread. You can write your verticles in any of the languages that Vert.x supports, and Vert.x supports running many verticle instances concurrently in the same Vert.x instance.
+To recap, Vert.x is a container which executes packages of code called Verticles, and it ensures that the code in the verticle is never executed concurrently by more than one thread. You can write your verticles in any of the languages that Vert.x supports, and Vert.x supports running many verticle instances concurrently in the same Vert.x instance.
 
 All the code you write in a Vert.x application runs inside a Verticle instance.
 
@@ -42,7 +42,7 @@ Congratulations! You've written your first verticle.
 
 A JavaScript verticle is simply a JavaScript script that is executed when the verticle is deployed
 
-In the rest of this manual we'll assume the code snippets are running inside a verticle.
+*In the rest of this manual we'll assume the code snippets are running inside a verticle.*
 
 
 ## Verticle clean-up
@@ -316,7 +316,7 @@ It allows verticles to communicate with each other irrespective of what language
 
 It even allows client side JavaScript running in a browser to communicate on the same event bus. (More on that later).
 
-The event bus forms a large distributed bus spanning multiple server nodes and multiple browsers.
+The event bus forms a distributed peer-to-peer network spanning multiple server nodes and multiple browsers.
 
 The event bus API is incredibly simple. It basically involves registering handlers, unregistering handlers and sending and publishing messages.
 

@@ -307,7 +307,7 @@
 </div>
 <h1 id="writing-verticles">Writing Verticles</h1><br/>
 <p>As was described in the <a href="manual.html#verticle">main manual</a>, a verticle is the execution unit of Vert.x.</p>
-<p>To recap, Vert.x is a container which executed packages of code called Verticles, and it ensures that the code in the verticle is never executed concurrently by more than one thread. You can write your verticles in any of the languages that Vert.x supports, and Vert.x supports running many verticle instances concurrently in the same Vert.x instance.</p>
+<p>To recap, Vert.x is a container which executes packages of code called Verticles, and it ensures that the code in the verticle is never executed concurrently by more than one thread. You can write your verticles in any of the languages that Vert.x supports, and Vert.x supports running many verticle instances concurrently in the same Vert.x instance.</p>
 <p>All the code you write in a Vert.x application runs inside a Verticle instance.</p>
 <p>For simple prototyping and trivial tasks you can write raw verticles and run them directly on the command line, but in most cases you will always wrap your verticles inside Vert.x <a href="mods_manual.html">modules</a>.</p>
 <p>For now, let's try writing a simple raw verticle.</p>
@@ -336,12 +336,12 @@ public class Server extends Verticle {
 <pre class="prettyprint">telnet localhost 1234
 </pre>
 <p>And notice how data you send (and hit enter) is echoed back to you. </p>
-<p>Notice how you didn't have to first compile the <code>.java</code> file to a <code>.class</code> file. Vert.x understands how to run <code>.java</code> files directly - internally doing the compilation on the fly. (It also supports running .class files too if you prefer)          </p>
 <p>Congratulations! You've written your first verticle.</p>
+<p>Notice how you didn't have to first compile the <code>.java</code> file to a <code>.class</code> file. Vert.x understands how to run <code>.java</code> files directly - internally doing the compilation on the fly. (It also supports running .class files too if you prefer)          </p>
 <p>Every Java verticle must extend the class <code>org.vertx.java.deploy.Verticle</code>. You must override the <code>start</code> method - this is called by Vert.x when the verticle is started.</p>
-<p>In the rest of this manual we'll assume the code snippets are running inside a verticle.</p>
+<p><em>In the rest of this manual we'll assume the code snippets are running inside a verticle.</em></p>
 <h2 id="asynchronous-start">Asynchronous start</h2><br/>
-<p>In some cases your Verticle has to do some other stuff asynchronous in its <code>start()</code> method, e.g. start other verticles, and the verticle shouldn't be considered started until those other actions are complete.</p>
+<p>In some cases your Verticle has to do some other stuff asynchronously in its <code>start()</code> method, e.g. start other verticles, and the verticle shouldn't be considered started until those other actions are complete.</p>
 <p>If this is the case for your verticle you can implement the asynchronous version of the <code>start()</code> method:</p>
 <pre class="prettyprint">public void start(final Future&lt;Void&gt; startedResult) {
   // For example - deploy some other verticle
@@ -407,7 +407,7 @@ logger.info("I am logging something");
 <p>To deploy a single instance of a verticle :</p>
 <pre class="prettyprint">container.deployVerticle(main);
 </pre>
-<p>Where <code>main</code> is the name of the Verticle (i.e. the name of the script or FQCN of the class).</p>
+<p>Where <code>main</code> is the name of the Verticle (i.e. the name of the Java file or FQCN of the class).</p>
 <p>See the chapter on <a href="manual.html#running-vertx">"running Vert.x"</a> in the main manual for a description of what a main is.</p>
 <h2 id="deploying-worker-verticles">Deploying Worker Verticles</h2><br/>
 <p>The <code>deployVerticle</code> method deploys standard (non worker) verticles. If you want to deploy worker verticles use the <code>deployWorkerVerticle</code> method. This method takes the same parameters as <code>deployVerticle</code> with the same meanings.</p>
@@ -470,7 +470,7 @@ container.deployWorkerVerticle("verticle5.js", verticle5Config, 10);
 <pre class="prettyprint">vertx runmod com.mycompany~my-mod~1.0 -conf config.json
 </pre>
 <p>If your application is large and actually composed of multiple modules rather than verticles you can use the same technique.</p>
-<p>More commonly you'd probably chose to write your starter verticle in a scripting language such as JavaScript, Groovy, Ruby or Python - these languages have much better JSON support than Java, so you can maintain the whole JSON config nicely in the starter verticle itself.</p>
+<p>More commonly you'd probably choose to write your starter verticle in a scripting language such as JavaScript, Groovy, Ruby or Python - these languages have much better JSON support than Java, so you can maintain the whole JSON config nicely in the starter verticle itself.</p>
 <h2 id="specifying-number-of-instances">Specifying number of instances</h2><br/>
 <p>By default, when you deploy a verticle only one instance of the verticle is deployed. Verticles instances are strictly single threaded so this means you will use at most one core on your server.</p>
 <p>Vert.x scales by deploying many verticle instances concurrently.</p>
@@ -493,16 +493,16 @@ container.deployWorkerVerticle("verticle5.js", verticle5Config, 10);
     }
 });
 </pre>
-<p>The handler will get passed an instance of <code>AsyncResult</code> when it completes. You can use the methods <code>succeeded</code> and <code>failed</code> on <code>AsyncResult</code> to see if the operation completed ok.</p>
+<p>The handler will get passed an instance of <code>AsyncResult</code> when it completes. You can use the methods <code>succeeded()</code> and <code>failed()</code> on <code>AsyncResult</code> to see if the operation completed ok.</p>
 <p>The method <code>result()</code> provides the result of the async operation (if any) which in this case is the deployment ID - you will need this if you need to subsequently undeploy the verticle / module.</p>
 <p>The method <code>cause()</code> provides the <code>Throwable</code> if the action failed.</p>
 <h2 id="undeploying-a-verticle-or-module">Undeploying a Verticle or Module</h2><br/>
-<p>Any verticles or modules that you deploy programmatically from within a verticle, and all of their children are automatically undeployed when the parent verticle is undeployed, so in many cases you will not need to undeploy a verticle manually, however if you do need to do this, it can be done by calling the function <code>undeployVerticle</code> or <code>undeployModule</code> passing in the deployment id. </p>
+<p>Any verticles or modules that you deploy programmatically from within a verticle, and all of their children are automatically undeployed when the parent verticle is undeployed, so in many cases you will not need to undeploy a verticle manually, however if you do need to do this, it can be done by calling the method <code>undeployVerticle</code> or <code>undeployModule</code> passing in the deployment id. </p>
 <pre class="prettyprint">container.undeployVerticle(deploymentID);
 </pre>
 <p>You can also provide a handler to the undeploy method if you want to be informed when undeployment is complete.</p>
 <h1 id="scaling-your-application">Scaling your application</h1><br/>
-<p>A verticle instance is almost always single threaded (the only exception is multi-threaded worker verticles which are an advanced feature not intended for normal development), this means a single instance can at most utilise one core of your server.</p>
+<p>A verticle instance is almost always single threaded (the only exception is multi-threaded worker verticles which are an advanced feature), this means a single instance can at most utilise one core of your server.</p>
 <p>In order to scale across cores you need to deploy more verticle instances. The exact numbers depend on your application - how many verticles there are and of what type.</p>
 <p>You can deploy more verticle instances programmatically or on the command line when deploying your module using the <code>-instances</code> command line option.</p>
 <p><a id="event-bus"> </a>   </p>
@@ -510,7 +510,7 @@ container.deployWorkerVerticle("verticle5.js", verticle5Config, 10);
 <p>The event bus is the nervous system of Vert.x.</p>
 <p>It allows verticles to communicate with each other irrespective of what language they are written in, and whether they're in the same Vert.x instance, or in a different Vert.x instance.</p>
 <p>It even allows client side JavaScript running in a browser to communicate on the same event bus. (More on that later).</p>
-<p>The event bus forms a distributed polyglot overlay network spanning multiple server nodes and multiple browsers.</p>
+<p>The event bus forms a distributed peer-to-peer messaging system spanning multiple server nodes and multiple browsers.</p>
 <p>The event bus API is incredibly simple. It basically involves registering handlers, unregistering handlers and sending and publishing messages.</p>
 <p>First some theory:</p>
 <h2 id="the-theory">The Theory</h2><br/>

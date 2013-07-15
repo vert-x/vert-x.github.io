@@ -10,7 +10,7 @@ a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, Calif
 
 As was described in the [main manual](manual.html#verticle), a verticle is the execution unit of Vert.x.
 
-To recap, Vert.x is a container which executed packages of code called Verticles, and it ensures that the code in the verticle is never executed concurrently by more than one thread. You can write your verticles in any of the languages that Vert.x supports, and Vert.x supports running many verticle instances concurrently in the same Vert.x instance.
+To recap, Vert.x is a container which executes packages of code called Verticles, and it ensures that the code in the verticle is never executed concurrently by more than one thread. You can write your verticles in any of the languages that Vert.x supports, and Vert.x supports running many verticle instances concurrently in the same Vert.x instance.
 
 All the code you write in a Vert.x application runs inside a Verticle instance.
 
@@ -48,17 +48,18 @@ The server will now be running. Connect to it using telnet:
     
 And notice how data you send (and hit enter) is echoed back to you. 
 
+Congratulations! You've written your first verticle.
+
 Notice how you didn't have to first compile the `.java` file to a `.class` file. Vert.x understands how to run `.java` files directly - internally doing the compilation on the fly. (It also supports running .class files too if you prefer)          
 
-Congratulations! You've written your first verticle.
 
 Every Java verticle must extend the class `org.vertx.java.deploy.Verticle`. You must override the `start` method - this is called by Vert.x when the verticle is started.
 
-In the rest of this manual we'll assume the code snippets are running inside a verticle.
+*In the rest of this manual we'll assume the code snippets are running inside a verticle.*
 
 ## Asynchronous start
 
-In some cases your Verticle has to do some other stuff asynchronous in its `start()` method, e.g. start other verticles, and the verticle shouldn't be considered started until those other actions are complete.
+In some cases your Verticle has to do some other stuff asynchronously in its `start()` method, e.g. start other verticles, and the verticle shouldn't be considered started until those other actions are complete.
 
 If this is the case for your verticle you can implement the asynchronous version of the `start()` method:
 
@@ -155,7 +156,7 @@ To deploy a single instance of a verticle :
 
     container.deployVerticle(main);    
     
-Where `main` is the name of the Verticle (i.e. the name of the script or FQCN of the class).
+Where `main` is the name of the Verticle (i.e. the name of the Java file or FQCN of the class).
 
 See the chapter on ["running Vert.x"](manual.html#running-vertx) in the main manual for a description of what a main is.
 
@@ -234,7 +235,7 @@ Then set the `AppStarter` as the main of your module and then you can start your
 
 If your application is large and actually composed of multiple modules rather than verticles you can use the same technique.
     
-More commonly you'd probably chose to write your starter verticle in a scripting language such as JavaScript, Groovy, Ruby or Python - these languages have much better JSON support than Java, so you can maintain the whole JSON config nicely in the starter verticle itself.
+More commonly you'd probably choose to write your starter verticle in a scripting language such as JavaScript, Groovy, Ruby or Python - these languages have much better JSON support than Java, so you can maintain the whole JSON config nicely in the starter verticle itself.
                         
 ## Specifying number of instances
 
@@ -266,7 +267,7 @@ The actual verticle deployment is asynchronous and might not complete until some
         }
     });
     
-The handler will get passed an instance of `AsyncResult` when it completes. You can use the methods `succeeded` and `failed` on `AsyncResult` to see if the operation completed ok.
+The handler will get passed an instance of `AsyncResult` when it completes. You can use the methods `succeeded()` and `failed()` on `AsyncResult` to see if the operation completed ok.
 
 The method `result()` provides the result of the async operation (if any) which in this case is the deployment ID - you will need this if you need to subsequently undeploy the verticle / module.
 
@@ -274,7 +275,7 @@ The method `cause()` provides the `Throwable` if the action failed.
     
 ## Undeploying a Verticle or Module
 
-Any verticles or modules that you deploy programmatically from within a verticle, and all of their children are automatically undeployed when the parent verticle is undeployed, so in many cases you will not need to undeploy a verticle manually, however if you do need to do this, it can be done by calling the function `undeployVerticle` or `undeployModule` passing in the deployment id. 
+Any verticles or modules that you deploy programmatically from within a verticle, and all of their children are automatically undeployed when the parent verticle is undeployed, so in many cases you will not need to undeploy a verticle manually, however if you do need to do this, it can be done by calling the method `undeployVerticle` or `undeployModule` passing in the deployment id. 
 
     container.undeployVerticle(deploymentID);    
 
@@ -282,7 +283,7 @@ You can also provide a handler to the undeploy method if you want to be informed
 
 # Scaling your application
 
-A verticle instance is almost always single threaded (the only exception is multi-threaded worker verticles which are an advanced feature not intended for normal development), this means a single instance can at most utilise one core of your server.
+A verticle instance is almost always single threaded (the only exception is multi-threaded worker verticles which are an advanced feature), this means a single instance can at most utilise one core of your server.
 
 In order to scale across cores you need to deploy more verticle instances. The exact numbers depend on your application - how many verticles there are and of what type.
 
@@ -298,7 +299,7 @@ It allows verticles to communicate with each other irrespective of what language
 
 It even allows client side JavaScript running in a browser to communicate on the same event bus. (More on that later).
 
-The event bus forms a distributed polyglot overlay network spanning multiple server nodes and multiple browsers.
+The event bus forms a distributed peer-to-peer messaging system spanning multiple server nodes and multiple browsers.
 
 The event bus API is incredibly simple. It basically involves registering handlers, unregistering handlers and sending and publishing messages.
 
