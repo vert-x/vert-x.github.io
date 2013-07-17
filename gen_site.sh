@@ -31,7 +31,7 @@
 sed '/<!-- PAGE HEADER -->/ {
 r page_header.html
 d
-}' index_templ.html  | cat > index2.html
+}' index_templ.html  | cat > index.html
 
 sed '/<!-- PAGE HEADER -->/ {
 r page_header.html
