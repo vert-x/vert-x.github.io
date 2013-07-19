@@ -38,7 +38,7 @@ Each module has a unique identifier. The identifier is a string that is composed
 
 The three parts are separated by the tilda character '~' and concatenated together to form the module identifier string. Why do we use tilda? We experimented with other characters (e.g. `#`, `:`) but it's hard to find something that works on all operating systems (e.g. `:` is a reserved char in Windows filenames) and language implementations.
 
-Examples of modul identifiers:
+Examples of module identifiers:
 
 Here are a couple of example of modules that are stored in Maven repositories:
 
@@ -48,6 +48,8 @@ Here are a couple of example of modules that are stored in Maven repositories:
 Here's an example that's stored in [Bintray](http://bintray.com)
 
     purplefox~foomod~1.0
+
+The `io.vertx` module owner is reserved for "official" modules created by the Vert.x project itself, so don't use this owner for your own modules.
 
 # The structure of a module
 

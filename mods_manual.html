@@ -149,7 +149,7 @@
 <li>Version - the version of the module - also just a string - Vert.x doesn't enforce any particular version naming conventions.</li>
 </ul>
 <p>The three parts are separated by the tilda character '~' and concatenated together to form the module identifier string. Why do we use tilda? We experimented with other characters (e.g. <code>#</code>, <code>:</code>) but it's hard to find something that works on all operating systems (e.g. <code>:</code> is a reserved char in Windows filenames) and language implementations.</p>
-<p>Examples of modul identifiers:</p>
+<p>Examples of module identifiers:</p>
 <p>Here are a couple of example of modules that are stored in Maven repositories:</p>
 <pre class="prettyprint">io.vertx~mod-mongo-persistor~2.0.0-beta1
 com.mycompany~toaster-mod~1.2.1-final
@@ -157,6 +157,7 @@ com.mycompany~toaster-mod~1.2.1-final
 <p>Here's an example that's stored in <a href="http://bintray.com">Bintray</a></p>
 <pre class="prettyprint">purplefox~foomod~1.0
 </pre>
+<p>The <code>io.vertx</code> module owner is reserved for "official" modules created by the Vert.x project itself, so don't use this owner for your own modules.</p>
 <h1 id="the-structure-of-a-module">The structure of a module</h1><br/>
 <p>A Vert.x module is a <code>zip</code> file which contains the resources (<code>.class</code> files, <code>.java</code> files, script files, <code>jar</code> files and other resources) needed by your module.</p>
 <p>In some ways it is similar to a <code>jar</code> file used in the Java world. We deliberately did not use <code>jar</code> files for Vert.x modules because Vert.x is a polyglot system and a particular module might, for instance, only contain python scripts, so using a Java archive for this would be somewhat strange!</p>
