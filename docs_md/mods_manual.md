@@ -146,7 +146,7 @@ For most modules this is not an issue, but for some modules, in particular langu
 
 To avoid this, we allow modules to be marked as `resident` which means that Vert.x will load the module the first time it is referenced but will not unload it from memory until the Vert.x instance terminates.
 
-This is an advanced feature and is not intended to be used unless you're writing a language implementation module. Default is `false.
+This is an advanced feature and is not intended to be used unless you're writing a language implementation module. Default is `false`.
 
     "resident": true
 

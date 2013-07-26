@@ -372,7 +372,7 @@ To set a message handler on the address `test.address`, you do the following:
 
     var eb = vertx.eventBus;
     
-    var myHandler = function(message)) {
+    var myHandler = function(message) {
       console.log('I received a message ' + message);
     }
     
