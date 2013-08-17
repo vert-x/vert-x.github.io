@@ -142,6 +142,8 @@ If you're using IntelliJ IDEA:
 
 This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.
 
+By installing the Maven or Gradle plugin for your IDE you should be able to run the Maven runModXXXX tasks directly in the IDE.
+
 If you're using a different IDE (or no IDE!) you can run
 
    mvn vertx:runModOnCP
