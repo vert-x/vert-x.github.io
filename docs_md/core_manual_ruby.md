@@ -317,7 +317,7 @@ To unregister a handler it's just as straightforward. You simply call `unregiste
 
     Vertx::EventBus.unregister_handler('test.address', id)
 
-As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire to cluster. If you want to be notified when that has completed you can optionally specify another block to the `register_handler` method:
+As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire to cluster. If you want to be notified when that has completed you can optionally specify another block to the `unregister_handler` method:
 
     Vertx::EventBus.unregister_handler(id) do
         puts 'Yippee! The handler unregister has been propagated across the cluster'
@@ -329,7 +329,7 @@ If you want your handler to live for the full lifetime of your verticle there is
 
 Publishing a message is also trivially easy. Just publish it specifying the address, for example:
 
-    Vertx::EventBus.publish('test.address", 'hello world')
+    Vertx::EventBus.publish("test.address", 'hello world')
 
 That message will then be delivered to all handlers registered against the address "test.address".
 
@@ -337,7 +337,7 @@ That message will then be delivered to all handlers registered against the addre
 
 Sending a message will result in only one handler registered at the address receiving the message. This is the point to point messaging pattern. The handler is chosen in a non strict round-robin fashion.
 
-    Vertx::EventBus.send('test.address", 'hello world')
+    Vertx::EventBus.send("test.address", 'hello world')
 
 ### Replying to messages
 
@@ -459,15 +459,15 @@ A Buffer represents a sequence of zero or more bytes that can be written to or r
 
 ## Creating Buffers
 
-Create an empty buffer
+Create an empty buffer:
 
     buff = Vertx::Buffer.create
 
-Create a buffer from a String. The String will be encoded in the buffer using UTF-8.
+Create a buffer from a String. The String will be encoded in the buffer using UTF-8:
 
     buff = Vertx::Buffer.create_from_str("some-string")
     
-Create a buffer from a String: The String will be encoded using the specified encoding, e.g:
+Create a buffer from a String. The String will be encoded using the specified encoding, e.g:
 
     buff = Vertx::Buffer.create_from_str("some-string", "UTF-16")
     
@@ -612,13 +612,13 @@ It's very common in vert.x to want to perform an action after a delay, or period
 
 In standard verticles you can't just make the thread sleep to introduce a delay, as that will block the event loop thread.
 
-Instead you use vert.x timers. Timers can be *one-shot* or *periodic*. We'll discuss both
+Instead you use vert.x timers. Timers can be *one-shot* or *periodic*. We'll discuss both.
 
 ## One-shot Timers
 
 A one shot timer calls an event handler after a certain delay, expressed in milliseconds.
 
-To set a timer to fire once you use the `Vertx.set_timer` method passing in the delay and specifying a handler block which will be called when after the delay:
+To set a timer to fire once you use the `Vertx.set_timer` method passing in the delay and specifying a handler block which will be called after the delay:
 
     timer_id = Vertx.set_timer(1000) do |timer_id|
         puts 'And one second later this is printed'
@@ -640,7 +640,7 @@ You can also set a timer to fire periodically by using the `set_periodic` functi
 
 ## Cancelling timers
 
-To cancel a periodic timer, call the `cancel_timer` function specifying the timer id. For example:
+To cancel a timer, call the `cancel_timer` function specifying the timer id. For example:
 
     timer_id = Vertx.set_periodic(1000) do
         # This will never be called
@@ -688,7 +688,7 @@ The second parameter is the hostname or ip address. If it is omitted it will def
 The actual bind is asynchronous so the server might not actually be listening until some time *after* the call to listen has returned. If you want to be notified when the server is actually listening you can provide a handler to the `listen` call. For example:
 
     server.listen(1234, "myhost") do |err|
-	puts "Now listening!" if !err			        
+	  puts "Now listening!" if !err			        
     end
 
 ### Getting Notified of Incoming Connections
@@ -989,7 +989,7 @@ Net Clients can also be easily configured to use SSL. They have the exact same A
 
 To enable SSL on a `NetClient` the attribute `ssl` must be set to `true`.
 
-If the attribute `trust_all` has been set to `true`, then the client will trust all server certificates. The connection will still be encrypted but this mode is vulnerable to 'man in the middle' attacks. I.e. you can't be sure who you are connecting to. Use this with caution. Default value is `false`.
+If the attribute `trust_all` has been set to `true`, then the client will trust all server certificates. The connection will still be encrypted but this mode is vulnerable to 'man in the middle' attacks. I.e. you can't be sure who you are connecting to. Use this with caution. 
 
 If `trust_all` is set to `false`, then a client trust store must be configured and should contain the certificates of the servers that the client trusts.
 
@@ -1451,7 +1451,7 @@ With no arguments, the response is simply ended.
 
 The function can also be called with a string or Buffer in the same way write is called. In this case it's just the same as calling write with a string or Buffer followed by calling `end` with no arguments. For example:
 
-    request.response.end('That's all folks')
+    request.response.end("That's all folks")
 
 #### Closing the underlying connection
 
@@ -1498,7 +1498,7 @@ Also, individual HTTP response trailers can be written using the `put_trailer` m
 
 If you were writing a web server, one way to serve a file from disk would be to open it as an `AsyncFile` and pump it to the HTTP response. Or you could load it it one go using the file system API and write that to the HTTP response.
 
-Alternatively, vert.x provides a method which allows you to send serve a file from disk to HTTP response in one operation. Where supported by the underlying operating system this may result in the OS directly transferring bytes from the file to the socket without being copied through userspace at all.
+Alternatively, vert.x provides a method which allows you to serve a file from disk to an HTTP response in one operation. Where supported by the underlying operating system this may result in the OS directly transferring bytes from the file to the socket without being copied through userspace at all.
 
 Using `send_file` is usually more efficient for large files, but may be slower than using `readFile` to manually read the file as a buffer and write it directly to the response.
 
@@ -2368,7 +2368,7 @@ Non recursive file copy. `source` is the source file name. `destination` is the 
 
 Here's an example:
 
-    Vertx::FileSystem.copy('foo.dat', 'bar.dat') do |err, res|
+    Vertx::FileSystem.copy('foo.dat', 'bar.dat') do |err|
         puts 'Copy was successful' if !err        
     end
 
@@ -2435,7 +2435,7 @@ Here's an example:
             puts "Failed to retrieve file props: #{err}"
         else
             puts 'File props are:'
-            puts "Last accessed: #{props.lastAccessTime}"
+            puts "Last accessed: #{props.last_access_time}"
             // etc
         end
     end
