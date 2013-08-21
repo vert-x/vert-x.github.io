@@ -257,7 +257,7 @@ The above examples would deploy 10 instances.
 
 The actual verticle deployment is asynchronous and might not complete until some time after the call to `deployVerticle` or `deployModule` has returned. If you want to be notified when the verticle has completed being deployed, you can pass a handler as the final argument to `deployVerticle` or `deployModule`:
 
-    container.deployVerticle("foo.ChildVerticle", new AsyncResultHandler() {
+    container.deployVerticle("foo.ChildVerticle", new AsyncResultHandler<String>() {
         public void handle(AsyncResult<String> asyncResult) {
             if (asyncResult.succeeded()) {
             	System.out.println("The verticle has been deployed, deployment ID is " + asyncResult.result());
