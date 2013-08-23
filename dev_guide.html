@@ -150,7 +150,7 @@ This tells Vert.x which verticle to run when the module is deployed.</p>
 <p>To run Vert.x integration tests in your IDE, simply open the folder <code>src/test/java/com/mycompany/integration</code> in your IDE and right click it and chose to run all tests as JUnit tests (how this is done depends on your IDE). Or you can select individual test classes.</p>
 <p>You'll need to make sure you don't have a module built using the command line when running tests in the IDE. Execute <code>./gradlew clean</code> or <code>mvn clean</code> to make sure or the test run will pick up resources from there instead.</p>
 <p><em>Note that you can change your code or config and re-run the tests and Vert.x will pick up the changes without you having to rebuild at the command line!</em></p>
-<p>You can also run the tests at the command line if you prefer (using <code>mvn integration-tests</code> or <code>./gradlew test</code>)</p>
+<p>You can also run the tests at the command line if you prefer (using <code>mvn integration-test</code> or <code>./gradlew test</code>)</p>
 <h3 id="debug-tests-in-your-ide">Debug tests in your IDE</h3><br/>
 <p>You can also set breakpoints in your Java code for seamless debugging into your Vert.x verticles and modules as normal. No special set-up is required</p>
 <p><a id="auto-redeploy"> </a></p>
