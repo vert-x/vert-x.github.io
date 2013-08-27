@@ -337,23 +337,23 @@ import static org.vertx.groovy.core.streams.Pump.createPump
 import org.vertx.groovy.core.Vertx
 
 class EchoServer extends Verticle {
-    @Override def start() {
+    override def start() {
         vertx.createNetServer().connectHandler { socket -&gt;
             createPump(socket, socket).start()
         }.listen(1234)
     }
 
-    @Override def stop() {
+override def stop() {        
     }
 }
 </pre>
-<p>Once you've compiled it, you run it by specifing the class name prefixed with <code>groovy:</code>. We need the prefix to tell Vert.x to treat it as a Groovy class, not a Java class.</p>
+<p>Once you've compiled it, you run it by specifing the classname prefixed with <code>groovy:</code>. We need the prefix to tell Vert.x to treat it as a Groovy class, not a Java class.</p>
 <pre class="prettyprint">vertx run groovy:examples.EchoServer
 </pre>
 <h2 id="asynchronous-start">Asynchronous start</h2><br/>
-<p>In some cases your Verticle has to do some other stuff asynchronously in its <code>start()</code> method, e.g. start other verticles, and the verticle shouldn't be considered started until those other actions are complete.</p>
+<p>In some cases your Verticle has to do some other stuff asynchronous in its <code>start()</code> method, e.g. start other verticles, and the verticle shouldn't be considered started until those other actions are complete.</p>
 <p>If this is the case for your compiled Groovy verticle you can override the asynchronous version of the <code>start()</code> method:</p>
-<pre class="prettyprint">@Override def start(Future&lt;Void&gt; startedResult) {
+<pre class="prettyprint">override def start(Future&lt;Void&gt; startedResult) {    
   // For example - deploy some other verticle
   container.deployVerticle("foo.js") { deployResult -&gt;
     if (deployResult.succeeded) {
@@ -378,7 +378,7 @@ def vertxStop() {
 </pre>
 <h2 id="the-container-object">The <code>container</code> object</h2><br/>
 <p>Each verticle instance has a property called <code>container</code>. This represents the Verticle's view of the container in which it is running.</p>
-<p>The container object contains methods for deploying and undeploying verticles and modules, and also allows config, environment variables and a logger to be accessed.</p>
+<p>The container object contains methods for deploying and undeploying verticle and modules, and also allows config, environment variables and a logger to be accessed.</p>
 <h2 id="the-vertx-object">The <code>vertx</code> object</h2><br/>
 <p>Each verticle instance has a property called <code>vertx</code>. This provides access to the Vert.x core API. You'll use the Core API to do most things in Vert.x including TCP, HTTP, file system access, event bus, timers etc.</p>
 <h2 id="getting-configuration-in-a-verticle">Getting Configuration in a Verticle</h2><br/>
@@ -409,7 +409,7 @@ logger.info "I am logging something"
 <li>fatal</li>
 </ul>
 <p>Which have the normal meanings you would expect.</p>
-<p>The log files by default go in a file called <code>vertx.log</code> in the system temp directory. On my Linux box this is <code>/tmp</code>.</p>
+<p>The log files by default go in a file called <code>vertx.log</code> in the system temp directory. On my Linux box this is <code>\tmp</code>.</p>
 <p>For more information on configuring logging, please see the main manual.</p>
 <h2 id="accessing-environment-variables-from-a-verticle">Accessing environment variables from a Verticle</h2><br/>
 <p>You can access the map of environment variables from a Verticle with the <code>env</code> property on the <code>container</code> object.</p>
@@ -563,7 +563,7 @@ eb.registerHandler("test.address", myHandler) { println "The handler has been re
 <p>That message will then be delivered to all handlers registered against the address "test.address".</p>
 <h3 id="sending-messages">Sending messages</h3><br/>
 <p>Sending a message will result in only one handler registered at the address receiving the message. This is the point to point messaging pattern. The handler is chosen in a non strict round-robin fashion.</p>
-<pre class="prettyprint">eb.send("test.address", "hello world")
+<pre class="prettyprint">eb.publish("test.address", "hello world")
 </pre>
 <h3 id="replying-to-messages">Replying to messages</h3><br/>
 <p>Sometimes after you send a message you want to receive a reply from the recipient. This is known as the <em>request-response pattern</em>.</p>
@@ -637,12 +637,12 @@ map["some-key"] = 123
 </pre>
 <h2 id="shared-sets">Shared Sets</h2><br/>
 <p>To use a shared set to share data between verticles first we get a reference to the set.</p>
-<pre class="prettyprint">def set = vertx.sharedData.getSet('demo.myset')
+<pre class="prettyprint">def set = vertx.sharedData.getMap('demo.myset')
 
 set &lt;&lt; "some-value"
 </pre>
 <p>And then, in a different verticle:</p>
-<pre class="prettyprint">def set = vertx.sharedData.getSet('demo.myset')
+<pre class="prettyprint">def set = vertx.sharedData.getMap('demo.myset')
 
 // etc
 </pre>
@@ -1340,7 +1340,7 @@ request.response.trailers.set("Favourite-Shakin-Stevens-Song", "Behind the Green
 </pre>
 <h3 id="serving-files-directly-from-disk">Serving files directly from disk</h3><br/>
 <p>If you were writing a web server, one way to serve a file from disk would be to open it as an <code>AsyncFile</code> and pump it to the HTTP response. Or you could load it in one go using the file system API and write that to the HTTP response.</p>
-<p>Alternatively, vert.x provides a method which allows you to serve a file from disk to an HTTP response in one operation. Where supported by the underlying operating system this may result in the OS directly transferring bytes from the file to the socket without being copied through userspace at all.</p>
+<p>Alternatively, vert.x provides a method which allows you to send serve a file from disk to an HTTP response in one operation. Where supported by the underlying operating system this may result in the OS directly transferring bytes from the file to the socket without being copied through userspace at all.</p>
 <p>Using <code>sendFile</code> is usually more efficient for large files, but may be slower than using <code>readFile</code> to manually read the file as a buffer and write it directly to the response.</p>
 <p>To do this use the <code>sendFile</code> method on the HTTP response. Here's a simple HTTP web server that serves static files from the local <code>web</code> directory:</p>
 <pre class="prettyprint">vertx.createHttpServer().requestHandler { req -&gt;
@@ -1979,7 +1979,7 @@ r--r--r--
 <li><code>isOther</code>. This will have the value <code>true</code> if the file is another type.</li>
 </ul>
 <p>Here's an example:</p>
-<pre class="prettyprint">vertx.fileSystem.props("foo.dat") { ar -&gt;
+<pre class="prettyprint">vertx.fileSystem("foo.dat", "bar.dat") { ar -&gt;
     if (ar.succeeeded) {        
         println "Props are: Last accessed: ${ar.result.lastAccessTime}"
         // etc

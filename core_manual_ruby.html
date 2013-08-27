@@ -505,7 +505,7 @@ end
 <p>To unregister a handler it's just as straightforward. You simply call <code>unregister_handler</code> passing in the id of the handler:</p>
 <pre class="prettyprint">Vertx::EventBus.unregister_handler('test.address', id)
 </pre>
-<p>As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire to cluster. If you want to be notified when that has completed you can optionally specify another block to the <code>register_handler</code> method:</p>
+<p>As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire to cluster. If you want to be notified when that has completed you can optionally specify another block to the <code>unregister_handler</code> method:</p>
 <pre class="prettyprint">Vertx::EventBus.unregister_handler(id) do
     puts 'Yippee! The handler unregister has been propagated across the cluster'
 end
@@ -513,12 +513,12 @@ end
 <p>If you want your handler to live for the full lifetime of your verticle there is no need to unregister it explicitly - vert.x will automatically unregister any handlers when the verticle is stopped.  </p>
 <h3 id="publishing-messages">Publishing messages</h3><br/>
 <p>Publishing a message is also trivially easy. Just publish it specifying the address, for example:</p>
-<pre class="prettyprint">Vertx::EventBus.publish('test.address", 'hello world')
+<pre class="prettyprint">Vertx::EventBus.publish("test.address", 'hello world')
 </pre>
 <p>That message will then be delivered to all handlers registered against the address "test.address".</p>
 <h3 id="sending-messages">Sending messages</h3><br/>
 <p>Sending a message will result in only one handler registered at the address receiving the message. This is the point to point messaging pattern. The handler is chosen in a non strict round-robin fashion.</p>
-<pre class="prettyprint">Vertx::EventBus.send('test.address", 'hello world')
+<pre class="prettyprint">Vertx::EventBus.send("test.address", 'hello world')
 </pre>
 <h3 id="replying-to-messages">Replying to messages</h3><br/>
 <p>Sometimes after you send a message you want to receive a reply from the recipient. This is known as the <em>request-response pattern</em>.</p>
@@ -606,13 +606,13 @@ set.add 'some-value'
 <p>Most data in vert.x is shuffled around using instances of <code>Vertx::Buffer</code>.</p>
 <p>A Buffer represents a sequence of zero or more bytes that can be written to or read from, and which expands automatically as necessary to accomodate any bytes written to it.</p>
 <h2 id="creating-buffers">Creating Buffers</h2><br/>
-<p>Create an empty buffer</p>
+<p>Create an empty buffer:</p>
 <pre class="prettyprint">buff = Vertx::Buffer.create
 </pre>
-<p>Create a buffer from a String. The String will be encoded in the buffer using UTF-8.</p>
+<p>Create a buffer from a String. The String will be encoded in the buffer using UTF-8:</p>
 <pre class="prettyprint">buff = Vertx::Buffer.create_from_str("some-string")
 </pre>
-<p>Create a buffer from a String: The String will be encoded using the specified encoding, e.g:</p>
+<p>Create a buffer from a String. The String will be encoded using the specified encoding, e.g:</p>
 <pre class="prettyprint">buff = Vertx::Buffer.create_from_str("some-string", "UTF-16")
 </pre>
 <p>Create a buffer with an initial size hint. If you know your buffer will have a certain amount of data written to it you can create the buffer and specify this size. This makes the buffer initially allocate that much memory and is more efficient than the buffer automatically resizing multiple times as data is written to it.</p>
@@ -723,10 +723,10 @@ str = buff.get_string(100, 110, 'UTF-16') # Get 10 bytes from pos 100 interprete
 <h1 id="delayed-and-periodic-tasks">Delayed and Periodic Tasks</h1><br/>
 <p>It's very common in vert.x to want to perform an action after a delay, or periodically.</p>
 <p>In standard verticles you can't just make the thread sleep to introduce a delay, as that will block the event loop thread.</p>
-<p>Instead you use vert.x timers. Timers can be <em>one-shot</em> or <em>periodic</em>. We'll discuss both</p>
+<p>Instead you use vert.x timers. Timers can be <em>one-shot</em> or <em>periodic</em>. We'll discuss both.</p>
 <h2 id="one-shot-timers">One-shot Timers</h2><br/>
 <p>A one shot timer calls an event handler after a certain delay, expressed in milliseconds.</p>
-<p>To set a timer to fire once you use the <code>Vertx.set_timer</code> method passing in the delay and specifying a handler block which will be called when after the delay:</p>
+<p>To set a timer to fire once you use the <code>Vertx.set_timer</code> method passing in the delay and specifying a handler block which will be called after the delay:</p>
 <pre class="prettyprint">timer_id = Vertx.set_timer(1000) do |timer_id|
     puts 'And one second later this is printed'
 end
@@ -743,7 +743,7 @@ end
 puts 'First this is printed'
 </pre>
 <h2 id="cancelling-timers">Cancelling timers</h2><br/>
-<p>To cancel a periodic timer, call the <code>cancel_timer</code> function specifying the timer id. For example:</p>
+<p>To cancel a timer, call the <code>cancel_timer</code> function specifying the timer id. For example:</p>
 <pre class="prettyprint">timer_id = Vertx.set_periodic(1000) do
     # This will never be called
 end
@@ -778,7 +778,7 @@ server.listen(1234, 'myhost')
 <p>The second parameter is the hostname or ip address. If it is omitted it will default to <code>0.0.0.0</code> which means it will listen at all available interfaces.</p>
 <p>The actual bind is asynchronous so the server might not actually be listening until some time <em>after</em> the call to listen has returned. If you want to be notified when the server is actually listening you can provide a handler to the <code>listen</code> call. For example:</p>
 <pre class="prettyprint">server.listen(1234, "myhost") do |err|
-puts "Now listening!" if !err                   
+  puts "Now listening!" if !err                 
 end
 </pre>
 <h3 id="getting-notified-of-incoming-connections">Getting Notified of Incoming Connections</h3><br/>
@@ -993,7 +993,7 @@ server.trust_store_password = 'password'
 <h2 id="ssl-clients">SSL Clients</h2><br/>
 <p>Net Clients can also be easily configured to use SSL. They have the exact same API when using SSL as when using standard sockets.</p>
 <p>To enable SSL on a <code>NetClient</code> the attribute <code>ssl</code> must be set to <code>true</code>.</p>
-<p>If the attribute <code>trust_all</code> has been set to <code>true</code>, then the client will trust all server certificates. The connection will still be encrypted but this mode is vulnerable to 'man in the middle' attacks. I.e. you can't be sure who you are connecting to. Use this with caution. Default value is <code>false</code>.</p>
+<p>If the attribute <code>trust_all</code> has been set to <code>true</code>, then the client will trust all server certificates. The connection will still be encrypted but this mode is vulnerable to 'man in the middle' attacks. I.e. you can't be sure who you are connecting to. Use this with caution. </p>
 <p>If <code>trust_all</code> is set to <code>false</code>, then a client trust store must be configured and should contain the certificates of the servers that the client trusts.</p>
 <p>The default value of <code>trust_all</code> is <code>false</code>.</p>
 <p>The client trust store is just a standard Java key store, the same as the key stores on the server side. The client trust store location is set by setting the attribute <code>trust_store_path</code> on the <code>NetClient</code>. If a server presents a certificate during connection which is not in the client trust store, the connection attempt will not succeed.</p>
@@ -1336,7 +1336,7 @@ request.response.write(myBuffer)
 <pre class="prettyprint">request.response.end
 </pre>
 <p>The function can also be called with a string or Buffer in the same way write is called. In this case it's just the same as calling write with a string or Buffer followed by calling <code>end</code> with no arguments. For example:</p>
-<pre class="prettyprint">request.response.end('That's all folks')
+<pre class="prettyprint">request.response.end("That's all folks")
 </pre>
 <h4 id="closing-the-underlying-connection">Closing the underlying connection</h4><br/>
 <p>You can close the underlying TCP connection of the request by calling the <code>close</code> method.</p>
@@ -1367,7 +1367,7 @@ request.response.write(myBuffer)
 </pre>
 <h3 id="serving-files-directly-from-disk">Serving files directly from disk</h3><br/>
 <p>If you were writing a web server, one way to serve a file from disk would be to open it as an <code>AsyncFile</code> and pump it to the HTTP response. Or you could load it it one go using the file system API and write that to the HTTP response.</p>
-<p>Alternatively, vert.x provides a method which allows you to send serve a file from disk to HTTP response in one operation. Where supported by the underlying operating system this may result in the OS directly transferring bytes from the file to the socket without being copied through userspace at all.</p>
+<p>Alternatively, vert.x provides a method which allows you to serve a file from disk to an HTTP response in one operation. Where supported by the underlying operating system this may result in the OS directly transferring bytes from the file to the socket without being copied through userspace at all.</p>
 <p>Using <code>send_file</code> is usually more efficient for large files, but may be slower than using <code>readFile</code> to manually read the file as a buffer and write it directly to the response.</p>
 <p>To do this use the <code>send_file</code> function on the HTTP response. Here's a simple HTTP web server that serves static files from the local <code>web</code> directory:</p>
 <pre class="prettyprint">server = Vertx::HttpServer.new
@@ -2017,7 +2017,7 @@ server.listen(8080)
 </ul>
 <p>Non recursive file copy. <code>source</code> is the source file name. <code>destination</code> is the destination file name.</p>
 <p>Here's an example:</p>
-<pre class="prettyprint">Vertx::FileSystem.copy('foo.dat', 'bar.dat') do |err, res|
+<pre class="prettyprint">Vertx::FileSystem.copy('foo.dat', 'bar.dat') do |err|
     puts 'Copy was successful' if !err        
 end
 </pre>
@@ -2067,7 +2067,7 @@ r--r--r--
         puts "Failed to retrieve file props: #{err}"
     else
         puts 'File props are:'
-        puts "Last accessed: #{props.lastAccessTime}"
+        puts "Last accessed: #{props.last_access_time}"
         // etc
     end
 end

@@ -483,7 +483,7 @@ container.deployWorkerVerticle("verticle5.js", verticle5Config, 10);
 <p>The above examples would deploy 10 instances.</p>
 <h2 id="getting-notified-when-deployment-is-complete">Getting Notified when Deployment is complete</h2><br/>
 <p>The actual verticle deployment is asynchronous and might not complete until some time after the call to <code>deployVerticle</code> or <code>deployModule</code> has returned. If you want to be notified when the verticle has completed being deployed, you can pass a handler as the final argument to <code>deployVerticle</code> or <code>deployModule</code>:</p>
-<pre class="prettyprint">container.deployVerticle("foo.ChildVerticle", new AsyncResultHandler() {
+<pre class="prettyprint">container.deployVerticle("foo.ChildVerticle", new AsyncResultHandler&lt;String&gt;() {
     public void handle(AsyncResult&lt;String&gt; asyncResult) {
         if (asyncResult.succeeded()) {
             System.out.println("The verticle has been deployed, deployment ID is " + asyncResult.result());

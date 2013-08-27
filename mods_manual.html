@@ -220,7 +220,7 @@ vertx.createHttpServer().requestHandler(function(req) {
 <p>Usually Vert.x will load a module into memory the first time it is referenced and unload it from memory once it is no longer referenced by any modules. This means that if modules are deployed and undeployed rapidly the referenced modules can end up being loaded and unloaded many times.</p>
 <p>For most modules this is not an issue, but for some modules, in particular language implementation modules, the libraries (e.g. language engines) used in those modules may generate a lot of classes which live in the Java permanent generation (permgen), and loading and unloading the module frequently can result in the permgen filling up resulting in out of memory exceptions.</p>
 <p>To avoid this, we allow modules to be marked as <code>resident</code> which means that Vert.x will load the module the first time it is referenced but will not unload it from memory until the Vert.x instance terminates.</p>
-<p>This is an advanced feature and is not intended to be used unless you're writing a language implementation module. Default is `false.</p>
+<p>This is an advanced feature and is not intended to be used unless you're writing a language implementation module. Default is <code>false</code>.</p>
 <pre class="prettyprint">"resident": true
 </pre>
 <h3 id="system">system</h3><br/>
