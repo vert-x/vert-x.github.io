@@ -1110,7 +1110,7 @@ It's not hard to see that if you write to an object faster than it can actually 
 
 To solve this problem a simple flow control capability is provided by some objects in the vert.x API.
 
-Any flow control aware object that can be written to is said to implement `ReadStream`, and any flow control object that can be read from is said to implement `WriteStream`.
+Any flow control aware object that can be written to is said to implement `WriteStream`, and any flow control object that can be read from is said to implement `ReadStream`.
 
 Let's take an example where we want to read from a `ReadStream` and write the data to a `WriteStream`.
 
@@ -1179,6 +1179,7 @@ We're almost there, but not quite. The `NetSocket` now gets paused when the file
                 sock.pause();
                 
                 sock.drainHandler(function() {
+                    sock.write(buffer);
                     sock.resume();
                 });
             }
