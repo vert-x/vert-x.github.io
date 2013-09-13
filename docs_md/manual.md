@@ -327,6 +327,95 @@ To display the installed version of Vert.x type
 ## Installing and uninstalling modules
 
 Please see the [modules manual](mods_manual.html) for a detailed description of this.
+
+# High availability with Vert.x
+
+Vert.x allows you to run your modules with high availability (HA) support.
+
+## Automatic failover
+
+When a module is run with HA, if the Vert.x instance where it is running fails, it will be re-started automatically on another node of the cluster. We call this *module fail-over*.
+
+To run a module with HA, you simply add the `-ha` switch when running it on the command line, for example:
+
+    vertx runmod com.acme~my-mod~2.1 -ha
+
+Now for HA to work you need more than one Vert.x instances in the cluster, so let's say you have another Vert.x instance that you have already started, for example:
+
+    vertx runmod com.acme~my-other-mod~1.1 -ha
+
+If the Vert.x instance that is running com.acme~my-mod~2.1 now dies (you can test this by killing the process with `kill -9`), the Vert.x instance that is running `com.acme~my-other-mod~1.1` will automatic deploy `com.acme~my-mod~2.1` so now that Vert.x instance is running both module `com.acme~my-mod~2.1` and `com.acme~my-other-mod~1.1`.
+
+Please note that cleanly closing a Vert.x instance will not cause failover to occur, e.g. `CTRL-C` or `kill -SIGINT`
+
+You can also start "bare" Vert.x instances - i.e. instances that are not initially running any modules, they will also failover for nodes in the cluster. To start a bare instance you simply do:
+
+    vertx -ha
+
+When using the `ha` switch you do not need to provide the `-cluster` switch, as a cluster is assumed if you want HA.
+
+## HA groups
+
+When running a Vert.x instance with HA you can also optional specify an HA group. An HA group denotes a logical grouping of nodes in the cluster. Only nodes with the same HA group will failover onto one another. If you don't specify an HA group the default group `__DEFAULT__` is used.
+
+To specify an HA group you use the `-hagroup` switch when running the module, e.g.
+
+    vertx runmod com.acme~my-mod~2.1 -ha -hagroup somegroup
+
+Let's look at an example:
+
+In console 1:
+
+    vertx runmod com.mycompany~my-mod1~1.0 -ha -hagroup g1
+
+In console 2:
+
+    vertx runmod com.mycompany~my-mod2~1.0 -ha -hagroup g1
+
+In console 3:
+
+    vertx runmod com.mycompany~my-mod3~1.0 -ha -hagroup g2
+
+If we kill the instance in console 1, it will fail over to the instance in console 2, not the instance in console 3 as that has a different group.
+
+If we kill the instance in console 3, it won't get failed over as there is no other vert.x instance in that group.
+
+## Dealing with network partitions - Quora
+
+The HA implementation also supports quora.
+
+When starting a Vert.x instance you can instruct it that it requires a "quorum" before any HA deployments will be deployed. A quorum is a minimum number of nodes for a particular group in the cluster. Typically you chose your quorum size to `Q = 1 + N/2` where `N` is the number of nodes in the group.
+
+If there are less than `Q` nodes in the cluster the HA deployments will undeploy. They will redeploy again if/when a quorum is re-attained. By doing this you can prevent against network partitions, a.k.a. `split brain`.
+
+There is more informaton on quora [here](http://en.wikipedia.org/wiki/Quorum_(distributed_computing))
+
+To run vert.x instances with a quorum you specify `-quorum` on the command line, e.g.
+
+E.g.
+
+In console 1:
+
+    vertx runmod com.mycompany~my-mod1~1.0 -ha -quorum 3
+
+At this point the Vert.x instance will start but not deploy the module (yet) because there is only one node in the cluster, not 3.
+
+In console 2:
+
+    vertx runmod com.mycompany~my-mod2~1.0 -ha -quorum 3
+
+At this point the Vert.x instance will start but not deploy the module (yet) because there are only two nodes in the cluster, not 3.
+
+In console 3:
+
+    vertx runmod com.mycompany~my-mod3~1.0 -ha -quorum 3
+
+Yay! - we have three nodes, that's a quorum. At this point the modules will automatically deploy on all three instances.
+
+If we now close or kill one of the nodes the modules will automatially undeploy on the other nodes, as there is no longer a quorum.
+
+Quora can also be used in conjunction with ha groups.
+
         
 <a id="logging"> </a>
 
