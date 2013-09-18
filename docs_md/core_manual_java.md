@@ -3025,7 +3025,7 @@ To lookup the A record for "vertx.io" you would typically use it like:
  As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.  
 
 
-# resolveA
+## resolveA
 
 Try to resolve all A (ipv4) records for a given name. This is quite similar to using "dig" on unix like operation systems.
 	
