@@ -299,6 +299,38 @@
 </li>
 </ul>
 </li>
+<li><a href="#dns-client">DNS Client</a><ul>
+<li><a href="#lookup">lookup</a></li>
+<li><a href="#lookup_4">lookup_4</a></li>
+<li><a href="#lookup_6">lookup_6</a></li>
+<li><a href="#resolve_a">resolve_a</a></li>
+<li><a href="#resolve_aaaa">resolve_aaaa</a></li>
+<li><a href="#resolve_cname">resolve_cname</a></li>
+<li><a href="#resolve_mx">resolve_mx</a></li>
+<li><a href="#resolve_txt">resolve_txt</a></li>
+<li><a href="#resolve_ns">resolve_ns</a></li>
+<li><a href="#resolve_srv">resolve_srv</a></li>
+<li><a href="#resolve_ptr">resolve_ptr</a></li>
+<li><a href="#reverse_lookup">reverse_lookup</a></li>
+<li><a href="#error-handling">Error handling</a><ul>
+<li><a href="#noerror">NOERROR</a></li>
+<li><a href="#formerror">FORMERROR</a></li>
+<li><a href="#servfail">SERVFAIL</a></li>
+<li><a href="#nxdomain">NXDOMAIN</a></li>
+<li><a href="#notimpl">NOTIMPL</a></li>
+<li><a href="#refused">REFUSED</a></li>
+<li><a href="#yxdomain">YXDOMAIN</a></li>
+<li><a href="#yxrrset">YXRRSET</a></li>
+<li><a href="#nxrrset">NXRRSET</a></li>
+<li><a href="#notzone">NOTZONE</a></li>
+<li><a href="#badver">BADVER</a></li>
+<li><a href="#badsig">BADSIG</a></li>
+<li><a href="#badkey">BADKEY</a></li>
+<li><a href="#badtime">BADTIME</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="writing-verticles">Writing Verticles</h1><br/>
@@ -1982,6 +2014,7 @@ sockJSServer.bridge({'prefix' =&gt; '/eventbus'},
     }
   ])
 
+
 server.listen(8080)
 </pre>
 <p>To let all messages through you can specify two arrays with a single empty JSON object which will match all messages.</p>
@@ -2288,7 +2321,243 @@ Vertx::FileSystem.open('some-file.dat') do |err, async_file|
 end
 </pre>
 <h3 id="closing-an-asyncfile">Closing an AsyncFile</h3><br/>
-<p>To close an AsyncFile call the <code>close</code> method. Closing is asynchronous and if you want to be notified when the close has been completed you can specify a handler block as an argument to <code>close</code>.</p></div>
+<p>To close an AsyncFile call the <code>close</code> method. Closing is asynchronous and if you want to be notified when the close has been completed you can specify a handler block as an argument to <code>close</code>.</p>
+<h1 id="dns-client">DNS Client</h1><br/>
+<p>Often you will find yourself in situations where you need to obtain DNS informations in an asynchronous fashion. Unfortunally this is not possible with the API that is shipped with Java itself. Because of this Vert.x offers it's own API for DNS resolution which is fully asynchronous.</p>
+<p>To obtain a DnsClient instance you will create a new via the Vertx instance.</p>
+<pre class="prettyprint">client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53), Addrinfo.tcp('10.0.0.2', 53))
+</pre>
+<p>Be aware that you can pass in a varargs of InetSocketAddress arguments to specifiy more then one DNS Server to try to query for DNS resolution. The DNS Servers will be queried in the same order as specified here. Where the next will be used once the first produce an error while be used.</p>
+<h2 id="lookup">lookup</h2><br/>
+<p>Try to lookup the A (ipv4) or AAAA (ipv6) record for a given name. The first which is returned will be used, so it behaves the same way as you may be used from when using "nslookup" on your operation system.</p>
+<p>To lookup the A / AAAA record for "vertx.io" you would typically use it like:</p>
+<pre class="prettyprint">client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53))
+client.lookup('vertx.io') do |err, result|
+    if err
+        puts "Failed to resolve entry #{err}"
+    else
+        puts result
+    end
+end
+</pre>
+<p>Be aware that it either would use an Inet4Address or Inet6Address in the AsyncResult depending on if an A or AAAA record was resolved.</p>
+<h2 id="lookup_4">lookup_4</h2><br/>
+<p>Try to lookup the A (ipv4) record for a given name. The first which is returned will be used, so it behaves the same way as you may be used from when using "nslookup" on your operation system.</p>
+<p>To lookup the A record for "vertx.io" you would typically use it like:</p>
+<pre class="prettyprint">client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53))
+client.lookup_4('vertx.io') do |err, result|
+    if err
+        puts "Failed to resolve entry #{err}"
+    else
+        puts result
+    end
+end
+</pre>
+<p>As it only resolves A records and so is ipv4 only it will use Inet4Address as result.  </p>
+<h2 id="lookup_6">lookup_6</h2><br/>
+<p>Try to lookup the AAAA (ipv5) record for a given name. The first which is returned will be used, so it behaves the same way as you may be used from when using "nslookup" on your operation system.</p>
+<p>To lookup the A record for "vertx.io" you would typically use it like:</p>
+<pre class="prettyprint">client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53))
+client.lookup_6('vertx.io') do |err, result|
+    if err
+        puts "Failed to resolve entry #{err}"
+    else
+        puts result
+    end
+end
+</pre>
+<p>As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.  </p>
+<h2 id="resolve_a">resolve_a</h2><br/>
+<p>Try to resolve all A (ipv4) records for a given name. This is quite similar to using "dig" on unix like operation systems.</p>
+<p>To lookup all the A records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53))
+client.resolve_a('vertx.io') do |err, records|
+    if err
+        puts "Failed to resolve entry #{err}"
+    else
+        for r in records
+            puts r
+        end
+    end
+end
+</pre>
+<p>As it only resolves A records and so is ipv4 only it will use Inet4Address as result.  </p>
+<h2 id="resolve_aaaa">resolve_aaaa</h2><br/>
+<p>Try to resolve all AAAA (ipv6) records for a given name. This is quite similar to using "dig" on unix like operation systems.</p>
+<p>To lookup all the AAAAA records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53))
+client.resolve_aaaa('vertx.io') do |err, records|
+    if err
+        puts "Failed to resolve entry #{err}"
+    else
+        for r in records
+            puts r
+        end
+    end
+end
+</pre>
+<p>As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.  </p>
+<h2 id="resolve_cname">resolve_cname</h2><br/>
+<p>Try to resolve all CNAME records for a given name. This is quite similar to using "dig" on unix like operation systems.</p>
+<p>To lookup all the CNAME records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53))
+client.resolve_cname('vertx.io') do |err, records|
+    if err
+        puts "Failed to resolve entry #{err}"
+    else
+        for r in records
+            puts r
+        end
+    end
+end
+</pre>
+<h2 id="resolve_mx">resolve_mx</h2><br/>
+<p>Try to resolve all MX records for a given name. The MX records are used to define which Mail-Server accepts emails for a given domain.</p>
+<p>To lookup all the MX records for "vertx.io" you would typically do:
+    client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53))
+    client.resolve_mx('vertx.io') do |err, records|
+        if err
+            puts "Failed to resolve entry #{err}"
+        else
+            for r in records
+                puts r
+            end
+        end
+    end</p>
+<p>Be aware that the List will contain the MxRecords sorted by the priority of them, which means MxRecords with smaller priority coming first in the List.</p>
+<p>The MxRecord allows you to access the priority and the name of the MX record by offer methods for it like:</p>
+<pre class="prettyprint">record = ...
+record.priority
+record.name
+</pre>
+<h2 id="resolve_txt">resolve_txt</h2><br/>
+<p>Try to resolve all TXT records for a given name. TXT records are often used to define extra informations for a domain.</p>
+<p>To resolve all the TXT records for "vertx.io" you could use something along these lines:</p>
+<p>To lookup all the MX records for "vertx.io" you would typically do:
+    client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53))
+    client.resolve_txt('vertx.io') do |err, records|
+        if err
+            puts "Failed to resolve entry #{err}"
+        else
+            for r in records
+                puts r
+            end
+        end
+    end</p>
+<h2 id="resolve_ns">resolve_ns</h2><br/>
+<p>Try to resolve all NS records for a given name. The NS records specify which DNS Server hosts the DNS informations for a given domain.</p>
+<p>To resolve all the NS records for "vertx.io" you could use something along these lines:</p>
+<p>To lookup all the MX records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53))
+client.resolve_ns('vertx.io') do |err, records|
+    if err
+        puts "Failed to resolve entry #{err}"
+    else
+        for r in records
+            puts r
+        end
+    end
+end
+</pre>
+<h2 id="resolve_srv">resolve_srv</h2><br/>
+<p>Try to resolve all SRV records for a given name. The SRV records are used to define extra informations like port and hostname of services. Some protocols need this extra informations.</p>
+<p>To lookup all the SRV records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53))
+client.resolve_srv('vertx.io') do |err, records|
+    if err
+        puts "Failed to resolve entry #{err}"
+    else
+        for r in records
+            puts r
+        end
+    end
+end
+</pre>
+<p>Be aware that the List will contain the SrvRecords sorted by the priority of them, which means SrvRecords with smaller priority coming first in the List.</p>
+<p>The SrvRecord allows you to access all informations contained in the SRV record itself:</p>
+<pre class="prettyprint">record = ...
+record.priority
+record.name
+record.priority
+record.weight
+record.port
+record.protocol
+record.service
+record.target
+</pre>
+<p>Please refer to the API docs for the exact details.</p>
+<h2 id="resolve_ptr">resolve_ptr</h2><br/>
+<p>Try to resolve the PTR record for a given name. The PTR record maps an ipaddress to a name.</p>
+<p>To resolve the PTR record for the ipaddress 10.0.0.1 you would use the PTR notion of "1.0.0.10.in-addr.arpa"</p>
+<pre class="prettyprint">client = Vertx::DnsClient.new(Addrinfo.tcp('1.0.0.10.in-addr.arpa', 53))
+client.reverse_lookup('10.0.0.1') do |err, result|
+    if err
+        puts "Failed to resolve entry #{err}"
+    else
+        puts result
+    end
+end
+</pre>
+<h2 id="reverse_lookup">reverse_lookup</h2><br/>
+<p>Try to do a reverse lookup for an ipaddress. This is basically the same as resolve a PTR record, but allows you to just pass in the ipaddress and not a valid PTR query string.</p>
+<p>To do a reverse lookup for the ipaddress 10.0.0.1 do something similar like this:</p>
+<pre class="prettyprint">client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53))
+client.reverse_lookup('10.0.0.1') do |err, result|
+    if err
+        puts "Failed to resolve entry #{err}"
+    else
+        puts result
+    end
+end
+</pre>
+<h2 id="error-handling">Error handling</h2><br/>
+<p>As you saw in previous sections the DnsClient allows you to pass in a Handler which will be notified with an AsyncResult once the query was complete. In case of an error it will be notified with a DnsException which will hole a DnsResponseCode that indicate why the resolution failed. This DnsResponseCode can be used to inspect the cause in more detail.</p>
+<p>Possible DnsResponseCodes are:</p>
+<h3 id="noerror">NOERROR</h3><br/>
+<p>No record was found for a given query</p>
+<h3 id="formerror">FORMERROR</h3><br/>
+<p>Format error </p>
+<h3 id="servfail">SERVFAIL</h3><br/>
+<p>Server failure</p>
+<h3 id="nxdomain">NXDOMAIN</h3><br/>
+<p>Name error</p>
+<h3 id="notimpl">NOTIMPL</h3><br/>
+<p>Not implemented by DNS Server</p>
+<h3 id="refused">REFUSED</h3><br/>
+<p>DNS Server refused the query</p>
+<h3 id="yxdomain">YXDOMAIN</h3><br/>
+<p>Domain name should not exist</p>
+<h3 id="yxrrset">YXRRSET</h3><br/>
+<p>Resource record should not exist</p>
+<h3 id="nxrrset">NXRRSET</h3><br/>
+<p>RRSET does not exist</p>
+<h3 id="notzone">NOTZONE</h3><br/>
+<p>Name not in zone</p>
+<h3 id="badver">BADVER</h3><br/>
+<p>Bad extension mechanism for version</p>
+<h3 id="badsig">BADSIG</h3><br/>
+<p>Bad signature</p>
+<h3 id="badkey">BADKEY</h3><br/>
+<p>Bad key</p>
+<h3 id="badtime">BADTIME</h3><br/>
+<p>Bad timestamp</p>
+<p>All of those errors are "generated" by the DNS Server itself.</p>
+<p>You can obtain the DnsResponseCode from the DnsException like:</p>
+<pre class="prettyprint">client = Vertx::DnsClient.new(Addrinfo.tcp('10.0.0.1', 53))
+client.lookup('nonexisting.vertx.io') do |err, result|
+    if err
+        if err instanceof org.vertx.java.core.dns.DnsException
+            exception = (org.vertx.java.core.dns.DnsException) err
+            code = exception.code()
+            ...
+        else
+            puts "Failed to resolve entry #{err}"
+        end
+    else
+        puts result
+    end
+end
+</pre></div>
       </div>
     </div>
   </div>

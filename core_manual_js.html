@@ -1094,7 +1094,7 @@ client.reconnectInterval(500);
 <p>In Vert.x, calls to write data return immediately and writes are internally queued.</p>
 <p>It's not hard to see that if you write to an object faster than it can actually write the data to its underlying resource then the write queue could grow without bound - eventually resulting in exhausting available memory.</p>
 <p>To solve this problem a simple flow control capability is provided by some objects in the vert.x API.</p>
-<p>Any flow control aware object that can be written to is said to implement <code>ReadStream</code>, and any flow control object that can be read from is said to implement <code>WriteStream</code>.</p>
+<p>Any flow control aware object that can be written to is said to implement <code>WriteStream</code>, and any flow control object that can be read from is said to implement <code>ReadStream</code>.</p>
 <p>Let's take an example where we want to read from a <code>ReadStream</code> and write the data to a <code>WriteStream</code>.</p>
 <p>A very simple example would be reading from a <code>NetSocket</code> on a server and writing back to the same <code>NetSocket</code> - since <code>NetSocket</code> implements both <code>ReadStream</code> and <code>WriteStream</code>, but you can do this between any <code>ReadStream</code> and any <code>WriteStream</code>, including HTTP requests and response, async files, WebSockets, etc.</p>
 <p>A naive way to do this would be to directly take the data that's been read and immediately write it to the NetSocket, for example:</p>
@@ -1155,6 +1155,7 @@ server.connectHandler(function(sock) {
             sock.pause();
 
             sock.drainHandler(function() {
+                sock.write(buffer);
                 sock.resume();
             });
         }
@@ -2039,6 +2040,7 @@ sockJSServer.bridge({prefix : '/eventbus'},
     }
   ]
   );
+
 
 server.listen(8080);
 </pre>
