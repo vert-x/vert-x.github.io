@@ -2844,11 +2844,344 @@ Here's an example of pumping data from a file on a client to a HTTP request:
 To close an AsyncFile call the `close` function. Closing is asynchronous and if you want to be notified when the close has been completed you can specify a handler function as an argument to `close`.
 
 
-** load() method!!! **
+# DNS Client
+
+Often you will find yourself in situations where you need to obtain DNS
+information in an asynchronous fashion. Unfortunately this is not possible with
+the API that is shipped with Java itself. Because of this Vert.x offers its
+own API for DNS resolution which is fully asynchronous.
+
+Obtain a `DnsClient` object by requring the `vertx/dns` module. You can ask
+Vertx to create the client for you, or you can simply instantiate a new one
+with the `DnsClient` constructor function.
+
+    var dns    = require('vertx/dns');
+    var client = dns.createDnsClient('8.8.8.8', '8.8.4.4');
+
+    // The constructor can be used as well
+    client = new dns.DnsClient('8.8.8.8', '8.8.4.4');
 
 
+Be aware that you can pass in an array of address strings to
+specifiy more then one DNS server to query for DNS resolution. The DNS
+servers will be queried in the same order as specified here. Upon failure of
+one, the next will be used.
+
+## lookup
+
+Try to lookup the A (IPv4) or AAAA (ipv6) record for a given name. The first
+which is returned will be used, so it behaves the same way as you may be used
+from when using "nslookup" on your OS.
     
+To lookup the A / AAAA record for "vertx.io" you would typically use it like:
 
-   
+    client.lookup('vertx.io', function(err, result) {
+        if (err != null) {
+            console.log( "Failed to resolve entry " + err );
+        } else {
+            console.log( result );
+        }
+    });
+
+Be aware that the handler function may provide either an IPv4 or IPv6
+string depending if an A or AAAA record was resolved.
+
+
+## lookup4
+
+Try to lookup the A (IPv4) record for a given name. The first which is returned
+will be used, so it behaves the same way as you may be used from when using
+"nslookup" on your OS.
+    
+To lookup the A record for "vertx.io" you would typically use it like:
+
+    client.lookup4('vertx.io', function(err, result) {
+        if (err != null) {
+            console.log( "Failed to resolve entry " + err );
+        } else {
+            console.log( result );
+        }
+    });
+ 
+The handler function result will be the first address received, provided as an
+IPv4 string address.
+ 
+
+## lookup6
+
+Try to lookup the AAAA (ipv6) record for a given name. The first which is
+returned will be used, so it behaves the same way as you may be used from when
+using "nslookup" on your OS.
+    
+To lookup the AAAA record for "vertx.io" you would typically use it like:
+
+    client.lookup6('vertx.io', function(err, result) {
+        if (err != null) {
+            console.log( "Failed to resolve entry " + err );
+        } else {
+            console.log( result );
+        }
+    });
+ 
+The handler function result will be the first address received, provided as an
+IPv6 string address.
+
+
+## resolveA
+
+Try to resolve all A (IPv4) records for a given name. This is quite similar to
+using "dig" on unix like OSs.
+    
+To lookup all the A records for "vertx.io" you would typically do:
+
+    client.resolveA('vertx.io', function(err, records) {
+        if (err != null) {
+            console.log( "Failed to resolve entry " + err );
+        } else {
+            console.log( records.toString() );
+        }
+    });
+
+The handler function will be provided an array of IPv4 address strings.
+
+
+
+## resolveAAAA
+
+Try to resolve all AAAA (IPv6) records for a given name. This is quite similar
+to using "dig" on unix like OSs.
+    
+To lookup all the AAAAA records for "vertx.io" you would typically do:
+
+    client.resolveAAAA('vertx.io', function(err, records) {
+        if (err != null) {
+            console.log( "Failed to resolve entry " + err );
+        } else {
+            console.log( records.toString() );
+        }
+    });
+
+The handler function will be provided an array of IPv6 address strings.
+
+
+## resolveCNAME
+
+Try to resolve all CNAME records for a given name. This is quite similar to
+using "dig" on unix like OSs.
+    
+To lookup all the CNAME records for "vertx.io" you would typically do:
+
+    client.resolveCNAME('vertx.io', function(err, records) {
+        if (err != null) {
+            console.log( "Failed to resolve entry " + err );
+        } else {
+            console.log( records.toString() );
+        }
+    });
+
+The handler function will be provided an array of host name strings.
+
+## resolveMX
+
+Try to resolve all MX records for a given name. The MX records are used to
+define which Mail-Server accepts emails for a given domain.
+    
+To lookup all the MX records for "vertx.io" you would typically do:
+
+    client.resolveMX('vertx.io', function(err, records) {
+        if (err != null) {
+            console.log( "Failed to resolve entry " + err );
+        } else {
+            for (i=0; i<records.length; i++) {
+              var record = records[i];
+              console.log( record.name + " " + record.priority );
+            }
+        }
+    });
+
+The result handler will be provided with an array of MxRecords sorted by
+priority, with lowest priority numbers first. E.g. record.priority of 1
+comes before record.priority of 2 in the list.
+
+The MxRecord allows you to access the priority and the name of the record 
+as object properties.
+
+    record = records[0]
+    record.priority
+    record.name
+
+
+## resolveTXT
+
+Try to resolve all TXT records for a given name. TXT records are often used to
+define extra information for a domain.
+    
+To resolve all the TXT records for "vertx.io" you could use something along these lines:
+
+    client.resolveTXT('vertx.io', function(err, records) {
+        if (err != null) {
+            console.log( "Failed to resolve entry " + err );
+        } else {
+            console.log( records.toString() );
+        }
+    });
+
+The handler function receives an array of strings.
+
+## resolveNS
+
+Try to resolve all NS records for a given name. The NS records specify which
+DNS Server hosts the DNS information for a given domain.
+    
+To resolve all the NS records for "vertx.io" you could use something along these lines:
+
+    client.resolveNS('vertx.io', function(err, records) {
+        if (err != null) {
+            console.log( "Failed to resolve entry " + err );
+        } else {
+            console.log( records.toString() );
+        }
+    });
+
+The handler function receives an array of string addresses.
+
+## resolveSRV
+
+Try to resolve all SRV records for a given name. The SRV records are used to
+define extra information like port and hostname of services. Some protocols
+need this extra information.
+    
+To lookup all the SRV records for "vertx.io" you would typically do:
+
+    client.resolveNS('vertx.io', function(err, records) {
+        if (err != null) {
+            console.log( "Failed to resolve entry " + err );
+        } else {
+            console.log( records.toString() );
+        }
+    });
+
+The handler function will receiven an array of SRVRecord objects sorted by priority (smallest priority number first).
+
+The SrvRecord allows you to access all information contained in the SRV record itself:
+
+    record = ...
+    record.priority
+    record.name
+    record.priority
+    record.weight
+    record.port
+    record.protocol
+    record.service
+    record.target
+
+
+## resolvePTR
+
+Try to resolve the PTR record for a given name. The PTR record maps an
+ipaddress to a name.
+    
+To resolve the PTR record for the ipaddress 10.0.0.1 you would use the PTR
+notion of "1.0.0.10.in-addr.arpa"
+
+    client = dns.createDnsClient('1.0.0.10.in-addr.arpa')
+    client.resolvePTR('10.0.0.1', function( err, result ) {
+        if (err != null) {
+            console.log( "Failed to resolve entry " + err );
+        } else {
+            console.log( result );
+        }
+    });
+
+The handler function is provided a a name string when it is called.
+
+## reverseLookup
+
+Try to do a reverse lookup for an ipaddress. This is basically the same as
+resolving a PTR record, but allows you to just pass in the ipaddress and not a
+valid PTR query string.
+
+To do a reverse lookup for the ipaddress 10.0.0.1 do something like this:
+
+    client.reverseLookup('10.0.0.1', function( err, result ) {
+        if (err != null) {
+            console.log( "Failed to resolve entry " + err );
+        } else {
+            console.log( result );
+        }
+    });
+
+The handler function is provided a a name string when it is called.
+
+
+## Error handling
+As you saw in previous sections the `DnsClient` allows you to pass in a handler
+function which is notified once the query has completed. In case of an error it
+will be notified with `a DnsException` which will hold a `DnsResponseCode` that
+indicates why the resolution failed. This `DnsResponseCode` can be used to
+inspect the cause in more detail.
+
+Possible `DnsResponseCode`s are:
+
+### NOERROR
+No record was found for a given query
+
+### FORMERROR
+Format error 
+
+### SERVFAIL
+Server failure
+
+### NXDOMAIN
+Name error
+
+### NOTIMPL
+Not implemented by DNS Server
+
+### REFUSED
+DNS Server refused the query
+
+### YXDOMAIN
+Domain name should not exist
+
+### YXRRSET
+Resource record should not exist
+
+### NXRRSET
+RRSET does not exist
+
+### NOTZONE
+Name not in zone
+
+### BADVER
+Bad extension mechanism for version
+
+### BADSIG
+Bad signature
+
+### BADKEY
+Bad key
+
+### BADTIME
+Bad timestamp
+
+All of those errors are generated by the DNS Server itself.
+
+The DNS response code will be provided as a 
+You can obtain the DnsResponseCode from the DnsException like:
+
+    client.lookup('not.exist.vertx.io', function(err, result) {
+        if (err != null) {
+          var exceptionCode = err.code();
+          // ... etc.
+        } else {
+          console.log( result );
+        }
+    });
+
+
+
+
+
 
 
