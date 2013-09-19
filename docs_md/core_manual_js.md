@@ -3171,7 +3171,7 @@ The DNS response code will be provided as a
 You can obtain the DnsResponseCode from the DnsException like:
 
     client.lookup('not.exist.vertx.io', function(err, result) {
-        if (err != null) {
+        if (err != null && err instanceof org.vertx.java.core.dns.DnsException) {
           var exceptionCode = err.code();
           // ... etc.
         } else {
