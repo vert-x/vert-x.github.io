@@ -124,13 +124,17 @@ In your `mod.json`. See the [modules manual](mods_manual.html#auto-redeploy) for
 
 Then, if you're using the standard Vert.x Gradle Template project, and you're using Eclipse you can run the following from a console in your project directory:
 
-    ./gradlew runModEclipse
+    ./gradlew runModEclipse -i
 
 If you're using IntelliJ IDEA:
 
-    ./gradlew runModIDEA
+    ./gradlew runModIDEA -i
 
 This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.
+
+If you want to provide command line arguments to the running module, e.g. you want to specify a config file you can edit the `runModArgs` property in `gradle.properties".
+
+Note that we use the -i switch when running `gradlew` - this tells Gradle not to swallow INFO level debug output when running. By default Gradle swallows all logging output (!)
 
 If you're using Maven and you're using Eclipse you can run the following from a console in your project directory:
 
@@ -156,11 +160,12 @@ And edit the `classpath` configuration parameter in the pom.xml for the plugin, 
       <version>${maven.vertx.plugin.version}</version>
       <configuration>
          <instances>1</instances>
+         <configFile>path/to/config/conf.json</configFile>
          <classpath>src/main/resources:target/classes</classpath>
       </configuration>
             ....
 
-So it points to the directories where your module resources are.
+So it points to the directories where your module resources are. You can also specify any configuration file to use when running the module and how many instances to deploy in the configuration.
 
 If you don't use Maven or Gradle but still want to see your changes in a running module immediately you can run the following from a console in your project directory:
 
