@@ -394,6 +394,28 @@ This gives a download url for the module:
 
     http://dl.bintray.com/purplefox/vertx-mods/foo-mod/foo-mod-2.2.zip
 
+# Creating fat executable jars
+
+Vert.x also supports assembling 'fat jars'. These are executable jars which contain the Vert.x binaries along with your module so the module can be run by just executing the jar
+
+    java -jar mymodule-1.0-fat.jar
+
+You can also provide the usual command line arguments that you would pass to `vertx runmod` when executing the jar, e.g.
+
+    java -jar mymodule-1.0-fat.jar -cluster -conf myconf.json
+
+This means you don't have to have Vert.x pre-installed on the machine on which you execute the jar.
+
+To create a fat jar you can run
+
+    vertx fatjar <module_name>
+
+You can also provide an optional output directory name where to put the jar, e.g.
+
+    vertx fatjar <module_name> <output_directory>
+
+Or you can use the Gradle task in the standard Gradle build or the Maven plugin to build them.
+
 <a id="nested-mods"> </a>
 # Nested modules - Packaging all module dependencies in the module
 
