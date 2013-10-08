@@ -161,12 +161,14 @@ This tells Vert.x which verticle to run when the module is deployed.</p>
 </pre>
 <p>In your <code>mod.json</code>. See the <a href="mods_manual.html#auto-redeploy">modules manual</a> for more information on this.</p>
 <p>Then, if you're using the standard Vert.x Gradle Template project, and you're using Eclipse you can run the following from a console in your project directory:</p>
-<pre class="prettyprint">./gradlew runModEclipse
+<pre class="prettyprint">./gradlew runModEclipse -i
 </pre>
 <p>If you're using IntelliJ IDEA:</p>
-<pre class="prettyprint">./gradlew runModIDEA
+<pre class="prettyprint">./gradlew runModIDEA -i
 </pre>
 <p>This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.</p>
+<p>If you want to provide command line arguments to the running module, e.g. you want to specify a config file you can edit the <code>runModArgs</code> property in `gradle.properties".</p>
+<p>Note that we use the -i switch when running <code>gradlew</code> - this tells Gradle not to swallow INFO level debug output when running. By default Gradle swallows all logging output (!)</p>
 <p>If you're using Maven and you're using Eclipse you can run the following from a console in your project directory:</p>
 <pre class="prettyprint">mvn vertx:runModEclipse
 </pre>
@@ -184,11 +186,12 @@ This tells Vert.x which verticle to run when the module is deployed.</p>
   &lt;version&gt;${maven.vertx.plugin.version}&lt;/version&gt;
   &lt;configuration&gt;
      &lt;instances&gt;1&lt;/instances&gt;
+     &lt;configFile&gt;path/to/config/conf.json&lt;/configFile&gt;
      &lt;classpath&gt;src/main/resources:target/classes&lt;/classpath&gt;
   &lt;/configuration&gt;
         ....
 </pre>
-<p>So it points to the directories where your module resources are.</p>
+<p>So it points to the directories where your module resources are. You can also specify any configuration file to use when running the module and how many instances to deploy in the configuration.</p>
 <p>If you don't use Maven or Gradle but still want to see your changes in a running module immediately you can run the following from a console in your project directory:</p>
 <pre class="prettyprint">vertx runmod com.yourcompany~your-module~1.0 -cp &lt;classpath&gt;
 </pre>
