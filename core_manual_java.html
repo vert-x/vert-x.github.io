@@ -114,6 +114,7 @@
 <li><a href="#sending-messages">Sending messages</a></li>
 <li><a href="#replying-to-messages">Replying to messages</a><ul>
 <li><a href="#specifying-timeouts-for-replies">Specifying timeouts for replies</a></li>
+<li><a href="#getting-notified-of-reply-failures">Getting notified of reply failures</a></li>
 </ul>
 </li>
 <li><a href="#message-types">Message types</a></li>
@@ -624,11 +625,13 @@ eb.registerHandler("test.address", myHandler);
         if (result.succeeded()) {
             System.out.println("I received a reply " + message.body);            
         } else {
+
             System.err.println("No reply was received before the 1 second timeout!");
         }
     }
 });
 </pre>
+<p>If the send times out, the exception it is available with the <code>cause()</code> method of the <code>AsyncResult</code> is of type <code>ReplyException</code>. The return value <code>failureType()</code> on the <code>ReplyException</code> instance is <code>ReplyFailure.TIMEOUT</code>.</p>
 <p>You can also set a default timeout on the event bus itself - this timeout will be used if you are using the <code>send(...)</code> method on the event bus to send messages with a reply handler. The default value of the default timeout is <code>-1</code> which means that reply handlers will never timeout (this is for backward compatibility reasons with earlier versions of Vert.x).</p>
 <pre class="prettyprint">eb.setDefaultReplyTimeout(5000);
 
@@ -638,13 +641,36 @@ eb.send("test.address", "This is a message", new Handler&lt;Message&lt;String&gt
     }
 });
 </pre>
-<p>When replying to messages you can also provide a timeout and a <code>Handler&lt;AsyncResult&lt;Message&gt;&gt;</code> to get replies to the replies within a timeout. The api used is similar to before:</p>
+<p>When replying to messages you can also provide a timeout and a <code>Handler&lt;AsyncResult&lt;Message&gt;&gt;</code> to get replies to the replies within a timeout. The API used is similar to before:</p>
 <pre class="prettyprint">message.replyWithTimeout("This is a reply", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
     public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
         if (result.succeeded()) {
             System.out.println("I received a reply to the reply" + message.body);            
         } else {
             System.err.println("No reply to the reply was received before the 1 second timeout!");
+        }
+    }
+});
+</pre>
+<h4 id="getting-notified-of-reply-failures">Getting notified of reply failures</h4><br/>
+<p>If you send a message with a timeout and result handler, and there are no handlers available to send the message to, the handler will be called with a failed <code>AsyncResult</code> where the <code>cause()</code> is a <code>ReplyException</code>. The return value <code>failureType()</code> on the <code>ReplyException</code> instance is <code>ReplyFailure.NO_HANDLERS</code>.</p>
+<p>If you send a message with a timeout and result handler, and the recipent of the message responds by calling <code>Message.fail(..)</code>, the handler will be called with a failed <code>AsyncResult</code> where the <code>cause()</code> is a <code>ReplyException</code>. The return value <code>failureType()</code> on the <code>ReplyException</code> instance is <code>ReplyFailure.RECIPIENT_FAILURE</code>.</p>
+<p>For example</p>
+<pre class="prettyprint">eb.registerHandler("test.address", new Handler&lt;Message&lt;String&gt;&gt;() {
+    public void handle(Message&lt;String&gt; message) {
+        message.fail(123, "Not enough aardvarks");  
+    }
+});
+
+eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
+    public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
+        if (result.succeeded()) {
+            System.out.println("I received a reply " + message.body);            
+        } else {
+            ReplyException ex = (ReplyException)result.cause();
+            System.err.println("Failure type: " + ex.failureType();  
+            System.err.println("Failure code: " + ex.failureCode();                
+            System.err.println("Failure message: " + ex.message();
         }
     }
 });

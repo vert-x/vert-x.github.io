@@ -462,10 +462,14 @@ Here's an example:
             if (result.succeeded()) {
                 System.out.println("I received a reply " + message.body);            
             } else {
+
                 System.err.println("No reply was received before the 1 second timeout!");
             }
         }
     });
+
+If the send times out, the exception it is available with the `cause()` method of the `AsyncResult` is of type `ReplyException`. The return value `failureType()` on the `ReplyException` instance is `ReplyFailure.TIMEOUT`.
+
 
 You can also set a default timeout on the event bus itself - this timeout will be used if you are using the `send(...)` method on the event bus to send messages with a reply handler. The default value of the default timeout is `-1` which means that reply handlers will never timeout (this is for backward compatibility reasons with earlier versions of Vert.x).
 
@@ -489,6 +493,34 @@ When replying to messages you can also provide a timeout and a `Handler<AsyncRes
         }
     }); 
 
+#### Getting notified of reply failures
+
+If you send a message with a timeout and result handler, and there are no handlers available to send the message to, the handler will be called with a failed `AsyncResult` where the `cause()` is a `ReplyException`. The return value `failureType()` on the `ReplyException` instance is `ReplyFailure.NO_HANDLERS`.
+
+If you send a message with a timeout and result handler, and the recipent of the message responds by calling `Message.fail(..)`, the handler will be called with a failed `AsyncResult` where the `cause()` is a `ReplyException`. The return value `failureType()` on the `ReplyException` instance is `ReplyFailure.RECIPIENT_FAILURE`.
+
+For example
+
+    eb.registerHandler("test.address", new Handler<Message<String>>() {
+        public void handle(Message<String> message) {
+            message.fail(123, "Not enough aardvarks");  
+        }
+    });  
+
+    eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler<AsyncResult<Message<String>>>() {
+        public void handle(AsyncResult<Message<String>> result) {
+            if (result.succeeded()) {
+                System.out.println("I received a reply " + message.body);            
+            } else {
+                ReplyException ex = (ReplyException)result.cause();
+                System.err.println("Failure type: " + ex.failureType();  
+                System.err.println("Failure code: " + ex.failureCode();                
+                System.err.println("Failure message: " + ex.message();
+            }
+        }
+    });   
+
+    
 ### Message types
 
 The message you send can be any of the following types (or their matching boxed type):
