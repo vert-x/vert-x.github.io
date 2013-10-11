@@ -1674,7 +1674,17 @@ Here's an example which echoes HttpRequest headers and body back in the HttpResp
         }
     }).listen(8080, "localhost");
 
+### HTTP Compression
+
+Vert.x comes with support for HTTP Compression out of the box. Which means if you want to have your HTTPServer to automatically compress responses before those are send back the the Client. If the client does not support HTTP Compression the responses are send back without compress them. So you will be able to handle both cases.
+
+To enable compression you only need to do:
     
+    HttpServer server = vertx.createHttpServer();
+    server.setCompressionSupported(true);
+
+ The default is false.
+
 ## Writing HTTP Clients
 
 ### Creating an HTTP Client
@@ -1992,6 +2002,17 @@ An example will illustrate this:
     });
 
     request.sendHead();
+
+### HTTP Compression
+
+Vert.x comes with support for HTTP Compression out of the box. Which means the HTTPClient call tell the remote HTTP Server to compress responses before those are send back the the Client. If the server does not support HTTP Compression those will just not compressed. So you will be able to handle both cases.
+
+To enable compression you only need to do:
+    
+    HttpClient client = vertx.createHttpClient();
+    client.setTryUseCompression(true);
+
+The default is false.
 
 ## Pumping Requests and Responses
 

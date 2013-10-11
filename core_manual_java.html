@@ -212,6 +212,7 @@
 </li>
 <li><a href="#serving-files-directly-from-disk">Serving files directly from disk</a></li>
 <li><a href="#pumping-responses">Pumping Responses</a></li>
+<li><a href="#http-compression">HTTP Compression</a></li>
 </ul>
 </li>
 <li><a href="#writing-http-clients">Writing HTTP Clients</a><ul>
@@ -233,6 +234,7 @@
 </ul>
 </li>
 <li><a href="#100-continue-handling">100-Continue Handling</a></li>
+<li><a href="#http-compression_1">HTTP Compression</a></li>
 </ul>
 </li>
 <li><a href="#pumping-requests-and-responses">Pumping Requests and Responses</a></li>
@@ -741,6 +743,7 @@ JsonObject obj = new JsonObject().putString("foo", "wibble")
                                  .putNumber("age", 1000);
 
 eb.send("some-address", obj);
+
 
 // ....
 // And in a handler somewhere:
@@ -1522,6 +1525,13 @@ server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
     }
 }).listen(8080, "localhost");
 </pre>
+<h3 id="http-compression">HTTP Compression</h3><br/>
+<p>Vert.x comes with support for HTTP Compression out of the box. Which means if you want to have your HTTPServer to automatically compress responses before those are send back the the Client. If the client does not support HTTP Compression the responses are send back without compress them. So you will be able to handle both cases.</p>
+<p>To enable compression you only need to do:</p>
+<pre class="prettyprint">HttpServer server = vertx.createHttpServer();
+server.setCompressionSupported(true);
+</pre>
+<p>The default is false.</p>
 <h2 id="writing-http-clients">Writing HTTP Clients</h2><br/>
 <h3 id="creating-an-http-client">Creating an HTTP Client</h3><br/>
 <p>To create an HTTP client you call the <code>createHttpClient</code> method on your <code>vertx</code> instance:</p>
@@ -1757,6 +1767,13 @@ request.continueHandler(new VoidHandler() {
 
 request.sendHead();
 </pre>
+<h3 id="http-compression_1">HTTP Compression</h3><br/>
+<p>Vert.x comes with support for HTTP Compression out of the box. Which means the HTTPClient call tell the remote HTTP Server to compress responses before those are send back the the Client. If the server does not support HTTP Compression those will just not compressed. So you will be able to handle both cases.</p>
+<p>To enable compression you only need to do:</p>
+<pre class="prettyprint">HttpClient client = vertx.createHttpClient();
+client.setTryUseCompression(true);
+</pre>
+<p>The default is false.</p>
 <h2 id="pumping-requests-and-responses">Pumping Requests and Responses</h2><br/>
 <p>The HTTP client and server requests and responses all implement either <code>ReadStream</code> or <code>WriteStream</code>. This means you can pump between them and any other read and write streams.</p>
 <h2 id="https-servers">HTTPS Servers</h2><br/>
