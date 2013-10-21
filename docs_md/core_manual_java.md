@@ -1107,23 +1107,28 @@ Datagram is a connection-less transport which basically means you have no persis
 
 Instead you can send and receive packages and the remote address is contained in each of them. 
 
-Beside this Datagram is not as safe as TCP to use, which means there are no guaranteers that a send Datagram packet will receive it's endpoint at all. 
+Beside this Datagram is not as safe as TCP to use, which means there are no guaranteers that a send Datagram
+ packet will receive it's endpoint at all. 
 
 The only guaranteer is that it will either receive complete or not at all. 
 
-Also you usually can't send data which is bigger then the MTU size of yournetwork interface, this is because each packet will be send as one packet. 
+Also you usually can't send data which is bigger then the MTU size of yournetwork interface, this is because each
+ packet will be send as one packet. 
 
 But be aware even if the packet size is smaller then the MTU it may still fail. 
 
 At which size it will fail depends on the Operation System etc. So rule of thumb is to try to send small packets.
 
-Because of the nature of UDP it is best fit for Applications where you are allowed to drop packets (like for example a monitoring application). 
+Because of the nature of UDP it is best fit for Applications where you are allowed to drop packets (like for
+ example a monitoring application). 
 
-The benefits are that it has a lot less overhead compared to TCP, which can be handled by the NetServer and NetClient (see above).
+The benefits are that it has a lot less overhead compared to TCP, which can be handled by the NetServer and
+ NetClient (see above).
 
 ## Creating a DatagramSocket
 
-To use Datagram you first need t create a DatagramSocket. It not matter here if you only want to send data or send and receive.
+To use Datagram you first need t create a DatagramSocket. It not matter here if you only want to send data 
+or send and receive.
 
     DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
 
@@ -1133,7 +1138,8 @@ This is not a problem if you only want to send data (like a client), but more on
 
 ## Sending Datagram packets
 
-Like mention before, Datagram (UDP) send data in packets to remote peers but is not connected to them in a persistent fashion.
+Like mention before, Datagram (UDP) send data in packets to remote peers but is not connected to them in a
+ persistent fashion.
 
 This means each packet can be send to a different remote peer.
 
