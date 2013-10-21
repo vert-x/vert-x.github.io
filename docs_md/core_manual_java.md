@@ -1101,13 +1101,21 @@ To configure a client to only trust those certificates it has in its trust store
 
 # Datagram / UDP 
 
-Using Datagram (UDP) with Vert.x is a piece of cake. Datagram is a connection-less transport which basically means you have no persistent connection to a remote peer.
+Using Datagram (UDP) with Vert.x is a piece of cake. 
 
-Instead you can send and receive packages and the remote address is contained in each of them. Beside this Datagram is not as safe as TCP to use, which means there are no guaranteers that a send Datagram packet will receive it's endpoint at all. 
+Datagram is a connection-less transport which basically means you have no persistent connection to a remote peer.
 
-The only guaranteer is that it will either receive complete or not at all. Also you usually can't send data which is bigger then the MTU size of yournetwork interface, this is because each packet will be send as one packet. 
+Instead you can send and receive packages and the remote address is contained in each of them. 
 
-But be aware even if the packet size is smaller then the MTU it may still fail. At which size it will fail depends on the Operation System etc. So rule of thumb is to try to send small packets.
+Beside this Datagram is not as safe as TCP to use, which means there are no guaranteers that a send Datagram packet will receive it's endpoint at all. 
+
+The only guaranteer is that it will either receive complete or not at all. 
+
+Also you usually can't send data which is bigger then the MTU size of yournetwork interface, this is because each packet will be send as one packet. 
+
+But be aware even if the packet size is smaller then the MTU it may still fail. 
+
+At which size it will fail depends on the Operation System etc. So rule of thumb is to try to send small packets.
 
 Because of the nature of UDP it is best fit for Applications where you are allowed to drop packets (like for example a monitoring application). 
 
@@ -1119,7 +1127,9 @@ To use Datagram you first need t create a DatagramSocket. It not matter here if 
 
     DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
 
-The returned DatagramSocket will not be bound to a specific port. This is not a problem if you only want to send data (like a client), but more on this in the next section.
+The returned DatagramSocket will not be bound to a specific port. 
+
+This is not a problem if you only want to send data (like a client), but more on this in the next section.
 
 ## Sending Datagram packets
 
@@ -1176,7 +1186,9 @@ So to listen on a specific address and port you would do something like shown he
     });
 
 
-Be aware that even if the AsyncResult is successed it only means it could be written on the network stack, but gives no guaranteer that it ever reached or will reach the remote peer at all.
+Be aware that even if the AsyncResult is successed it only means it could be written on the network stack, 
+
+but gives no guaranteer that it ever reached or will reach the remote peer at all.
 
 If you need such a guaranteer then you want to use TCP with some handshaking logic build on top.
 
@@ -1207,9 +1219,13 @@ All sockets that have joined the used multicast group 230.0.0.1 will receive the
    
 ### Receiving Multicast packets
 
-If you want to receive packets for specific Multicast group you need to bind the DatagramSocket by calling `listen(...)` on it and join the Multicast group.
+If you want to receive packets for specific Multicast group you need to bind the DatagramSocket by calling
 
-This way you will be able to received DatagramPackets that was send the address and port on which the DatagramSocket listens and also to those send to the Multicast group.
+ `listen(...)` on it and join the Multicast group.
+
+This way you will be able to received DatagramPackets that was send the address and port on which the DatagramSocket 
+
+listens and also to those send to the Multicast group.
 
 Beside this you also want to set a Handler which will be called for each received DatagramPacket.
 
@@ -1219,7 +1235,9 @@ The DatagramPacket has the following methods:
 * `data()`:     The Buffer which holds the data which was received.
 
 
-So to listen on a specific address and port and also receive packets for the Multicast group 230.0.0.1 you would do something like shown here:
+So to listen on a specific address and port and also receive packets for the Multicast group 230.0.0.1
+
+you would do something like shown here:
 
     final DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
     socket.listen("0.0.0.0", 1234, new AsyncResultHandler<DatagramSocket>() {
@@ -1323,12 +1341,16 @@ Those are listed here:
 
 * `setTrafficClass(trafficClass)`
 
-* `setBroadcast(broadcast)` Sets or clears the SO_BROADCAST socket option. When this option is set, Datagram (UDP) packets may be sent to a local interface's broadcast address.
+* `setBroadcast(broadcast)` Sets or clears the SO_BROADCAST socket option. When this option is set, 
+                            Datagram (UDP) packets may be sent to a local interface's broadcast address.
 
-* `setMulticastLoopbackMode(loopbackModeDisabled)` Sets or clears the IP_MULTICAST_LOOP socket option. When this option is set, multicast packets will also be received on the local interface. 
+* `setMulticastLoopbackMode(loopbackModeDisabled)` Sets or clears the IP_MULTICAST_LOOP socket option.
+                                                   When this option is set, multicast packets will also be received on the local interface. 
 
-* `setMulticastTimeToLive(int ttl)` Sets the IP_MULTICAST_TTL socket option. TTL stands for "Time to Live," but in this context it specifies the number of IP hops that a packet is allowed to go through, 
-                                    specifically for multicast traffic. Each router or gateway that forwards a packet decrements the TTL. If the TTL is decremented to 0 by a router, it will not be forwarded.
+* `setMulticastTimeToLive(int ttl)` Sets the IP_MULTICAST_TTL socket option. TTL stands for "Time to Live," but in this context it specifies 
+                                    the number of IP hops that a packet is allowed to go through, specifically for multicast traffic. 
+                                    Each router or gateway that forwards a packet decrements the TTL. If the TTL is decremented to 0 by a router,
+                                    it will not be forwarded.
 
 ## DatagramSocket Local Address
 
