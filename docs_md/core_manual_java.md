@@ -1158,7 +1158,8 @@ Sending packets is as easy as shown here:
 
 If you want to receive packets you need to bind the DatagramSocket by calling `listen(...)` on it. 
 
-This way you will be able to received DatagramPackets that was send the address and port on which the DatagramSocket listens.
+This way you will be able to received DatagramPackets that was send the address and port on which
+the DatagramSocket listens.
 
 Beside this you also want to set a Handler which will be called for each received DatagramPacket.
 
@@ -1187,7 +1188,6 @@ So to listen on a specific address and port you would do something like shown he
 
 
 Be aware that even if the AsyncResult is successed it only means it could be written on the network stack, 
-
 but gives no guaranteer that it ever reached or will reach the remote peer at all.
 
 If you need such a guaranteer then you want to use TCP with some handshaking logic build on top.
@@ -1196,11 +1196,13 @@ If you need such a guaranteer then you want to use TCP with some handshaking log
 
 ### Sending Multicast packets
 
-Multicast allows multiple sockets to receive the same packets. This works by have same join a multicast group to which you can send packets.
+Multicast allows multiple sockets to receive the same packets. This works by have same join a multicast
+group to which you can send packets.
 
 We will look at how you can joint a Multicast Group and so receive packets in the next section. 
 
-For now let us focus on how to send those. Sending multicast packets is not different to send normal Datagram Packets.
+For now let us focus on how to send those. Sending multicast packets is not different to send normal 
+Datagram Packets.
 
 The only difference is that you would pass in a multicast group address to the send method.
 
@@ -1219,11 +1221,13 @@ All sockets that have joined the used multicast group 230.0.0.1 will receive the
    
 ### Receiving Multicast packets
 
-If you want to receive packets for specific Multicast group you need to bind the DatagramSocket by calling
+If you want to receive packets for specific Multicast group you need to bind the DatagramSocket
+ by calling
 
  `listen(...)` on it and join the Multicast group.
 
-This way you will be able to received DatagramPackets that was send the address and port on which the DatagramSocket 
+This way you will be able to received DatagramPackets that was send the address and port
+ on which the DatagramSocket 
 
 listens and also to those send to the Multicast group.
 
@@ -1235,9 +1239,8 @@ The DatagramPacket has the following methods:
 * `data()`:     The Buffer which holds the data which was received.
 
 
-So to listen on a specific address and port and also receive packets for the Multicast group 230.0.0.1
-
-you would do something like shown here:
+So to listen on a specific address and port and also receive packets for the Multicast
+ group 230.0.0.1 you would do something like shown here:
 
     final DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
     socket.listen("0.0.0.0", 1234, new AsyncResultHandler<DatagramSocket>() {
@@ -1263,7 +1266,8 @@ you would do something like shown here:
 
 ### Unlisten / leave a Multicast group 
 
-There are sometimes situations where you want to receive packets for a Multicast group for a limited time. 
+There are sometimes situations where you want to receive packets for a Multicast group for
+ a limited time. 
 
 In this situations you can first start to listen for them and then later unlisten. 
 
@@ -1312,11 +1316,13 @@ This is shown here:
 
 Beside unlisten a Multicast address it's also possible to just block multicast for a specific sender address.
 
-Be aware this only work on some Operation Systems and kernel version. So please check the Operation System documentation if it's supported.
+Be aware this only work on some Operation Systems and kernel version. So please check the Operation System
+ documentation if it's supported.
 
 This an expert feature.
 
-To block multicast from a specic address you can call `blockMulticastGroup(...)` on the DatagramSocket like shown here:
+To block multicast from a specic address you can call `blockMulticastGroup(...)` on the DatagramSocket
+ like shown here:
 
     final DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
     ...
@@ -1337,7 +1343,8 @@ Those are listed here:
 
 * `setReceiveBufferSize(size)` Sets the TCP receive buffer size in bytes.
 
-* `setReuseAddress(reuse)` if `reuse` is true then addresses in TIME_WAIT state can be reused after they have been closed.
+* `setReuseAddress(reuse)` if `reuse` is true then addresses in TIME_WAIT state can be reused after
+                         they have been closed.
 
 * `setTrafficClass(trafficClass)`
 
@@ -1345,17 +1352,21 @@ Those are listed here:
                             Datagram (UDP) packets may be sent to a local interface's broadcast address.
 
 * `setMulticastLoopbackMode(loopbackModeDisabled)` Sets or clears the IP_MULTICAST_LOOP socket option.
-                                                   When this option is set, multicast packets will also be received on the local interface. 
+                                                   When this option is set, multicast packets will
+                                                   also be received on the local interface. 
 
-* `setMulticastTimeToLive(int ttl)` Sets the IP_MULTICAST_TTL socket option. TTL stands for "Time to Live," but in this context it specifies 
-                                    the number of IP hops that a packet is allowed to go through, specifically for multicast traffic. 
-                                    Each router or gateway that forwards a packet decrements the TTL. If the TTL is decremented to 0 by a router,
-                                    it will not be forwarded.
+* `setMulticastTimeToLive(int ttl)` Sets the IP_MULTICAST_TTL socket option. TTL stands for "Time to Live,"
+                                    but in this context it specifies the number of IP hops that a packet is
+                                    allowed to go through, specifically for multicast traffic. Each router
+                                    or gateway that forwards a packet decrements the TTL. If the TTL is
+                                    decremented to 0 by a router, it will not be forwarded.
 
 ## DatagramSocket Local Address
 
-You can find out the local address of the socket (i.e. the address of this side of the UDP Socket) by calling `localAddress()`.
-This will only return an InetSocketAddress if you bound the DatagramSocket with `listen(...)` before, otherwise it will return null.
+You can find out the local address of the socket (i.e. the address of this side of the UDP Socket) by calling
+ `localAddress()`.
+This will only return an InetSocketAddress if you bound the DatagramSocket with `listen(...)` before, otherwise
+ it will return null.
     
 ## Closing a DatagramSocket
 
