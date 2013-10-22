@@ -1526,12 +1526,20 @@ server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
 }).listen(8080, "localhost");
 </pre>
 <h3 id="http-compression">HTTP Compression</h3><br/>
-<p>Vert.x comes with support for HTTP Compression out of the box. Which means if you want to have your HTTPServer to automatically compress responses before those are send back the the Client. If the client does not support HTTP Compression the responses are send back without compress them. So you will be able to handle both cases.</p>
+<p>Vert.x comes with support for HTTP Compression out of the box. 
+Which means you are able to automatically compress the body of the responses before those are send back the the Client. 
+If the client does not support HTTP Compression the responses are send back without compress the body. 
+This allows to handle Client that support HTTP Compression and those that not support it at the same time.</p>
 <p>To enable compression you only need to do:</p>
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
 server.setCompressionSupported(true);
 </pre>
 <p>The default is false.</p>
+<p>When HTTP Compression is enabled the <code>HttpServer</code> will check if the client did include an 'Accept-Encoding' header which
+includes the supported compressions. Common used are deflate and gzip. Both are supported by Vert.x.
+Once such a header is found the <code>HttpServer</code> will automatically compress the body of the response with one of the supported
+compressions and send it back to the client.</p>
+<p>Be aware that compression may be able to reduce network traffic but is more cpu-intensive.</p>
 <h2 id="writing-http-clients">Writing HTTP Clients</h2><br/>
 <h3 id="creating-an-http-client">Creating an HTTP Client</h3><br/>
 <p>To create an HTTP client you call the <code>createHttpClient</code> method on your <code>vertx</code> instance:</p>
@@ -1768,7 +1776,19 @@ request.continueHandler(new VoidHandler() {
 request.sendHead();
 </pre>
 <h3 id="http-compression_1">HTTP Compression</h3><br/>
-<p>Vert.x comes with support for HTTP Compression out of the box. Which means the HTTPClient call tell the remote HTTP Server to compress responses before those are send back the the Client. If the server does not support HTTP Compression those will just not compressed. So you will be able to handle both cases.</p>
+<p>Vert.x comes with support for HTTP Compression out of the box. Which means the HTTPClient can let the remote Http server know that it supports compression, and so will be able to handle
+compressed response bodies. A Http server is free to either compress with one of the supported compression algorithm or send the body back without compress it at all. So this
+is only a hint for the Http server which it may ignore at all.</p>
+<p>To tell the Http server which compression is supported by the <code>HttpClient</code> it will include a 'Accept-Encoding' header with the supported
+compression algorithm as value. Multiple compression algorithms are supported. In case of Vert.x this will result in have the 
+following header added:</p>
+<pre class="prettyprint">Accept-Encoding: gzip, deflate
+</pre>
+<p>The Http Server will choose then from one of these. You can detect if a HttpServer did compress the body by checking for the
+'Content-Encoding' header in the response sent back from it.</p>
+<p>If the body of the response was compressed via gzip it will include for example the following header:</p>
+<pre class="prettyprint">Content-Encoding: gzip
+</pre>
 <p>To enable compression you only need to do:</p>
 <pre class="prettyprint">HttpClient client = vertx.createHttpClient();
 client.setTryUseCompression(true);

@@ -1676,7 +1676,10 @@ Here's an example which echoes HttpRequest headers and body back in the HttpResp
 
 ### HTTP Compression
 
-Vert.x comes with support for HTTP Compression out of the box. Which means if you want to have your HTTPServer to automatically compress responses before those are send back the the Client. If the client does not support HTTP Compression the responses are send back without compress them. So you will be able to handle both cases.
+Vert.x comes with support for HTTP Compression out of the box. 
+Which means you are able to automatically compress the body of the responses before those are send back the the Client. 
+If the client does not support HTTP Compression the responses are send back without compress the body. 
+This allows to handle Client that support HTTP Compression and those that not support it at the same time.
 
 To enable compression you only need to do:
     
@@ -1684,6 +1687,13 @@ To enable compression you only need to do:
     server.setCompressionSupported(true);
 
  The default is false.
+
+When HTTP Compression is enabled the `HttpServer` will check if the client did include an 'Accept-Encoding' header which
+includes the supported compressions. Common used are deflate and gzip. Both are supported by Vert.x.
+Once such a header is found the `HttpServer` will automatically compress the body of the response with one of the supported
+compressions and send it back to the client.
+
+Be aware that compression may be able to reduce network traffic but is more cpu-intensive.
 
 ## Writing HTTP Clients
 
@@ -2005,7 +2015,22 @@ An example will illustrate this:
 
 ### HTTP Compression
 
-Vert.x comes with support for HTTP Compression out of the box. Which means the HTTPClient call tell the remote HTTP Server to compress responses before those are send back the the Client. If the server does not support HTTP Compression those will just not compressed. So you will be able to handle both cases.
+Vert.x comes with support for HTTP Compression out of the box. Which means the HTTPClient can let the remote Http server know that it supports compression, and so will be able to handle
+compressed response bodies. A Http server is free to either compress with one of the supported compression algorithm or send the body back without compress it at all. So this
+is only a hint for the Http server which it may ignore at all.
+
+To tell the Http server which compression is supported by the `HttpClient` it will include a 'Accept-Encoding' header with the supported
+compression algorithm as value. Multiple compression algorithms are supported. In case of Vert.x this will result in have the 
+following header added:
+
+    Accept-Encoding: gzip, deflate
+
+The Http Server will choose then from one of these. You can detect if a HttpServer did compress the body by checking for the
+'Content-Encoding' header in the response sent back from it.
+
+If the body of the response was compressed via gzip it will include for example the following header:
+
+    Content-Encoding: gzip
 
 To enable compression you only need to do:
     
