@@ -175,7 +175,7 @@
 <li><a href="#ssl-clients">SSL Clients</a></li>
 </ul>
 </li>
-<li><a href="#datagram-udp">Datagram / UDP</a><ul>
+<li><a href="#user-datagram-protocol-udp">User Datagram Protocol (UDP)</a><ul>
 <li><a href="#creating-a-datagramsocket">Creating a DatagramSocket</a></li>
 <li><a href="#sending-datagram-packets">Sending Datagram packets</a></li>
 <li><a href="#receiving-datagram-packets">Receiving Datagram packets</a></li>
@@ -1138,25 +1138,31 @@ client.setReconnectInterval(500);
                .setKeyStorePath("/path/to/keystore/holding/client/cert/client-keystore.jks")
                .setKeyStorePassword("password");
 </pre>
-<h1 id="datagram-udp">Datagram / UDP</h1><br/>
-<p>Using Datagram (UDP) with Vert.x is a piece of cake. </p>
-<p>Datagram is a connection-less transport which basically means you have no persistent connection to a remote peer.</p>
+<h1 id="user-datagram-protocol-udp">User Datagram Protocol (UDP)</h1><br/>
+<p>Using  User Datagram Protocol (UDP) with Vert.x is a piece of cake. </p>
+<p>UDP is a connection-less transport which basically means you have no persistent connection to a remote peer.</p>
 <p>Instead you can send and receive packages and the remote address is contained in each of them. </p>
-<p>Beside this Datagram is not as safe as TCP to use, which means there are no guaranteers that a send Datagram packet will receive it's endpoint at all. </p>
+<p>Beside this UDP is not as safe as TCP to use, which means there are no guaranteers that a send Datagram
+ packet will receive it's endpoint at all. </p>
 <p>The only guaranteer is that it will either receive complete or not at all. </p>
-<p>Also you usually can't send data which is bigger then the MTU size of yournetwork interface, this is because each packet will be send as one packet. </p>
+<p>Also you usually can't send data which is bigger then the MTU size of yournetwork interface, this is because each
+ packet will be send as one packet. </p>
 <p>But be aware even if the packet size is smaller then the MTU it may still fail. </p>
 <p>At which size it will fail depends on the Operation System etc. So rule of thumb is to try to send small packets.</p>
-<p>Because of the nature of UDP it is best fit for Applications where you are allowed to drop packets (like for example a monitoring application). </p>
-<p>The benefits are that it has a lot less overhead compared to TCP, which can be handled by the NetServer and NetClient (see above).</p>
+<p>Because of the nature of UDP it is best fit for Applications where you are allowed to drop packets (like for
+ example a monitoring application). </p>
+<p>The benefits are that it has a lot less overhead compared to TCP, which can be handled by the NetServer and
+ NetClient (see above).</p>
 <h2 id="creating-a-datagramsocket">Creating a DatagramSocket</h2><br/>
-<p>To use Datagram you first need t create a DatagramSocket. It not matter here if you only want to send data or send and receive.</p>
+<p>To use UDP you first need t create a <code>DatagramSocket</code>. It not matter here if you only want to send data 
+or send and receive.</p>
 <pre class="prettyprint">DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
 </pre>
-<p>The returned DatagramSocket will not be bound to a specific port. </p>
+<p>The returned <code>DatagramSocket</code> will not be bound to a specific port. </p>
 <p>This is not a problem if you only want to send data (like a client), but more on this in the next section.</p>
 <h2 id="sending-datagram-packets">Sending Datagram packets</h2><br/>
-<p>Like mention before, Datagram (UDP) send data in packets to remote peers but is not connected to them in a persistent fashion.</p>
+<p>Like mention before, User Datagram Protocol (UDP) send data in packets to remote peers but is not connected to them in a
+ persistent fashion.</p>
 <p>This means each packet can be send to a different remote peer.</p>
 <p>Sending packets is as easy as shown here:</p>
 <pre class="prettyprint">DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
@@ -1175,11 +1181,11 @@ socket.send("A string used as content", "10.0.0.1", 1234, new AsyncResultHandler
 });
 </pre>
 <h2 id="receiving-datagram-packets">Receiving Datagram packets</h2><br/>
-<p>If you want to receive packets you need to bind the DatagramSocket by calling <code>listen(...)</code> on it. </p>
-<p>This way you will be able to received DatagramPackets that was send the address and port on which
-the DatagramSocket listens.</p>
-<p>Beside this you also want to set a Handler which will be called for each received DatagramPacket.</p>
-<p>The DatagramPacket has the following methods:</p>
+<p>If you want to receive packets you need to bind the <code>DatagramSocket</code> by calling <code>listen(...)</code> on it. </p>
+<p>This way you will be able to received <code>DatagramPacket</code>s that was send the address and port on which
+the <code>DatagramSocket</code> listens.</p>
+<p>Beside this you also want to set a <code>Handler</code> which will be called for each received <code>DatagramPacket</code>.</p>
+<p>The <code>DatagramPacket</code> has the following methods:</p>
 <ul>
 <li><code>sender()</code>:   The InetSocketAddress which represent the sender of the packet</li>
 <li><code>data()</code>:     The Buffer which holds the data which was received.</li>
@@ -1200,7 +1206,7 @@ socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
     }  
 });
 </pre>
-<p>Be aware that even if the AsyncResult is successed it only means it could be written on the network stack, 
+<p>Be aware that even if the <code>AsyncResult</code> is successed it only means it could be written on the network stack, 
 but gives no guaranteer that it ever reached or will reach the remote peer at all.</p>
 <p>If you need such a guaranteer then you want to use TCP with some handshaking logic build on top.</p>
 <h2 id="multicast">Multicast</h2><br/>
@@ -1223,14 +1229,14 @@ socket.send(buffer, "230.0.0.1", 1234, new AsyncResultHandler&lt;DatagramSocket&
 </pre>
 <p>All sockets that have joined the used multicast group 230.0.0.1 will receive the packet.</p>
 <h3 id="receiving-multicast-packets">Receiving Multicast packets</h3><br/>
-<p>If you want to receive packets for specific Multicast group you need to bind the DatagramSocket
+<p>If you want to receive packets for specific Multicast group you need to bind the <code>DatagramSocket</code>
  by calling</p>
 <p><code>listen(...)</code> on it and join the Multicast group.</p>
-<p>This way you will be able to received DatagramPackets that was send the address and port
- on which the DatagramSocket </p>
+<p>This way you will be able to received <code>DatagramPackets</code> that was send the address and port
+ on which the <code>DatagramSocket</code> </p>
 <p>listens and also to those send to the Multicast group.</p>
 <p>Beside this you also want to set a Handler which will be called for each received DatagramPacket.</p>
-<p>The DatagramPacket has the following methods:</p>
+<p>The <code>DatagramPacket</code> has the following methods:</p>
 <ul>
 <li><code>sender()</code>:   The InetSocketAddress which represent the sender of the packet</li>
 <li><code>data()</code>:     The Buffer which holds the data which was received.</li>
@@ -1321,7 +1327,7 @@ socket.blockMulticastGroup("230.0.0.1", "10.0.0.2", new AsyncResultHandler&lt;Da
 });
 </pre>
 <h2 id="datagramsocket-properties">DatagramSocket properties</h2><br/>
-<p>When using the DatagramSocket there are multiple properties you can set to change it's behaviour. 
+<p>When using the <code>DatagramSocket</code> there are multiple properties you can set to change it's behaviour. 
 Those are listed here:</p>
 <ul>
 <li>
@@ -1357,7 +1363,7 @@ Those are listed here:</p>
 <h2 id="datagramsocket-local-address">DatagramSocket Local Address</h2><br/>
 <p>You can find out the local address of the socket (i.e. the address of this side of the UDP Socket) by calling
  <code>localAddress()</code>.
-This will only return an InetSocketAddress if you bound the DatagramSocket with <code>listen(...)</code> before, otherwise
+This will only return an InetSocketAddress<code>if you bound the</code>DatagramSocket<code>with</code>listen(...)` before, otherwise
  it will return null.</p>
 <h2 id="closing-a-datagramsocket">Closing a DatagramSocket</h2><br/>
 <p>You can close a socket by invoking the <code>close</code> method. This will close the socket and release all resources</p>

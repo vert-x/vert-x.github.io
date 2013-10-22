@@ -1099,15 +1099,15 @@ To configure a client to only trust those certificates it has in its trust store
                    .setKeyStorePath("/path/to/keystore/holding/client/cert/client-keystore.jks")
                    .setKeyStorePassword("password");
 
-# Datagram / UDP 
+# User Datagram Protocol (UDP) 
 
-Using Datagram (UDP) with Vert.x is a piece of cake. 
+Using  User Datagram Protocol (UDP) with Vert.x is a piece of cake. 
 
-Datagram is a connection-less transport which basically means you have no persistent connection to a remote peer.
+UDP is a connection-less transport which basically means you have no persistent connection to a remote peer.
 
 Instead you can send and receive packages and the remote address is contained in each of them. 
 
-Beside this Datagram is not as safe as TCP to use, which means there are no guaranteers that a send Datagram
+Beside this UDP is not as safe as TCP to use, which means there are no guaranteers that a send Datagram
  packet will receive it's endpoint at all. 
 
 The only guaranteer is that it will either receive complete or not at all. 
@@ -1127,18 +1127,18 @@ The benefits are that it has a lot less overhead compared to TCP, which can be h
 
 ## Creating a DatagramSocket
 
-To use Datagram you first need t create a DatagramSocket. It not matter here if you only want to send data 
+To use UDP you first need t create a `DatagramSocket`. It not matter here if you only want to send data 
 or send and receive.
 
     DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
 
-The returned DatagramSocket will not be bound to a specific port. 
+The returned `DatagramSocket` will not be bound to a specific port. 
 
 This is not a problem if you only want to send data (like a client), but more on this in the next section.
 
 ## Sending Datagram packets
 
-Like mention before, Datagram (UDP) send data in packets to remote peers but is not connected to them in a
+Like mention before, User Datagram Protocol (UDP) send data in packets to remote peers but is not connected to them in a
  persistent fashion.
 
 This means each packet can be send to a different remote peer.
@@ -1162,14 +1162,14 @@ Sending packets is as easy as shown here:
 
 ## Receiving Datagram packets
 
-If you want to receive packets you need to bind the DatagramSocket by calling `listen(...)` on it. 
+If you want to receive packets you need to bind the `DatagramSocket` by calling `listen(...)` on it. 
 
-This way you will be able to received DatagramPackets that was send the address and port on which
-the DatagramSocket listens.
+This way you will be able to received `DatagramPacket`s that was send the address and port on which
+the `DatagramSocket` listens.
 
-Beside this you also want to set a Handler which will be called for each received DatagramPacket.
+Beside this you also want to set a `Handler` which will be called for each received `DatagramPacket`.
 
-The DatagramPacket has the following methods:
+The `DatagramPacket` has the following methods:
 
 * `sender()`:   The InetSocketAddress which represent the sender of the packet
 * `data()`:     The Buffer which holds the data which was received.
@@ -1193,7 +1193,7 @@ So to listen on a specific address and port you would do something like shown he
     });
 
 
-Be aware that even if the AsyncResult is successed it only means it could be written on the network stack, 
+Be aware that even if the `AsyncResult` is successed it only means it could be written on the network stack, 
 but gives no guaranteer that it ever reached or will reach the remote peer at all.
 
 If you need such a guaranteer then you want to use TCP with some handshaking logic build on top.
@@ -1227,19 +1227,19 @@ All sockets that have joined the used multicast group 230.0.0.1 will receive the
    
 ### Receiving Multicast packets
 
-If you want to receive packets for specific Multicast group you need to bind the DatagramSocket
+If you want to receive packets for specific Multicast group you need to bind the `DatagramSocket`
  by calling
 
  `listen(...)` on it and join the Multicast group.
 
-This way you will be able to received DatagramPackets that was send the address and port
- on which the DatagramSocket 
+This way you will be able to received `DatagramPackets` that was send the address and port
+ on which the `DatagramSocket` 
 
 listens and also to those send to the Multicast group.
 
 Beside this you also want to set a Handler which will be called for each received DatagramPacket.
 
-The DatagramPacket has the following methods:
+The `DatagramPacket` has the following methods:
 
 * `sender()`:   The InetSocketAddress which represent the sender of the packet
 * `data()`:     The Buffer which holds the data which was received.
@@ -1342,7 +1342,7 @@ To block multicast from a specic address you can call `blockMulticastGroup(...)`
 
 ## DatagramSocket properties
 
-When using the DatagramSocket there are multiple properties you can set to change it's behaviour. 
+When using the `DatagramSocket` there are multiple properties you can set to change it's behaviour. 
 Those are listed here:
 
 * `setSendBufferSize(size)` Sets the send buffer size in bytes.
@@ -1371,7 +1371,7 @@ Those are listed here:
 
 You can find out the local address of the socket (i.e. the address of this side of the UDP Socket) by calling
  `localAddress()`.
-This will only return an InetSocketAddress if you bound the DatagramSocket with `listen(...)` before, otherwise
+This will only return an InetSocketAddress` if you bound the `DatagramSocket` with `listen(...)` before, otherwise
  it will return null.
     
 ## Closing a DatagramSocket
