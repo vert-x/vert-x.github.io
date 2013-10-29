@@ -112,7 +112,11 @@
 <li><a href="#registering-and-unregistering-handlers">Registering and Unregistering Handlers</a></li>
 <li><a href="#publishing-messages">Publishing messages</a></li>
 <li><a href="#sending-messages">Sending messages</a></li>
-<li><a href="#replying-to-messages">Replying to messages</a></li>
+<li><a href="#replying-to-messages">Replying to messages</a><ul>
+<li><a href="#specifying-timeouts-for-replies">Specifying timeouts for replies</a></li>
+<li><a href="#getting-notified-of-reply-failures">Getting notified of reply failures</a></li>
+</ul>
+</li>
 <li><a href="#message-types">Message types</a></li>
 </ul>
 </li>
@@ -612,6 +616,65 @@ eb.registerHandler("test.address", myHandler);
 </pre>
 <p>It is legal also to send an empty reply or a null reply.</p>
 <p>The replies themselves can also be replied to so you can create a dialog between two different verticles consisting of multiple rounds.</p>
+<h4 id="specifying-timeouts-for-replies">Specifying timeouts for replies</h4><br/>
+<p>If you send a message specifying a reply handler, and the reply never comes, then, by default, you'll be left with a handler that never gets unregistered.</p>
+<p>To remedy this you can also specify a <code>Handler&lt;AsyncResult&lt;Message&gt;&gt;</code> as a reply handler and a timeout in ms. If a reply is received before timeout your handler will be called with an <code>AsyncResult</code> containing the message, but if no reply is received before timeout, the handler will be automatically unregistered and your handler will be called with a failed result so you can deal with it in your code.</p>
+<p>Here's an example:</p>
+<pre class="prettyprint">eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
+    public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
+        if (result.succeeded()) {
+            System.out.println("I received a reply " + message.body);            
+        } else {
+
+            System.err.println("No reply was received before the 1 second timeout!");
+        }
+    }
+});
+</pre>
+<p>If the send times out, the exception it is available with the <code>cause()</code> method of the <code>AsyncResult</code> is of type <code>ReplyException</code>. The return value <code>failureType()</code> on the <code>ReplyException</code> instance is <code>ReplyFailure.TIMEOUT</code>.</p>
+<p>You can also set a default timeout on the event bus itself - this timeout will be used if you are using the <code>send(...)</code> method on the event bus to send messages with a reply handler. The default value of the default timeout is <code>-1</code> which means that reply handlers will never timeout (this is for backward compatibility reasons with earlier versions of Vert.x).</p>
+<pre class="prettyprint">eb.setDefaultReplyTimeout(5000);
+
+eb.send("test.address", "This is a message", new Handler&lt;Message&lt;String&gt;&gt;() {
+    public void handle(Message&lt;String&gt; message) {
+        System.out.println("I received a reply before the timeout of 5 seconds");            
+    }
+});
+</pre>
+<p>When replying to messages you can also provide a timeout and a <code>Handler&lt;AsyncResult&lt;Message&gt;&gt;</code> to get replies to the replies within a timeout. The API used is similar to before:</p>
+<pre class="prettyprint">message.replyWithTimeout("This is a reply", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
+    public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
+        if (result.succeeded()) {
+            System.out.println("I received a reply to the reply" + message.body);            
+        } else {
+            System.err.println("No reply to the reply was received before the 1 second timeout!");
+        }
+    }
+});
+</pre>
+<h4 id="getting-notified-of-reply-failures">Getting notified of reply failures</h4><br/>
+<p>If you send a message with a timeout and result handler, and there are no handlers available to send the message to, the handler will be called with a failed <code>AsyncResult</code> where the <code>cause()</code> is a <code>ReplyException</code>. The return value <code>failureType()</code> on the <code>ReplyException</code> instance is <code>ReplyFailure.NO_HANDLERS</code>.</p>
+<p>If you send a message with a timeout and result handler, and the recipent of the message responds by calling <code>Message.fail(..)</code>, the handler will be called with a failed <code>AsyncResult</code> where the <code>cause()</code> is a <code>ReplyException</code>. The return value <code>failureType()</code> on the <code>ReplyException</code> instance is <code>ReplyFailure.RECIPIENT_FAILURE</code>.</p>
+<p>For example</p>
+<pre class="prettyprint">eb.registerHandler("test.address", new Handler&lt;Message&lt;String&gt;&gt;() {
+    public void handle(Message&lt;String&gt; message) {
+        message.fail(123, "Not enough aardvarks");  
+    }
+});
+
+eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
+    public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
+        if (result.succeeded()) {
+            System.out.println("I received a reply " + message.body);            
+        } else {
+            ReplyException ex = (ReplyException)result.cause();
+            System.err.println("Failure type: " + ex.failureType();  
+            System.err.println("Failure code: " + ex.failureCode();                
+            System.err.println("Failure message: " + ex.message();
+        }
+    }
+});
+</pre>
 <h3 id="message-types">Message types</h3><br/>
 <p>The message you send can be any of the following types (or their matching boxed type):</p>
 <ul>
