@@ -305,6 +305,38 @@
 </li>
 </ul>
 </li>
+<li><a href="#dns-client">DNS Client</a><ul>
+<li><a href="#lookup">lookup</a></li>
+<li><a href="#lookup4">lookup4</a></li>
+<li><a href="#lookup6">lookup6</a></li>
+<li><a href="#resolvea">resolveA</a></li>
+<li><a href="#resolveaaaa">resolveAAAA</a></li>
+<li><a href="#resolvecname">resolveCNAME</a></li>
+<li><a href="#resolvemx">resolveMX</a></li>
+<li><a href="#resolvetxt">resolveTXT</a></li>
+<li><a href="#resolvens">resolveNS</a></li>
+<li><a href="#resolvesrv">resolveSRV</a></li>
+<li><a href="#resolveptr">resolvePTR</a></li>
+<li><a href="#reverselookup">reverseLookup</a></li>
+<li><a href="#error-handling">Error handling</a><ul>
+<li><a href="#noerror">NOERROR</a></li>
+<li><a href="#formerror">FORMERROR</a></li>
+<li><a href="#servfail">SERVFAIL</a></li>
+<li><a href="#nxdomain">NXDOMAIN</a></li>
+<li><a href="#notimpl">NOTIMPL</a></li>
+<li><a href="#refused">REFUSED</a></li>
+<li><a href="#yxdomain">YXDOMAIN</a></li>
+<li><a href="#yxrrset">YXRRSET</a></li>
+<li><a href="#nxrrset">NXRRSET</a></li>
+<li><a href="#notzone">NOTZONE</a></li>
+<li><a href="#badver">BADVER</a></li>
+<li><a href="#badsig">BADSIG</a></li>
+<li><a href="#badkey">BADKEY</a></li>
+<li><a href="#badtime">BADTIME</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <h1 id="writing-verticles">Writing Verticles</h1><br/>
@@ -2041,6 +2073,7 @@ sockJSServer.bridge({prefix : '/eventbus'},
   ]
   );
 
+
 server.listen(8080);
 </pre>
 <p>To let all messages through you can specify two JSON array with a single empty JSON object which will match all messages.</p>
@@ -2386,7 +2419,259 @@ vertx.fileSystem.open('some-file.dat', function(err, asyncFile) {
 </pre>
 <h3 id="closing-an-asyncfile">Closing an AsyncFile</h3><br/>
 <p>To close an AsyncFile call the <code>close</code> function. Closing is asynchronous and if you want to be notified when the close has been completed you can specify a handler function as an argument to <code>close</code>.</p>
-<p><strong> load() method!!! </strong></p></div>
+<h1 id="dns-client">DNS Client</h1><br/>
+<p>Often you will find yourself in situations where you need to obtain DNS
+information in an asynchronous fashion. Unfortunately this is not possible with
+the API that is shipped with Java itself. Because of this Vert.x offers its
+own API for DNS resolution which is fully asynchronous.</p>
+<p>Obtain a <code>DnsClient</code> object by requring the <code>vertx/dns</code> module. You can ask
+Vertx to create the client for you, or you can simply instantiate a new one
+with the <code>DnsClient</code> constructor function.</p>
+<pre class="prettyprint">var dns    = require('vertx/dns');
+var client = dns.createDnsClient('8.8.8.8', '8.8.4.4');
+
+// The constructor can be used as well
+client = new dns.DnsClient('8.8.8.8', '8.8.4.4');
+</pre>
+<p>Be aware that you can pass in an array of address strings to
+specifiy more then one DNS server to query for DNS resolution. The DNS
+servers will be queried in the same order as specified here. Upon failure of
+one, the next will be used.</p>
+<h2 id="lookup">lookup</h2><br/>
+<p>Try to lookup the A (IPv4) or AAAA (ipv6) record for a given name. The first
+which is returned will be used, so it behaves the same way as you may be used
+from when using "nslookup" on your OS.</p>
+<p>To lookup the A / AAAA record for "vertx.io" you would typically use it like:</p>
+<pre class="prettyprint">client.lookup('vertx.io', function(err, result) {
+    if (err != null) {
+        console.log( "Failed to resolve entry " + err );
+    } else {
+        console.log( result );
+    }
+});
+</pre>
+<p>Be aware that the handler function may provide either an IPv4 or IPv6
+string depending if an A or AAAA record was resolved.</p>
+<h2 id="lookup4">lookup4</h2><br/>
+<p>Try to lookup the A (IPv4) record for a given name. The first which is returned
+will be used, so it behaves the same way as you may be used from when using
+"nslookup" on your OS.</p>
+<p>To lookup the A record for "vertx.io" you would typically use it like:</p>
+<pre class="prettyprint">client.lookup4('vertx.io', function(err, result) {
+    if (err != null) {
+        console.log( "Failed to resolve entry " + err );
+    } else {
+        console.log( result );
+    }
+});
+</pre>
+<p>The handler function result will be the first address received, provided as an
+IPv4 string address.</p>
+<h2 id="lookup6">lookup6</h2><br/>
+<p>Try to lookup the AAAA (ipv6) record for a given name. The first which is
+returned will be used, so it behaves the same way as you may be used from when
+using "nslookup" on your OS.</p>
+<p>To lookup the AAAA record for "vertx.io" you would typically use it like:</p>
+<pre class="prettyprint">client.lookup6('vertx.io', function(err, result) {
+    if (err != null) {
+        console.log( "Failed to resolve entry " + err );
+    } else {
+        console.log( result );
+    }
+});
+</pre>
+<p>The handler function result will be the first address received, provided as an
+IPv6 string address.</p>
+<h2 id="resolvea">resolveA</h2><br/>
+<p>Try to resolve all A (IPv4) records for a given name. This is quite similar to
+using "dig" on unix like OSs.</p>
+<p>To lookup all the A records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">client.resolveA('vertx.io', function(err, records) {
+    if (err != null) {
+        console.log( "Failed to resolve entry " + err );
+    } else {
+        console.log( records.toString() );
+    }
+});
+</pre>
+<p>The handler function will be provided an array of IPv4 address strings.</p>
+<h2 id="resolveaaaa">resolveAAAA</h2><br/>
+<p>Try to resolve all AAAA (IPv6) records for a given name. This is quite similar
+to using "dig" on unix like OSs.</p>
+<p>To lookup all the AAAAA records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">client.resolveAAAA('vertx.io', function(err, records) {
+    if (err != null) {
+        console.log( "Failed to resolve entry " + err );
+    } else {
+        console.log( records.toString() );
+    }
+});
+</pre>
+<p>The handler function will be provided an array of IPv6 address strings.</p>
+<h2 id="resolvecname">resolveCNAME</h2><br/>
+<p>Try to resolve all CNAME records for a given name. This is quite similar to
+using "dig" on unix like OSs.</p>
+<p>To lookup all the CNAME records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">client.resolveCNAME('vertx.io', function(err, records) {
+    if (err != null) {
+        console.log( "Failed to resolve entry " + err );
+    } else {
+        console.log( records.toString() );
+    }
+});
+</pre>
+<p>The handler function will be provided an array of host name strings.</p>
+<h2 id="resolvemx">resolveMX</h2><br/>
+<p>Try to resolve all MX records for a given name. The MX records are used to
+define which Mail-Server accepts emails for a given domain.</p>
+<p>To lookup all the MX records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">client.resolveMX('vertx.io', function(err, records) {
+    if (err != null) {
+        console.log( "Failed to resolve entry " + err );
+    } else {
+        for (i=0; i&lt;records.length; i++) {
+          var record = records[i];
+          console.log( record.name + " " + record.priority );
+        }
+    }
+});
+</pre>
+<p>The result handler will be provided with an array of MxRecords sorted by
+priority, with lowest priority numbers first. E.g. record.priority of 1
+comes before record.priority of 2 in the list.</p>
+<p>The MxRecord allows you to access the priority and the name of the record 
+as object properties.</p>
+<pre class="prettyprint">record = records[0]
+record.priority
+record.name
+</pre>
+<h2 id="resolvetxt">resolveTXT</h2><br/>
+<p>Try to resolve all TXT records for a given name. TXT records are often used to
+define extra information for a domain.</p>
+<p>To resolve all the TXT records for "vertx.io" you could use something along these lines:</p>
+<pre class="prettyprint">client.resolveTXT('vertx.io', function(err, records) {
+    if (err != null) {
+        console.log( "Failed to resolve entry " + err );
+    } else {
+        console.log( records.toString() );
+    }
+});
+</pre>
+<p>The handler function receives an array of strings.</p>
+<h2 id="resolvens">resolveNS</h2><br/>
+<p>Try to resolve all NS records for a given name. The NS records specify which
+DNS Server hosts the DNS information for a given domain.</p>
+<p>To resolve all the NS records for "vertx.io" you could use something along these lines:</p>
+<pre class="prettyprint">client.resolveNS('vertx.io', function(err, records) {
+    if (err != null) {
+        console.log( "Failed to resolve entry " + err );
+    } else {
+        console.log( records.toString() );
+    }
+});
+</pre>
+<p>The handler function receives an array of string addresses.</p>
+<h2 id="resolvesrv">resolveSRV</h2><br/>
+<p>Try to resolve all SRV records for a given name. The SRV records are used to
+define extra information like port and hostname of services. Some protocols
+need this extra information.</p>
+<p>To lookup all the SRV records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">client.resolveNS('vertx.io', function(err, records) {
+    if (err != null) {
+        console.log( "Failed to resolve entry " + err );
+    } else {
+        console.log( records.toString() );
+    }
+});
+</pre>
+<p>The handler function will receiven an array of SRVRecord objects sorted by priority (smallest priority number first).</p>
+<p>The SrvRecord allows you to access all information contained in the SRV record itself:</p>
+<pre class="prettyprint">record = ...
+record.priority
+record.name
+record.priority
+record.weight
+record.port
+record.protocol
+record.service
+record.target
+</pre>
+<h2 id="resolveptr">resolvePTR</h2><br/>
+<p>Try to resolve the PTR record for a given name. The PTR record maps an
+ipaddress to a name.</p>
+<p>To resolve the PTR record for the ipaddress 10.0.0.1 you would use the PTR
+notion of "1.0.0.10.in-addr.arpa"</p>
+<pre class="prettyprint">client = dns.createDnsClient('1.0.0.10.in-addr.arpa')
+client.resolvePTR('10.0.0.1', function( err, result ) {
+    if (err != null) {
+        console.log( "Failed to resolve entry " + err );
+    } else {
+        console.log( result );
+    }
+});
+</pre>
+<p>The handler function is provided a a name string when it is called.</p>
+<h2 id="reverselookup">reverseLookup</h2><br/>
+<p>Try to do a reverse lookup for an ipaddress. This is basically the same as
+resolving a PTR record, but allows you to just pass in the ipaddress and not a
+valid PTR query string.</p>
+<p>To do a reverse lookup for the ipaddress 10.0.0.1 do something like this:</p>
+<pre class="prettyprint">client.reverseLookup('10.0.0.1', function( err, result ) {
+    if (err != null) {
+        console.log( "Failed to resolve entry " + err );
+    } else {
+        console.log( result );
+    }
+});
+</pre>
+<p>The handler function is provided a a name string when it is called.</p>
+<h2 id="error-handling">Error handling</h2><br/>
+<p>As you saw in previous sections the <code>DnsClient</code> allows you to pass in a handler
+function which is notified once the query has completed. In case of an error it
+will be notified with <code>a DnsException</code> which will hold a <code>DnsResponseCode</code> that
+indicates why the resolution failed. This <code>DnsResponseCode</code> can be used to
+inspect the cause in more detail.</p>
+<p>Possible <code>DnsResponseCode</code>s are:</p>
+<h3 id="noerror">NOERROR</h3><br/>
+<p>No record was found for a given query</p>
+<h3 id="formerror">FORMERROR</h3><br/>
+<p>Format error </p>
+<h3 id="servfail">SERVFAIL</h3><br/>
+<p>Server failure</p>
+<h3 id="nxdomain">NXDOMAIN</h3><br/>
+<p>Name error</p>
+<h3 id="notimpl">NOTIMPL</h3><br/>
+<p>Not implemented by DNS Server</p>
+<h3 id="refused">REFUSED</h3><br/>
+<p>DNS Server refused the query</p>
+<h3 id="yxdomain">YXDOMAIN</h3><br/>
+<p>Domain name should not exist</p>
+<h3 id="yxrrset">YXRRSET</h3><br/>
+<p>Resource record should not exist</p>
+<h3 id="nxrrset">NXRRSET</h3><br/>
+<p>RRSET does not exist</p>
+<h3 id="notzone">NOTZONE</h3><br/>
+<p>Name not in zone</p>
+<h3 id="badver">BADVER</h3><br/>
+<p>Bad extension mechanism for version</p>
+<h3 id="badsig">BADSIG</h3><br/>
+<p>Bad signature</p>
+<h3 id="badkey">BADKEY</h3><br/>
+<p>Bad key</p>
+<h3 id="badtime">BADTIME</h3><br/>
+<p>Bad timestamp</p>
+<p>All of those errors are generated by the DNS Server itself.</p>
+<p>The DNS response code will be provided as a 
+You can obtain the DnsResponseCode from the DnsException like:</p>
+<pre class="prettyprint">client.lookup('not.exist.vertx.io', function(err, result) {
+    if (err != null &amp;&amp; err instanceof org.vertx.java.core.dns.DnsException) {
+      var exceptionCode = err.code();
+      // ... etc.
+    } else {
+      console.log( result );
+    }
+});
+</pre></div>
       </div>
     </div>
   </div>

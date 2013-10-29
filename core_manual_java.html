@@ -179,6 +179,22 @@
 <li><a href="#ssl-clients">SSL Clients</a></li>
 </ul>
 </li>
+<li><a href="#user-datagram-protocol-udp">User Datagram Protocol (UDP)</a><ul>
+<li><a href="#creating-a-datagramsocket">Creating a DatagramSocket</a></li>
+<li><a href="#sending-datagram-packets">Sending Datagram packets</a></li>
+<li><a href="#receiving-datagram-packets">Receiving Datagram packets</a></li>
+<li><a href="#multicast">Multicast</a><ul>
+<li><a href="#sending-multicast-packets">Sending Multicast packets</a></li>
+<li><a href="#receiving-multicast-packets">Receiving Multicast packets</a></li>
+<li><a href="#unlisten-leave-a-multicast-group">Unlisten / leave a Multicast group</a></li>
+<li><a href="#blocking-multicast">Blocking multicast</a></li>
+</ul>
+</li>
+<li><a href="#datagramsocket-properties">DatagramSocket properties</a></li>
+<li><a href="#datagramsocket-local-address">DatagramSocket Local Address</a></li>
+<li><a href="#closing-a-datagramsocket">Closing a DatagramSocket</a></li>
+</ul>
+</li>
 <li><a href="#flow-control-streams-and-pumps">Flow Control - Streams and Pumps</a><ul>
 <li><a href="#readstream">ReadStream</a></li>
 <li><a href="#writestream">WriteStream</a></li>
@@ -216,6 +232,7 @@
 </li>
 <li><a href="#serving-files-directly-from-disk">Serving files directly from disk</a></li>
 <li><a href="#pumping-responses">Pumping Responses</a></li>
+<li><a href="#http-compression">HTTP Compression</a></li>
 </ul>
 </li>
 <li><a href="#writing-http-clients">Writing HTTP Clients</a><ul>
@@ -237,6 +254,7 @@
 </ul>
 </li>
 <li><a href="#100-continue-handling">100-Continue Handling</a></li>
+<li><a href="#http-compression_1">HTTP Compression</a></li>
 </ul>
 </li>
 <li><a href="#pumping-requests-and-responses">Pumping Requests and Responses</a></li>
@@ -303,6 +321,38 @@
 <li><a href="#flushing-data-to-underlying-storage">Flushing data to underlying storage.</a></li>
 <li><a href="#using-asyncfile-as-readstream-and-writestream">Using AsyncFile as ReadStream and WriteStream</a></li>
 <li><a href="#closing-an-asyncfile">Closing an AsyncFile</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#dns-client">DNS Client</a><ul>
+<li><a href="#lookup">lookup</a></li>
+<li><a href="#lookup4">lookup4</a></li>
+<li><a href="#lookup6">lookup6</a></li>
+<li><a href="#resolvea">resolveA</a></li>
+<li><a href="#resolveaaaa">resolveAAAA</a></li>
+<li><a href="#resolvecname">resolveCNAME</a></li>
+<li><a href="#resolvemx">resolveMX</a></li>
+<li><a href="#resolvetxt">resolveTXT</a></li>
+<li><a href="#resolvens">resolveNS</a></li>
+<li><a href="#resolvesrv">resolveSRV</a></li>
+<li><a href="#resolveptr">resolvePTR</a></li>
+<li><a href="#reverselookup">reverseLookup</a></li>
+<li><a href="#error-handling">Error handling</a><ul>
+<li><a href="#noerror">NOERROR</a></li>
+<li><a href="#formerror">FORMERROR</a></li>
+<li><a href="#servfail">SERVFAIL</a></li>
+<li><a href="#nxdomain">NXDOMAIN</a></li>
+<li><a href="#notimpl">NOTIMPL</a></li>
+<li><a href="#refused">REFUSED</a></li>
+<li><a href="#yxdomain">YXDOMAIN</a></li>
+<li><a href="#yxrrset">YXRRSET</a></li>
+<li><a href="#nxrrset">NXRRSET</a></li>
+<li><a href="#notzone">NOTZONE</a></li>
+<li><a href="#badver">BADVER</a></li>
+<li><a href="#badsig">BADSIG</a></li>
+<li><a href="#badkey">BADKEY</a></li>
+<li><a href="#badtime">BADTIME</a></li>
 </ul>
 </li>
 </ul>
@@ -805,6 +855,7 @@ JsonObject obj = new JsonObject().putString("foo", "wibble")
 
 eb.send("some-address", obj);
 
+
 // ....
 // And in a handler somewhere:
 
@@ -1152,6 +1203,235 @@ client.setReconnectInterval(500);
                .setKeyStorePath("/path/to/keystore/holding/client/cert/client-keystore.jks")
                .setKeyStorePassword("password");
 </pre>
+<h1 id="user-datagram-protocol-udp">User Datagram Protocol (UDP)</h1><br/>
+<p>Using  User Datagram Protocol (UDP) with Vert.x is a piece of cake. </p>
+<p>UDP is a connection-less transport which basically means you have no persistent connection to a remote peer.</p>
+<p>Instead you can send and receive packages and the remote address is contained in each of them. </p>
+<p>Beside this UDP is not as safe as TCP to use, which means there are no guaranteers that a send Datagram
+ packet will receive it's endpoint at all. </p>
+<p>The only guaranteer is that it will either receive complete or not at all. </p>
+<p>Also you usually can't send data which is bigger then the MTU size of yournetwork interface, this is because each
+ packet will be send as one packet. </p>
+<p>But be aware even if the packet size is smaller then the MTU it may still fail. </p>
+<p>At which size it will fail depends on the Operation System etc. So rule of thumb is to try to send small packets.</p>
+<p>Because of the nature of UDP it is best fit for Applications where you are allowed to drop packets (like for
+ example a monitoring application). </p>
+<p>The benefits are that it has a lot less overhead compared to TCP, which can be handled by the NetServer and
+ NetClient (see above).</p>
+<h2 id="creating-a-datagramsocket">Creating a DatagramSocket</h2><br/>
+<p>To use UDP you first need t create a <code>DatagramSocket</code>. It not matter here if you only want to send data 
+or send and receive.</p>
+<pre class="prettyprint">DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
+</pre>
+<p>The returned <code>DatagramSocket</code> will not be bound to a specific port. </p>
+<p>This is not a problem if you only want to send data (like a client), but more on this in the next section.</p>
+<h2 id="sending-datagram-packets">Sending Datagram packets</h2><br/>
+<p>Like mention before, User Datagram Protocol (UDP) send data in packets to remote peers but is not connected to them in a
+ persistent fashion.</p>
+<p>This means each packet can be send to a different remote peer.</p>
+<p>Sending packets is as easy as shown here:</p>
+<pre class="prettyprint">DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
+Buffer buffer = new Buffer("content");
+// Send a Buffer
+socket.send(buffer, "10.0.0.1", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
+    public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
+        log.info("Send succeeded? " + asyncResult.succeeded());
+    }  
+});
+// Send a String
+socket.send("A string used as content", "10.0.0.1", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
+    public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
+        log.info("Send succeeded? " + asyncResult.succeeded());
+    }  
+});
+</pre>
+<h2 id="receiving-datagram-packets">Receiving Datagram packets</h2><br/>
+<p>If you want to receive packets you need to bind the <code>DatagramSocket</code> by calling <code>listen(...)</code> on it. </p>
+<p>This way you will be able to received <code>DatagramPacket</code>s that was send the address and port on which
+the <code>DatagramSocket</code> listens.</p>
+<p>Beside this you also want to set a <code>Handler</code> which will be called for each received <code>DatagramPacket</code>.</p>
+<p>The <code>DatagramPacket</code> has the following methods:</p>
+<ul>
+<li><code>sender()</code>:   The InetSocketAddress which represent the sender of the packet</li>
+<li><code>data()</code>:     The Buffer which holds the data which was received.</li>
+</ul>
+<p>So to listen on a specific address and port you would do something like shown here:</p>
+<pre class="prettyprint">final DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
+socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
+    public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
+        if (asyncResult.succeeded()) {
+           socket.dataHandler(new Handler&lt;DatagramPacket&gt;() {
+                public void handle(DatagramPacket packet) {
+                    // Do something with the packet
+                }
+            });
+        } else {
+            log.warn("Listen failed", asyncResult.cause());
+        }
+    }  
+});
+</pre>
+<p>Be aware that even if the <code>AsyncResult</code> is successed it only means it could be written on the network stack, 
+but gives no guaranteer that it ever reached or will reach the remote peer at all.</p>
+<p>If you need such a guaranteer then you want to use TCP with some handshaking logic build on top.</p>
+<h2 id="multicast">Multicast</h2><br/>
+<h3 id="sending-multicast-packets">Sending Multicast packets</h3><br/>
+<p>Multicast allows multiple sockets to receive the same packets. This works by have same join a multicast
+group to which you can send packets.</p>
+<p>We will look at how you can joint a Multicast Group and so receive packets in the next section. </p>
+<p>For now let us focus on how to send those. Sending multicast packets is not different to send normal 
+Datagram Packets.</p>
+<p>The only difference is that you would pass in a multicast group address to the send method.</p>
+<p>This is show here:</p>
+<pre class="prettyprint">DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
+Buffer buffer = new Buffer("content");
+// Send a Buffer to a multicast address
+socket.send(buffer, "230.0.0.1", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
+    public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
+        log.info("Send succeeded? " + asyncResult.succeeded());
+    }  
+});
+</pre>
+<p>All sockets that have joined the used multicast group 230.0.0.1 will receive the packet.</p>
+<h3 id="receiving-multicast-packets">Receiving Multicast packets</h3><br/>
+<p>If you want to receive packets for specific Multicast group you need to bind the <code>DatagramSocket</code>
+ by calling</p>
+<p><code>listen(...)</code> on it and join the Multicast group.</p>
+<p>This way you will be able to received <code>DatagramPackets</code> that was send the address and port
+ on which the <code>DatagramSocket</code> </p>
+<p>listens and also to those send to the Multicast group.</p>
+<p>Beside this you also want to set a Handler which will be called for each received DatagramPacket.</p>
+<p>The <code>DatagramPacket</code> has the following methods:</p>
+<ul>
+<li><code>sender()</code>:   The InetSocketAddress which represent the sender of the packet</li>
+<li><code>data()</code>:     The Buffer which holds the data which was received.</li>
+</ul>
+<p>So to listen on a specific address and port and also receive packets for the Multicast
+ group 230.0.0.1 you would do something like shown here:</p>
+<pre class="prettyprint">final DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
+socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
+    public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
+        if (asyncResult.succeeded()) {
+            socket.dataHandler(new Handler&lt;DatagramPacket&gt;() {
+                public void handle(DatagramPacket packet) {
+                    // Do something with the packet
+                }
+            });
+
+            // join the multicast group
+            socket.listMulticastGroup("230.0.0.1", new AsyncResultHandler&lt;DatagramSocket&gt;() {
+                public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
+                    log.info("Listen succeeded? " + asyncResult.succeeded());
+                }
+            });
+        } else {
+            log.warn("Listen failed", asyncResult.cause());
+        }
+    }  
+});
+</pre>
+<h3 id="unlisten-leave-a-multicast-group">Unlisten / leave a Multicast group</h3><br/>
+<p>There are sometimes situations where you want to receive packets for a Multicast group for
+ a limited time. </p>
+<p>In this situations you can first start to listen for them and then later unlisten. </p>
+<p>This is shown here:</p>
+<pre class="prettyprint">final DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
+socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
+    public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
+        if (asyncResult.succeeded()) {
+            socket.dataHandler(new Handler&lt;DatagramPacket&gt;() {
+                public void handle(DatagramPacket packet) {
+                    // Do something with the packet
+                }
+            });
+
+            // join the multicast group
+            socket.listMulticastGroup("230.0.0.1", new AsyncResultHandler&lt;DatagramSocket&gt;() {
+                public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
+                    if (asyncResult.successed()) {
+
+                        // will now receive packets for group
+                        ...
+                        ...
+                        // do some work
+                        ..
+                        ..
+                        socket.unlisten("230.0.0.1", new AsyncResultHandler&lt;DatagramSocket&gt;() {
+                            public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
+                                log.info("Unlisten succeeded? " + asyncResult.succeeded());
+                            }
+                        });
+
+                    } else {
+                       log.warn("Listen failed", asyncResult.cause());
+                    }
+
+                }
+            });
+        } else {
+            log.warn("Listen failed", asyncResult.cause());
+        }
+    }  
+});
+</pre>
+<h3 id="blocking-multicast">Blocking multicast</h3><br/>
+<p>Beside unlisten a Multicast address it's also possible to just block multicast for a specific sender address.</p>
+<p>Be aware this only work on some Operation Systems and kernel version. So please check the Operation System
+ documentation if it's supported.</p>
+<p>This an expert feature.</p>
+<p>To block multicast from a specic address you can call <code>blockMulticastGroup(...)</code> on the DatagramSocket
+ like shown here:</p>
+<pre class="prettyprint">final DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
+...
+...
+// This would block packets which are send from 10.0.0.2
+socket.blockMulticastGroup("230.0.0.1", "10.0.0.2", new AsyncResultHandler&lt;DatagramSocket&gt;() {
+    public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
+        log.info("block succeeded? " + asyncResult.succeeded());
+    }
+});
+</pre>
+<h2 id="datagramsocket-properties">DatagramSocket properties</h2><br/>
+<p>When using the <code>DatagramSocket</code> there are multiple properties you can set to change it's behaviour. 
+Those are listed here:</p>
+<ul>
+<li>
+<p><code>setSendBufferSize(size)</code> Sets the send buffer size in bytes.</p>
+</li>
+<li>
+<p><code>setReceiveBufferSize(size)</code> Sets the TCP receive buffer size in bytes.</p>
+</li>
+<li>
+<p><code>setReuseAddress(reuse)</code> if <code>reuse</code> is true then addresses in TIME_WAIT state can be reused after
+                         they have been closed.</p>
+</li>
+<li>
+<p><code>setTrafficClass(trafficClass)</code></p>
+</li>
+<li>
+<p><code>setBroadcast(broadcast)</code> Sets or clears the SO_BROADCAST socket option. When this option is set, 
+                            Datagram (UDP) packets may be sent to a local interface's broadcast address.</p>
+</li>
+<li>
+<p><code>setMulticastLoopbackMode(loopbackModeDisabled)</code> Sets or clears the IP_MULTICAST_LOOP socket option.
+                                                   When this option is set, multicast packets will
+                                                   also be received on the local interface. </p>
+</li>
+<li>
+<p><code>setMulticastTimeToLive(int ttl)</code> Sets the IP_MULTICAST_TTL socket option. TTL stands for "Time to Live,"
+                                    but in this context it specifies the number of IP hops that a packet is
+                                    allowed to go through, specifically for multicast traffic. Each router
+                                    or gateway that forwards a packet decrements the TTL. If the TTL is
+                                    decremented to 0 by a router, it will not be forwarded.</p>
+</li>
+</ul>
+<h2 id="datagramsocket-local-address">DatagramSocket Local Address</h2><br/>
+<p>You can find out the local address of the socket (i.e. the address of this side of the UDP Socket) by calling
+ <code>localAddress()</code>.
+This will only return an InetSocketAddress<code>if you bound the</code>DatagramSocket<code>with</code>listen(...)` before, otherwise
+ it will return null.</p>
+<h2 id="closing-a-datagramsocket">Closing a DatagramSocket</h2><br/>
+<p>You can close a socket by invoking the <code>close</code> method. This will close the socket and release all resources</p>
 <p><a id="flow-control"> </a> </p>
 <h1 id="flow-control-streams-and-pumps">Flow Control - Streams and Pumps</h1><br/>
 <p>There are several objects in Vert.x that allow data to be read from and written to in the form of Buffers.</p>
@@ -1585,6 +1865,21 @@ server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
     }
 }).listen(8080, "localhost");
 </pre>
+<h3 id="http-compression">HTTP Compression</h3><br/>
+<p>Vert.x comes with support for HTTP Compression out of the box. 
+Which means you are able to automatically compress the body of the responses before those are send back the the Client. 
+If the client does not support HTTP Compression the responses are send back without compress the body. 
+This allows to handle Client that support HTTP Compression and those that not support it at the same time.</p>
+<p>To enable compression you only need to do:</p>
+<pre class="prettyprint">HttpServer server = vertx.createHttpServer();
+server.setCompressionSupported(true);
+</pre>
+<p>The default is false.</p>
+<p>When HTTP Compression is enabled the <code>HttpServer</code> will check if the client did include an 'Accept-Encoding' header which
+includes the supported compressions. Common used are deflate and gzip. Both are supported by Vert.x.
+Once such a header is found the <code>HttpServer</code> will automatically compress the body of the response with one of the supported
+compressions and send it back to the client.</p>
+<p>Be aware that compression may be able to reduce network traffic but is more cpu-intensive.</p>
 <h2 id="writing-http-clients">Writing HTTP Clients</h2><br/>
 <h3 id="creating-an-http-client">Creating an HTTP Client</h3><br/>
 <p>To create an HTTP client you call the <code>createHttpClient</code> method on your <code>vertx</code> instance:</p>
@@ -1820,6 +2115,25 @@ request.continueHandler(new VoidHandler() {
 
 request.sendHead();
 </pre>
+<h3 id="http-compression_1">HTTP Compression</h3><br/>
+<p>Vert.x comes with support for HTTP Compression out of the box. Which means the HTTPClient can let the remote Http server know that it supports compression, and so will be able to handle
+compressed response bodies. A Http server is free to either compress with one of the supported compression algorithm or send the body back without compress it at all. So this
+is only a hint for the Http server which it may ignore at all.</p>
+<p>To tell the Http server which compression is supported by the <code>HttpClient</code> it will include a 'Accept-Encoding' header with the supported
+compression algorithm as value. Multiple compression algorithms are supported. In case of Vert.x this will result in have the 
+following header added:</p>
+<pre class="prettyprint">Accept-Encoding: gzip, deflate
+</pre>
+<p>The Http Server will choose then from one of these. You can detect if a HttpServer did compress the body by checking for the
+'Content-Encoding' header in the response sent back from it.</p>
+<p>If the body of the response was compressed via gzip it will include for example the following header:</p>
+<pre class="prettyprint">Content-Encoding: gzip
+</pre>
+<p>To enable compression you only need to do:</p>
+<pre class="prettyprint">HttpClient client = vertx.createHttpClient();
+client.setTryUseCompression(true);
+</pre>
+<p>The default is false.</p>
 <h2 id="pumping-requests-and-responses">Pumping Requests and Responses</h2><br/>
 <p>The HTTP client and server requests and responses all implement either <code>ReadStream</code> or <code>WriteStream</code>. This means you can pump between them and any other read and write streams.</p>
 <h2 id="https-servers">HTTPS Servers</h2><br/>
@@ -2565,7 +2879,280 @@ vertx.fileSystem().open("some-file.dat", new AsyncResultHandler&lt;AsyncFile&gt;
 });
 </pre>
 <h3 id="closing-an-asyncfile">Closing an AsyncFile</h3><br/>
-<p>To close an <code>AsyncFile</code> call the <code>close()</code> method. Closing is asynchronous and if you want to be notified when the close has been completed you can specify a handler function as an argument.</p></div>
+<p>To close an <code>AsyncFile</code> call the <code>close()</code> method. Closing is asynchronous and if you want to be notified when the close has been completed you can specify a handler function as an argument.</p>
+<h1 id="dns-client">DNS Client</h1><br/>
+<p>Often you will find yourself in situations where you need to obtain DNS informations in an asynchronous fashion. Unfortunally this is not possible with the API that is shipped with Java itself. Because of this Vert.x offers it's own API for DNS resolution which is fully asynchronous.</p>
+<p>To obtain a DnsClient instance you will create a new via the Vertx instance.</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53), new InetSocketAddress("10.0.0.2", 53));
+</pre>
+<p>Be aware that you can pass in a varargs of InetSocketAddress arguments to specifiy more then one DNS Server to try to query for DNS resolution. The DNS Servers will be queried in the same order as specified here. Where the next will be used once the first produce an error while be used.</p>
+<h2 id="lookup">lookup</h2><br/>
+<p>Try to lookup the A (ipv4) or AAAA (ipv6) record for a given name. The first which is returned will be used, so it behaves the same way as you may be used from when using "nslookup" on your operation system.</p>
+<p>To lookup the A / AAAA record for "vertx.io" you would typically use it like:</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.lookup("vertx.io", new AsyncResultHandler&lt;InetAddress&gt;() {
+    public void handle(AsyncResult&lt;InetAddress&gt; ar) {
+        if (ar.succeeded()) {
+            System.out.println(ar.result());
+        } else {
+            log.error("Failed to resolve entry", ar.cause());
+        }    
+    }
+});
+</pre>
+<p>Be aware that it either would use an Inet4Address or Inet6Address in the AsyncResult depending on if an A or AAAA record was resolved.</p>
+<h2 id="lookup4">lookup4</h2><br/>
+<p>Try to lookup the A (ipv4) record for a given name. The first which is returned will be used, so it behaves the same way as you may be used from when using "nslookup" on your operation system.</p>
+<p>To lookup the A record for "vertx.io" you would typically use it like:</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.lookup4("vertx.io", new AsyncResultHandler&lt;Inet4Address&gt;() {
+    public void handle(AsyncResult&lt;Inet4Address&gt; ar) {
+        if (ar.succeeded()) {
+            System.out.println(ar.result());
+        } else {
+            log.error("Failed to resolve entry", ar.cause());
+        }    
+    }
+});
+</pre>
+<p>As it only resolves A records and so is ipv4 only it will use Inet4Address as result.  </p>
+<h2 id="lookup6">lookup6</h2><br/>
+<p>Try to lookup the AAAA (ipv5) record for a given name. The first which is returned will be used, so it behaves the same way as you may be used from when using "nslookup" on your operation system.</p>
+<p>To lookup the A record for "vertx.io" you would typically use it like:</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.lookup6("vertx.io", new AsyncResultHandler&lt;Inet6Address&gt;() {
+    public void handle(AsyncResult&lt;Inet6Address&gt; ar) {
+        if (ar.succeeded()) {
+            System.out.println(ar.result());
+        } else {
+            log.error("Failed to resolve entry", ar.cause());
+        }    
+    }
+});
+</pre>
+<p>As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.  </p>
+<h2 id="resolvea">resolveA</h2><br/>
+<p>Try to resolve all A (ipv4) records for a given name. This is quite similar to using "dig" on unix like operation systems.</p>
+<p>To lookup all the A records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.resolveA("vertx.io", new AsyncResultHandler&lt;List&lt;Inet4Address&gt;&gt;() {
+    public void handle(AsyncResult&lt;List&lt;Inet4Address&gt;&gt; ar) {
+        if (ar.succeeded()) {
+            List&lt;Inet4Address&gt; records = ar.result());
+            for (Inet4Address record: records) {
+                System.out.println(record);
+            }
+        } else {
+            log.error("Failed to resolve entry", ar.cause());
+        }    
+    }
+});
+</pre>
+<p>As it only resolves A records and so is ipv4 only it will use Inet4Address as result.  </p>
+<h2 id="resolveaaaa">resolveAAAA</h2><br/>
+<p>Try to resolve all AAAA (ipv6) records for a given name. This is quite similar to using "dig" on unix like operation systems.</p>
+<p>To lookup all the AAAAA records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.resolveAAAA("vertx.io", new AsyncResultHandler&lt;List&lt;Inet6Address&gt;&gt;() {
+    public void handle(AsyncResult&lt;List&lt;Inet6Address&gt;&gt; ar) {
+        if (ar.succeeded()) {
+            List&lt;Inet6Address&gt; records = ar.result());
+            for (Inet6Address record: records) {
+                System.out.println(record);
+            }
+        } else {
+            log.error("Failed to resolve entry", ar.cause());
+        }    
+    }
+});
+</pre>
+<p>As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.  </p>
+<h2 id="resolvecname">resolveCNAME</h2><br/>
+<p>Try to resolve all CNAME records for a given name. This is quite similar to using "dig" on unix like operation systems.</p>
+<p>To lookup all the CNAME records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.resolveCNAME("vertx.io", new AsyncResultHandler&lt;List&lt;String&gt;&gt;() {
+    public void handle(AsyncResult&lt;List&lt;String&gt;&gt; ar) {
+        if (ar.succeeded()) {
+            List&lt;String&gt; records = ar.result());
+            for (String record: records) {
+                System.out.println(record);
+            }
+        } else {
+            log.error("Failed to resolve entry", ar.cause());
+        }    
+    }
+});
+</pre>
+<h2 id="resolvemx">resolveMX</h2><br/>
+<p>Try to resolve all MX records for a given name. The MX records are used to define which Mail-Server accepts emails for a given domain.</p>
+<p>To lookup all the MX records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.resolveMX("vertx.io", new AsyncResultHandler&lt;List&lt;MxRecord&gt;&gt;() {
+    public void handle(AsyncResult&lt;List&lt;MxRecord&gt;&gt; ar) {
+        if (ar.succeeded()) {
+            List&lt;MxRecord&gt; records = ar.result());
+            for (MxRecord record: records) {
+                System.out.println(record);
+            }
+        } else {
+            log.error("Failed to resolve entry", ar.cause());
+        }    
+    }
+});
+</pre>
+<p>Be aware that the List will contain the MxRecords sorted by the priority of them, which means MxRecords with smaller priority coming first in the List.</p>
+<p>The MxRecord allows you to access the priority and the name of the MX record by offer methods for it like:</p>
+<pre class="prettyprint">MxRecord record = ...
+record.priority();
+record.name();
+</pre>
+<h2 id="resolvetxt">resolveTXT</h2><br/>
+<p>Try to resolve all TXT records for a given name. TXT records are often used to define extra informations for a domain.</p>
+<p>To resolve all the TXT records for "vertx.io" you could use something along these lines:</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.resolveTXT("vertx.io", new AsyncResultHandler&lt;List&lt;String&gt;&gt;() {
+    public void handle(AsyncResult&lt;List&lt;String&gt;&gt; ar) {
+        if (ar.succeeded()) {
+            List&lt;String&gt; records = ar.result());
+            for (String record: records) {
+                System.out.println(record);
+            }
+        } else {
+            log.error("Failed to resolve entry", ar.cause());
+        }    
+    }
+});
+</pre>
+<h2 id="resolvens">resolveNS</h2><br/>
+<p>Try to resolve all NS records for a given name. The NS records specify which DNS Server hosts the DNS informations for a given domain.</p>
+<p>To resolve all the NS records for "vertx.io" you could use something along these lines:</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.resolveNS("vertx.io", new AsyncResultHandler&lt;List&lt;String&gt;&gt;() {
+    public void handle(AsyncResult&lt;List&lt;String&gt;&gt; ar) {
+        if (ar.succeeded()) {
+            List&lt;String&gt; records = ar.result());
+            for (String record: records) {
+                System.out.println(record);
+            }
+        } else {
+            log.error("Failed to resolve entry", ar.cause());
+        }    
+    }
+});
+</pre>
+<h2 id="resolvesrv">resolveSRV</h2><br/>
+<p>Try to resolve all SRV records for a given name. The SRV records are used to define extra informations like port and hostname of services. Some protocols need this extra informations.</p>
+<p>To lookup all the SRV records for "vertx.io" you would typically do:</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.resolveMX("vertx.io", new AsyncResultHandler&lt;List&lt;SrvRecord&gt;&gt;() {
+    public void handle(AsyncResult&lt;List&lt;SrvRecord&gt;&gt; ar) {
+        if (ar.succeeded()) {
+            List&lt;SrvRecord&gt; records = ar.result());
+            for (SrvRecord record: records) {
+                System.out.println(record);
+            }
+        } else {
+            log.error("Failed to resolve entry", ar.cause());
+        }    
+    }
+});
+</pre>
+<p>Be aware that the List will contain the SrvRecords sorted by the priority of them, which means SrvRecords with smaller priority coming first in the List.</p>
+<p>The SrvRecord allows you to access all informations contained in the SRV record itself:</p>
+<pre class="prettyprint">SrvRecord record = ...
+record.priority();
+record.name();
+record.priority();
+record.weight();
+record.port();
+record.protocol();
+record.service();
+record.target();
+</pre>
+<p>Please refer to the API docs for the exact details.</p>
+<h2 id="resolveptr">resolvePTR</h2><br/>
+<p>Try to resolve the PTR record for a given name. The PTR record maps an ipaddress to a name.</p>
+<p>To resolve the PTR record for the ipaddress 10.0.0.1 you would use the PTR notion of "1.0.0.10.in-addr.arpa"</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.resolveTXT("1.0.0.10.in-addr.arpa", new AsyncResultHandler&lt;String&gt;() {
+    public void handle(AsyncResult&lt;String&gt; ar) {
+        if (ar.succeeded()) {
+            String record = ar.result());
+            System.out.println(record);
+        } else {
+            log.error("Failed to resolve entry", ar.cause());
+        }    
+    }
+});
+</pre>
+<h2 id="reverselookup">reverseLookup</h2><br/>
+<p>Try to do a reverse lookup for an ipaddress. This is basically the same as resolve a PTR record, but allows you to just pass in the ipaddress and not a valid PTR query string.</p>
+<p>To do a reverse lookup for the ipaddress 10.0.0.1 do something similar like this:</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.reverseLookup("10.0.0.1", new AsyncResultHandler&lt;String&gt;() {
+    public void handle(AsyncResult&lt;String&gt; ar) {
+        if (ar.succeeded()) {
+            String record = ar.result());
+            System.out.println(record);
+        } else {
+            log.error("Failed to resolve entry", ar.cause());
+        }    
+    }
+});
+</pre>
+<h2 id="error-handling">Error handling</h2><br/>
+<p>As you saw in previous sections the DnsClient allows you to pass in a Handler which will be notified with an AsyncResult once the query was complete. In case of an error it will be notified with a DnsException which will hole a DnsResponseCode that indicate why the resolution failed. This DnsResponseCode can be used to inspect the cause in more detail.</p>
+<p>Possible DnsResponseCodes are:</p>
+<h3 id="noerror">NOERROR</h3><br/>
+<p>No record was found for a given query</p>
+<h3 id="formerror">FORMERROR</h3><br/>
+<p>Format error </p>
+<h3 id="servfail">SERVFAIL</h3><br/>
+<p>Server failure</p>
+<h3 id="nxdomain">NXDOMAIN</h3><br/>
+<p>Name error</p>
+<h3 id="notimpl">NOTIMPL</h3><br/>
+<p>Not implemented by DNS Server</p>
+<h3 id="refused">REFUSED</h3><br/>
+<p>DNS Server refused the query</p>
+<h3 id="yxdomain">YXDOMAIN</h3><br/>
+<p>Domain name should not exist</p>
+<h3 id="yxrrset">YXRRSET</h3><br/>
+<p>Resource record should not exist</p>
+<h3 id="nxrrset">NXRRSET</h3><br/>
+<p>RRSET does not exist</p>
+<h3 id="notzone">NOTZONE</h3><br/>
+<p>Name not in zone</p>
+<h3 id="badver">BADVER</h3><br/>
+<p>Bad extension mechanism for version</p>
+<h3 id="badsig">BADSIG</h3><br/>
+<p>Bad signature</p>
+<h3 id="badkey">BADKEY</h3><br/>
+<p>Bad key</p>
+<h3 id="badtime">BADTIME</h3><br/>
+<p>Bad timestamp</p>
+<p>All of those errors are "generated" by the DNS Server itself.</p>
+<p>You can obtain the DnsResponseCode from the DnsException like:</p>
+<pre class="prettyprint">DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
+client.lookup("nonexisting.vert.xio", new AsyncResultHandler&lt;InetAddress&gt;() {
+    public void handle(AsyncResult&lt;InetAddress&gt; ar) {
+        if (ar.succeeded()) {
+            InetAddress record = ar.result());
+            System.out.println(record);
+        } else {
+            Throwable cause = ar.cause();
+            if (cause instanceof DnsException) {
+                DnsException exception = (DnsException) cause;
+                DnsResponseCode code = exception.code();
+                ...
+            } else {
+                log.error("Failed to resolve entry", ar.cause());
+            }
+        }    
+    }
+});
+</pre></div>
       </div>
     </div>
   </div>
