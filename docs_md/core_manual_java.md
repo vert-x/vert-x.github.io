@@ -1173,23 +1173,23 @@ To configure a client to only trust those certificates it has in its trust store
 
 # User Datagram Protocol (UDP) 
 
-Using  User Datagram Protocol (UDP) with Vert.x is a piece of cake. 
+Using User Datagram Protocol (UDP) with Vert.x is a piece of cake. 
 
 UDP is a connection-less transport which basically means you have no persistent connection to a remote peer.
 
 Instead you can send and receive packages and the remote address is contained in each of them. 
 
-Beside this UDP is not as safe as TCP to use, which means there are no guaranteers that a send Datagram
+Beside this UDP is not as safe as TCP to use, which means there are no guarantees that a send Datagram
  packet will receive it's endpoint at all. 
 
-The only guaranteer is that it will either receive complete or not at all. 
+The only guarantee is that it will either receive complete or not at all. 
 
-Also you usually can't send data which is bigger then the MTU size of yournetwork interface, this is because each
+Also you usually can't send data which is bigger then the MTU size of your network interface, this is because each
  packet will be send as one packet. 
 
 But be aware even if the packet size is smaller then the MTU it may still fail. 
 
-At which size it will fail depends on the Operation System etc. So rule of thumb is to try to send small packets.
+At which size it will fail depends on the Operating System etc. So rule of thumb is to try to send small packets.
 
 Because of the nature of UDP it is best fit for Applications where you are allowed to drop packets (like for
  example a monitoring application). 
@@ -1199,7 +1199,7 @@ The benefits are that it has a lot less overhead compared to TCP, which can be h
 
 ## Creating a DatagramSocket
 
-To use UDP you first need t create a `DatagramSocket`. It not matter here if you only want to send data 
+To use UDP you first need t create a `DatagramSocket`. It does not matter here if you only want to send data 
 or send and receive.
 
     DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
@@ -1210,10 +1210,10 @@ This is not a problem if you only want to send data (like a client), but more on
 
 ## Sending Datagram packets
 
-Like mention before, User Datagram Protocol (UDP) send data in packets to remote peers but is not connected to them in a
+As mentioned before, User Datagram Protocol (UDP) sends data in packets to remote peers but is not connected to them in a
  persistent fashion.
 
-This means each packet can be send to a different remote peer.
+This means each packet can be sent to a different remote peer.
 
 Sending packets is as easy as shown here:
 
@@ -1236,7 +1236,7 @@ Sending packets is as easy as shown here:
 
 If you want to receive packets you need to bind the `DatagramSocket` by calling `listen(...)` on it. 
 
-This way you will be able to received `DatagramPacket`s that was send the address and port on which
+This way you will be able to receive `DatagramPacket`s that were sent to the address and port on which
 the `DatagramSocket` listens.
 
 Beside this you also want to set a `Handler` which will be called for each received `DatagramPacket`.
@@ -1265,10 +1265,10 @@ So to listen on a specific address and port you would do something like shown he
     });
 
 
-Be aware that even if the `AsyncResult` is successed it only means it could be written on the network stack, 
-but gives no guaranteer that it ever reached or will reach the remote peer at all.
+Be aware that even if the `AsyncResult` is successed it only means it might be written on the network stack, 
+but gives no guarantee that it ever reached or will reach the remote peer at all.
 
-If you need such a guaranteer then you want to use TCP with some handshaking logic build on top.
+If you need such a guarantee then you want to use TCP with some handshaking logic build on top.
 
 ## Multicast
 
@@ -1295,7 +1295,7 @@ This is show here:
         }  
     });
 
-All sockets that have joined the used multicast group 230.0.0.1 will receive the packet.
+All sockets that have joined the multicast group 230.0.0.1 will receive the packet.
    
 ### Receiving Multicast packets
 
@@ -1304,10 +1304,8 @@ If you want to receive packets for specific Multicast group you need to bind the
 
  `listen(...)` on it and join the Multicast group.
 
-This way you will be able to received `DatagramPackets` that was send the address and port
- on which the `DatagramSocket` 
-
-listens and also to those send to the Multicast group.
+This way you will be able to receive `DatagramPackets` that were sent to the address and port
+ on which the `DatagramSocket` listens and also to those sent to the Multicast group.
 
 Beside this you also want to set a Handler which will be called for each received DatagramPacket.
 
@@ -1394,7 +1392,7 @@ This is shown here:
 
 Beside unlisten a Multicast address it's also possible to just block multicast for a specific sender address.
 
-Be aware this only work on some Operation Systems and kernel version. So please check the Operation System
+Be aware this only work on some Operating Systems and kernel versions. So please check the Operating System
  documentation if it's supported.
 
 This an expert feature.
@@ -2029,8 +2027,8 @@ Here's an example which echoes HttpRequest headers and body back in the HttpResp
 ### HTTP Compression
 
 Vert.x comes with support for HTTP Compression out of the box. 
-Which means you are able to automatically compress the body of the responses before those are send back the the Client. 
-If the client does not support HTTP Compression the responses are send back without compress the body. 
+Which means you are able to automatically compress the body of the responses before they are sent back to the Client. 
+If the client does not support HTTP Compression the responses are sent back without compressing the body. 
 This allows to handle Client that support HTTP Compression and those that not support it at the same time.
 
 To enable compression you only need to do:
@@ -2038,7 +2036,7 @@ To enable compression you only need to do:
     HttpServer server = vertx.createHttpServer();
     server.setCompressionSupported(true);
 
- The default is false.
+The default is false.
 
 When HTTP Compression is enabled the `HttpServer` will check if the client did include an 'Accept-Encoding' header which
 includes the supported compressions. Common used are deflate and gzip. Both are supported by Vert.x.

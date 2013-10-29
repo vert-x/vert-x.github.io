@@ -106,6 +106,7 @@
 </li>
 <li><a href="#running-modules-from-the-command-line">Running modules from the command line</a></li>
 <li><a href="#running-modules-directory-from-zip-files">Running modules directory from .zip files</a></li>
+<li><a href="#running-modules-as-executable-jars-fat-jars">Running modules as executable jars (fat jars)</a></li>
 <li><a href="#displaying-version-of-vertx">Displaying version of Vert.x</a></li>
 <li><a href="#installing-and-uninstalling-modules">Installing and uninstalling modules</a></li>
 </ul>
@@ -377,6 +378,18 @@ vertx run sender.js -cluster
 <pre class="prettyprint">vertx runzip my-mod~2.0.1.zip
 </pre>
 <p>Vert.x will unzip the module into the system temporary directory and run it from there.</p>
+<h2 id="running-modules-as-executable-jars-fat-jars">Running modules as executable jars (fat jars)</h2><br/>
+<p>Vert.x also supports assembling 'fat jars'. These are executable jars which contain the Vert.x binaries along with your module so the module can be run by just executing the jar</p>
+<pre class="prettyprint">java -jar mymodule-1.0-fat.jar
+</pre>
+<p>You can also provide the usual command line arguments that you would pass to <code>vertx runmod</code> when executing the jar, e.g.</p>
+<pre class="prettyprint">java -jar mymodule-1.0-fat.jar -cluster -conf myconf.json
+</pre>
+<p>This means you don't have to have Vert.x pre-installed on the machine on which you execute the jar.</p>
+<p>To create a fat jar you can run</p>
+<pre class="prettyprint">vertx fatjar &lt;module_name&gt;
+</pre>
+<p>Or you can use the Gradle task in the standard Gradle build or the Maven plugin to build them.</p>
 <h2 id="displaying-version-of-vertx">Displaying version of Vert.x</h2><br/>
 <p>To display the installed version of Vert.x type</p>
 <pre class="prettyprint">vertx version

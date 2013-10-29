@@ -111,6 +111,7 @@
 <li><a href="#mapping-a-module-identifier-to-bintray-co-ordinates">Mapping a Module Identifier to Bintray co-ordinates</a></li>
 </ul>
 </li>
+<li><a href="#creating-fat-executable-jars">Creating fat executable jars</a></li>
 <li><a href="#nested-modules-packaging-all-module-dependencies-in-the-module">Nested modules - Packaging all module dependencies in the module</a><ul>
 <li><a href="#installing-modules-manually-from-the-repository">Installing modules manually from the repository</a></li>
 </ul>
@@ -389,6 +390,21 @@ File name = foo-mod-2.2.zip
 <p>This gives a download url for the module:</p>
 <pre class="prettyprint">http://dl.bintray.com/purplefox/vertx-mods/foo-mod/foo-mod-2.2.zip
 </pre>
+<h1 id="creating-fat-executable-jars">Creating fat executable jars</h1><br/>
+<p>Vert.x also supports assembling 'fat jars'. These are executable jars which contain the Vert.x binaries along with your module so the module can be run by just executing the jar</p>
+<pre class="prettyprint">java -jar mymodule-1.0-fat.jar
+</pre>
+<p>You can also provide the usual command line arguments that you would pass to <code>vertx runmod</code> when executing the jar, e.g.</p>
+<pre class="prettyprint">java -jar mymodule-1.0-fat.jar -cluster -conf myconf.json
+</pre>
+<p>This means you don't have to have Vert.x pre-installed on the machine on which you execute the jar.</p>
+<p>To create a fat jar you can run</p>
+<pre class="prettyprint">vertx fatjar &lt;module_name&gt;
+</pre>
+<p>You can also provide an optional output directory name where to put the jar, e.g.</p>
+<pre class="prettyprint">vertx fatjar &lt;module_name&gt; &lt;output_directory&gt;
+</pre>
+<p>Or you can use the Gradle task in the standard Gradle build or the Maven plugin to build them.</p>
 <p><a id="nested-mods"> </a></p>
 <h1 id="nested-modules-packaging-all-module-dependencies-in-the-module">Nested modules - Packaging all module dependencies in the module</h1><br/>
 <p>The usual behaviour of Vert.x is to download and install module dependencies the first time they are referenced at runtime, if they're not already installed. For some production deployments this is not necessarily desirable - there may be a requirement that modules deployed on a production server must contain everything necessary to run then without calling out to download more artifacts at runtime.</p>

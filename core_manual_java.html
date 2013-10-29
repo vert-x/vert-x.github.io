@@ -855,7 +855,6 @@ JsonObject obj = new JsonObject().putString("foo", "wibble")
 
 eb.send("some-address", obj);
 
-
 // ....
 // And in a handler somewhere:
 
@@ -1204,31 +1203,31 @@ client.setReconnectInterval(500);
                .setKeyStorePassword("password");
 </pre>
 <h1 id="user-datagram-protocol-udp">User Datagram Protocol (UDP)</h1><br/>
-<p>Using  User Datagram Protocol (UDP) with Vert.x is a piece of cake. </p>
+<p>Using User Datagram Protocol (UDP) with Vert.x is a piece of cake. </p>
 <p>UDP is a connection-less transport which basically means you have no persistent connection to a remote peer.</p>
 <p>Instead you can send and receive packages and the remote address is contained in each of them. </p>
-<p>Beside this UDP is not as safe as TCP to use, which means there are no guaranteers that a send Datagram
+<p>Beside this UDP is not as safe as TCP to use, which means there are no guarantees that a send Datagram
  packet will receive it's endpoint at all. </p>
-<p>The only guaranteer is that it will either receive complete or not at all. </p>
-<p>Also you usually can't send data which is bigger then the MTU size of yournetwork interface, this is because each
+<p>The only guarantee is that it will either receive complete or not at all. </p>
+<p>Also you usually can't send data which is bigger then the MTU size of your network interface, this is because each
  packet will be send as one packet. </p>
 <p>But be aware even if the packet size is smaller then the MTU it may still fail. </p>
-<p>At which size it will fail depends on the Operation System etc. So rule of thumb is to try to send small packets.</p>
+<p>At which size it will fail depends on the Operating System etc. So rule of thumb is to try to send small packets.</p>
 <p>Because of the nature of UDP it is best fit for Applications where you are allowed to drop packets (like for
  example a monitoring application). </p>
 <p>The benefits are that it has a lot less overhead compared to TCP, which can be handled by the NetServer and
  NetClient (see above).</p>
 <h2 id="creating-a-datagramsocket">Creating a DatagramSocket</h2><br/>
-<p>To use UDP you first need t create a <code>DatagramSocket</code>. It not matter here if you only want to send data 
+<p>To use UDP you first need t create a <code>DatagramSocket</code>. It does not matter here if you only want to send data 
 or send and receive.</p>
 <pre class="prettyprint">DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
 </pre>
 <p>The returned <code>DatagramSocket</code> will not be bound to a specific port. </p>
 <p>This is not a problem if you only want to send data (like a client), but more on this in the next section.</p>
 <h2 id="sending-datagram-packets">Sending Datagram packets</h2><br/>
-<p>Like mention before, User Datagram Protocol (UDP) send data in packets to remote peers but is not connected to them in a
+<p>As mentioned before, User Datagram Protocol (UDP) sends data in packets to remote peers but is not connected to them in a
  persistent fashion.</p>
-<p>This means each packet can be send to a different remote peer.</p>
+<p>This means each packet can be sent to a different remote peer.</p>
 <p>Sending packets is as easy as shown here:</p>
 <pre class="prettyprint">DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
 Buffer buffer = new Buffer("content");
@@ -1247,7 +1246,7 @@ socket.send("A string used as content", "10.0.0.1", 1234, new AsyncResultHandler
 </pre>
 <h2 id="receiving-datagram-packets">Receiving Datagram packets</h2><br/>
 <p>If you want to receive packets you need to bind the <code>DatagramSocket</code> by calling <code>listen(...)</code> on it. </p>
-<p>This way you will be able to received <code>DatagramPacket</code>s that was send the address and port on which
+<p>This way you will be able to receive <code>DatagramPacket</code>s that were sent to the address and port on which
 the <code>DatagramSocket</code> listens.</p>
 <p>Beside this you also want to set a <code>Handler</code> which will be called for each received <code>DatagramPacket</code>.</p>
 <p>The <code>DatagramPacket</code> has the following methods:</p>
@@ -1271,9 +1270,9 @@ socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
     }  
 });
 </pre>
-<p>Be aware that even if the <code>AsyncResult</code> is successed it only means it could be written on the network stack, 
-but gives no guaranteer that it ever reached or will reach the remote peer at all.</p>
-<p>If you need such a guaranteer then you want to use TCP with some handshaking logic build on top.</p>
+<p>Be aware that even if the <code>AsyncResult</code> is successed it only means it might be written on the network stack, 
+but gives no guarantee that it ever reached or will reach the remote peer at all.</p>
+<p>If you need such a guarantee then you want to use TCP with some handshaking logic build on top.</p>
 <h2 id="multicast">Multicast</h2><br/>
 <h3 id="sending-multicast-packets">Sending Multicast packets</h3><br/>
 <p>Multicast allows multiple sockets to receive the same packets. This works by have same join a multicast
@@ -1292,14 +1291,13 @@ socket.send(buffer, "230.0.0.1", 1234, new AsyncResultHandler&lt;DatagramSocket&
     }  
 });
 </pre>
-<p>All sockets that have joined the used multicast group 230.0.0.1 will receive the packet.</p>
+<p>All sockets that have joined the multicast group 230.0.0.1 will receive the packet.</p>
 <h3 id="receiving-multicast-packets">Receiving Multicast packets</h3><br/>
 <p>If you want to receive packets for specific Multicast group you need to bind the <code>DatagramSocket</code>
  by calling</p>
 <p><code>listen(...)</code> on it and join the Multicast group.</p>
-<p>This way you will be able to received <code>DatagramPackets</code> that was send the address and port
- on which the <code>DatagramSocket</code> </p>
-<p>listens and also to those send to the Multicast group.</p>
+<p>This way you will be able to receive <code>DatagramPackets</code> that were sent to the address and port
+ on which the <code>DatagramSocket</code> listens and also to those sent to the Multicast group.</p>
 <p>Beside this you also want to set a Handler which will be called for each received DatagramPacket.</p>
 <p>The <code>DatagramPacket</code> has the following methods:</p>
 <ul>
@@ -1376,7 +1374,7 @@ socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
 </pre>
 <h3 id="blocking-multicast">Blocking multicast</h3><br/>
 <p>Beside unlisten a Multicast address it's also possible to just block multicast for a specific sender address.</p>
-<p>Be aware this only work on some Operation Systems and kernel version. So please check the Operation System
+<p>Be aware this only work on some Operating Systems and kernel versions. So please check the Operating System
  documentation if it's supported.</p>
 <p>This an expert feature.</p>
 <p>To block multicast from a specic address you can call <code>blockMulticastGroup(...)</code> on the DatagramSocket
@@ -1867,8 +1865,8 @@ server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
 </pre>
 <h3 id="http-compression">HTTP Compression</h3><br/>
 <p>Vert.x comes with support for HTTP Compression out of the box. 
-Which means you are able to automatically compress the body of the responses before those are send back the the Client. 
-If the client does not support HTTP Compression the responses are send back without compress the body. 
+Which means you are able to automatically compress the body of the responses before they are sent back to the Client. 
+If the client does not support HTTP Compression the responses are sent back without compressing the body. 
 This allows to handle Client that support HTTP Compression and those that not support it at the same time.</p>
 <p>To enable compression you only need to do:</p>
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
