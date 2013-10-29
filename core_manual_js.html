@@ -2664,7 +2664,7 @@ inspect the cause in more detail.</p>
 <p>The DNS response code will be provided as a 
 You can obtain the DnsResponseCode from the DnsException like:</p>
 <pre class="prettyprint">client.lookup('not.exist.vertx.io', function(err, result) {
-    if (err != null) {
+    if (err != null &amp;&amp; err instanceof org.vertx.java.core.dns.DnsException) {
       var exceptionCode = err.code();
       // ... etc.
     } else {
