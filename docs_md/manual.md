@@ -317,6 +317,24 @@ For example
 
 Vert.x will unzip the module into the system temporary directory and run it from there.
 
+## Running modules as executable jars (fat jars)
+
+Vert.x also supports assembling 'fat jars'. These are executable jars which contain the Vert.x binaries along with your module so the module can be run by just executing the jar
+
+    java -jar mymodule-1.0-fat.jar
+
+You can also provide the usual command line arguments that you would pass to `vertx runmod` when executing the jar, e.g.
+
+    java -jar mymodule-1.0-fat.jar -cluster -conf myconf.json
+
+This means you don't have to have Vert.x pre-installed on the machine on which you execute the jar.
+
+To create a fat jar you can run
+
+    vertx fatjar <module_name>
+
+Or you can use the Gradle task in the standard Gradle build or the Maven plugin to build them.
+
 
 ## Displaying version of Vert.x
 
