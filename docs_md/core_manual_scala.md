@@ -84,7 +84,30 @@ If this is the case for your verticle you can implement the asynchronous version
     }
     
 If you overwrite both `start` methods, the synchronous version (without parameters) gets called before the asynchronous version (with Promise[Unit] parameter).
-        
+
+
+For the AsyncResult[_] you can also use a helper methode like this:
+
+    implicit def tryToAsyncResultHandler[X](tryHandler: Try[X] => Unit): AsyncResult[X] => Unit = {
+        tryHandler.compose { ar: AsyncResult[X] =>
+            if (ar.succeeded()) {
+                Success(ar.result())
+            } else {
+                Failure(ar.cause())
+            }
+        }
+    }
+    
+And than you can use pattern matching with Try[_] like this:
+
+    override def start(startedResult: Promise[Unit]) {
+        container.deployVerticle("foo.js", Json.obj(), 1, { 
+            case Success(result) => startedResult.success(result)
+            case Failure(x) => startedResult.failure(x)
+        }: Try[String] => Unit)
+    }
+
+ 
 ## Verticle clean-up
 
 Servers, clients, event bus handlers and timers will be automatically closed / cancelled when the verticle is stopped. However, if you have any other clean-up logic that you want to execute when the verticle is stopped, you can implement a `stop` method which will be called when the verticle is undeployed. 
@@ -125,7 +148,7 @@ Allowing verticles to be configured in a consistent way like this allows configu
 
 Each verticle is given its own logger. To get a reference to it invoke the `logger()` method on the container instance:
 
-    val logger: Logger = container.logger()
+    val logger = container.logger()
     
     logger.info("I am logging something")
     
@@ -176,7 +199,7 @@ The `deployVerticle` method deploys standard (non worker) verticles. If you want
 
 You should use `deployModule` to deploy a module, for example:
 
-    container.deployModule("io.vertx~mod-mailer~2.0.0-beta1", config);
+    container.deployModule("io.vertx~mod-mailer~2.0.0-beta1", config)
 
 Would deploy an instance of the `io.vertx~mod-mailer~2.0.0-beta1` module with the specified configuration. Please see the [modules manual]() for more information about modules.
     
@@ -184,9 +207,7 @@ Would deploy an instance of the `io.vertx~mod-mailer~2.0.0-beta1` module with th
   
 JSON configuration can be passed to a verticle that is deployed programmatically. Inside the deployed verticle the configuration is accessed with the `config()` method. For example:
 
-    val config: JsonObject = Json.obj()
-    config.putString("foo", "wibble")
-    config.putBoolean("bar", false)
+    val config = Json.obj("foo" -> "wibble", "bar" -> false)
     container.deployVerticle("foo.ChildVerticle", config)
             
 Then, in `ChildVerticle` you can access the config via `config()` as previously explained.
@@ -201,11 +222,11 @@ For example, you could create a verticle `AppStarter` as follows:
     
     val appConfig: JsonObject = container.config()
     
-    val verticle1Config: JsonObject = appConfig.getObject("verticle1_conf")
-    val verticle2Config: JsonObject = appConfig.getObject("verticle2_conf")
-    val verticle3Config: JsonObject = appConfig.getObject("verticle3_conf")
-    val verticle4Config: JsonObject = appConfig.getObject("verticle4_conf")
-    val verticle5Config: JsonObject = appConfig.getObject("verticle5_conf")
+    val verticle1Config = appConfig.getObject("verticle1_conf")
+    val verticle2Config = appConfig.getObject("verticle2_conf")
+    val verticle3Config = appConfig.getObject("verticle3_conf")
+    val verticle4Config = appConfig.getObject("verticle4_conf")
+    val verticle5Config = appConfig.getObject("verticle5_conf")
         
     // Start the verticles that make up the app  
     
@@ -359,9 +380,9 @@ Let's jump into the API.
 
 To set a message handler on the address `test.address`, you do something like the following:
 
-    val eb: EventBus = vertx.eventBus
+    val eb = vertx.eventBus
     
-    val myHandler: Message[_] => Unit = { message: Message[_] =>
+    val myHandler = { message: Message[_] =>
       println("I received a message " + message.body)
     }
     
@@ -373,7 +394,7 @@ The class `Message` is a generic type and specific Message types include `Messag
 
 If you know you'll always be receiving messages of a particular type you can use the specific type in your handler, e.g:
 
-    val myHandler: Message[String] => Unit = { message: Message[String] =>
+    val myHandler = { message: Message[String] =>
       val body: String = message.body
     }
     
@@ -388,6 +409,8 @@ When you register a handler on an address and you're in a cluster it can take so
 To unregister a handler it's just as straightforward. You simply call `unregisterHandler` passing in the address and the handler:
 
     eb.unregisterHandler("test.address", myHandler)
+    
+Current issue for the unregisterHandler: The event bus currently uses anonymous functions as handlers. The implicit conversion of the functions to handlers is causing "unregisterHandler" not to work, as a new Handler[Message[X]] is created from the anonymous function every time.
     
 A single handler can be registered multiple times on the same, or different, addresses so in order to identify it uniquely you have to specify both the address and the handler.
 
@@ -421,7 +444,7 @@ To do this you send a message, and specify a reply handler as the third argument
 
 The receiver:
 
-    val myHandler: Message[String] => Unit = { message: Message[String] =>
+    val myHandler = { message: Message[String] =>
       println("I received a message " + message.body)
         
       // Do some stuff
@@ -476,8 +499,7 @@ Send a boolean:
 
 Send a JSON object:
 
-    val obj: JsonObject = Json.obj()
-    obj.putString("foo", "wibble")
+    val obj = Json.obj("foo" -> "wibble")
     eb.send("test.address", obj)
 
 Null messages can also be sent:
@@ -512,24 +534,35 @@ To use a shared map to share data between verticles first we get a reference to 
     
 And then, in a different verticle you can access it:
 
-    val map: ConcurrentMap[String, Integer] = vertx.sharedData.getMap("demo.mymap")
+    val map = vertx.sharedData.getMap("demo.mymap")
     
     // etc
     
+To get the information in it use:
+
+	map.get("some-key")
     
 ## Shared Sets
 
 To use a shared set to share data between verticles first we get a reference to the set.
 
-    val set: Set[String] = vertx.sharedData.getSet("demo.myset")
+    val set = vertx.sharedData.getSet("demo.myset")
     
     set.add("some-value")
     
 And then, in a different verticle:
 
-    val set: Set[String] = vertx.sharedData.getSet("demo.myset")
+    val set = vertx.sharedData.getSet("demo.myset")
     
     // etc  
+    
+To get it use:
+
+	  val itr = set.iterator()
+
+	  while(itr.hasNext()) {
+	    val info = itr.next()
+	  }
         
 # Buffers
 
@@ -541,26 +574,26 @@ A Buffer represents a sequence of zero or more bytes that can be written to or r
 
 Create a new empty buffer:
 
-    val buff: Buffer = Buffer()
+    val buff = Buffer()
 
 Create a buffer from a String. The String will be encoded in the buffer using UTF-8.
 
-    val buff: Buffer = Buffer("some-string")
+    val buff = Buffer("some-string")
     
 Create a buffer from a String: The String will be encoded using the specified encoding, e.g:
 
-    val buff: Buffer = Buffer("some-string", "UTF-16")
+    val buff = Buffer("some-string", "UTF-16")
     
 Create a buffer from a byte[]
 
-    val bytes: Array[Byte] = Array[Byte](...)
+    val bytes = Array[Byte](...)
     Buffer(bytes)
     
 Create a buffer with an initial size hint. If you know your buffer will have a certain amount of data written to it you can create the buffer and specify this size. This makes the buffer initially allocate that much memory and is more efficient than the buffer automatically resizing multiple times as data is written to it.
 
 Note that buffers created this way *are empty*. It does not create a buffer filled with zeros up to the specified size.
         
-    val buff: Buffer = Buffer(100000)      
+    val buff = Buffer(100000)      
     
 ## Writing to a Buffer
 
@@ -572,7 +605,7 @@ To append to a buffer, you use the `appendXXX` methods. Append methods exist for
 
 The return value of the `appendXXX` methods is the buffer itself, so these can be chained:
 
-    val buff: Buffer = Buffer()
+    val buff = Buffer()
     
     buff.appendInt(123).appendString("hello").appendChar('\n')
     
@@ -584,7 +617,7 @@ You can also write into the buffer at a specific index, by using the `setXXX` me
 
 The buffer will always expand as necessary to accomodate the data.
 
-    val buff: Buffer = Buffer()
+    val buff = Buffer()
     
     buff.setInt(1000, 123)
     buff.setBytes(0, Array[Byte](...))
@@ -593,8 +626,8 @@ The buffer will always expand as necessary to accomodate the data.
 
 Data is read from a buffer using the `getXXX` methods. Get methods exist for Array[Byte], String and all primitive types. The first argument to these methods is an index in the buffer from where to get the data.
 
-    val buff: Buffer = ...
-    for ( i <- 0 until buff.length() by 4) {
+    val buff = ...
+    for (i <- 0 until buff.length() by 4) {
         println("int value at " + i + " is " + buff.getInt(i))
     }
     
@@ -618,9 +651,7 @@ A usage example would be using a Scala verticle to send or receive JSON messages
 
     val eb = vertx.eventBus
     
-    val obj: JsonObject = Json.obj().putString("foo", "wibble")
-                                    .putNumber("age", 1000)
-                                     
+    val obj = Json.obj("foo" -> "wibble", "age" -> 1000)                                     
     eb.send("some-address", obj)
     
     
@@ -648,7 +679,7 @@ A one shot timer calls an event handler after a certain delay, expressed in mill
 
 To set a timer to fire once you use the `setTimer` method passing in the delay and a handler
 
-    val timerID: Long = vertx.setTimer(1000, { timerID: Long =>
+    val timerID = vertx.setTimer(1000, { timerID: Long =>
         logger.info("And one second later this is printed")
     })
         
@@ -660,7 +691,7 @@ The return value is a unique timer id which can later be used to cancel the time
 
 You can also set a timer to fire periodically by using the `setPeriodic` method. There will be an initial delay equal to the period. The return value of `setPeriodic` is a unique timer id (long). This can be later used if the timer needs to be cancelled. The argument passed into the timer event handler is also the unique timer id:
 
-    val timerID: Long = vertx.setPeriodic(1000, { timerID: Long =>
+    val timerID = vertx.setPeriodic(1000, { timerID: Long =>
         logger.info("And every second this is printed")   
     })
 
@@ -670,8 +701,7 @@ You can also set a timer to fire periodically by using the `setPeriodic` method.
 
 To cancel a periodic timer, call the `cancelTimer` method specifying the timer id. For example:
 
-    val timerID: Long = vertx.setPeriodic(1000, { timerID: Long =>         
-    })
+    val timerID = vertx.setPeriodic(1000, { timerID: Long => })
     
     // And immediately cancel it
     
@@ -680,7 +710,7 @@ To cancel a periodic timer, call the `cancelTimer` method specifying the timer i
 Or you can cancel it from inside the event handler. The following example cancels the timer after it has fired 10 times.
 
 	var count: Int = 0
-    val timerID: Long = vertx.setPeriodic(1000, { timerID: Long => 
+    val timerID = vertx.setPeriodic(1000, { timerID: Long => 
         logger.info("In event handler " + count)
         count = count + 1
         if (count == 10) {
@@ -698,15 +728,13 @@ Creating TCP servers and clients is very easy with Vert.x.
 
 To create a TCP server you call the `createNetServer` method on your `vertx` instance.
 
-    val server: NetServer = vertx.createNetServer()
+    val server = vertx.createNetServer()
     
 ### Start the Server Listening    
     
 To tell that server to listen for connections we do:    
 
-    val server: NetServer = vertx.createNetServer
-
-    server.listen(1234, "myhost")
+    vertx.createNetServer.listen(1234, "myhost")
     
 The first parameter to `listen` is the port. A wildcard port of `0` can be specified which means a random available port will be chosen to actually listen at. Once the server has completed listening you can then call the `port()` method of the server to find out the real port it is using.
 
@@ -722,9 +750,7 @@ The actual bind is asynchronous so the server might not actually be listening un
     
 To be notified when a connection occurs we need to call the `connectHandler` method of the server, passing in a handler. The handler will then be called when a connection is made:
 
-    val server: NetServer = vertx.createNetServer()
-
-    server.connectHandler({ sock: NetSocket =>
+    vertx.createNetServer.connectHandler({ sock: NetSocket =>
     	logger.info("A client has connected!")
     })
 
@@ -734,7 +760,7 @@ That's a bit more interesting. Now it displays 'A client has connected!' every t
 
 The return value of the `connectHandler` method is the server itself, so multiple invocations can be chained together. That means we can rewrite the above as:
 
-    val server: NetServer = vertx.createNetServer()
+    val server = vertx.createNetServer()
 
     server.connectHandler({ sock: NetSocket =>
     	logger.info("A client has connected!")
@@ -798,9 +824,7 @@ When a connection is made, the connect handler is called passing in an instance 
 
 To read data from the socket you need to set the `dataHandler` on the socket. This handler will be called with an instance of `org.vertx.scala.core.buffer.Buffer` every time data is received on the socket. You could try the following code and telnet to it to send some data:
 
-    val server: NetSocket = vertx.createNetServer()
-
-    server.connectHandler({ sock: NetSocket =>
+    vertx.createNetServer.connectHandler({ sock: NetSocket =>
     	sock.dataHandler({ buffer: Buffer =>
         	logger.info("I received " + buffer.length() + " bytes of data")
     	})
@@ -812,7 +836,7 @@ To write data to a socket, you invoke the `write` function. This function can be
 
 With a single buffer:
 
-    val myBuffer: Buffer = Buffer(...)
+    val myBuffer = Buffer(...)
     sock.write(myBuffer)
     
 A string. In this case the string will encoded using UTF-8 and the result written to the wire.
@@ -829,9 +853,7 @@ Let's put it all together.
 
 Here's an example of a simple TCP echo server which simply writes back (echoes) everything that it receives on the socket:
 
-    val server: NetServer = vertx.createNetServer()
-
-    server.connectHandler({ sock: NetSocket =>
+    vertx.createNetServer.connectHandler({ sock: NetSocket =>
     	sock.dataHandler({ buffer: Buffer =>
         	sock.write(buffer)
     	})
@@ -853,10 +875,7 @@ You can close a socket by invoking the `close` method. This will close the under
 
 If you want to be notified when a socket is closed, you can set the `closedHandler':
 
-
-    val server: NetServer = vertx.createNetServer
-
-    server.connectHandler({ sock: NetSocket =>
+    vertx.createNetServer.connectHandler({ sock: NetSocket =>
     	sock.closeHandler({
         	logger.info("The socket is now closed")   
     	})
@@ -869,9 +888,7 @@ The closed handler will be called irrespective of whether the close was initiate
 
 You can set an exception handler on the socket that will be called if an exception occurs asynchronously on the connection:
 
-    val server: NetServer = vertx.createNetServer()
-
-    server.connectHandler({ sock: NetSocket =>
+    vertx.createNetServer.connectHandler({ sock: NetSocket =>
     	sock.exceptionHandler({ t: Throwable =>
         	logger.info("Oops, something went wrong", t)
         })
@@ -934,15 +951,13 @@ A NetClient is used to make TCP connections to servers.
 
 To create a TCP client you call the `createNetClient` method on your `vertx` instance.
 
-    val client: NetClient = vertx.createNetClient()
+    val client = vertx.createNetClient()
 
 ### Making a Connection
 
 To actually connect to a server you invoke the `connect` method:
 
-    val client: NetClient = vertx.createNetClient();
-    
-    client.connect(1234, "localhost", { asyncResult: AsyncResult[NetSocket] =>
+    vertx.createNetClient.connect(1234, "localhost", { asyncResult: AsyncResult[NetSocket] =>
     	if (asyncResult.succeeded()) {
         	logger.info("We have connected! Socket is " + asyncResult.result())
 	    } else {
@@ -960,7 +975,7 @@ You can also close it, set the closed handler, set the exception handler and use
 
 A NetClient can be configured to automatically retry connecting or reconnecting to the server in the event that it cannot connect or has lost its connection. This is done by invoking the methods `setReconnectAttempts` and `setReconnectInterval`:
 
-    val client: NetClient = vertx.createNetClient()
+    val client = vertx.createNetClient()
     
     client.setReconnectAttempts(1000)
     
@@ -998,7 +1013,7 @@ The trust store is optional and contains the certificates of any clients it shou
 
 To configure a server to use server certificates only:
 
-    val server: NetServer = vertx.createNetServer()
+    val server = vertx.createNetServer()
                    .setSSL(true)
                    .setKeyStorePath("/path/to/your/keystore/server-keystore.jks")
                    .setKeyStorePassword("password")
@@ -1007,7 +1022,7 @@ Making sure that `server-keystore.jks` contains the server certificate.
 
 To configure a server to also require client certificates:
 
-    val server: NetServer = vertx.createNetServer()
+    val server = vertx.createNetServer()
                    .setSSL(true)
                    .setKeyStorePath("/path/to/your/keystore/server-keystore.jks")
                    .setKeyStorePassword("password")
@@ -1035,20 +1050,20 @@ If the server requires client authentication then the client must present its ow
 
 To configure a client to trust all server certificates (dangerous):
 
-    val client: NetClient = vertx.createNetClient()
+    val client = vertx.createNetClient()
                    .setSSL(true)
                    .setTrustAll(true)
     
 To configure a client to only trust those certificates it has in its trust store:
 
-    val client: NetClient = vertx.createNetClient()
+    val client = vertx.createNetClient()
                    .setSSL(true)
                    .setTrustStorePath("/path/to/your/client/truststore/client-truststore.jks")
                    .setTrustStorePassword("password")
                    
 To configure a client to only trust those certificates it has in its trust store, and also to supply a client certificate:
 
-    val client: NetClient = vertx.createNetClient()
+    val client = vertx.createNetClient()
                    .setSSL(true)
                    .setTrustStorePath("/path/to/your/client/truststore/client-truststore.jks")
                    .setTrustStorePassword("password")
@@ -1074,9 +1089,7 @@ A very simple example would be reading from a `NetSocket` on a server and writin
 
 A naive way to do this would be to directly take the data that's been read and immediately write it to the NetSocket, for example:
 
-    val server: NetServer = vertx.createNetServer()
-
-    server.connectHandler({ sock: NetSocket =>
+    vertx.createNetServer.connectHandler({ sock: NetSocket =>
     	sock.dataHandler({ buffer: Buffer =>
         	// Write the data straight back
 			sock.write(buffer)
@@ -1087,9 +1100,7 @@ There's a problem with the above example: If data is read from the socket faster
 
 Since `NetSocket` implements `WriteStream`, we can check if the `WriteStream` is full before writing to it:
 
-    val server: NetServer = vertx.createNetServer()
-
-    server.connectHandler({ sock: NetSocket =>
+    vertx.createNetServer.connectHandler({ sock: NetSocket =>
 		sock.dataHandler({ buffer: Buffer =>
         	if (!sock.writeQueueFull()) {
             	sock.write(buffer)
@@ -1099,9 +1110,7 @@ Since `NetSocket` implements `WriteStream`, we can check if the `WriteStream` is
     
 This example won't run out of RAM but we'll end up losing data if the write queue gets full. What we really want to do is pause the `NetSocket` when the write queue is full. Let's do that:
 
-    val server: NetServer = vertx.createNetServer()
-
-    server.connectHandler({ sock: NetSocket =>
+    vertx.createNetServer.connectHandler({ sock: NetSocket =>
 		sock.dataHandler({ buffer: Buffer
 			if (!sock.writeQueueFull()) {
 				sock.write(buffer)
@@ -1113,9 +1122,7 @@ This example won't run out of RAM but we'll end up losing data if the write queu
 
 We're almost there, but not quite. The `NetSocket` now gets paused when the file is full, but we also need to *unpause* it when the write queue has processed its backlog:
 
-    val server: NetServer = vertx.createNetServer()
-
-    server.connectHandler({ sock: NetSocket =>
+    vertx.createNetServer.connectHandler({ sock: NetSocket =>
     	sock.dataHandler({ buffer: Buffer =>
 			if (!sock.writeQueueFull()) {
             	sock.write(buffer)
@@ -1132,9 +1139,7 @@ And there we have it. The `drainHandler` event handler will get called when the 
 
 It's very common to want to do this when writing Vert.x applications, so we provide a helper class called `Pump` which does all this hard work for you. You just feed it the `ReadStream` and the `WriteStream` and it tell it to start:
 
-    val server: NetServer = vertx.createNetServer()
-
-    server.connectHandler({ sock: NetSocket =>      
+    vertx.createNetServer.connectHandler({ sock: NetSocket =>      
     	Pump.create(sock, sock).start()
     }).listen(1234, "localhost")
     
@@ -1189,15 +1194,13 @@ Vert.x allows you to easily write full featured, highly performant and scalable 
 
 To create an HTTP server you call the `createHttpServer` method on your `vertx` instance.
 
-    val server: HttpServer = vertx.createHttpServer()
+    val server = vertx.createHttpServer()
     
 ### Start the Server Listening    
     
 To tell that server to listen for incoming requests you use the `listen` method:
 
-    val server: HttpServer = vertx.createHttpServer()
-
-    server.listen(8080, "myhost")
+    vertx.createHttpServer.listen(8080, "myhost")
     
 The first parameter to `listen` is the port. 
 
@@ -1214,9 +1217,7 @@ The actual bind is asynchronous so the server might not actually be listening un
     
 To be notified when a request arrives you need to set a request handler. This is done by calling the `requestHandler` method of the server, passing in the handler:
 
-    val server: HttpServer = vertx.createHttpServer()
-
-    server.requestHandler({ request: HttpServerRequest =>
+    vertx.createHttpServer.requestHandler({ request: HttpServerRequest =>
     	logger.info("A request has arrived on the server!")
     	request.response().end()
     })
@@ -1229,7 +1230,7 @@ You can try it by running the verticle and pointing your browser at `http://loca
 
 Similarly to `NetServer`, the return value of the `requestHandler` method is the server itself, so multiple invocations can be chained together. That means we can rewrite the above with:
 
-    val server: HttpServer = vertx.createHttpServer()
+    val server = vertx.createHttpServer()
 
     server.requestHandler({ request: HttpServerRequest =>
     	logger.info("A request has arrived on the server!")
@@ -1238,7 +1239,7 @@ Similarly to `NetServer`, the return value of the `requestHandler` method is the
     
 Or:
 
-    vertx.createHttpServer().requestHandler({ request: HttpServerRequest =>
+    vertx.createHttpServer.requestHandler({ request: HttpServerRequest =>
     	logger.info("A request has arrived on the server!")
     	request.response().end()
     }).listen(8080, "localhost")
@@ -1298,11 +1299,9 @@ The returned object is an instance of `org.vertx.scala.core.MultiMap`. A MultiMa
 
 Here's an example that echoes the headers to the output of the response. Run it and point your browser at `http://localhost:8080` to see the headers.
 
-    val server = vertx.createHttpServer()
-
-    server.requestHandler({ request: HttpServerRequest =>
-    	val sb: StringBuilder = new StringBuilder()
-        for ( header: JMap.Entry[String, String] <- request.headers.entries().asInstanceOf[List[JMap.Entry[String, String]]]) {
+    vertx.createHttpServer.requestHandler({ request: HttpServerRequest =>
+    	val sb = new StringBuilder()
+        for ( header <- request.headers.entries().asInstanceOf[List[JMap.Entry[String, String]]]) {
             sb.append(header.getKey()).append(": ").append(header.getValue()).append("\n")
         }
         request.response().putHeader("content-type", "text/plain")
@@ -1339,9 +1338,7 @@ Sometimes an HTTP request contains a request body that we want to read. As previ
 
 To receive the body, you set the `dataHandler` on the request object. This will then get called every time a chunk of the request body arrives. Here's an example:
 
-    val server: HttpServer = vertx.createHttpServer()
-
-    server.requestHandler({ request: HttpServerRequest =>
+    vertx.createHttpServer.requestHandler({ request: HttpServerRequest =>
     	request.dataHandler({ buffer: Buffer =>
         	logger.info("I received " + buffer.length() + " bytes")
     	})
@@ -1355,10 +1352,8 @@ The request object implements the `ReadStream` interface so you can pump the req
 
 In many cases, you know the body is not large and you just want to receive it in one go. To do this you could do something like the following:
 
-    val server: HttpServer = vertx.createHttpServer()
-
-    server.requestHandler({ request: HttpServerRequest =>
-    	val body: Buffer = Buffer(0)
+    vertx.createHttpServer.requestHandler({ request: HttpServerRequest =>
+    	val body = Buffer(0)
             
     	request.dataHandler({ buffer: Buffer =>
         	body.append(buffer)
@@ -1382,9 +1377,7 @@ The body handler is called only once when the *entire* request body has been rea
 
 Here's an example using `bodyHandler`:
 
-    val server: HttpServer = vertx.createHttpServer()
-
-    server.requestHandler({ request: HttpServerRequest =>
+    vertx.createHttpServer.requestHandler({ request: HttpServerRequest =>
     	request.bodyHandler({ body: Buffer =>
     		// The entire body has now been received
     		logger.info("The total body received was " + body.length() + " bytes")
@@ -1395,8 +1388,7 @@ Here's an example using `bodyHandler`:
 
 Vert.x understands file uploads submitted from HTML forms in browsers. In order to handle file uploads you should set the `uploadHandler` on the request. The handler will be called once for each upload in the form.
 
-    request.uploadHandler({ upload: HttpServerFileUpload =>
-    })
+    request.uploadHandler({ upload: HttpServerFileUpload => })
 
 The `HttpServerFileUpload` class implements `ReadStream` so you read the data and stream it to any object that implements `WriteStream` using a Pump, as previously discussed.
 
@@ -1412,7 +1404,7 @@ If the request corresponds to an HTML form that was submitted you can use the me
 
     request.endHandler({
     	// The request has been all ready so now we can look at the form attributes
-    	MultiMap attrs = request.formAttributes()
+    	val attrs = request.formAttributes()
     	// Do something with them
     })
     
@@ -1425,9 +1417,7 @@ As previously mentioned, the HTTP request object contains a method `response()`.
 
 To set the HTTP status code for the response use the `setStatusCode()` method, e.g.
 
-    val server: HttpServer = vertx.createHttpServer()
-
-    server.requestHandler({ request: HttpServerRequest =>    
+    vertx.createHttpServer.requestHandler({ request: HttpServerRequest =>    
     	request.response().setStatusCode(739).setStatusMessage("Too many gerbils").end()
     }).listen(8080, "localhost")
     
@@ -1441,7 +1431,7 @@ To write data to an HTTP response, you invoke the `write` function. This functio
 
 With a single buffer:
 
-    val myBuffer: Buffer = ...
+    val myBuffer = Buffer(...)
     request.response().write(myBuffer)
     
 A string. In this case the string will encoded using UTF-8 and the result written to the wire.
@@ -1525,10 +1515,8 @@ Using `sendFile` is usually more efficient for large files, but may be slower fo
 
 To do this use the `sendFile` function on the HTTP response. Here's a simple HTTP web server that serves static files from the local `web` directory:
 
-    val server: HttpServer = vertx.createHttpServer()
-
-    server.requestHandler({ req: HttpServerRequest =>
-    	var file: String = ""
+    vertx.createHttpServer.requestHandler({ req: HttpServerRequest =>
+    	var file = ""
         if (req.path().equals("/")) {
             file = "index.html"
         } else if (!req.path().contains("..")) {
@@ -1551,9 +1539,7 @@ Since the HTTP Response implements `WriteStream` you can pump to it from any `Re
 
 Here's an example which echoes HttpRequest headers and body back in the HttpResponse. It uses a pump for the body, so it will work even if the HTTP request body is much larger than can fit in memory at any one time:
 
-    val server: HttpServer = vertx.createHttpServer()
-
-    server.requestHandler({ req: HttpServerRequest =>   
+    vertx.createHttpServer.requestHandler({ req: HttpServerRequest =>   
     	req.response().headers().set(req.headers())  
         Pump.createPump(req, req.response()).start()
         req.endHandler({
@@ -1568,31 +1554,31 @@ Here's an example which echoes HttpRequest headers and body back in the HttpResp
 
 To create an HTTP client you call the `createHttpClient` method on your `vertx` instance:
 
-    val client: HttpClient = vertx.createHttpClient()
+    val client = vertx.createHttpClient()
     
 You set the port and hostname (or ip address) that the client will connect to using the `setHost` and `setPort` functions:
 
-    val client: HttpClient = vertx.createHttpClient()
+    val client = vertx.createHttpClient()
     client.setPort(8181)
     client.setHost("foo.com")
     
 This, of course, can be chained:
 
-    val client: HttpClient = vertx.createHttpClient()
+    val client = vertx.createHttpClient()
         .setPort(8181)
         .setHost("foo.com")
                    
-A single `HTTPClient` always connects to the same host and port. If you want to connect to different servers, create more instances.
+A single `HttpClient` always connects to the same host and port. If you want to connect to different servers, create more instances.
 
 The default port is `80` and the default host is `localhost`. So if you don't explicitly set these values that's what the client will attempt to connect to.         
 
 ### Pooling and Keep Alive
 
-By default the `HTTPClient` pools HTTP connections. As you make requests a connection is borrowed from the pool and returned when the HTTP response has ended.
+By default the `HttpClient` pools HTTP connections. As you make requests a connection is borrowed from the pool and returned when the HTTP response has ended.
 
 If you do not want connections to be pooled you can call `setKeepAlive` with `false`:
 
-    val client: HttpClient = vertx.createHttpClient()
+    val client = vertx.createHttpClient()
                    .setPort(8181)
                    .setHost("foo.com")
                    .setKeepAlive(false)
@@ -1601,7 +1587,7 @@ In this case a new connection will be created for each HTTP request and closed o
 
 You can set the maximum number of connections that the client will pool as follows:
 
-    val client: HttpClient = vertx.createHttpClient()
+    val client = vertx.createHttpClient()
                    .setPort(8181)
                    .setHost("foo.com")
                    .setMaxPoolSize(10)
@@ -1620,9 +1606,9 @@ To make a request using the client you invoke one the methods named after the HT
 
 For example, to make a `POST` request:
 
-    val client: HttpClient = vertx.createHttpClient().setHost("foo.com")
+    val client = vertx.createHttpClient().setHost("foo.com")
     
-    val request: HttpClientRequest = client.post("/some-path/", { resp: HttpClientResponse =>
+    val request = client.post("/some-path/", { resp: HttpClientResponse =>
     	logger.info("Got a response: " + resp.statusCode())
     })
     
@@ -1638,15 +1624,15 @@ The value specified in the request URI corresponds to the Request-URI as specifi
 
 *Please note that the domain/port that the client connects to is determined by `setPort` and `setHost`, and is not parsed from the uri.*
 
-The return value from the appropriate request method is an instance of `org.vertx.scala.core.http.HTTPClientRequest`. You can use this to add headers to the request, and to write to the request body. The request object implements `WriteStream`.
+The return value from the appropriate request method is an instance of `org.vertx.scala.core.http.HttpClientRequest`. You can use this to add headers to the request, and to write to the request body. The request object implements `WriteStream`.
 
 Once you have finished with the request you must call the `end()` method.
 
 If you don't know the name of the request method in advance there is a general `request` method which takes the HTTP method as a parameter:
 
-    val client: HttpClient = vertx.createHttpClient().setHost("foo.com")
+    val client = vertx.createHttpClient().setHost("foo.com")
     
-    val request: HttpClientRequest = client.request("POST", "/some-path/", { resp: HttpClientResponse =>
+    val request = client.request("POST", "/some-path/", { resp: HttpClientResponse =>
     	logger.info("Got a response: " + resp.statusCode())
     })
     
@@ -1654,9 +1640,7 @@ If you don't know the name of the request method in advance there is a general `
     
 There is also a method called `getNow` which does the same as `get`, but automatically ends the request. This is useful for simple GETs which don't have a request body:
 
-    val client: HttpClient = vertx.createHttpClient().setHost("foo.com")
-    
-    client.getNow("/some-path/", { resp: HttpClientResponse =>
+    vertx.createHttpClient().setHost("foo.com").getNow("/some-path/", { resp: HttpClientResponse =>
     	logger.info("Got a response: " + resp.statusCode())
     })
 
@@ -1672,7 +1656,7 @@ To write data to an `HttpClientRequest` object, you invoke the `write` function.
 
 With a single buffer:
 
-    val myBuffer: Buffer = ...
+    val myBuffer = Buffer(...)
     request.write(myBuffer)
     
 A string. In this case the string will encoded using UTF-8 and the result written to the wire.
@@ -1706,9 +1690,9 @@ The function can also be called with a string or Buffer in the same way `write` 
 
 To write headers to the request, add them to the multi-map returned from the `headers()` method:
 
-    val client: HttpClient = vertx.createHttpClient().setHost("foo.com")
+    val client = vertx.createHttpClient().setHost("foo.com")
     
-    val request: HttpClientRequest = client.post("/some-path/", { resp: HttpClientResponse =>
+    val request = client.post("/some-path/", { resp: HttpClientResponse =>
     	logger.info("Got a response: " + resp.statusCode())
     })
     
@@ -1747,9 +1731,7 @@ The response object implements `ReadStream`, so it can be pumped to a `WriteStre
 
 To query the status code of the response use the `statusCode()` method. The `statusMessage()` method contains the status message. For example:
 
-    val client: HttpClient = vertx.createHttpClient().setHost("foo.com")
-    
-    client.getNow("/some-path/", { resp: HttpClientResponse =>
+    vertx.createHttpClient().setHost("foo.com").getNow("/some-path/", { resp: HttpClientResponse =>
     	logger.info('server returned status code: ' + resp.statusCode())
     	logger.info('server returned status message: ' + resp.statusMessage())
     })
@@ -1763,9 +1745,7 @@ Sometimes an HTTP response contains a body that we want to read. Like an HTTP re
 
 To receive the response body, you set a `dataHandler` on the response object which gets called as parts of the HTTP response arrive. Here's an example:
 
-    val client: HttpClient = vertx.createHttpClient().setHost("foo.com")
-    
-    client.getNow("/some-path/", { resp: HttpClientResponse =>
+    vertx.createHttpClient().setHost("foo.com").getNow("/some-path/", { resp: HttpClientResponse =>
     	resp.dataHandler({ data: Buffer =>
     		logger.info("I received " + data.length() + " bytes")
     	})
@@ -1778,10 +1758,8 @@ The `dataHandler` can be called multiple times for a single HTTP response.
 
 As with a server request, if you wanted to read the entire response body before doing something with it you could do something like the following:
 
-    val client: HttpClient = vertx.createHttpClient().setHost("foo.com")
-    
-    client.getNow("/some-path/", { resp: HttpClientResponse =>
-        val body: Buffer = Buffer(0)
+    vertx.createHttpClient().setHost("foo.com").getNow("/some-path/", { resp: HttpClientResponse =>
+        val body = Buffer(0)
         
     	resp.dataHandler({ data: Buffer =>
         	body.append(data)
@@ -1804,9 +1782,7 @@ The body handler is called only once when the *entire* response body has been re
 
 Here's an example using `bodyHandler`:
 
-    val client: HttpClient = vertx.createHttpClient().setHost("foo.com")
-    
-    client.getNow("/some-path/", { resp: HttpClientResponse =>    
+    vertx.createHttpClient().setHost("foo.com").getNow("/some-path/", { resp: HttpClientResponse =>    
     	resp.bodyHandler( { body: Buffer =>
         	// The entire response body has been received
             logger.info("The total body received was " + body.length() + " bytes")
@@ -1832,9 +1808,9 @@ This is used in conjunction with the `sendHead` function to send the head of the
 
 An example will illustrate this:
 
-    val client: HttpClient = vertx.createHttpClient().setHost("foo.com")
+    val client = vertx.createHttpClient().setHost("foo.com")
     
-    val request: HttpClientRequest = client.put("/some-path/", { resp: HttpClientResponse =>
+    val request = client.put("/some-path/", { resp: HttpClientResponse =>
     	logger.info("Got a response " + resp.statusCode())
     })
 
@@ -1886,9 +1862,9 @@ This is particularly useful when developing REST-style web applications.
 
 To do this you simply create an instance of `org.vertx.scala.core.http.RouteMatcher` and use it as handler in an HTTP server. See the chapter on HTTP servers for more information on setting HTTP handlers. Here's an example:
 
-    val server: HttpServer = vertx.createHttpServer()
+    val server = vertx.createHttpServer()
     
-    val routeMatcher: RouteMatcher = new RouteMatcher()
+    val routeMatcher = new RouteMatcher()
         
     server.requestHandler(routeMatcher).listen(8080, "localhost")
     
@@ -1896,9 +1872,9 @@ To do this you simply create an instance of `org.vertx.scala.core.http.RouteMatc
     
 You can then add different matches to the route matcher. For example, to send all GET requests with path `/animals/dogs` to one handler and all GET requests with path `/animals/cats` to another handler you would do:
 
-    val server: HttpServer = vertx.createHttpServer()
+    val server = vertx.createHttpServer()
     
-    val routeMatcher: RouteMatcher = new RouteMatcher()
+    val routeMatcher = new RouteMatcher()
     
     routeMatcher.get("/animals/dogs", { req: HttpServerRequest =>
     	req.response().end("You requested dogs")
@@ -1923,13 +1899,13 @@ A request is sent to at most one handler.
 
 If you want to extract parameters from the path, you can do this too, by using the `:` (colon) character to denote the name of a parameter. For example:
 
-    val server: HttpServer = vertx.createHttpServer()
+    val server = vertx.createHttpServer()
     
-    val routeMatcher: RouteMatcher = new RouteMatcher()
+    val routeMatcher = new RouteMatcher()
     
     routeMatcher.put("/:blogname/:post", { req: HttpServerRequest =>
-    	val blogName: String = req.params().get("blogname")
-        val post: String = req.params().get("post")
+    	val blogName = req.params().get("blogname")
+        val post = req.params().get("post")
         req.response().end("blogname is " + blogName + ", post is " + post)
     })
     
@@ -1953,13 +1929,13 @@ There's also an `allWithRegEx` method which applies the match to any HTTP reques
 
 For example:
 
-    val server: HttpServer = vertx.createHttpServer()
+    val server = vertx.createHttpServer()
     
-    val routeMatcher: RouteMatcher = new RouteMatcher()
+    val routeMatcher = new RouteMatcher()
     
     routeMatcher.allWithRegEx("\\/([^\\/]+)\\/([^\\/]+)", { req: HttpServerRequest =>
-    	val first: String = req.params().get("param0");
-        val second: String = req.params().get("param1");            
+    	val first = req.params().get("param0")
+        val second = req.params().get("param1")          
         req.response.end("first is " + first + " and second is " + second)
     })
     
@@ -1984,9 +1960,7 @@ You can use the `noMatch` method to specify a handler that will be called if not
 
 To use WebSockets on the server you create an HTTP server as normal, but instead of setting a `requestHandler` you set a `websocketHandler` on the server.
 
-    val server: HttpServer = vertx.createHttpServer()
-
-    server.websocketHandler({ ws: ServerWebSocket =>
+    vertx.createHttpServer.websocketHandler({ ws: ServerWebSocket =>
     	// A WebSocket has connected!
     }).listen(8080, "localhost")
 
@@ -1999,9 +1973,7 @@ See the chapter on [streams and pumps](#flow-control) for more information.
 
 For example, to echo all data received on a WebSocket:
 
-    val server: HttpServer = vertx.createHttpServer()
-
-    server.websocketHandler({ ws: ServerWebSocket =>
+    vertx.createHttpServer.websocketHandler({ ws: ServerWebSocket =>
     	Pump.createPump(ws, ws).start()
     }).listen(8080, "localhost")
     
@@ -2017,9 +1989,7 @@ Sometimes you may only want to accept WebSockets which connect at a specific pat
 
 To check the path, you can query the `path()` method of the websocket. You can then call the `reject()` method to reject the websocket.
 
-    val server: HttpServer = vertx.createHttpServer()
-
-    server.websocketHandler({ ws: ServerWebSocket =>
+    vertx.createHttpServer.websocketHandler({ ws: ServerWebSocket =>
     	if (ws.path().equals("/services/echo")) {
         	Pump.createPump(ws, ws).start()                      
         } else {
@@ -2039,9 +2009,7 @@ The handler will then get called if the WebSocket successfully connects. If the 
 
 Here's an example of WebSocket connection;
 
-    val client: HttpClient = vertx.createHttpClient().setHost("foo.com")
-    
-    client.connectWebsocket("/some-uri", { ws: WebSocket =>
+    vertx.createHttpClient().setHost("foo.com").connectWebsocket("/some-uri", { ws: WebSocket =>
     	// Connected!
     })
 
@@ -2097,9 +2065,9 @@ This enables Vert.x to be used for modern, so-called *real-time* (this is the *m
 
 To create a SockJS server you simply create a HTTP server as normal and then call the `createSockJSServer` method of your `vertx` instance passing in the Http server:
 
-    val httpServer: HttpServer = vertx.createHttpServer()
+    val httpServer = vertx.createHttpServer()
     
-    val sockJSServer: SockJSServer = vertx.createSockJSServer(httpServer)
+    val sockJSServer = vertx.createSockJSServer(httpServer)
     
 Each SockJS server can host multiple *applications*.
 
@@ -2107,11 +2075,11 @@ Each application is defined by some configuration, and provides a handler which 
 
 For example, to create a SockJS echo application:
 
-    val httpServer: HttpServer = vertx.createHttpServer()
+    val httpServer = vertx.createHttpServer()
     
-    val sockJSServer: SockJSServer = vertx.createSockJSServer(httpServer)
+    val sockJSServer = vertx.createSockJSServer(httpServer)
     
-    val config: JsonObject = Json.obj().putString("prefix", "/echo")
+    val config = Json.obj("prefix" -> "/echo")
     
     sockJSServer.installApp(config, { sock: SockJSSocket =>
     	Pump.createPump(sock, sock).start()
@@ -2176,9 +2144,9 @@ You will also need to secure the bridge (see below).
 
 The following example bridges the event bus to client side JavaScript:
 
-    val server: HttpServer = vertx.createHttpServer()
+    val server = vertx.createHttpServer()
     
-    val config: JsonObject = Json.obj().putString("prefix", "/echo")
+    val config = Json.obj("prefix" -> "/echo")
     
     vertx.createSockJSServer(server).bridge(config, new JsonArray(), new JsonArray())
     
@@ -2257,36 +2225,35 @@ When a message arrives at the bridge, it will look through the available permitt
 
 Here is an example:
 
-    val server: HttpServer = vertx.createHttpServer()
+    val server = vertx.createHttpServer()
     
-    val config: JsonObject = Json.obj().putString("prefix", "/echo")
+    val config = Json.obj("prefix" -> "/echo")
     
-    val inboundPermitted: JsonArray = new JsonArray()
+    val inboundPermitted = new JsonArray()
     
     // Let through any messages sent to 'demo.orderMgr'
-    val inboundPermitted1: JsonObject = Json.obj().putString("address", "demo.orderMgr")
+    val inboundPermitted1 = Json.obj("address" -> "demo.orderMgr")
     inboundPermitted.add(inboundPermitted1)
     
     // Allow calls to the address 'demo.persistor' as long as the messages
     // have an action field with value 'find' and a collection field with value
     // 'albums'
-    val inboundPermitted2: JsonObject = Json.obj().putString("address", "demo.persistor")
-        .putObject("match", Json.obj().putString("action", "find")
-                                            .putString("collection", "albums"))
+    val inboundPermitted2 = Json.obj("address" -> "demo.persistor", "match" -> Json.obj("action" -> "find", "collection" -> "albums"))
+
     inboundPermitted.add(inboundPermitted2)
               
     // Allow through any message with a field `wibble` with value `foo`.                                            
-    val inboundPermitted3: JsonObject = Json.obj().putObject("match", Json.obj().putString("wibble", "foo"))
+    val inboundPermitted3 = Json.obj("match" -> Json.obj("wibble" -> "foo"))
     inboundPermitted.add(inboundPermitted3)
 
-    val outboundPermitted: JsonArray = new JsonArray()
+    val outboundPermitted = new JsonArray()
 
     // Let through any messages coming from address 'ticker.mystock'
-    val outboundPermitted1: JsonObject = Json.obj().putString("address", "ticker.mystock")
+    val outboundPermitted1 = Json.obj("address" -> "ticker.mystock")
     outboundPermitted.add(outboundPermitted1)
 
     // Let through any messages from addresses starting with "news." (e.g. news.europe, news.usa, etc)
-    val outboundPermitted2: JsonObject = Json.obj().putString("address_re", "news\\..+")
+    val outboundPermitted2 = Json.obj("address_re" -> "news\\..+")
     outboundPermitted.add(outboundPermitted2)
 
     vertx.createSockJSServer(server).bridge(config, inboundPermitted, outboundPermitted)
@@ -2298,7 +2265,7 @@ To let all messages through you can specify two JSON array with a single empty J
 
     ...
 
-    val permitted: JsonArray = new JsonArray()
+    val permitted = new JsonArray()
     permitted.add(Json.obj())
 
     vertx.createSockJSServer(server).bridge(config, permitted, permitted)
@@ -2417,7 +2384,7 @@ Here's an example:
 
     vertx.fileSystem.props("foo.dat", { ar: AsyncResult[FileProps] =>
     	if (ar.succeeded()) {
-        	logger.info("File props are:");
+        	logger.info("File props are:")
             logger.info("Last accessed: " + ar.result().lastAccessTime())
             // etc 
         } else {
@@ -2525,9 +2492,9 @@ Lists the contents of a directory
 
 List only the contents of a directory which match the filter. Here's an example which only lists files with an extension `txt` in a directory.
 
-    vertx.fileSystem.readDir("mydirectory", ".*\\.txt", { ar: AsyncResult[Array[String]] =>
+    vertx.fileSystem.readDir("mydirectory", "^.*\\.txt$", { ar: AsyncResult[Array[String]] =>
     	if (ar.succeeded()) {                
-        	logger.info("Directory contains these .txt files");
+        	logger.info("Directory contains these .txt files")
             for (i <- 0 until ar.result().length) {
             	logger.info(ar.result()(i))
             }               
@@ -2668,13 +2635,13 @@ Here is an example of random access writes:
 
     vertx.fileSystem.open("some-file.dat", { ar: AsyncResult[AsyncFile] =>
     	if (ar.succeeded()) {    
-        	val asyncFile: AsyncFile = ar.result()           
+        	val asyncFile = ar.result()           
             // File open, write a buffer 5 times into a file              
-            val buff: Buffer = Buffer("foo")
+            val buff = Buffer("foo")
             for (i <- 0 until 5) {
             	asyncFile.write(buff, buff.length() * i, { ar: AsyncResult[Void] =>
-                	if (ar.succeeded()) {                
-                    	logger.info("Written ok!");
+                	if (ar.succeeded()) {               
+                    	logger.info("Written ok!")
                         // etc            
                     } else {
                         logger.error("Failed to write", ar.cause())
@@ -2703,8 +2670,8 @@ Here's an example of random access reads:
 
     vertx.fileSystem.open("some-file.dat", { ar: AsyncResult[AsyncFile] =>
     	if (ar.succeeded()) {    
-        	val asyncFile: AsyncFile = ar.result()
-            val buff: Buffer = Buffer(1000)
+        	val asyncFile = ar.result()
+            val buff = Buffer(1000)
             for (i <- 0 until 10) {
                 asyncFile.read(buff, i * 100, i * 100, 100, { ar: AsyncResult[Buffer] =>
                 	if (ar.succeeded()) {                
@@ -2734,15 +2701,15 @@ This method can also be called with an handler which will be called when the flu
 
 Here's an example of pumping data from a file on a client to a HTTP request:
 
-    val client: HttpClient = vertx.createHttpClient.setHost("foo.com")
+    val client = vertx.createHttpClient.setHost("foo.com")
     
     vertx.fileSystem.open("some-file.dat", { ar: AsyncResult[AsyncFile] =>
     	if (ar.succeeded()) {    
-        	val request: HttpClientRequest = client.put("/uploads", { resp: HttpClientResponse =>
+        	val request = client.put("/uploads", { resp: HttpClientResponse =>
             	logger.info("Received response: " + resp.statusCode())
             })
-            val asyncFile: AsyncFile = ar.result()
-            request.setChunked(true);
+            val asyncFile = ar.result()
+            request.setChunked(true)
             Pump.createPump(asyncFile, request).start()
             asyncFile.endHandler({
             	// File sent, end HTTP requuest
@@ -2757,13 +2724,13 @@ Here's an example of pumping data from a file on a client to a HTTP request:
 
 To close an `AsyncFile` call the `close()` method. Closing is asynchronous and if you want to be notified when the close has been completed you can specify a handler function as an argument.
 
-# DNS Client
+# DNS Client (Work in Progress, useable in lang-scala version 0.3.0)
 
 Often you will find yourself in situations where you need to obtain DNS informations in an asynchronous fashion. Unfortunally this is not possible with the API that is shipped with Java itself. Because of this Vert.x offers it's own API for DNS resolution which is fully asynchronous.
 
 To obtain a DnsClient instance you will create a new via the Vertx instance.
 
-	val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53), new InetSocketAddress("10.0.0.2", 53))
+	val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53), new InetSocketAddress("10.0.0.2", 53))
 
 Be aware that you can pass in a varargs of InetSocketAddress arguments to specifiy more then one DNS Server to try to query for DNS resolution. The DNS Servers will be queried in the same order as specified here. Where the next will be used once the first produce an error while be used.
 
@@ -2773,7 +2740,7 @@ Try to lookup the A (ipv4) or AAAA (ipv6) record for a given name. The first whi
 	
 To lookup the A / AAAA record for "vertx.io" you would typically use it like:
 
-    val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
     client.lookup("vertx.io", { ar: AsyncResult[InetAddress] =>
     	if (ar.succeeded()) {
         	println(ar.result())
@@ -2791,7 +2758,7 @@ Try to lookup the A (ipv4) record for a given name. The first which is returned 
 	
 To lookup the A record for "vertx.io" you would typically use it like:
 
-    val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
     client.lookup4("vertx.io", { ar: AsyncResult[Inet4Address] =>
     	if (ar.succeeded()) {
         	println(ar.result())
@@ -2809,7 +2776,7 @@ Try to lookup the AAAA (ipv5) record for a given name. The first which is return
 	
 To lookup the A record for "vertx.io" you would typically use it like:
 
-    val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
     client.lookup6("vertx.io", { ar: AsyncResult[Inet6Address] =>
     	if (ar.succeeded()) {
         	println(ar.result())
@@ -2827,11 +2794,10 @@ Try to resolve all A (ipv4) records for a given name. This is quite similar to u
 	
 To lookup all the A records for "vertx.io" you would typically do:
 
-    val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
     client.resolveA("vertx.io", { ar: AsyncResult[List[Inet4Address]] =>
     	if (ar.succeeded()) {
-        	val records: List[Inet4Address] = ar.result()
-            for (record <- records) {
+            for (record <- ar.result()) {
                	println(record)
             }
         } else {
@@ -2848,16 +2814,15 @@ Try to resolve all AAAA (ipv6) records for a given name. This is quite similar t
 	
 To lookup all the AAAAA records for "vertx.io" you would typically do:
 
-    val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
     client.resolveAAAA("vertx.io", { ar: AsyncResult[List[Inet6Address]] =>
-            if (ar.succeeded()) {
-                val records: List[Inet6Address] = ar.result()
-                for (record <- records) {
-                	println(record)
-                }
-            } else {
-                logger.error("Failed to resolve entry", ar.cause())
+    	if (ar.succeeded()) {
+            for (record <- ar.result()) {
+              	println(record)
             }
+        } else {
+            logger.error("Failed to resolve entry", ar.cause())
+        }
     })
 
  As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.  
@@ -2869,19 +2834,16 @@ Try to resolve all CNAME records for a given name. This is quite similar to usin
 	
 To lookup all the CNAME records for "vertx.io" you would typically do:
 
-    DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
-    client.resolveCNAME("vertx.io", new AsyncResultHandler<List<String>>() {
-        public void handle(AsyncResult<List<String>> ar) {
-            if (ar.succeeded()) {
-                List<String> records = ar.result());
-                for (String record: records) {
-                	System.out.println(record);
-                }
-            } else {
-                log.error("Failed to resolve entry", ar.cause());
-            }    
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    client.resolveCNAME("vertx.io", { ar: AsyncResult[List[String]] =>
+    	if (ar.succeeded()) {
+            for (record <- ar.result()) {
+            	println(record)
+            }
+        } else {
+            logger.error("Failed to resolve entry", ar.cause())
         }
-    });
+    })
 
 
 ## resolveMX
@@ -2890,16 +2852,15 @@ Try to resolve all MX records for a given name. The MX records are used to defin
 	
 To lookup all the MX records for "vertx.io" you would typically do:
 
-    val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
     client.resolveMX("vertx.io", { ar: AsyncResult[List[MxRecord]] =>
-            if (ar.succeeded()) {
-                val records: List[MxRecord] = ar.result()
-                for (record <- records) {
-                	println(record)
-                }
-            } else {
-                logger.error("Failed to resolve entry", ar.cause())
+        if (ar.succeeded()) {
+            for (record <- ar.result()) {
+              	println(record)
             }
+        } else {
+            logger.error("Failed to resolve entry", ar.cause())
+        }
     })
 
 Be aware that the List will contain the MxRecords sorted by the priority of them, which means MxRecords with smaller priority coming first in the List.
@@ -2917,16 +2878,15 @@ Try to resolve all TXT records for a given name. TXT records are often used to d
 	
 To resolve all the TXT records for "vertx.io" you could use something along these lines:
 
-    val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
     client.resolveTXT("vertx.io", { ar: AsyncResult[List[String]] =>
-            if (ar.succeeded()) {
-                val records: List[String] = ar.result()
-                for (record <- records) {
-                	println(record)
-                }
-            } else {
-                logger.error("Failed to resolve entry", ar.cause())
+    	if (ar.succeeded()) {
+            for (record <- ar.result()) {
+              	println(record)
             }
+        } else {
+            logger.error("Failed to resolve entry", ar.cause())
+        }
     })
 
 ## resolveNS
@@ -2935,11 +2895,10 @@ Try to resolve all NS records for a given name. The NS records specify which DNS
 	
 To resolve all the NS records for "vertx.io" you could use something along these lines:
 
-    val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
     client.resolveNS("vertx.io", { ar: AsyncResult[List[String]] =>
     	if (ar.succeeded()) {
-        	val records: List[String] = ar.result()
-            for (record <- records) {
+            for (record <- ar.result()) {
                 println(record)
             }
         } else {
@@ -2954,11 +2913,10 @@ Try to resolve all SRV records for a given name. The SRV records are used to def
 	
 To lookup all the SRV records for "vertx.io" you would typically do:
 
-    val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
     client.resolveMX("vertx.io", { ar: AsyncResult[List[SrvRecord]] =>
     	if (ar.succeeded()) {
-        	val records: List[SrvRecord] = ar.result()
-            for (record <- records) {
+            for (record <- ar.result()) {
                 println(record)
             }
         } else {
@@ -2989,11 +2947,10 @@ Try to resolve the PTR record for a given name. The PTR record maps an ipaddress
 	
 To resolve the PTR record for the ipaddress 10.0.0.1 you would use the PTR notion of "1.0.0.10.in-addr.arpa"
 
-    val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
     client.resolveTXT("1.0.0.10.in-addr.arpa", { ar: AsyncResult[String] =>
     	if (ar.succeeded()) {
-        	val record: String = ar.result()
-            println(record)
+            println(ar.result())
         } else {
             logger.error("Failed to resolve entry", ar.cause())
         }
@@ -3006,14 +2963,13 @@ Try to do a reverse lookup for an ipaddress. This is basically the same as resol
 
 To do a reverse lookup for the ipaddress 10.0.0.1 do something similar like this:
 
-    val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
     client.reverseLookup("10.0.0.1", { ar: AsyncResult[String] =>
-            if (ar.succeeded()) {
-                val record: String = ar.result()
-                println(record)
-            } else {
-                logger.error("Failed to resolve entry", ar.cause())
-            }
+        if (ar.succeeded()) {
+            println(ar.result())
+        } else {
+            logger.error("Failed to resolve entry", ar.cause())
+        }
     })
 
 ## Error handling
@@ -3067,16 +3023,15 @@ All of those errors are "generated" by the DNS Server itself.
 
 You can obtain the DnsResponseCode from the DnsException like:
 
-    val client: DnsClient = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
+    val client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53))
     client.lookup("nonexisting.vert.xio", { ar: AsyncResult[InetAddress] =>
     	if (ar.succeeded()) {
-        	val record: InetAddress = ar.result()
-            println(record)
+            println(ar.result())
         } else {
-            val cause: Throwable = ar.cause()
+            val cause = ar.cause()
             if (cause.isInstanceOf[DnsException]) {
-                val exception: DnsException = cause.asInstanceOf[DnsException]
-                val code: DnsResponseCode = exception.code
+                val exception = cause.asInstanceOf[DnsException]
+                val code = exception.code
                 //...
             } else {
               	logger.error("Failed to resolve entry", ar.cause())
