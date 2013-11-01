@@ -21,6 +21,7 @@
 ./gen_section.sh docs_md/core_manual_python.md core_manual_python_templ.html core_manual_python.html
 ./gen_section.sh docs_md/core_manual_java.md core_manual_java_templ.html core_manual_java.html
 ./gen_section.sh docs_md/core_manual_groovy.md core_manual_groovy_templ.html core_manual_groovy.html
+./gen_section.sh docs_md/core_manual_scala.md core_manual_scala_templ.html core_manual_scala.html
 ./gen_section.sh docs_md/install.md install_manual_templ.html install.html
 ./gen_section.sh docs_md/dev_guide.md dev_guide_templ.html dev_guide.html
 ./gen_section.sh docs_md/gradle_dev.md gradle_dev_templ.html gradle_dev.html
