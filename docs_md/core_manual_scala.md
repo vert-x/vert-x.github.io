@@ -466,6 +466,66 @@ It is legal also to send an empty reply or a null reply.
 
 The replies themselves can also be replied to so you can create a dialog between two different verticles consisting of multiple rounds.
 
+#### Specifying timeouts for replies
+
+If you send a message specifying a reply handler, and the reply never comes, then, by default, you'll be left with a handler that never gets unregistered.
+
+To remedy this you can also specify a `AsyncResult[Message] => Unit` as a reply handler and a timeout in ms. If a reply is received before timeout your handler will be called with an `AsyncResult` containing the message, but if no reply is received before timeout, the handler will be automatically unregistered and your handler will be called with a failed result so you can deal with it in your code.
+
+Here's an example:
+
+    eb.sendWithTimeout("test.address", "This is a message", 1000, { ar: AsyncResult[Message[String]] =>
+      if (ar.succeeded()) {
+        println("I received a reply " + ar.result.body)
+      } else {
+        println("No reply was received before the 1 second timeout!")
+      }
+    })
+
+If the send times out, the exception it is available with the `cause()` method of the `AsyncResult` is of type `ReplyException`. The return value `failureType()` on the `ReplyException` instance is `ReplyFailure.TIMEOUT`.
+
+
+You can also set a default timeout on the event bus itself - this timeout will be used if you are using the `send(...)` method on the event bus to send messages with a reply handler. The default value of the default timeout is `-1` which means that reply handlers will never timeout (this is for backward compatibility reasons with earlier versions of Vert.x).
+
+    eb.setDefaultReplyTimeout(5000)
+    
+    eb.send("test.address", "This is a message", { msg: Message[String] =>
+      println("I received a reply before the timeout of 5 seconds")
+    })
+
+When replying to messages you can also provide a timeout and a `Handler<AsyncResult<Message>>` to get replies to the replies within a timeout. The API used is similar to before:
+
+    message.replyWithTimeout("This is a reply", 1000, { ar: AsyncResult[Message[String]] =>
+      if (ar.succeeded()) {
+        println("I received a reply to the reply" + ar.result.body)
+      } else {
+        println("No reply to the reply was received before the 1 second timeout!")
+      }
+    })
+
+#### Getting notified of reply failures
+
+If you send a message with a timeout and result handler, and there are no handlers available to send the message to, the handler will be called with a failed `AsyncResult` where the `cause()` is a `ReplyException`. The return value `failureType()` on the `ReplyException` instance is `ReplyFailure.NO_HANDLERS`.
+
+If you send a message with a timeout and result handler, and the recipent of the message responds by calling `Message.fail(..)`, the handler will be called with a failed `AsyncResult` where the `cause()` is a `ReplyException`. The return value `failureType()` on the `ReplyException` instance is `ReplyFailure.RECIPIENT_FAILURE`.
+
+For example
+
+    eb.registerHandler("test.address", { message: Message[String] =>
+      message.fail(123, "Not enough aardvarks");
+    });
+
+    eb.sendWithTimeout("test.address", "This is a message", 1000, { ar: AsyncResult[Message[String]] =>
+      if (ar.succeeded()) {
+        println("I received a reply " + ar.result().body)
+      } else {
+        val ex = result.cause().asInstanceOf[ReplyException]
+        println("Failure type: " + ex.failureType())
+        println("Failure code: " + ex.failureCode())
+        println("Failure message: " + ex.message())
+      }
+    });   
+
 ### Message types
 
 The message you send can be any of the following types (or their matching boxed type):
