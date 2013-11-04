@@ -691,8 +691,8 @@ eb.send("test.address", "This is a message", { msg: Message[String] =&gt;
 <p>If you send a message with a timeout and result handler, and the recipent of the message responds by calling <code>Message.fail(..)</code>, the handler will be called with a failed <code>AsyncResult</code> where the <code>cause()</code> is a <code>ReplyException</code>. The return value <code>failureType()</code> on the <code>ReplyException</code> instance is <code>ReplyFailure.RECIPIENT_FAILURE</code>.</p>
 <p>For example</p>
 <pre class="prettyprint">eb.registerHandler("test.address", { message: Message[String] =&gt;
-  message.fail(123, "Not enough aardvarks");
-});
+  message.fail(123, "Not enough aardvarks")
+})
 
 eb.sendWithTimeout("test.address", "This is a message", 1000, { ar: AsyncResult[Message[String]] =&gt;
   if (ar.succeeded()) {
@@ -703,7 +703,7 @@ eb.sendWithTimeout("test.address", "This is a message", 1000, { ar: AsyncResult[
     println("Failure code: " + ex.failureCode())
     println("Failure message: " + ex.message())
   }
-});
+})
 </pre>
 <h3 id="message-types">Message types</h3><br/>
 <p>The message you send can be any of the following types (or their matching boxed type):</p>
