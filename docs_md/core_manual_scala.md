@@ -512,9 +512,9 @@ If you send a message with a timeout and result handler, and the recipent of the
 For example
 
     eb.registerHandler("test.address", { message: Message[String] =>
-      message.fail(123, "Not enough aardvarks");
-    });
-
+      message.fail(123, "Not enough aardvarks")
+    })
+    
     eb.sendWithTimeout("test.address", "This is a message", 1000, { ar: AsyncResult[Message[String]] =>
       if (ar.succeeded()) {
         println("I received a reply " + ar.result().body)
@@ -524,7 +524,7 @@ For example
         println("Failure code: " + ex.failureCode())
         println("Failure message: " + ex.message())
       }
-    });   
+    })
 
 ### Message types
 
