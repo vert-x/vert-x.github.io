@@ -718,7 +718,7 @@ set.add('some-value');
 <p>The return value of the <code>appendXXX</code> methods is the buffer itself, so these can be chained:</p>
 <pre class="prettyprint">var buff = new vertx.Buffer();
 
-buff.appendInt(123).appendString("hello").appendChar('\n');
+buff.appendInt(123).appendString("hello\n");
 
 socket.write(buff);
 </pre>

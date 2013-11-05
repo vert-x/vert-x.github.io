@@ -561,7 +561,7 @@ The return value of the `appendXXX` methods is the buffer itself, so these can b
 
     var buff = new vertx.Buffer();
     
-    buff.appendInt(123).appendString("hello").appendChar('\n');
+    buff.appendInt(123).appendString("hello\n");
     
     socket.write(buff);
     
