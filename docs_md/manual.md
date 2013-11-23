@@ -323,11 +323,15 @@ Vert.x also supports assembling 'fat jars'. These are executable jars which cont
 
     java -jar mymodule-1.0-fat.jar
 
+This means you don't have to have Vert.x pre-installed on the machine on which you execute the jar.
+
 You can also provide the usual command line arguments that you would pass to `vertx runmod` when executing the jar, e.g.
 
     java -jar mymodule-1.0-fat.jar -cluster -conf myconf.json
 
-This means you don't have to have Vert.x pre-installed on the machine on which you execute the jar.
+You can also specify a `-cp` argument to specify extra classpath to pass to the Vert.x platform. This is useful if you, say, want to use a custom `cluster.xml` when running the module, e.g.
+
+    java -jar mymodule-1.0-fat.jar -cluster -conf myconf.json -cp path/to/dir/containiner/cluster_xml
 
 To create a fat jar you can run
 

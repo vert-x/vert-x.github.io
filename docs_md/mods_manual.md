@@ -85,6 +85,16 @@ In some cases there is ambiguity, for example given a FQCN should we assume the 
 
     "main": "groovy:org.mycompany.mymod.MyCompiledGroovyClass"
 
+You can also add the field `lang-impl` to mod.json to specify which language implementation module you want to run the module with. This overrides any settings in `langs.properties`.
+
+### lang-impl
+
+Normally Vert.x will infer which language module to use to run the module by either looking at the prefix of the file extension of the main. This behaviour can be overridden by specifying a field `lang-impl` where the value is as it would normally appear in `langs.properties`, e.g.:
+
+    "lang-impl": com.company~lang-cobol~1.0.0:com.mycompany.langmod.CobolVerticleFactory
+
+Please see the [language support guide](language_support.html) for more information on the format of this string.
+
 ### worker
 
 If the module is a worker this should be set to `true`. Worker modules run using a thread from the background pool and are allowed to perform blocking operations. Standard verticles run using an event loop thread and cannot block. Default is `false`.
