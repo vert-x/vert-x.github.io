@@ -369,14 +369,14 @@ import static org.vertx.groovy.core.streams.Pump.createPump
 import org.vertx.groovy.core.Vertx
 
 class EchoServer extends Verticle {
-    override def start() {
+    def start() {
         vertx.createNetServer().connectHandler { socket -&gt;
             createPump(socket, socket).start()
         }.listen(1234)
     }
 
-override def stop() {        
-    }
+   def stop() {        
+   }
 }
 </pre>
 <p>Once you've compiled it, you run it by specifing the classname prefixed with <code>groovy:</code>. We need the prefix to tell Vert.x to treat it as a Groovy class, not a Java class.</p>
@@ -385,7 +385,7 @@ override def stop() {
 <h2 id="asynchronous-start">Asynchronous start</h2><br/>
 <p>In some cases your Verticle has to do some other stuff asynchronous in its <code>start()</code> method, e.g. start other verticles, and the verticle shouldn't be considered started until those other actions are complete.</p>
 <p>If this is the case for your compiled Groovy verticle you can override the asynchronous version of the <code>start()</code> method:</p>
-<pre class="prettyprint">override def start(Future&lt;Void&gt; startedResult) {    
+<pre class="prettyprint">def start(Future&lt;Void&gt; startedResult) {    
   // For example - deploy some other verticle
   container.deployVerticle("foo.js") { deployResult -&gt;
     if (deployResult.succeeded) {
