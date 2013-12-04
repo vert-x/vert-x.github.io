@@ -382,10 +382,13 @@ vertx run sender.js -cluster
 <p>Vert.x also supports assembling 'fat jars'. These are executable jars which contain the Vert.x binaries along with your module so the module can be run by just executing the jar</p>
 <pre class="prettyprint">java -jar mymodule-1.0-fat.jar
 </pre>
+<p>This means you don't have to have Vert.x pre-installed on the machine on which you execute the jar.</p>
 <p>You can also provide the usual command line arguments that you would pass to <code>vertx runmod</code> when executing the jar, e.g.</p>
 <pre class="prettyprint">java -jar mymodule-1.0-fat.jar -cluster -conf myconf.json
 </pre>
-<p>This means you don't have to have Vert.x pre-installed on the machine on which you execute the jar.</p>
+<p>You can also specify a <code>-cp</code> argument to specify extra classpath to pass to the Vert.x platform. This is useful if you, say, want to use a custom <code>cluster.xml</code> when running the module, e.g.</p>
+<pre class="prettyprint">java -jar mymodule-1.0-fat.jar -cluster -conf myconf.json -cp path/to/dir/containiner/cluster_xml
+</pre>
 <p>To create a fat jar you can run</p>
 <pre class="prettyprint">vertx fatjar &lt;module_name&gt;
 </pre>

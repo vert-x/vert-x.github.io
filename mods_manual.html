@@ -81,6 +81,7 @@
 <li><a href="#the-structure-of-a-module">The structure of a module</a><ul>
 <li><a href="#module-descriptor-file-modjson">Module descriptor file - mod.json</a><ul>
 <li><a href="#main">main</a></li>
+<li><a href="#lang-impl">lang-impl</a></li>
 <li><a href="#worker">worker</a></li>
 <li><a href="#multi-threaded">multi-threaded</a></li>
 <li><a href="#includes">includes</a></li>
@@ -180,6 +181,12 @@ com.mycompany~toaster-mod~1.2.1-final
 <p>In some cases there is ambiguity, for example given a FQCN should we assume the class is Java or Groovy? In these cases the main can be prefixed with the name of the language implementation to use, for example:</p>
 <pre class="prettyprint">"main": "groovy:org.mycompany.mymod.MyCompiledGroovyClass"
 </pre>
+<p>You can also add the field <code>lang-impl</code> to mod.json to specify which language implementation module you want to run the module with. This overrides any settings in <code>langs.properties</code>.</p>
+<h3 id="lang-impl">lang-impl</h3><br/>
+<p>Normally Vert.x will infer which language module to use to run the module by either looking at the prefix of the file extension of the main. This behaviour can be overridden by specifying a field <code>lang-impl</code> where the value is as it would normally appear in <code>langs.properties</code>, e.g.:</p>
+<pre class="prettyprint">"lang-impl": com.company~lang-cobol~1.0.0:com.mycompany.langmod.CobolVerticleFactory
+</pre>
+<p>Please see the <a href="language_support.html">language support guide</a> for more information on the format of this string.</p>
 <h3 id="worker">worker</h3><br/>
 <p>If the module is a worker this should be set to <code>true</code>. Worker modules run using a thread from the background pool and are allowed to perform blocking operations. Standard verticles run using an event loop thread and cannot block. Default is <code>false</code>.</p>
 <pre class="prettyprint">"worker": true
