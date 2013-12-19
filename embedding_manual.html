@@ -126,6 +126,7 @@ pm.deployModule("com.mycompany~my-module~1.0", conf, 10, new AsyncResultHandler&
 <ul>
 <li><code>vertx.home</code> - When installing system modules, vert.x will install them in a directory <code>sys-mods</code> which is in the directory given by this property.</li>
 <li><code>vertx.mods</code> - When looking for or installing non system modules Vert.x will look in the directory <code>mods</code> in the current working directory. If this property is set this will tell Vert.x to instead look in the provided directory.</li>
+<li><code>vertx.clusterManagerFactory</code> - If you're using clustering this property should contain the fully qualified class name of the cluster manager factory that you want to use. If you are just using he default Hazelcast cluster manager factory the value should be <code>org.vertx.java.spi.cluster.impl.hazelcast.HazelcastClusterManagerFactory</code>.</li>
 </ul>
 <h2 id="config-files">Config files</h2><br/>
 <p>The Vert.x platform will look for various config files on the classpath. The vert.x platform .jar contains the default files inside it, but if you want to override any settings you can provide your own versions - just make sure you put them on the classpath ahead of the vert.x platform jar.</p>

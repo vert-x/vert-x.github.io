@@ -48,6 +48,7 @@ When using the platform manager the following system properties can be set:
 
 * `vertx.home` - When installing system modules, vert.x will install them in a directory `sys-mods` which is in the directory given by this property.
 * `vertx.mods` - When looking for or installing non system modules Vert.x will look in the directory `mods` in the current working directory. If this property is set this will tell Vert.x to instead look in the provided directory.
+* `vertx.clusterManagerFactory` - If you're using clustering this property should contain the fully qualified class name of the cluster manager factory that you want to use. If you are just using he default Hazelcast cluster manager factory the value should be `org.vertx.java.spi.cluster.impl.hazelcast.HazelcastClusterManagerFactory`.
 
 ## Config files
 
