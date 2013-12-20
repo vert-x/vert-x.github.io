@@ -107,9 +107,9 @@ vert.x 2.0.0-final (built ...)
 <h1 id="testing-the-install">Testing the install</h1><br/>
 <p>Let's test the install by writing a simple web server.</p>
 <p>Copy the following into a text editor and save it as <code>server.js</code></p>
-<pre class="prettyprint">var vertx = require('vertx');
+<pre class="prettyprint">var http = require('vertx/http');
 
-vertx.createHttpServer().requestHandler(function(req) {
+http.createHttpServer().requestHandler(function(req) {
   req.response.end("Hello World!");
 }).listen(8080, 'localhost');
 </pre>
