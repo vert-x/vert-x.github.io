@@ -2060,7 +2060,7 @@ For example, to create a SockJS echo application:
 
     def sockJSServer = vertx.createSockJSServer(httpServer)
 
-    def config = ["prefix: "/echo"]
+    def config = ["prefix": "/echo"]
 
     sockJSServer.installApp(config) { sock ->
         Pump.createPump(sock, sock).start()
