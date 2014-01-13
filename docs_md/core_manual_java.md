@@ -121,7 +121,7 @@ Each verticle is given its own logger. To get a reference to it invoke the `logg
     
     logger.info("I am logging something");
     
-The logger is an instance of the class `org.vertx.core.logging.Logger` and has the following methods;
+The logger is an instance of the class `org.vertx.java.core.logging.Logger` and has the following methods;
 
 * trace
 * debug
