@@ -70,15 +70,6 @@ To run the integration tests
 
     mvn integration-test
 
-To run the Vert.x module from the resources in Eclipse
-
-    mvn vertx:runModEclipse
-
-If you're using IntelliJ IDEA:
-
-    mvn vertx:runModIDEA
-
-
 # Setup your IDE
 
 You can use the `idea` and `eclipse` goals to create IDE projects from your Maven project, for example

@@ -10,7 +10,7 @@ a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, Calif
 
 In this guide we'll show you how to develop a Vert.x project using Gradle.
 
-# Fork and clone the template project
+# Clone the template project
 
 We provide a template [Gradle project](https://github.com/vert-x/vertx-gradle-template) which you can clone to get you started.
 
@@ -82,6 +82,10 @@ If your project needs a third party jar to build and you want to include it in t
 If you don't want it to be included in the `lib` directory you should add it as `provided`.
 
 Once you've changed your dependencies just run `./gradlew idea` or `./gradlew eclipse` again to update your IDE project files with the new dependencies.
+
+# Installing your module in Maven local
+
+Use `./gradlew install` to install your module in your local Maven repository.
 
 # Pushing your module to Maven
 

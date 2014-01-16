@@ -122,13 +122,9 @@ To get this to work your module must be marked as:
 
 In your `mod.json`. See the [modules manual](mods_manual.html#auto-redeploy) for more information on this.
 
-Then, if you're using the standard Vert.x Gradle Template project, and you're using Eclipse you can run the following from a console in your project directory:
+Then, if you're using the standard Vert.x Gradle Template project, you can run the following from a console in your project directory:
 
-    ./gradlew runModEclipse -i
-
-If you're using IntelliJ IDEA:
-
-    ./gradlew runModIDEA -i
+    ./gradlew runMod -i
 
 This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.
 
@@ -136,47 +132,24 @@ If you want to provide command line arguments to the running module, e.g. you wa
 
 Note that we use the -i switch when running `gradlew` - this tells Gradle not to swallow INFO level debug output when running. By default Gradle swallows all logging output (!)
 
-If you're using Maven and you're using Eclipse you can run the following from a console in your project directory:
+If you're using Maven you can run the following from a console in your project directory:
 
-    mvn vertx:runModEclipse
-
-If you're using IntelliJ IDEA:
-
-    mvn vertx:runModIDEA
+    mvn vertx:runMod
 
 This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.
 
-By installing the Maven or Gradle plugin for your IDE you should be able to run the Maven runModXXXX tasks directly in the IDE.
+By installing the Maven or Gradle plugin for your IDE you should be able to run the Maven runMod tasks directly in the IDE.
 
 If you're using a different IDE (or no IDE!) you can run
 
    mvn vertx:runModOnCP
 
-And edit the `classpath` configuration parameter in the pom.xml for the plugin, e.g:
-
-    <plugin>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-maven-plugin</artifactId>
-      <version>${maven.vertx.plugin.version}</version>
-      <configuration>
-         <instances>1</instances>
-         <configFile>path/to/config/conf.json</configFile>
-         <classpath>src/main/resources:target/classes</classpath>
-      </configuration>
-            ....
-
-So it points to the directories where your module resources are. You can also specify any configuration file to use when running the module and how many instances to deploy in the configuration.
+Vert.x uses the file `vertx_classpath.txt` to determine where to find the resources of your module during development. This file is configured for standard directories used by both IntelliJ IDEA and Eclipse, but if you have put your resources in a different place you can edit this file to point at where the resources are.
 
 If you don't use Maven or Gradle but still want to see your changes in a running module immediately you can run the following from a console in your project directory:
 
-    vertx runmod com.yourcompany~your-module~1.0 -cp <classpath>
-
-Where `classpath` specifies where the resources of your project are. Let's say you have some of them in
-`src/main/resources` and you have your compiled classes in `out/classes`, then you could run:
-
-    vertx runmod com.yourcompany~your-module~1.0 -cp src/main/resources/:out/classes
-
-Then just edit your files in your IDE and when they're saved/compiled the module should be automatically restarted with your changes.
+    vertx create-link com.yourcompany~your-module~1.0
+    vertx runmod com.yourcompany~your-module~1.0
 
 ## Working with Multi Module Applications
 
@@ -193,6 +166,16 @@ Or
     ./gradlew install
 
 From any of the projects to install that module in your local Maven repository, and it will be automatically picked up by your other modules which use it. Vert.x module system understands how to pull modules from local (as well as remote) Maven repositories.
+
+If you want to enable auto-redeploy for all modules in a multi-module project then it's recommended that you set `VERTX_MODS` to point to a directory in the parent directory for your modules.
+
+Then each module project execute:
+
+    `vertx create-link <module_name>`
+
+This only has to be done once.
+
+Then just run the main module with `vertx runmod` as normal and any changes in sub modules will be picked up causing redeployment.
 
 # Other best practices
 
