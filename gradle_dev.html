@@ -76,12 +76,13 @@
 <div class="toc">
 <ul>
 <li><a href="#developing-vertx-modules-with-gradle">Developing Vert.x modules with Gradle</a></li>
-<li><a href="#fork-and-clone-the-template-project">Fork and clone the template project</a></li>
+<li><a href="#clone-the-template-project">Clone the template project</a></li>
 <li><a href="#outputs">Outputs</a></li>
 <li><a href="#configuring-the-project">Configuring the project</a></li>
 <li><a href="#other-useful-gradle-tasks">Other useful Gradle tasks</a></li>
 <li><a href="#setup-your-ide">Setup your IDE</a></li>
 <li><a href="#changing-the-dependencies-of-your-project">Changing the dependencies of your project</a></li>
+<li><a href="#installing-your-module-in-maven-local">Installing your module in Maven local</a></li>
 <li><a href="#pushing-your-module-to-maven">Pushing your module to Maven</a></li>
 <li><a href="#registering-your-module-in-the-module-registry">Registering your module in the Module Registry</a></li>
 <li><a href="#next-steps">Next steps</a></li>
@@ -89,7 +90,7 @@
 </div>
 <h1 id="developing-vertx-modules-with-gradle">Developing Vert.x modules with Gradle</h1><br/>
 <p>In this guide we'll show you how to develop a Vert.x project using Gradle.</p>
-<h1 id="fork-and-clone-the-template-project">Fork and clone the template project</h1><br/>
+<h1 id="clone-the-template-project">Clone the template project</h1><br/>
 <p>We provide a template <a href="https://github.com/vert-x/vertx-gradle-template">Gradle project</a> which you can clone to get you started.</p>
 <p>Clone it locally</p>
 <pre class="prettyprint">git clone https://github.com/vert-x/vertx-gradle-template.git my-vertx-module
@@ -140,6 +141,8 @@
 <p>If your project needs a third party jar to build and you want to include it in the <code>lib</code> directory of your module you can add the dependency in the <code>dependencies</code> section of <code>build.gradle</code> with a type of <code>compile</code>.</p>
 <p>If you don't want it to be included in the <code>lib</code> directory you should add it as <code>provided</code>.</p>
 <p>Once you've changed your dependencies just run <code>./gradlew idea</code> or <code>./gradlew eclipse</code> again to update your IDE project files with the new dependencies.</p>
+<h1 id="installing-your-module-in-maven-local">Installing your module in Maven local</h1><br/>
+<p>Use <code>./gradlew install</code> to install your module in your local Maven repository.</p>
 <h1 id="pushing-your-module-to-maven">Pushing your module to Maven</h1><br/>
 <p>Use <code>./gradlew uploadArchives</code> as normal to push your module to a Maven repository.</p>
 <h1 id="registering-your-module-in-the-module-registry">Registering your module in the Module Registry</h1><br/>

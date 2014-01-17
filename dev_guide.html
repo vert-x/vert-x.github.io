@@ -160,46 +160,24 @@ This tells Vert.x which verticle to run when the module is deployed.</p>
 <pre class="prettyprint">"auto-redeploy": true
 </pre>
 <p>In your <code>mod.json</code>. See the <a href="mods_manual.html#auto-redeploy">modules manual</a> for more information on this.</p>
-<p>Then, if you're using the standard Vert.x Gradle Template project, and you're using Eclipse you can run the following from a console in your project directory:</p>
-<pre class="prettyprint">./gradlew runModEclipse -i
-</pre>
-<p>If you're using IntelliJ IDEA:</p>
-<pre class="prettyprint">./gradlew runModIDEA -i
+<p>Then, if you're using the standard Vert.x Gradle Template project, you can run the following from a console in your project directory:</p>
+<pre class="prettyprint">./gradlew runMod -i
 </pre>
 <p>This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.</p>
 <p>If you want to provide command line arguments to the running module, e.g. you want to specify a config file you can edit the <code>runModArgs</code> property in `gradle.properties".</p>
 <p>Note that we use the -i switch when running <code>gradlew</code> - this tells Gradle not to swallow INFO level debug output when running. By default Gradle swallows all logging output (!)</p>
-<p>If you're using Maven and you're using Eclipse you can run the following from a console in your project directory:</p>
-<pre class="prettyprint">mvn vertx:runModEclipse
-</pre>
-<p>If you're using IntelliJ IDEA:</p>
-<pre class="prettyprint">mvn vertx:runModIDEA
+<p>If you're using Maven you can run the following from a console in your project directory:</p>
+<pre class="prettyprint">mvn vertx:runMod
 </pre>
 <p>This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.</p>
-<p>By installing the Maven or Gradle plugin for your IDE you should be able to run the Maven runModXXXX tasks directly in the IDE.</p>
+<p>By installing the Maven or Gradle plugin for your IDE you should be able to run the Maven runMod tasks directly in the IDE.</p>
 <p>If you're using a different IDE (or no IDE!) you can run</p>
 <p>mvn vertx:runModOnCP</p>
-<p>And edit the <code>classpath</code> configuration parameter in the pom.xml for the plugin, e.g:</p>
-<pre class="prettyprint">&lt;plugin&gt;
-  &lt;groupId&gt;io.vertx&lt;/groupId&gt;
-  &lt;artifactId&gt;vertx-maven-plugin&lt;/artifactId&gt;
-  &lt;version&gt;${maven.vertx.plugin.version}&lt;/version&gt;
-  &lt;configuration&gt;
-     &lt;instances&gt;1&lt;/instances&gt;
-     &lt;configFile&gt;path/to/config/conf.json&lt;/configFile&gt;
-     &lt;classpath&gt;src/main/resources:target/classes&lt;/classpath&gt;
-  &lt;/configuration&gt;
-        ....
-</pre>
-<p>So it points to the directories where your module resources are. You can also specify any configuration file to use when running the module and how many instances to deploy in the configuration.</p>
+<p>Vert.x uses the file <code>vertx_classpath.txt</code> to determine where to find the resources of your module during development. This file is configured for standard directories used by both IntelliJ IDEA and Eclipse, but if you have put your resources in a different place you can edit this file to point at where the resources are.</p>
 <p>If you don't use Maven or Gradle but still want to see your changes in a running module immediately you can run the following from a console in your project directory:</p>
-<pre class="prettyprint">vertx runmod com.yourcompany~your-module~1.0 -cp &lt;classpath&gt;
+<pre class="prettyprint">vertx create-link com.yourcompany~your-module~1.0
+vertx runmod com.yourcompany~your-module~1.0
 </pre>
-<p>Where <code>classpath</code> specifies where the resources of your project are. Let's say you have some of them in
-<code>src/main/resources</code> and you have your compiled classes in <code>out/classes</code>, then you could run:</p>
-<pre class="prettyprint">vertx runmod com.yourcompany~your-module~1.0 -cp src/main/resources/:out/classes
-</pre>
-<p>Then just edit your files in your IDE and when they're saved/compiled the module should be automatically restarted with your changes.</p>
 <h2 id="working-with-multi-module-applications">Working with Multi Module Applications</h2><br/>
 <p>For larger applications it makes sense to implement them as a set of Vert.x modules.</p>
 <p>The application should be made up of several projects (probably created using the Maven archetype or Gradle template), each outputting a single module.</p>
@@ -210,6 +188,12 @@ This tells Vert.x which verticle to run when the module is deployed.</p>
 <pre class="prettyprint">./gradlew install
 </pre>
 <p>From any of the projects to install that module in your local Maven repository, and it will be automatically picked up by your other modules which use it. Vert.x module system understands how to pull modules from local (as well as remote) Maven repositories.</p>
+<p>If you want to enable auto-redeploy for all modules in a multi-module project then it's recommended that you set <code>VERTX_MODS</code> to point to a directory in the parent directory for your modules.</p>
+<p>Then each module project execute:</p>
+<pre class="prettyprint">`vertx create-link &lt;module_name&gt;`
+</pre>
+<p>This only has to be done once.</p>
+<p>Then just run the main module with <code>vertx runmod</code> as normal and any changes in sub modules will be picked up causing redeployment.</p>
 <h1 id="other-best-practices">Other best practices</h1><br/>
 <h2 id="using-a-verticle-to-co-ordinate-loading-of-an-application">Using a Verticle to co-ordinate loading of an application</h2><br/>
 <p>If you have an application that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.</p>
