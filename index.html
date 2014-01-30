@@ -228,7 +228,7 @@
       <li><a href="#ws_ruby" data-toggle="tab">Ruby</a></li>
       <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
       <li><a href="#ws_python" data-toggle="tab">Python</a></li>
-      
+      <li><a href="#ws_clojure" data-toggle="tab">Clojure</a></li>
       
     </ul>
 
@@ -329,6 +329,30 @@
           <p>Run it:</p>
 
           <p><code>vertx run server.py</code></p>
+
+        </div>
+
+        <div class="tab-pane" id="ws_clojure">
+
+          <p>Save the following in <code>server.clj</code></p>
+                  <pre class="prettyprint">
+  (ns sample.server
+    (:require [vertx.html :as html]))
+
+  (-> http/server
+    (http/on-request 
+      (fn [req]
+        (let [uri (.uri req)]
+          (-> req
+            http/server-response
+            (http/send-file (str "webroot/" (if (= "/" uri) "index.html" uri)))))))
+    (http/listen 8080))
+                
+                  </pre>
+
+          <p>Run it:</p>
+
+          <p><code>vertx run server.clj</code></p>
 
         </div>
         
