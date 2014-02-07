@@ -122,11 +122,15 @@ To get this to work your module must be marked as:
 
 In your `mod.json`. See the [modules manual](mods_manual.html#auto-redeploy) for more information on this.
 
+Next set your project in your IDE to automatically compile when source files are saved - how to do this depends on your particular IDE so consult your IDE documentation if in doubt.
+
 Then, if you're using the standard Vert.x Gradle Template project, you can run the following from a console in your project directory:
 
-    ./gradlew runMod -i
+    ./gradlew clean runMod -i
 
 This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.
+
+Note that we do a clean first to make sure there is no previously built module lurking in the `target/mods` directory - of one is found there then `runMod` will deploy that, not the module corresponding to the resources in your IDE.
 
 If you want to provide command line arguments to the running module, e.g. you want to specify a config file you can edit the `runModArgs` property in `gradle.properties".
 
@@ -134,15 +138,13 @@ Note that we use the -i switch when running `gradlew` - this tells Gradle not to
 
 If you're using Maven you can run the following from a console in your project directory:
 
-    mvn vertx:runMod
+    mvn clean vertx:runMod
 
 This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.
 
-By installing the Maven or Gradle plugin for your IDE you should be able to run the Maven runMod tasks directly in the IDE.
+Again, note that we do a clean first to make sure there is no previously built module lurking in the `target/mods` directory - of one is found there then `runMod` will deploy that, not the module corresponding to the resources in your IDE.
 
-If you're using a different IDE (or no IDE!) you can run
-
-   mvn vertx:runModOnCP
+By installing the Maven or Gradle plugin for your IDE you should be able to run the runMod tasks directly in the IDE.
 
 Vert.x uses the file `vertx_classpath.txt` to determine where to find the resources of your module during development. This file is configured for standard directories used by both IntelliJ IDEA and Eclipse, but if you have put your resources in a different place you can edit this file to point at where the resources are.
 
@@ -169,7 +171,7 @@ From any of the projects to install that module in your local Maven repository, 
 
 If you want to enable auto-redeploy for all modules in a multi-module project then it's recommended that you set `VERTX_MODS` to point to a directory in the parent directory for your modules.
 
-Then each module project execute:
+Then in each module project directory execute:
 
     `vertx create-link <module_name>`
 

@@ -62,10 +62,6 @@ It also contains various properties used to configure versions of various depend
 
 # Other useful Maven targets
 
-To run the module using Maven, using the dependencies declared in the project (This does not need Vert.x to be installed on your system already)
-
-    mvn vertx:runMod
-
 To run the integration tests
 
     mvn integration-test
