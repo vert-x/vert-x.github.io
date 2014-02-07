@@ -2483,12 +2483,12 @@ requests with path <code>/animals/cats</code> to another handler you would do:</
        (-&gt; (route/get "/animals/dogs"
              (fn [req]
                (-&gt; (http/server-response req)
-                   (end "You requested dogs"))))
+                   (http/end "You requested dogs"))))
            (route/get "/animals/cats"
              (fn [req]
                (-&gt; (http/server-response req)
-                   (end "You requested cats"))))))
-    (listen 8080))
+                   (http/end "You requested cats"))))))
+    (http/listen 8080))
 </pre>
 <p>Corresponding functions exist for each HTTP method - <code>get</code>, <code>post</code>,
 <code>put</code>, <code>delete</code>, <code>head</code>, <code>options</code>, <code>trace</code>, <code>connect</code> and <code>patch</code>.</p>
@@ -2515,10 +2515,10 @@ parameter. For example:</p>
         (fn [req]
           (let [params (http/params req)]
             (-&gt; (http/server-response req)
-                (end (format "blogname is %s and post is %s"
+                (http/end (format "blogname is %s and post is %s"
                              (:blogname params)
                              (:post params))))))))
-    (listen 8080))
+    (http/listen 8080))
 </pre>
 <p>Any params extracted by pattern matching are added to the map of
 request parameters.</p>
@@ -2542,10 +2542,10 @@ above instead of pattern strings.</p>
         (fn [req]
           (let [params (http/params req)]
             (-&gt; (http/server-response req)
-                (end (format "first is %s and second is %s"
+                (http/end (format "first is %s and second is %s"
                              (:param0 params)
                              (:param1 params))))))))
-    (listen 8080))
+    (http/listen 8080))
 </pre>
 <p>Run the above and point your browser at
 <code>http://localhost:8080/animals/cats</code>.</p>
@@ -2556,7 +2556,7 @@ called if nothing matches. If you don't specify a no match handler and
 nothing matches, a 404 will be returned.</p>
 <pre class="prettyprint">(route/no-match 
   (fn [req]
-    (end (server-response req) "Nothing matched")))
+    (http/end (server-response req) "Nothing matched")))
 </pre>
 <h1 id="websockets">WebSockets</h1><br/>
 <p><a href="http://en.wikipedia.org/wiki/WebSocket">WebSockets</a> are a web
@@ -2601,7 +2601,7 @@ websocket.</p>
         (if (= "/services/echo" (.path ws))
           (stream/pump ws ws)
           (.reject ws))))
-    (listen 8080))
+    (http/listen 8080))
 </pre>
 <h3 id="event-bus-write-handler_1">Event Bus Write Handler</h3><br/>
 <p>Like NetSockets, every WebSocket automatically registers handlers on
