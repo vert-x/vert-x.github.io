@@ -158,7 +158,7 @@ Vert.x uses the file `vertx_classpath.txt` to determine where to find the resour
 
 If you don't use Maven or Gradle but still want to see your changes in a running module immediately you can run the following from a console in your project directory:
 
-    vertx create-link com.yourcompany~your-module~1.0
+    vertx create-module-link com.yourcompany~your-module~1.0
     vertx runmod com.yourcompany~your-module~1.0
 
 ## Working with Multi Module Applications

@@ -182,7 +182,7 @@ This tells Vert.x which verticle to run when the module is deployed.</p>
 <p>By installing the Maven or Gradle plugin for your IDE you should be able to run the runMod tasks directly in the IDE.</p>
 <p>Vert.x uses the file <code>vertx_classpath.txt</code> to determine where to find the resources of your module during development. This file is configured for standard directories used by both IntelliJ IDEA and Eclipse, but if you have put your resources in a different place you can edit this file to point at where the resources are.</p>
 <p>If you don't use Maven or Gradle but still want to see your changes in a running module immediately you can run the following from a console in your project directory:</p>
-<pre class="prettyprint">vertx create-link com.yourcompany~your-module~1.0
+<pre class="prettyprint">vertx create-module-link com.yourcompany~your-module~1.0
 vertx runmod com.yourcompany~your-module~1.0
 </pre>
 <h2 id="working-with-multi-module-applications">Working with Multi Module Applications</h2><br/>
