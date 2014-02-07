@@ -122,15 +122,25 @@ To get this to work your module must be marked as:
 
 In your `mod.json`. See the [modules manual](mods_manual.html#auto-redeploy) for more information on this.
 
-Next set your project in your IDE to automatically compile when source files are saved - how to do this depends on your particular IDE so consult your IDE documentation if in doubt.
+If you haven't done so already, you can create project files for your IDE using:
+
+    ./gradlew idea
+
+Or
+
+    ./gradlew eclipse
+
+Now open your project file in your IDE, and set your project in your IDE to automatically compile when source files are saved - how to do this depends on your particular IDE so consult your IDE documentation if in doubt.
+
+Now, make sure your IDE has built your project at least once (e.g. hit CTRL-F9 in IntelliJ IDEA).
+
+*Note you should make sure there is no previously built module lurking in the `target/mods` directory - of one is found there then `runMod` will deploy that, not the module corresponding to the resources in your IDE. So delete target/mods if it exists before running `runMod`.*
 
 Then, if you're using the standard Vert.x Gradle Template project, you can run the following from a console in your project directory:
 
-    ./gradlew clean runMod -i
+    ./gradlew runMod -i
 
 This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.
-
-Note that we do a clean first to make sure there is no previously built module lurking in the `target/mods` directory - of one is found there then `runMod` will deploy that, not the module corresponding to the resources in your IDE.
 
 If you want to provide command line arguments to the running module, e.g. you want to specify a config file you can edit the `runModArgs` property in `gradle.properties".
 
@@ -141,8 +151,6 @@ If you're using Maven you can run the following from a console in your project d
     mvn clean vertx:runMod
 
 This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.
-
-Again, note that we do a clean first to make sure there is no previously built module lurking in the `target/mods` directory - of one is found there then `runMod` will deploy that, not the module corresponding to the resources in your IDE.
 
 By installing the Maven or Gradle plugin for your IDE you should be able to run the runMod tasks directly in the IDE.
 

@@ -160,19 +160,25 @@ This tells Vert.x which verticle to run when the module is deployed.</p>
 <pre class="prettyprint">"auto-redeploy": true
 </pre>
 <p>In your <code>mod.json</code>. See the <a href="mods_manual.html#auto-redeploy">modules manual</a> for more information on this.</p>
-<p>Next set your project in your IDE to automatically compile when source files are saved - how to do this depends on your particular IDE so consult your IDE documentation if in doubt.</p>
+<p>If you haven't done so already, you can create project files for your IDE using:</p>
+<pre class="prettyprint">./gradlew idea
+</pre>
+<p>Or</p>
+<pre class="prettyprint">./gradlew eclipse
+</pre>
+<p>Now open your project file in your IDE, and set your project in your IDE to automatically compile when source files are saved - how to do this depends on your particular IDE so consult your IDE documentation if in doubt.</p>
+<p>Now, make sure your IDE has built your project at least once (e.g. hit CTRL-F9 in IntelliJ IDEA).</p>
+<p><em>Note you should make sure there is no previously built module lurking in the <code>target/mods</code> directory - of one is found there then <code>runMod</code> will deploy that, not the module corresponding to the resources in your IDE. So delete target/mods if it exists before running <code>runMod</code>.</em></p>
 <p>Then, if you're using the standard Vert.x Gradle Template project, you can run the following from a console in your project directory:</p>
-<pre class="prettyprint">./gradlew clean runMod -i
+<pre class="prettyprint">./gradlew runMod -i
 </pre>
 <p>This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.</p>
-<p>Note that we do a clean first to make sure there is no previously built module lurking in the <code>target/mods</code> directory - of one is found there then <code>runMod</code> will deploy that, not the module corresponding to the resources in your IDE.</p>
 <p>If you want to provide command line arguments to the running module, e.g. you want to specify a config file you can edit the <code>runModArgs</code> property in `gradle.properties".</p>
 <p>Note that we use the -i switch when running <code>gradlew</code> - this tells Gradle not to swallow INFO level debug output when running. By default Gradle swallows all logging output (!)</p>
 <p>If you're using Maven you can run the following from a console in your project directory:</p>
 <pre class="prettyprint">mvn clean vertx:runMod
 </pre>
 <p>This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.</p>
-<p>Again, note that we do a clean first to make sure there is no previously built module lurking in the <code>target/mods</code> directory - of one is found there then <code>runMod</code> will deploy that, not the module corresponding to the resources in your IDE.</p>
 <p>By installing the Maven or Gradle plugin for your IDE you should be able to run the runMod tasks directly in the IDE.</p>
 <p>Vert.x uses the file <code>vertx_classpath.txt</code> to determine where to find the resources of your module during development. This file is configured for standard directories used by both IntelliJ IDEA and Eclipse, but if you have put your resources in a different place you can edit this file to point at where the resources are.</p>
 <p>If you don't use Maven or Gradle but still want to see your changes in a running module immediately you can run the following from a console in your project directory:</p>
