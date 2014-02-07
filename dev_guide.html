@@ -191,7 +191,7 @@ vertx runmod com.yourcompany~your-module~1.0
 <p>From any of the projects to install that module in your local Maven repository, and it will be automatically picked up by your other modules which use it. Vert.x module system understands how to pull modules from local (as well as remote) Maven repositories.</p>
 <p>If you want to enable auto-redeploy for all modules in a multi-module project then it's recommended that you set <code>VERTX_MODS</code> to point to a directory in the parent directory for your modules.</p>
 <p>Then in each module project directory execute:</p>
-<pre class="prettyprint">`vertx create-link &lt;module_name&gt;`
+<pre class="prettyprint">vertx create-link &lt;module_name&gt;
 </pre>
 <p>This only has to be done once.</p>
 <p>Then just run the main module with <code>vertx runmod</code> as normal and any changes in sub modules will be picked up causing redeployment.</p>
