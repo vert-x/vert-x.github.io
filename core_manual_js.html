@@ -1395,12 +1395,16 @@ server.requestHandler(function(request) {
 </pre>
 <h4 id="handling-multipart-form-uploads">Handling Multipart Form Uploads</h4><br/>
 <p>Vert.x understands file uploads submitted from HTML forms in browsers. In order to handle file uploads you should set the <code>uploadHandler</code> on the request. The handler will be called once for each upload in the form.</p>
-<pre class="prettyprint">request.uploadHandler(function(upload) {
+<pre class="prettyprint">request.expectMultiPart(true);
+
+request.uploadHandler(function(upload) {
 });
 </pre>
 <p>The <code>HttpServerFileUpload</code> class implements <code>ReadStream</code> so you read the data and stream it to any object that implements <code>WriteStream</code> using a Pump, as previously discussed.</p>
 <p>You can also stream it directly to disk using the convenience method <code>streamToFileSystem()</code>.</p>
-<pre class="prettyprint">request.uploadHandler(function(upload) {
+<pre class="prettyprint">request.expectMultiPart(true);
+
+request.uploadHandler(function(upload) {
     upload.streamToFileSystem("uploads/" + upload.filename());
 });
 </pre>
@@ -2072,6 +2076,7 @@ sockJSServer.bridge({prefix : '/eventbus'},
     }
   ]
   );
+
 
 server.listen(8080);
 </pre>

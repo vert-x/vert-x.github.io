@@ -1422,6 +1422,8 @@ Here's an example using `body_handler`:
 
 Vert.x understands file uploads submitted from HTML forms in browsers. In order to handle file uploads you should set the `upload_handler` on the request. The handler will be called once for each upload in the form.
 
+    request.expect_multi_part = true
+
     def upload_handler(upload):
         print "Got upload %s" % upload.filename()
 
@@ -1430,6 +1432,8 @@ Vert.x understands file uploads submitted from HTML forms in browsers. In order 
 The `HttpServerFileUpload` class implements `ReadStream` so you read the data and stream it to any object that implements `WriteStream` using a Pump, as previously discussed.
 
 You can also stream it directly to disk using the convenience method `streamToFileSystem()`.
+
+    request.expect_multi_part = true
 
     def upload_handler(upload):
         upload.stream_to_file_system "upload/%s" %upload.filename
