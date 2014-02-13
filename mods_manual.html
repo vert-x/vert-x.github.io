@@ -187,6 +187,7 @@ com.mycompany~toaster-mod~1.2.1-final
 <pre class="prettyprint">"lang-impl": com.company~lang-cobol~1.0.0:com.mycompany.langmod.CobolVerticleFactory
 </pre>
 <p>Please see the <a href="language_support.html">language support guide</a> for more information on the format of this string.</p>
+<p>Please note that this can only be used to change the language implementation to be used for that particular module, not any verticles it may spawn. To globally change the language implementation for Vert.x you can edit <code>langs.properties</code>.</p>
 <h3 id="worker">worker</h3><br/>
 <p>If the module is a worker this should be set to <code>true</code>. Worker modules run using a thread from the background pool and are allowed to perform blocking operations. Standard verticles run using an event loop thread and cannot block. Default is <code>false</code>.</p>
 <pre class="prettyprint">"worker": true

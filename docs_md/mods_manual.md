@@ -95,6 +95,8 @@ Normally Vert.x will infer which language module to use to run the module by eit
 
 Please see the [language support guide](language_support.html) for more information on the format of this string.
 
+Please note that this can only be used to change the language implementation to be used for that particular module, not any verticles it may spawn. To globally change the language implementation for Vert.x you can edit `langs.properties`.
+
 ### worker
 
 If the module is a worker this should be set to `true`. Worker modules run using a thread from the background pool and are allowed to perform blocking operations. Standard verticles run using an event loop thread and cannot block. Default is `false`.
