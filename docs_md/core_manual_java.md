@@ -1844,6 +1844,8 @@ Here's an example using `bodyHandler`:
 
 Vert.x understands file uploads submitted from HTML forms in browsers. In order to handle file uploads you should set the `uploadHandler` on the request. The handler will be called once for each upload in the form.
 
+    request.expectMultiPart(true);
+
     request.uploadHandler(new Handler<HttpServerFileUpload>() {
         public void handle(HttpServerFileUpload upload) {
         }
@@ -1852,6 +1854,8 @@ Vert.x understands file uploads submitted from HTML forms in browsers. In order 
 The `HttpServerFileUpload` class implements `ReadStream` so you read the data and stream it to any object that implements `WriteStream` using a Pump, as previously discussed.
 
 You can also stream it directly to disk using the convenience method `streamToFileSystem()`.
+
+    request.expectMultiPart(true);
 
     request.uploadHandler(new Handler<HttpServerFileUpload>() {
         public void handle(HttpServerFileUpload upload) {
