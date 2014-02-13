@@ -339,6 +339,8 @@ To create a fat jar you can run
 
 Or you can use the Gradle task in the standard Gradle build or the Maven plugin to build them.
 
+If you want to override any Vert.x platform configuration, e.g. `langs.properties`, `cluster.xml` or logging configuration, you can add those files to the directory `platform_lib` inside your module that you're making into a fat jar. When executing your fat jar Vert.x will recognise this directory and use it to configure Vert.x with.
+
 
 ## Displaying version of Vert.x
 

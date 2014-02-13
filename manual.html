@@ -393,6 +393,7 @@ vertx run sender.js -cluster
 <pre class="prettyprint">vertx fatjar &lt;module_name&gt;
 </pre>
 <p>Or you can use the Gradle task in the standard Gradle build or the Maven plugin to build them.</p>
+<p>If you want to override any Vert.x platform configuration, e.g. <code>langs.properties</code>, <code>cluster.xml</code> or logging configuration, you can add those files to the directory <code>platform_lib</code> inside your module that you're making into a fat jar. When executing your fat jar Vert.x will recognise this directory and use it to configure Vert.x with.</p>
 <h2 id="displaying-version-of-vertx">Displaying version of Vert.x</h2><br/>
 <p>To display the installed version of Vert.x type</p>
 <pre class="prettyprint">vertx version

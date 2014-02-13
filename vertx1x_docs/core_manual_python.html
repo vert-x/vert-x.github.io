@@ -1977,7 +1977,6 @@ sockJSServer.bridge({'prefix' : '/eventbus'},
     }
   ], [{}])
 
-
 server.listen(8080)
 </pre>
 <p>To let all messages through you can specify two arrays with a single empty JSON object which will match all messages.</p>
@@ -2227,7 +2226,6 @@ If the file is created, <code>perms</code> is a Unix-style permissions string us
                 else:
                     print 'Written ok'  
             async_file.write(buff, buff.length() * i, write_handler)
-
 
 FileSystem.open('some-file.dat', handler=handler)
 </pre>
