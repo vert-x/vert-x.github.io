@@ -16,6 +16,12 @@ body {
   color: #33a098;
 }
 
+.highlight_note {
+  font-size: 12px;
+  font-weight: 200;
+  color: #33a098;
+}
+
 .highlight {
   color: #FFFFFF;
 }
