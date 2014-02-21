@@ -508,7 +508,7 @@ container.deployWorkerVerticle("verticle5.js", verticle5Config, 10);
         "age": 1234,
         "shoe_size": 12,
         "pi": 3.14159
-    },
+    }, 
     "verticle3_conf": {
         "strange": true
     },
@@ -517,7 +517,7 @@ container.deployWorkerVerticle("verticle5.js", verticle5Config, 10);
     },
     "verticle5_conf": {
         "tel_no": "123123123"
-    }
+    }       
 }
 </pre>
 <p>Then set the <code>AppStarter</code> as the main of your module and then you can start your entire application by simply running:</p>
@@ -604,7 +604,7 @@ eb.registerHandler("test.address", myHandler);
 <p>It's as simple as that. The handler will then receive any messages sent to that address.</p>
 <p>The class <code>Message</code> is a generic type and specific Message types include <code>Message&lt;Boolean&gt;</code>, <code>Message&lt;Buffer&gt;</code>, <code>Message&lt;byte[]&gt;</code>, <code>Message&lt;Byte&gt;</code>, <code>Message&lt;Character&gt;</code>, <code>Message&lt;Double&gt;</code>, <code>Message&lt;Float&gt;</code>, <code>Message&lt;Integer&gt;</code>, <code>Message&lt;JsonObject&gt;</code>, <code>Message&lt;JsonArray&gt;</code>, <code>Message&lt;Long&gt;</code>, <code>Message&lt;Short&gt;</code> and <code>Message&lt;String&gt;</code>.</p>
 <p>If you know you'll always be receiving messages of a particular type you can use the specific type in your handler, e.g:</p>
-<pre class="prettyprint">Handler&lt;Message&lt;String&gt;&gt; myHandler = new Handler&lt;Message&lt;String&gt;&gt;() {
+<pre class="prettyprint">Handler&lt;Message&lt;String&gt;&gt; myHandler = new Handler&lt;Message&lt;String&gt;() {
     public void handle(Message&lt;String&gt; message) {
         String body = message.body;
     }
@@ -660,7 +660,7 @@ eb.registerHandler("test.address", myHandler);
 <p>The sender:</p>
 <pre class="prettyprint">eb.send("test.address", "This is a message", new Handler&lt;Message&lt;String&gt;&gt;() {
     public void handle(Message&lt;String&gt; message) {
-        System.out.println("I received a reply " + message.body);
+        System.out.println("I received a reply " + message.body);            
     }
 });
 </pre>
@@ -673,7 +673,7 @@ eb.registerHandler("test.address", myHandler);
 <pre class="prettyprint">eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
     public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
         if (result.succeeded()) {
-            System.out.println("I received a reply " + message.body);
+            System.out.println("I received a reply " + message.body);            
         } else {
 
             System.err.println("No reply was received before the 1 second timeout!");
@@ -687,7 +687,7 @@ eb.registerHandler("test.address", myHandler);
 
 eb.send("test.address", "This is a message", new Handler&lt;Message&lt;String&gt;&gt;() {
     public void handle(Message&lt;String&gt; message) {
-        System.out.println("I received a reply before the timeout of 5 seconds");
+        System.out.println("I received a reply before the timeout of 5 seconds");            
     }
 });
 </pre>
@@ -695,7 +695,7 @@ eb.send("test.address", "This is a message", new Handler&lt;Message&lt;String&gt
 <pre class="prettyprint">message.replyWithTimeout("This is a reply", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
     public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
         if (result.succeeded()) {
-            System.out.println("I received a reply to the reply" + message.body);
+            System.out.println("I received a reply to the reply" + message.body);            
         } else {
             System.err.println("No reply to the reply was received before the 1 second timeout!");
         }
@@ -708,18 +708,18 @@ eb.send("test.address", "This is a message", new Handler&lt;Message&lt;String&gt
 <p>For example</p>
 <pre class="prettyprint">eb.registerHandler("test.address", new Handler&lt;Message&lt;String&gt;&gt;() {
     public void handle(Message&lt;String&gt; message) {
-        message.fail(123, "Not enough aardvarks");
+        message.fail(123, "Not enough aardvarks");  
     }
 });
 
 eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
     public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
         if (result.succeeded()) {
-            System.out.println("I received a reply " + message.body);
+            System.out.println("I received a reply " + message.body);            
         } else {
             ReplyException ex = (ReplyException)result.cause();
-            System.err.println("Failure type: " + ex.failureType();
-            System.err.println("Failure code: " + ex.failureCode();
+            System.err.println("Failure type: " + ex.failureType();  
+            System.err.println("Failure code: " + ex.failureCode();                
             System.err.println("Failure message: " + ex.message();
         }
     }
@@ -855,6 +855,7 @@ JsonObject obj = new JsonObject().putString("foo", "wibble")
 
 eb.send("some-address", obj);
 
+
 // ....
 // And in a handler somewhere:
 
@@ -874,7 +875,7 @@ public void handle(Message&lt;JsonObject&gt; message) {
 <p>To set a timer to fire once you use the <code>setTimer</code> method passing in the delay and a handler</p>
 <pre class="prettyprint">long timerID = vertx.setTimer(1000, new Handler&lt;Long&gt;() {
     public void handle(Long timerID) {
-        log.info("And one second later this is printed");
+        log.info("And one second later this is printed"); 
     }
 });
 
@@ -885,7 +886,7 @@ log.info("First this is printed");
 <p>You can also set a timer to fire periodically by using the <code>setPeriodic</code> method. There will be an initial delay equal to the period. The return value of <code>setPeriodic</code> is a unique timer id (long). This can be later used if the timer needs to be cancelled. The argument passed into the timer event handler is also the unique timer id:</p>
 <pre class="prettyprint">long timerID = vertx.setPeriodic(1000, new Handler&lt;Long&gt;() {
     public void handle(Long timerID) {
-        log.info("And every second this is printed");
+        log.info("And every second this is printed"); 
     }
 });
 
@@ -894,7 +895,7 @@ log.info("First this is printed");
 <h2 id="cancelling-timers">Cancelling timers</h2><br/>
 <p>To cancel a periodic timer, call the <code>cancelTimer</code> method specifying the timer id. For example:</p>
 <pre class="prettyprint">long timerID = vertx.setPeriodic(1000, new Handler&lt;Long&gt;() {
-    public void handle(Long timerID) {
+    public void handle(Long timerID) {            
     }
 });
 
@@ -905,11 +906,11 @@ vertx.cancelTimer(timerID);
 <p>Or you can cancel it from inside the event handler. The following example cancels the timer after it has fired 10 times.</p>
 <pre class="prettyprint">long timerID = vertx.setPeriodic(1000, new Handler&lt;Long&gt;() {
     int count;
-    public void handle(Long timerID) {
-        log.info("In event handler " + count);
+    public void handle(Long timerID) {  
+        log.info("In event handler " + count); 
         if (++count == 10) {
             vertx.cancelTimer(timerID);
-        }
+        }          
     }
 });
 </pre>
@@ -932,7 +933,7 @@ server.listen(1234, "myhost");
 <pre class="prettyprint">server.listen(1234, "myhost", new AsyncResultHandler&lt;Void&gt;() {
     public void handle(AsyncResult&lt;NetServer&gt; asyncResult) {
         log.info("Listen succeeded? " + asyncResult.succeeded());
-    }
+    }  
 });
 </pre>
 <h3 id="getting-notified-of-incoming-connections">Getting Notified of Incoming Connections</h3><br/>
@@ -974,7 +975,7 @@ server.connectHandler(new Handler&lt;NetSocket&gt;() {
 <pre class="prettyprint">server.close(new AsyncResultHandler&lt;Void&gt;() {
     public void handle(AsyncResult&lt;Void&gt; asyncResult) {
         log.info("Close succeeded? " + asyncResult.succeeded());
-    }
+    }  
 });
 </pre>
 <p>If you want your net server to last the entire lifetime of your verticle, you don't need to call <code>close</code> explicitly, the Vert.x container will automatically close any servers that you created when the verticle is undeployed.    </p>
@@ -1062,7 +1063,7 @@ server.connectHandler(new Handler&lt;NetSocket&gt;() {
     public void handle(final NetSocket sock) {
         sock.closedHandler(new VoidHandler() {
             public void handle() {
-                log.info("The socket is now closed");
+                log.info("The socket is now closed"); 
             }
         });
     }
@@ -1077,7 +1078,7 @@ server.connectHandler(new Handler&lt;NetSocket&gt;() {
     public void handle(final NetSocket sock) {
         sock.exceptionHandler(new Handler&lt;Throwable&gt;() {
             public void handle(Throwable t) {
-                log.info("Oops, something went wrong", t);
+                log.info("Oops, something went wrong", t);                      
             }
         });
     }
@@ -1127,7 +1128,7 @@ client.connect(1234, "localhost", new AsyncResultHandler&lt;NetSocket&gt;() {
           log.info("We have connected! Socket is " + asyncResult.result());
     } else {
           asyncResult.cause().printStackTrace();
-        }
+        }            
     }
 });
 </pre>
@@ -1218,7 +1219,7 @@ client.setReconnectInterval(500);
 <p>The benefits are that it has a lot less overhead compared to TCP, which can be handled by the NetServer and
  NetClient (see above).</p>
 <h2 id="creating-a-datagramsocket">Creating a DatagramSocket</h2><br/>
-<p>To use UDP you first need t create a <code>DatagramSocket</code>. It does not matter here if you only want to send data
+<p>To use UDP you first need t create a <code>DatagramSocket</code>. It does not matter here if you only want to send data 
 or send and receive.</p>
 <pre class="prettyprint">DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
 </pre>
@@ -1235,13 +1236,13 @@ Buffer buffer = new Buffer("content");
 socket.send(buffer, "10.0.0.1", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
     public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
         log.info("Send succeeded? " + asyncResult.succeeded());
-    }
+    }  
 });
 // Send a String
 socket.send("A string used as content", "10.0.0.1", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
     public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
         log.info("Send succeeded? " + asyncResult.succeeded());
-    }
+    }  
 });
 </pre>
 <h2 id="receiving-datagram-packets">Receiving Datagram packets</h2><br/>
@@ -1267,10 +1268,10 @@ socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
         } else {
             log.warn("Listen failed", asyncResult.cause());
         }
-    }
+    }  
 });
 </pre>
-<p>Be aware that even if the <code>AsyncResult</code> is successed it only means it might be written on the network stack,
+<p>Be aware that even if the <code>AsyncResult</code> is successed it only means it might be written on the network stack, 
 but gives no guarantee that it ever reached or will reach the remote peer at all.</p>
 <p>If you need such a guarantee then you want to use TCP with some handshaking logic build on top.</p>
 <h2 id="multicast">Multicast</h2><br/>
@@ -1278,7 +1279,7 @@ but gives no guarantee that it ever reached or will reach the remote peer at all
 <p>Multicast allows multiple sockets to receive the same packets. This works by have same join a multicast
 group to which you can send packets.</p>
 <p>We will look at how you can joint a Multicast Group and so receive packets in the next section. </p>
-<p>For now let us focus on how to send those. Sending multicast packets is not different to send normal
+<p>For now let us focus on how to send those. Sending multicast packets is not different to send normal 
 Datagram Packets.</p>
 <p>The only difference is that you would pass in a multicast group address to the send method.</p>
 <p>This is show here:</p>
@@ -1288,7 +1289,7 @@ Buffer buffer = new Buffer("content");
 socket.send(buffer, "230.0.0.1", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
     public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
         log.info("Send succeeded? " + asyncResult.succeeded());
-    }
+    }  
 });
 </pre>
 <p>All sockets that have joined the multicast group 230.0.0.1 will receive the packet.</p>
@@ -1325,7 +1326,7 @@ socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
         } else {
             log.warn("Listen failed", asyncResult.cause());
         }
-    }
+    }  
 });
 </pre>
 <h3 id="unlisten-leave-a-multicast-group">Unlisten / leave a Multicast group</h3><br/>
@@ -1369,7 +1370,7 @@ socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
         } else {
             log.warn("Listen failed", asyncResult.cause());
         }
-    }
+    }  
 });
 </pre>
 <h3 id="blocking-multicast">Blocking multicast</h3><br/>
@@ -1390,7 +1391,7 @@ socket.blockMulticastGroup("230.0.0.1", "10.0.0.2", new AsyncResultHandler&lt;Da
 });
 </pre>
 <h2 id="datagramsocket-properties">DatagramSocket properties</h2><br/>
-<p>When using the <code>DatagramSocket</code> there are multiple properties you can set to change it's behaviour.
+<p>When using the <code>DatagramSocket</code> there are multiple properties you can set to change it's behaviour. 
 Those are listed here:</p>
 <ul>
 <li>
@@ -1407,7 +1408,7 @@ Those are listed here:</p>
 <p><code>setTrafficClass(trafficClass)</code></p>
 </li>
 <li>
-<p><code>setBroadcast(broadcast)</code> Sets or clears the SO_BROADCAST socket option. When this option is set,
+<p><code>setBroadcast(broadcast)</code> Sets or clears the SO_BROADCAST socket option. When this option is set, 
                             Datagram (UDP) packets may be sent to a local interface's broadcast address.</p>
 </li>
 <li>
@@ -1521,8 +1522,8 @@ server.connectHandler(new Handler&lt;NetSocket&gt;() {
 <pre class="prettyprint">NetServer server = vertx.createNetServer();
 
 server.connectHandler(new Handler&lt;NetSocket&gt;() {
-    public void handle(NetSocket sock) {
-        Pump.create(sock, sock).start();
+    public void handle(NetSocket sock) {        
+        Pump.create(sock, sock).start();        
     }
 }).listen(1234, "localhost");
 </pre>
@@ -1577,7 +1578,7 @@ server.listen(8080, "myhost");
 <pre class="prettyprint">server.listen(8080, "myhost", new AsyncResultHandler&lt;Void&gt;() {
     public void handle(AsyncResult&lt;HttpServer&gt; asyncResult) {
         log.info("Listen succeeded? " + asyncResult.succeeded());
-    }
+    }  
 });
 </pre>
 <h3 id="getting-notified-of-incoming-requests">Getting Notified of Incoming Requests</h3><br/>
@@ -1652,7 +1653,7 @@ server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
             sb.append(header.getKey()).append(": ").append(header.getValue()).append("\n");
         }
         request.response().putHeader("content-type", "text/plain");
-        request.response().end(sb.toString());
+        request.response().end(sb.toString());  
     }
 }).listen(8080, "localhost");
 </pre>
@@ -1705,7 +1706,7 @@ server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
         request.endHandler(new VoidHandler() {
             public void handle() {
               // The entire body has now been received
-              log.info("The total body received was " + body.length() + " bytes");
+              log.info("The total body received was " + body.length() + " bytes");    
             }
         });
 
@@ -1721,13 +1722,13 @@ server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
 
 server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
-    public void handle(HttpServerRequest request) {
+    public void handle(HttpServerRequest request) {        
         request.bodyHandler(new Handler&lt;Buffer&gt;() {
             public void handle(Buffer body) {
               // The entire body has now been received
-              log.info("The total body received was " + body.length() + " bytes");
+              log.info("The total body received was " + body.length() + " bytes");   
             }
-        });
+        });            
     }
 }).listen(8080, "localhost");
 </pre>
@@ -1767,8 +1768,8 @@ request.uploadHandler(new Handler&lt;HttpServerFileUpload&gt;() {
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
 
 server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
-    public void handle(HttpServerRequest request) {
-        request.response().setStatusCode(739).setStatusMessage("Too many gerbils").end();
+    public void handle(HttpServerRequest request) {        
+        request.response().setStatusCode(739).setStatusMessage("Too many gerbils").end();       
     }
 }).listen(8080, "localhost");
 </pre>
@@ -1834,14 +1835,14 @@ request.response().trailers().add("Favourite-Shakin-Stevens-Song", "Behind the G
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
 
 server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
-    public void handle(HttpServerRequest req) {
+    public void handle(HttpServerRequest req) {        
       String file = "";
       if (req.path().equals("/")) {
         file = "index.html";
       } else if (!req.path().contains("..")) {
         file = req.path();
       }
-      req.response().sendFile("web/" + file);
+      req.response().sendFile("web/" + file);              
     }
 }).listen(8080, "localhost");
 </pre>
@@ -1856,21 +1857,21 @@ server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
 
 server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
-    public void handle(final HttpServerRequest req) {
-      req.response().headers().set(req.headers());
+    public void handle(final HttpServerRequest req) {        
+      req.response().headers().set(req.headers());      
       Pump.createPump(req, req.response()).start();
       req.endHandler(new VoidHandler() {
         public void handle() {
             req.response().end();
         }
-      });
+      });           
     }
 }).listen(8080, "localhost");
 </pre>
 <h3 id="http-compression">HTTP Compression</h3><br/>
-<p>Vert.x comes with support for HTTP Compression out of the box.
-Which means you are able to automatically compress the body of the responses before they are sent back to the Client.
-If the client does not support HTTP Compression the responses are sent back without compressing the body.
+<p>Vert.x comes with support for HTTP Compression out of the box. 
+Which means you are able to automatically compress the body of the responses before they are sent back to the Client. 
+If the client does not support HTTP Compression the responses are sent back without compressing the body. 
 This allows to handle Client that support HTTP Compression and those that not support it at the same time.</p>
 <p>To enable compression you only need to do:</p>
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
@@ -2024,8 +2025,8 @@ request.end();
 
 client.getNow("/some-path/", new Handler&lt;HttpClientResponse&gt;() {
     public void handle(HttpClientResponse resp) {
-        log.info('server returned status code: ' + resp.statusCode());
-        log.info('server returned status message: ' + resp.statusMessage());
+        log.info('server returned status code: ' + resp.statusCode());   
+        log.info('server returned status message: ' + resp.statusMessage());   
     }
 });
 </pre>
@@ -2041,7 +2042,7 @@ client.getNow("/some-path/", new Handler&lt;HttpClientResponse&gt;() {
             public void handle(Buffer data) {
                 log.info('I received ' + buffer.length() + ' bytes');
             }
-        });
+        });  
     }
 });
 </pre>
@@ -2059,13 +2060,13 @@ client.getNow("/some-path/", new Handler&lt;HttpClientResponse&gt;() {
             public void handle(Buffer data) {
                 body.appendBuffer(data);
             }
-        });
+        }); 
         resp.endHandler(new VoidHandler() {
             public void handle() {
                // The entire response body has been received
                log.info('The total body received was ' + body.length() + ' bytes');
             }
-        });
+        }); 
     }
 });
 </pre>
@@ -2078,13 +2079,13 @@ client.getNow("/some-path/", new Handler&lt;HttpClientResponse&gt;() {
 <pre class="prettyprint">HttpClient client = vertx.createHttpClient().setHost("foo.com");
 
 client.getNow("/some-path/", new Handler&lt;HttpClientResponse&gt;() {
-    public void handle(HttpClientResponse resp) {
+    public void handle(HttpClientResponse resp) {       
         resp.bodyHandler(new Handler&lt;Buffer&gt;() {
             public void handle(Buffer body) {
                // The entire response body has been received
                log.info("The total body received was " + body.length() + " bytes");
             }
-        });
+        }); 
     }
 });
 </pre>
@@ -2100,7 +2101,7 @@ client.getNow("/some-path/", new Handler&lt;HttpClientResponse&gt;() {
 <pre class="prettyprint">HttpClient client = vertx.createHttpClient().setHost("foo.com");
 
 final HttpClientRequest request = client.put("/some-path/", new Handler&lt;HttpClientResponse&gt;() {
-    public void handle(HttpClientResponse resp) {
+    public void handle(HttpClientResponse resp) {       
         log.info("Got a response " + resp.statusCode());
     }
 });
@@ -2110,7 +2111,7 @@ request.putHeader("Expect", "100-Continue");
 request.continueHandler(new VoidHandler() {
     public void handle() {
 
-        // OK to send rest of body
+        // OK to send rest of body            
         request.write("Some data").end();
     }
 });
@@ -2122,7 +2123,7 @@ request.sendHead();
 compressed response bodies. A Http server is free to either compress with one of the supported compression algorithm or send the body back without compress it at all. So this
 is only a hint for the Http server which it may ignore at all.</p>
 <p>To tell the Http server which compression is supported by the <code>HttpClient</code> it will include a 'Accept-Encoding' header with the supported
-compression algorithm as value. Multiple compression algorithms are supported. In case of Vert.x this will result in have the
+compression algorithm as value. Multiple compression algorithms are supported. In case of Vert.x this will result in have the 
 following header added:</p>
 <pre class="prettyprint">Accept-Encoding: gzip, deflate
 </pre>
@@ -2197,7 +2198,7 @@ routeMatcher.put("/:blogname/:post", new Handler&lt;HttpServerRequest&gt;() {
     public void handle(HttpServerRequest req) {
         String blogName = req.params().get("blogname");
         String post = req.params().get("post");
-        req.response().end("blogname is " + blogName + ", post is " + post);
+        req.response().end("blogname is " + blogName + ", post is " + post);    
     }
 });
 
@@ -2219,8 +2220,8 @@ RouteMatcher routeMatcher = new RouteMatcher();
 routeMatcher.allWithRegEx("\\/([^\\/]+)\\/([^\\/]+)", new Handler&lt;HttpServerRequest&gt;() {
     public void handle(HttpServerRequest req) {
         String first = req.params().get("param0");
-        String second = req.params().get("param1");
-        req.response.end("first is " + first + " and second is " + second);
+        String second = req.params().get("param1");            
+        req.response.end("first is " + first + " and second is " + second);   
     }
 });
 
@@ -2243,8 +2244,8 @@ server.requestHandler(routeMatcher).listen(8080, "localhost");
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
 
 server.websocketHandler(new Handler&lt;ServerWebSocket&gt;() {
-    public void handle(ServerWebSocket ws) {
-        // A WebSocket has connected!
+    public void handle(ServerWebSocket ws) {  
+        // A WebSocket has connected!                        
     }
 }).listen(8080, "localhost");
 </pre>
@@ -2255,8 +2256,8 @@ server.websocketHandler(new Handler&lt;ServerWebSocket&gt;() {
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
 
 server.websocketHandler(new Handler&lt;ServerWebSocket&gt;() {
-    public void handle(ServerWebSocket ws) {
-        Pump.createPump(ws, ws).start();
+    public void handle(ServerWebSocket ws) {  
+        Pump.createPump(ws, ws).start();     
     }
 }).listen(8080, "localhost");
 </pre>
@@ -2270,9 +2271,9 @@ server.websocketHandler(new Handler&lt;ServerWebSocket&gt;() {
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
 
 server.websocketHandler(new Handler&lt;ServerWebSocket&gt;() {
-    public void handle(ServerWebSocket ws) {
+    public void handle(ServerWebSocket ws) {  
         if (ws.path().equals("/services/echo")) {
-            Pump.createPump(ws, ws).start();
+            Pump.createPump(ws, ws).start();                        
         } else {
             ws.reject();
         }
@@ -2288,7 +2289,7 @@ server.websocketHandler(new Handler&lt;ServerWebSocket&gt;() {
 <pre class="prettyprint">HttpClient client = vertx.createHttpClient().setHost("foo.com");
 
 client.connectWebsocket("/some-uri", new Handler&lt;WebSocket&gt;() {
-    public void handle(WebSocket ws) {
+    public void handle(WebSocket ws) {  
         // Connected!
     }
 });
@@ -2393,17 +2394,12 @@ httpServer.listen(8080);
 <p>The following example bridges the event bus to client side JavaScript:</p>
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
 
-JsonObject config = new JsonObject().putString("prefix", "/eventbus");
+JsonObject config = new JsonObject().putString("prefix", "/echo");
 
-JsonArray noPermitted = new JsonArray();
-noPermitted.add(new JsonObject());
-
-vertx.createSockJSBridge(server).bridge(config, noPermitted, noPermitted);
+vertx.createSockJSServer(server).bridge(config, new JsonArray(), new JsonArray());
 
 server.listen(8080);
 </pre>
-<p>To let all messages through you can specify two JSON array with a single empty JSON object which will match all messages.</p>
-<p><strong>Be very careful!</strong></p>
 <h2 id="using-the-event-bus-from-client-side-javascript">Using the Event Bus from client side JavaScript</h2><br/>
 <p>Once you've set up a bridge, you can use the event bus from the client side as follows:</p>
 <p>In your web page, you need to load the script <code>vertxbus.js</code>, then you can access the Vert.x event bus API. Here's a rough idea of how to use it. For a full working examples, please consult the vert.x examples.</p>
@@ -2481,7 +2477,7 @@ JsonObject inboundPermitted2 = new JsonObject().putString("address", "demo.persi
                                         .putString("collection", "albums"));
 inboundPermitted.add(inboundPermitted2);
 
-// Allow through any message with a field `wibble` with value `foo`.
+// Allow through any message with a field `wibble` with value `foo`.                                            
 JsonObject inboundPermitted3 = new JsonObject().putObject("match", new JsonObject().putString("wibble", "foo"));
 inboundPermitted.add(inboundPermitted3);
 
@@ -2499,6 +2495,17 @@ vertx.createSockJSBridge(server).bridge(config, inboundPermitted, outboundPermit
 
 server.listen(8080);
 </pre>
+<p>To let all messages through you can specify two JSON array with a single empty JSON object which will match all messages.</p>
+<pre class="prettyprint">...
+
+JsonArray permitted = new JsonArray();
+permitted.add(new JsonObject());
+
+vertx.createSockJSBridge(server).bridge(config, permitted, permitted);
+
+...
+</pre>
+<p><strong>Be very careful!</strong></p>
 <h2 id="messages-that-require-authorisation">Messages that require authorisation</h2><br/>
 <p>The bridge can also refuse to let certain messages through if the user is not authorised.</p>
 <p>To enable this you need to make sure an instance of the <code>vertx.auth-mgr</code> module is available on the event bus. (Please see the modules manual for a full description of modules).</p>
@@ -2583,7 +2590,7 @@ r--r--r--
         if (ar.succeeded()) {
             log.info("File props are:");
             log.info("Last accessed: " + ar.result().lastAccessTime());
-            // etc
+            // etc 
         } else {
             log.error("Failed to get props", ar.cause());
         }
@@ -2611,8 +2618,8 @@ r--r--r--
 <p><code>link</code> is the name of the link to read. An usage example would be:</p>
 <pre class="prettyprint">vertx.fileSystem().readSymLink("somelink", new AsyncResultHandler&lt;String&gt;() {
     public void handle(AsyncResult&lt;String&gt; ar) {
-        if (ar.succeeded()) {
-            log.info("Link points at  " + ar.result());
+        if (ar.succeeded()) {                
+            log.info("Link points at  " + ar.result());                
         } else {
             log.error("Failed to read", ar.cause());
         }
@@ -2643,8 +2650,8 @@ r--r--r--
 <p>If <code>createParents</code> is <code>true</code>, this creates a new directory and creates any of its parents too. Here's an example</p>
 <pre class="prettyprint">vertx.fileSystem().mkdir("a/b/c", true, new AsyncResultHandler&lt;Void&gt;() {
     public void handle(AsyncResult ar) {
-        if (ar.suceeded()) {
-            log.info("Directory created ok");
+        if (ar.suceeded()) {                
+            log.info("Directory created ok");                
         } else {
             log.error("Failed to mkdir", ar.cause());
         }
@@ -2668,11 +2675,11 @@ r--r--r--
 <p>List only the contents of a directory which match the filter. Here's an example which only lists files with an extension <code>txt</code> in a directory.</p>
 <pre class="prettyprint">vertx.fileSystem().readDir("mydirectory", ".*\\.txt", new AsyncResultHandler&lt;String[]&gt;() {
     public void handle(AsyncResult&lt;String[]&gt; ar) {
-        if (ar.succeeded() {
+        if (ar.succeeded() {                
             log.info("Directory contains these .txt files");
             for (int i = 0; i &lt; ar.result().length; i++) {
-              log.info(ar.result()[i]);
-            }
+              log.info(ar.result()[i]);  
+            }               
         } else {
             log.error("Failed to read", ar.cause());
         }
@@ -2687,8 +2694,8 @@ r--r--r--
 <p>Here is an example:</p>
 <pre class="prettyprint">vertx.fileSystem().readFile("myfile.dat", new AsyncResultHandler&lt;Buffer&gt;() {
     public void handle(AsyncResult&lt;Buffer&gt; ar) {
-        if (ar.succeeded()) {
-            log.info("File contains: " + ar.result().length() + " bytes");
+        if (ar.succeeded()) {                
+            log.info("File contains: " + ar.result().length() + " bytes");              
         } else {
             log.error("Failed to read", ar.cause());
         }
@@ -2707,8 +2714,8 @@ r--r--r--
 <p>The result is returned in the handler.</p>
 <pre class="prettyprint">vertx.fileSystem().exists("some-file.txt", new AsyncResultHandler&lt;Boolean&gt;() {
     public void handle(AsyncResult&lt;Boolean&gt; ar) {
-        if (ar.succeeded()) {
-            log.info("File " + (ar.result() ? "exists" : "does not exist"));
+        if (ar.succeeded()) {                
+            log.info("File " + (ar.result() ? "exists" : "does not exist"));             
         } else {
             log.error("Failed to check existence", ar.cause());
         }
@@ -2727,9 +2734,9 @@ r--r--r--
 <p>Here is an example:</p>
 <pre class="prettyprint">vertx.fileSystem().fsProps("mydir", new AsyncResultHandler&lt;FileSystemProps&gt;() {
     public void handle(AsyncResult&lt;FileSystemProps&gt; ar) {
-        if (ar.succeeded()) {
+        if (ar.succeeded()) {                
             log.info("total space: " + ar.result().totalSpace());
-            // etc
+            // etc            
         } else {
             log.error("Failed to check existence", ar.cause());
         }
@@ -2762,9 +2769,9 @@ r--r--r--
 <p>When the file is opened, an instance of <code>org.vertx.java.core.file.AsyncFile</code> is passed into the result handler:</p>
 <pre class="prettyprint">vertx.fileSystem().open("some-file.dat", new AsyncResultHandler&lt;AsyncFile&gt;() {
     public void handle(AsyncResult&lt;AsyncFile&gt; ar) {
-        if (ar.succeeded()) {
+        if (ar.succeeded()) {                
             log.info("File opened ok!");
-            // etc
+            // etc            
         } else {
             log.error("Failed to open file", ar.cause());
         }
@@ -2786,22 +2793,22 @@ r--r--r--
 <p>Here is an example of random access writes:</p>
 <pre class="prettyprint">vertx.fileSystem().open("some-file.dat", new AsyncResultHandler&lt;AsyncFile&gt;() {
     public void handle(AsyncResult&lt;AsyncFile&gt; ar) {
-        if (ar.succeeded()) {
-            AsyncFile asyncFile = ar.result();
-            // File open, write a buffer 5 times into a file
+        if (ar.succeeded()) {    
+            AsyncFile asyncFile = ar.result();            
+            // File open, write a buffer 5 times into a file              
             Buffer buff = new Buffer("foo");
             for (int i = 0; i &lt; 5; i++) {
                 asyncFile.write(buff, buff.length() * i, new AsyncResultHandler&lt;Void&gt;() {
                     public void handle(AsyncResult ar) {
-                        if (ar.succeeded()) {
+                        if (ar.succeeded()) {                
                             log.info("Written ok!");
-                            // etc
+                            // etc            
                         } else {
                             log.error("Failed to write", ar.cause());
                         }
                     }
-                });
-            }
+                });    
+            }            
         } else {
             log.error("Failed to open file", ar.cause());
         }
@@ -2821,21 +2828,21 @@ r--r--r--
 <p>Here's an example of random access reads:</p>
 <pre class="prettyprint">vertx.fileSystem().open("some-file.dat", new AsyncResultHandler&lt;AsyncFile&gt;() {
     public void handle(AsyncResult&lt;AsyncFile&gt; ar) {
-        if (ar.succeeded()) {
-            AsyncFile asyncFile = ar.result();
+        if (ar.succeeded()) {    
+            AsyncFile asyncFile = ar.result();            
             Buffer buff = new Buffer(1000);
             for (int i = 0; i &lt; 10; i++) {
                 asyncFile.read(buff, i * 100, i * 100, 100, new AsyncResultHandler&lt;Buffer&gt;() {
                     public void handle(AsyncResult&lt;Buffer&gt; ar) {
-                        if (ar.succeeded()) {
+                        if (ar.succeeded()) {                
                             log.info("Read ok!");
-                            // etc
+                            // etc            
                         } else {
                             log.error("Failed to write", ar.cause());
                         }
                     }
-                });
-            }
+                });    
+            }      
         } else {
             log.error("Failed to open file", ar.cause());
         }
@@ -2853,7 +2860,7 @@ r--r--r--
 
 vertx.fileSystem().open("some-file.dat", new AsyncResultHandler&lt;AsyncFile&gt;() {
     public void handle(AsyncResult&lt;AsyncFile&gt; ar) {
-        if (ar.succeeded()) {
+        if (ar.succeeded()) {    
             final HttpClientRequest request = client.put("/uploads", new Handler&lt;HttpClientResponse&gt;() {
                 public void handle(HttpClientResponse resp) {
                     log.info("Received response: " + resp.statusCode());
@@ -2867,7 +2874,7 @@ vertx.fileSystem().open("some-file.dat", new AsyncResultHandler&lt;AsyncFile&gt;
                     // File sent, end HTTP requuest
                     request.end();
                 }
-            });
+            });    
         } else {
             log.error("Failed to open file", ar.cause());
         }
@@ -2892,7 +2899,7 @@ client.lookup("vertx.io", new AsyncResultHandler&lt;InetAddress&gt;() {
             System.out.println(ar.result());
         } else {
             log.error("Failed to resolve entry", ar.cause());
-        }
+        }    
     }
 });
 </pre>
@@ -2907,7 +2914,7 @@ client.lookup4("vertx.io", new AsyncResultHandler&lt;Inet4Address&gt;() {
             System.out.println(ar.result());
         } else {
             log.error("Failed to resolve entry", ar.cause());
-        }
+        }    
     }
 });
 </pre>
@@ -2922,7 +2929,7 @@ client.lookup6("vertx.io", new AsyncResultHandler&lt;Inet6Address&gt;() {
             System.out.println(ar.result());
         } else {
             log.error("Failed to resolve entry", ar.cause());
-        }
+        }    
     }
 });
 </pre>
@@ -2940,7 +2947,7 @@ client.resolveA("vertx.io", new AsyncResultHandler&lt;List&lt;Inet4Address&gt;&g
             }
         } else {
             log.error("Failed to resolve entry", ar.cause());
-        }
+        }    
     }
 });
 </pre>
@@ -2958,7 +2965,7 @@ client.resolveAAAA("vertx.io", new AsyncResultHandler&lt;List&lt;Inet6Address&gt
             }
         } else {
             log.error("Failed to resolve entry", ar.cause());
-        }
+        }    
     }
 });
 </pre>
@@ -2976,7 +2983,7 @@ client.resolveCNAME("vertx.io", new AsyncResultHandler&lt;List&lt;String&gt;&gt;
             }
         } else {
             log.error("Failed to resolve entry", ar.cause());
-        }
+        }    
     }
 });
 </pre>
@@ -2993,7 +3000,7 @@ client.resolveMX("vertx.io", new AsyncResultHandler&lt;List&lt;MxRecord&gt;&gt;(
             }
         } else {
             log.error("Failed to resolve entry", ar.cause());
-        }
+        }    
     }
 });
 </pre>
@@ -3016,7 +3023,7 @@ client.resolveTXT("vertx.io", new AsyncResultHandler&lt;List&lt;String&gt;&gt;()
             }
         } else {
             log.error("Failed to resolve entry", ar.cause());
-        }
+        }    
     }
 });
 </pre>
@@ -3033,7 +3040,7 @@ client.resolveNS("vertx.io", new AsyncResultHandler&lt;List&lt;String&gt;&gt;() 
             }
         } else {
             log.error("Failed to resolve entry", ar.cause());
-        }
+        }    
     }
 });
 </pre>
@@ -3050,7 +3057,7 @@ client.resolveMX("vertx.io", new AsyncResultHandler&lt;List&lt;SrvRecord&gt;&gt;
             }
         } else {
             log.error("Failed to resolve entry", ar.cause());
-        }
+        }    
     }
 });
 </pre>
@@ -3078,7 +3085,7 @@ client.resolveTXT("1.0.0.10.in-addr.arpa", new AsyncResultHandler&lt;String&gt;(
             System.out.println(record);
         } else {
             log.error("Failed to resolve entry", ar.cause());
-        }
+        }    
     }
 });
 </pre>
@@ -3093,7 +3100,7 @@ client.reverseLookup("10.0.0.1", new AsyncResultHandler&lt;String&gt;() {
             System.out.println(record);
         } else {
             log.error("Failed to resolve entry", ar.cause());
-        }
+        }    
     }
 });
 </pre>
@@ -3145,7 +3152,7 @@ client.lookup("nonexisting.vert.xio", new AsyncResultHandler&lt;InetAddress&gt;(
             } else {
                 log.error("Failed to resolve entry", ar.cause());
             }
-        }
+        }    
     }
 });
 </pre></div>
