@@ -37,20 +37,20 @@ Copy the following into a text editor and save it as `Server.java`
         }).listen(1234);
       }
     }
-    
+
 Now run it:
 
     vertx run Server.java
-    
+
 The server will now be running. Connect to it using telnet:
 
     telnet localhost 1234
-    
-And notice how data you send (and hit enter) is echoed back to you. 
+
+And notice how data you send (and hit enter) is echoed back to you.
 
 Congratulations! You've written your first verticle.
 
-Notice how you didn't have to first compile the `.java` file to a `.class` file. Vert.x understands how to run `.java` files directly - internally doing the compilation on the fly. (It also supports running .class files too if you prefer)          
+Notice how you didn't have to first compile the `.java` file to a `.class` file. Vert.x understands how to run `.java` files directly - internally doing the compilation on the fly. (It also supports running .class files too if you prefer)
 
 
 Every Java verticle must extend the class `org.vertx.java.deploy.Verticle`. You must override the `start` method - this is called by Vert.x when the verticle is started.
@@ -75,11 +75,11 @@ If this is the case for your verticle you can implement the asynchronous version
         }
       });
     }
-    
-        
+
+
 ## Verticle clean-up
 
-Servers, clients, event bus handlers and timers will be automatically closed / cancelled when the verticle is stopped. However, if you have any other clean-up logic that you want to execute when the verticle is stopped, you can implement a `stop` method which will be called when the verticle is undeployed. 
+Servers, clients, event bus handlers and timers will be automatically closed / cancelled when the verticle is stopped. However, if you have any other clean-up logic that you want to execute when the verticle is stopped, you can implement a `stop` method which will be called when the verticle is undeployed.
 
 ## The `container` object
 
@@ -90,7 +90,7 @@ The container object contains methods for deploying and undeploying verticle and
 ## The `vertx` object
 
 Each verticle instance has a member variable called `vertx`. This provides access to the Vert.x core API. You'll use the Core API to do most things in Vert.x including TCP, HTTP, file system access, event bus, timers etc.
-        
+
 ## Getting Configuration in a Verticle
 
 You can pass configuration to a module or verticle from the command line using the `-conf` option, for example:
@@ -106,9 +106,9 @@ The argument to `-conf` is the name of a text file containing a valid JSON objec
 That configuration is available inside your verticle by calling the `config()` method on the `container` member variable of the verticle:
 
     JsonObject config = container.config();
-    
+
     System.out.println("Config is " + config);
-    
+
 The config returned is an instance of `org.vertx.java.core.json.JsonObject`, which is a class which represents JSON objects (unsurprisingly!). You can use this object to configure the verticle.
 
 Allowing verticles to be configured in a consistent way like this allows configuration to be easily passed to them irrespective of the language that deploys the verticle.
@@ -118,9 +118,9 @@ Allowing verticles to be configured in a consistent way like this allows configu
 Each verticle is given its own logger. To get a reference to it invoke the `logger()` method on the container instance:
 
     Logger logger = container.logger();
-    
+
     logger.info("I am logging something");
-    
+
 The logger is an instance of the class `org.vertx.java.core.logging.Logger` and has the following methods;
 
 * trace
@@ -128,7 +128,7 @@ The logger is an instance of the class `org.vertx.java.core.logging.Logger` and 
 * info
 * warn
 * error
-* fatal           
+* fatal
 
 Which have the normal meanings you would expect.
 
@@ -143,19 +143,19 @@ You can access the map of environment variables from a Verticle with the `env()`
 ## Causing the container to exit
 
 You can call the `exit()` method of the container to cause the Vert.x instance to make a clean shutdown.
-   
+
 # Deploying and Undeploying Verticles Programmatically
 
 You can deploy and undeploy verticles programmatically from inside another verticle. Any verticles deployed this way will be able to see resources (classes, scripts, other files) of the main verticle.
 
 ## Deploying a simple verticle
 
-To deploy a verticle programmatically call the function `deployVerticle` on the `container` variable. 
+To deploy a verticle programmatically call the function `deployVerticle` on the `container` variable.
 
 To deploy a single instance of a verticle :
 
-    container.deployVerticle(main);    
-    
+    container.deployVerticle(main);
+
 Where `main` is the name of the Verticle (i.e. the name of the Java file or FQCN of the class).
 
 See the chapter on ["running Vert.x"](manual.html#running-vertx) in the main manual for a description of what a main is.
@@ -163,7 +163,7 @@ See the chapter on ["running Vert.x"](manual.html#running-vertx) in the main man
 ## Deploying Worker Verticles
 
 The `deployVerticle` method deploys standard (non worker) verticles. If you want to deploy worker verticles use the `deployWorkerVerticle` method. This method takes the same parameters as `deployVerticle` with the same meanings.
-    
+
 ## Deploying a module programmatically
 
 You should use `deployModule` to deploy a module, for example:
@@ -171,18 +171,18 @@ You should use `deployModule` to deploy a module, for example:
     container.deployModule("io.vertx~mod-mailer~2.0.0-beta1", config);
 
 Would deploy an instance of the `io.vertx~mod-mailer~2.0.0-beta1` module with the specified configuration. Please see the [modules manual]() for more information about modules.
-    
-## Passing configuration to a verticle programmatically   
-  
+
+## Passing configuration to a verticle programmatically
+
 JSON configuration can be passed to a verticle that is deployed programmatically. Inside the deployed verticle the configuration is accessed with the `config()` method. For example:
 
     JsonObject config = new JsonObject();
     config.putString("foo", "wibble");
     config.putBoolean("bar", false);
-    container.deployVerticle("foo.ChildVerticle", config);  
-            
+    container.deployVerticle("foo.ChildVerticle", config);
+
 Then, in `ChildVerticle` you can access the config via `config()` as previously explained.
-    
+
 ## Using a Verticle to co-ordinate loading of an application
 
 If you have an appplication that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.
@@ -190,25 +190,25 @@ If you have an appplication that is composed of multiple verticles that all need
 For example, you could create a verticle `AppStarter` as follows:
 
     // Application config
-    
+
     JsonObject appConfig = container.config();
-    
+
     JsonObject verticle1Config = appConfig.getObject("verticle1_conf");
     JsonObject verticle2Config = appConfig.getObject("verticle2_conf");
     JsonObject verticle3Config = appConfig.getObject("verticle3_conf");
     JsonObject verticle4Config = appConfig.getObject("verticle4_conf");
     JsonObject verticle5Config = appConfig.getObject("verticle5_conf");
-        
-    // Start the verticles that make up the app  
-    
+
+    // Start the verticles that make up the app
+
     container.deployVerticle("verticle1.js", verticle1Config);
     container.deployVerticle("verticle2.rb", verticle2Config);
     container.deployVerticle("foo.Verticle3", verticle3Config);
     container.deployWorkerVerticle("foo.Verticle4", verticle4Config);
     container.deployWorkerVerticle("verticle5.js", verticle5Config, 10);
-        
+
 Then create a file 'config.json" with the actual JSON config in it
-    
+
     {
         "verticle1_conf": {
             "foo": "wibble"
@@ -217,7 +217,7 @@ Then create a file 'config.json" with the actual JSON config in it
             "age": 1234,
             "shoe_size": 12,
             "pi": 3.14159
-        }, 
+        },
         "verticle3_conf": {
             "strange": true
         },
@@ -226,17 +226,17 @@ Then create a file 'config.json" with the actual JSON config in it
         },
         "verticle5_conf": {
             "tel_no": "123123123"
-        }       
-    }        
+        }
+    }
 
 Then set the `AppStarter` as the main of your module and then you can start your entire application by simply running:
 
-    vertx runmod com.mycompany~my-mod~1.0 -conf config.json      
+    vertx runmod com.mycompany~my-mod~1.0 -conf config.json
 
 If your application is large and actually composed of multiple modules rather than verticles you can use the same technique.
-    
+
 More commonly you'd probably choose to write your starter verticle in a scripting language such as JavaScript, Groovy, Ruby or Python - these languages have much better JSON support than Java, so you can maintain the whole JSON config nicely in the starter verticle itself.
-                        
+
 ## Specifying number of instances
 
 By default, when you deploy a verticle only one instance of the verticle is deployed. Verticles instances are strictly single threaded so this means you will use at most one core on your server.
@@ -245,12 +245,12 @@ Vert.x scales by deploying many verticle instances concurrently.
 
 If you want more than one instance of a particular verticle or module to be deployed, you can specify the number of instances as follows:
 
-    container.deployVerticle("foo.ChildVerticle", 10);  
+    container.deployVerticle("foo.ChildVerticle", 10);
 
 Or
 
-    container.deployModule("io.vertx~some-mod~1.0", 10);   
-  
+    container.deployModule("io.vertx~some-mod~1.0", 10);
+
 The above examples would deploy 10 instances.
 
 ## Getting Notified when Deployment is complete
@@ -266,18 +266,18 @@ The actual verticle deployment is asynchronous and might not complete until some
             }
         }
     });
-    
+
 The handler will get passed an instance of `AsyncResult` when it completes. You can use the methods `succeeded()` and `failed()` on `AsyncResult` to see if the operation completed ok.
 
 The method `result()` provides the result of the async operation (if any) which in this case is the deployment ID - you will need this if you need to subsequently undeploy the verticle / module.
 
 The method `cause()` provides the `Throwable` if the action failed.
-    
+
 ## Undeploying a Verticle or Module
 
-Any verticles or modules that you deploy programmatically from within a verticle, and all of their children are automatically undeployed when the parent verticle is undeployed, so in many cases you will not need to undeploy a verticle manually, however if you do need to do this, it can be done by calling the method `undeployVerticle` or `undeployModule` passing in the deployment id. 
+Any verticles or modules that you deploy programmatically from within a verticle, and all of their children are automatically undeployed when the parent verticle is undeployed, so in many cases you will not need to undeploy a verticle manually, however if you do need to do this, it can be done by calling the method `undeployVerticle` or `undeployModule` passing in the deployment id.
 
-    container.undeployVerticle(deploymentID);    
+    container.undeployVerticle(deploymentID);
 
 You can also provide a handler to the undeploy method if you want to be informed when undeployment is complete.
 
@@ -289,8 +289,8 @@ In order to scale across cores you need to deploy more verticle instances. The e
 
 You can deploy more verticle instances programmatically or on the command line when deploying your module using the `-instances` command line option.
 
-         
-<a id="event-bus"> </a>   
+
+<a id="event-bus"> </a>
 # The Event Bus
 
 The event bus is the nervous system of Vert.x.
@@ -354,28 +354,28 @@ Let's jump into the API.
 To set a message handler on the address `test.address`, you do something like the following:
 
     EventBus eb = vertx.eventBus();
-    
+
     Handler<Message> myHandler = new Handler<Message>() {
         public void handle(Message message) {
             System.out.println("I received a message " + message.body);
         }
     };
-    
+
     eb.registerHandler("test.address", myHandler);
-    
+
 It's as simple as that. The handler will then receive any messages sent to that address.
 
 The class `Message` is a generic type and specific Message types include `Message<Boolean>`, `Message<Buffer>`, `Message<byte[]>`, `Message<Byte>`, `Message<Character>`, `Message<Double>`, `Message<Float>`, `Message<Integer>`, `Message<JsonObject>`, `Message<JsonArray>`, `Message<Long>`, `Message<Short>` and `Message<String>`.
 
 If you know you'll always be receiving messages of a particular type you can use the specific type in your handler, e.g:
 
-    Handler<Message<String>> myHandler = new Handler<Message<String>() {
+    Handler<Message<String>> myHandler = new Handler<Message<String>>() {
         public void handle(Message<String> message) {
             String body = message.body;
         }
     };
-    
-The return value of `registerHandler` is the Event Bus itself, i.e. we provide a *fluent* API so you can chain multiple calls together.   
+
+The return value of `registerHandler` is the Event Bus itself, i.e. we provide a *fluent* API so you can chain multiple calls together.
 
 When you register a handler on an address and you're in a cluster it can take some time for the knowledge of that new handler to be propagated across the entire cluster. If you want to be notified when that has completed you can optionally specify another handler to the `registerHandler` method as the third argument. This handler will then be called once the information has reached all nodes of the cluster. E.g. :
 
@@ -387,8 +387,8 @@ When you register a handler on an address and you're in a cluster it can take so
 
 To unregister a handler it's just as straightforward. You simply call `unregisterHandler` passing in the address and the handler:
 
-    eb.unregisterHandler("test.address", myHandler);    
-    
+    eb.unregisterHandler("test.address", myHandler);
+
 A single handler can be registered multiple times on the same, or different, addresses so in order to identify it uniquely you have to specify both the address and the handler.
 
 As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire to cluster. If you want to be notified when that has completed you can optionally specify another function to the registerHandler as the third argument. E.g. :
@@ -398,7 +398,7 @@ As with registering, when you unregister a handler and you're in a cluster it ca
             System.out.println("The handler has been unregistered across the cluster ok? " + asyncResult.succeeded());
         }
     });
-    
+
 If you want your handler to live for the full lifetime of your verticle there is no need to unregister it explicitly - Vert.x will automatically unregister any handlers when the verticle is stopped.
 
 ### Publishing messages
@@ -426,25 +426,25 @@ The receiver:
     Handler<Message<String>> myHandler = new Handler<Message<String>>() {
         public void handle(Message<String> message) {
             System.out.println("I received a message " + message.body);
-            
+
             // Do some stuff
-      
+
             // Now reply to it
-              
+
             message.reply("This is a reply");
         }
     };
 
     eb.registerHandler("test.address", myHandler);
-    
+
 The sender:
 
     eb.send("test.address", "This is a message", new Handler<Message<String>>() {
         public void handle(Message<String> message) {
-            System.out.println("I received a reply " + message.body);            
+            System.out.println("I received a reply " + message.body);
         }
     });
-    
+
 It is legal also to send an empty reply or a null reply.
 
 The replies themselves can also be replied to so you can create a dialog between two different verticles consisting of multiple rounds.
@@ -460,7 +460,7 @@ Here's an example:
     eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler<AsyncResult<Message<String>>>() {
         public void handle(AsyncResult<Message<String>> result) {
             if (result.succeeded()) {
-                System.out.println("I received a reply " + message.body);            
+                System.out.println("I received a reply " + message.body);
             } else {
 
                 System.err.println("No reply was received before the 1 second timeout!");
@@ -477,21 +477,21 @@ You can also set a default timeout on the event bus itself - this timeout will b
 
     eb.send("test.address", "This is a message", new Handler<Message<String>>() {
         public void handle(Message<String> message) {
-            System.out.println("I received a reply before the timeout of 5 seconds");            
+            System.out.println("I received a reply before the timeout of 5 seconds");
         }
-    });    
+    });
 
 When replying to messages you can also provide a timeout and a `Handler<AsyncResult<Message>>` to get replies to the replies within a timeout. The API used is similar to before:
 
     message.replyWithTimeout("This is a reply", 1000, new Handler<AsyncResult<Message<String>>>() {
         public void handle(AsyncResult<Message<String>> result) {
             if (result.succeeded()) {
-                System.out.println("I received a reply to the reply" + message.body);            
+                System.out.println("I received a reply to the reply" + message.body);
             } else {
                 System.err.println("No reply to the reply was received before the 1 second timeout!");
             }
         }
-    }); 
+    });
 
 #### Getting notified of reply failures
 
@@ -503,24 +503,24 @@ For example
 
     eb.registerHandler("test.address", new Handler<Message<String>>() {
         public void handle(Message<String> message) {
-            message.fail(123, "Not enough aardvarks");  
+            message.fail(123, "Not enough aardvarks");
         }
-    });  
+    });
 
     eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler<AsyncResult<Message<String>>>() {
         public void handle(AsyncResult<Message<String>> result) {
             if (result.succeeded()) {
-                System.out.println("I received a reply " + message.body);            
+                System.out.println("I received a reply " + message.body);
             } else {
                 ReplyException ex = (ReplyException)result.cause();
-                System.err.println("Failure type: " + ex.failureType();  
-                System.err.println("Failure code: " + ex.failureCode();                
+                System.err.println("Failure type: " + ex.failureType();
+                System.err.println("Failure code: " + ex.failureCode();
                 System.err.println("Failure message: " + ex.message();
             }
         }
-    });   
+    });
 
-    
+
 ### Message types
 
 The message you send can be any of the following types (or their matching boxed type):
@@ -568,10 +568,10 @@ It's a good convention to have your verticles communicating using JSON - this is
 
 To make each Vert.x instance on your network participate on the same event bus, start each Vert.x instance with the `-cluster` command line switch.
 
-See the chapter in the main manual on [*running Vert.x*]() for more information on this. 
+See the chapter in the main manual on [*running Vert.x*]() for more information on this.
 
-Once you've done that, any Vert.x instances started in cluster mode will merge to form a distributed event bus.   
-      
+Once you've done that, any Vert.x instances started in cluster mode will merge to form a distributed event bus.
+
 # Shared Data
 
 Sometimes it makes sense to allow different verticles instances to share data in a safe way. Vert.x allows simple `java.util.concurrent.ConcurrentMap` and `java.util.Set` data structures to be shared between verticles.
@@ -585,30 +585,30 @@ Currently data can only be shared between verticles in the *same Vert.x instance
 To use a shared map to share data between verticles first we get a reference to the map, and then use it like any other instance of `java.util.concurrent.ConcurrentMap`
 
     ConcurrentMap<String, Integer> map = vertx.sharedData().getMap("demo.mymap");
-    
+
     map.put("some-key", 123);
-    
+
 And then, in a different verticle you can access it:
 
     ConcurrentMap<String, Integer> map = vertx.sharedData().getMap("demo.mymap");
-    
+
     // etc
-    
-    
+
+
 ## Shared Sets
 
 To use a shared set to share data between verticles first we get a reference to the set.
 
     Set<String> set = vertx.sharedData().getSet("demo.myset");
-    
+
     set.add("some-value");
-    
+
 And then, in a different verticle:
 
     Set<String> set = vertx.sharedData().getSet("demo.myset");
-    
-    // etc  
-        
+
+    // etc
+
 # Buffers
 
 Most data in Vert.x is shuffled around using instances of `org.vertx.java.core.buffer.Buffer`.
@@ -624,22 +624,22 @@ Create a new empty buffer:
 Create a buffer from a String. The String will be encoded in the buffer using UTF-8.
 
     Buffer buff = new Buffer("some-string");
-    
+
 Create a buffer from a String: The String will be encoded using the specified encoding, e.g:
 
     Buffer buff = new Buffer("some-string", "UTF-16");
-    
+
 Create a buffer from a byte[]
 
     byte[] bytes = new byte[] { ... };
     new Buffer(bytes);
-    
+
 Create a buffer with an initial size hint. If you know your buffer will have a certain amount of data written to it you can create the buffer and specify this size. This makes the buffer initially allocate that much memory and is more efficient than the buffer automatically resizing multiple times as data is written to it.
 
 Note that buffers created this way *are empty*. It does not create a buffer filled with zeros up to the specified size.
-        
-    Buffer buff = new Buffer(100000);        
-    
+
+    Buffer buff = new Buffer(100000);
+
 ## Writing to a Buffer
 
 There are two ways to write to a buffer: appending, and random access. In either case buffers will always expand automatically to encompass the bytes. It's not possible to get an `IndexOutOfBoundsException` with a buffer.
@@ -651,9 +651,9 @@ To append to a buffer, you use the `appendXXX` methods. Append methods exist for
 The return value of the `appendXXX` methods is the buffer itself, so these can be chained:
 
     Buffer buff = new Buffer();
-    
+
     buff.appendInt(123).appendString("hello\n");
-    
+
     socket.write(buff);
 
 ### Random access buffer writes
@@ -663,10 +663,10 @@ You can also write into the buffer at a specific index, by using the `setXXX` me
 The buffer will always expand as necessary to accomodate the data.
 
     Buffer buff = new Buffer();
-    
+
     buff.setInt(1000, 123);
     buff.setBytes(0, "hello");
-    
+
 ## Reading from a Buffer
 
 Data is read from a buffer using the `getXXX` methods. Get methods exist for byte[], String and all primitive types. The first argument to these methods is an index in the buffer from where to get the data.
@@ -675,14 +675,14 @@ Data is read from a buffer using the `getXXX` methods. Get methods exist for byt
     for (int i = 0; i < buff.length(); i += 4) {
         System.out.println("int value at " + i + " is " + buff.getInt(i));
     }
-    
+
 ## Other buffer methods:
 
 * `length()`. To obtain the length of the buffer. The length of a buffer is the index of the byte in the buffer with the largest index + 1.
 * `copy()`. Copy the entire buffer
 
 
-See the JavaDoc for more detailed method level documentation.    
+See the JavaDoc for more detailed method level documentation.
 
 # JSON
 
@@ -695,25 +695,25 @@ A JSON object is represented by instances of `org.vertx.java.core.json.JsonObjec
 A usage example would be using a Java verticle to send or receive JSON messages from the event bus.
 
     EventBus eb = vertx.eventBus();
-    
+
     JsonObject obj = new JsonObject().putString("foo", "wibble")
                                      .putNumber("age", 1000);
-                                     
+
     eb.send("some-address", obj);
-    
-    
+
+
     // ....
     // And in a handler somewhere:
-    
+
     public void handle(Message<JsonObject> message) {
         System.out.println("foo is " + message.body.getString("foo");
         System.out.println("age is " + message.body.getNumber("age");
-    }    
-    
-Methods also existing for converting this objects to and from their JSON serialized forms.  
+    }
 
-Please see the JavaDoc for the full Java Json API.    
-    
+Methods also existing for converting this objects to and from their JSON serialized forms.
+
+Please see the JavaDoc for the full Java Json API.
+
 # Delayed and Periodic Tasks
 
 It's very common in Vert.x to want to perform an action after a delay, or periodically.
@@ -724,57 +724,57 @@ Instead you use Vert.x timers. Timers can be *one-shot* or *periodic*. We'll dis
 
 ## One-shot Timers
 
-A one shot timer calls an event handler after a certain delay, expressed in milliseconds. 
+A one shot timer calls an event handler after a certain delay, expressed in milliseconds.
 
 To set a timer to fire once you use the `setTimer` method passing in the delay and a handler
 
     long timerID = vertx.setTimer(1000, new Handler<Long>() {
         public void handle(Long timerID) {
-            log.info("And one second later this is printed"); 
+            log.info("And one second later this is printed");
         }
     });
-        
+
     log.info("First this is printed");
 
 The return value is a unique timer id which can later be used to cancel the timer. The handler is also passed the timer id.
-     
+
 ## Periodic Timers
 
 You can also set a timer to fire periodically by using the `setPeriodic` method. There will be an initial delay equal to the period. The return value of `setPeriodic` is a unique timer id (long). This can be later used if the timer needs to be cancelled. The argument passed into the timer event handler is also the unique timer id:
 
     long timerID = vertx.setPeriodic(1000, new Handler<Long>() {
         public void handle(Long timerID) {
-            log.info("And every second this is printed"); 
+            log.info("And every second this is printed");
         }
     });
 
     log.info("First this is printed");
-    
+
 ## Cancelling timers
 
 To cancel a periodic timer, call the `cancelTimer` method specifying the timer id. For example:
 
     long timerID = vertx.setPeriodic(1000, new Handler<Long>() {
-        public void handle(Long timerID) {            
+        public void handle(Long timerID) {
         }
     });
-    
+
     // And immediately cancel it
-    
+
     vertx.cancelTimer(timerID);
-    
+
 Or you can cancel it from inside the event handler. The following example cancels the timer after it has fired 10 times.
 
     long timerID = vertx.setPeriodic(1000, new Handler<Long>() {
         int count;
-        public void handle(Long timerID) {  
-            log.info("In event handler " + count); 
+        public void handle(Long timerID) {
+            log.info("In event handler " + count);
             if (++count == 10) {
                 vertx.cancelTimer(timerID);
-            }          
+            }
         }
     });
-        
+
 # Writing TCP Servers and Clients
 
 Creating TCP servers and clients is very easy with Vert.x.
@@ -786,15 +786,15 @@ Creating TCP servers and clients is very easy with Vert.x.
 To create a TCP server you call the `createNetServer` method on your `vertx` instance.
 
     NetServer server = vertx.createNetServer();
-    
-### Start the Server Listening    
-    
-To tell that server to listen for connections we do:    
+
+### Start the Server Listening
+
+To tell that server to listen for connections we do:
 
     NetServer server = vertx.createNetServer();
 
     server.listen(1234, "myhost");
-    
+
 The first parameter to `listen` is the port. A wildcard port of `0` can be specified which means a random available port will be chosen to actually listen at. Once the server has completed listening you can then call the `port()` method of the server to find out the real port it is using.
 
 The second parameter is the hostname or ip address. If it is omitted it will default to `0.0.0.0` which means it will listen at all available interfaces.
@@ -804,11 +804,11 @@ The actual bind is asynchronous so the server might not actually be listening un
     server.listen(1234, "myhost", new AsyncResultHandler<Void>() {
         public void handle(AsyncResult<NetServer> asyncResult) {
             log.info("Listen succeeded? " + asyncResult.succeeded());
-        }  
+        }
     });
 
 ### Getting Notified of Incoming Connections
-    
+
 To be notified when a connection occurs we need to call the `connectHandler` method of the server, passing in a handler. The handler will then be called when a connection is made:
 
     NetServer server = vertx.createNetServer();
@@ -820,8 +820,8 @@ To be notified when a connection occurs we need to call the `connectHandler` met
     });
 
     server.listen(1234, "localhost");
-    
-That's a bit more interesting. Now it displays 'A client has connected!' every time a client connects.   
+
+That's a bit more interesting. Now it displays 'A client has connected!' every time a client connects.
 
 The return value of the `connectHandler` method is the server itself, so multiple invocations can be chained together. That means we can rewrite the above as:
 
@@ -832,18 +832,18 @@ The return value of the `connectHandler` method is the server itself, so multipl
             log.info("A client has connected!");
         }
     }).listen(1234, "localhost");
-    
-or 
+
+or
 
     vertx.createNetServer().connectHandler(new Handler<NetSocket>() {
         public void handle(NetSocket sock) {
             log.info("A client has connected!");
         }
     }).listen(1234, "localhost");
-    
-    
-This is a common pattern throughout the Vert.x API.  
- 
+
+
+This is a common pattern throughout the Vert.x API.
+
 
 ### Closing a Net Server
 
@@ -854,15 +854,15 @@ To close a net server just call the `close` function.
 The close is actually asynchronous and might not complete until some time after the `close` method has returned. If you want to be notified when the actual close has completed then you can pass in a handler to the `close` method.
 
 This handler will then be called when the close has fully completed.
- 
+
     server.close(new AsyncResultHandler<Void>() {
         public void handle(AsyncResult<Void> asyncResult) {
             log.info("Close succeeded? " + asyncResult.succeeded());
-        }  
+        }
     });
-    
-If you want your net server to last the entire lifetime of your verticle, you don't need to call `close` explicitly, the Vert.x container will automatically close any servers that you created when the verticle is undeployed.    
-    
+
+If you want your net server to last the entire lifetime of your verticle, you don't need to call `close` explicitly, the Vert.x container will automatically close any servers that you created when the verticle is undeployed.
+
 ### NetServer Properties
 
 NetServer has a set of properties you can set which affect its behaviour. Firstly there are bunch of properties used to tweak the TCP parameters, in most cases you won't need to set these:
@@ -873,7 +873,7 @@ NetServer has a set of properties you can set which affect its behaviour. Firstl
 
 * `setReceiveBufferSize(size)` Sets the TCP receive buffer size in bytes.
 
-* `setTCPKeepAlive(keepAlive)` if `keepAlive` is true then [TCP keep alive](http://en.wikipedia.org/wiki/Keepalive#TCP_keepalive) is enabled, if false it is disabled. 
+* `setTCPKeepAlive(keepAlive)` if `keepAlive` is true then [TCP keep alive](http://en.wikipedia.org/wiki/Keepalive#TCP_keepalive) is enabled, if false it is disabled.
 
 * `setReuseAddress(reuse)` if `reuse` is true then addresses in TIME_WAIT state can be reused after they have been closed.
 
@@ -915,17 +915,17 @@ With a single buffer:
 
     Buffer myBuffer = new Buffer(...);
     sock.write(myBuffer);
-    
+
 A string. In this case the string will encoded using UTF-8 and the result written to the wire.
 
-    sock.write("hello");    
-    
-A string and an encoding. In this case the string will encoded using the specified encoding and the result written to the wire.     
+    sock.write("hello");
+
+A string and an encoding. In this case the string will encoded using the specified encoding and the result written to the wire.
 
     sock.write("hello", "UTF-16");
-    
+
 The `write` function is asynchronous and always returns immediately after the write has been queued.
-    
+
 Let's put it all together.
 
 Here's an example of a simple TCP echo server which simply writes back (echoes) everything that it receives on the socket:
@@ -949,7 +949,7 @@ You can find out the remote address of the socket (i.e. the address of the other
 ### Socket Local Address
 
 You can find out the local address of the socket (i.e. the address of this side of the TCP IP connection) by calling `localAddress()`.
-    
+
 ### Closing a socket
 
 You can close a socket by invoking the `close` method. This will close the underlying TCP connection.
@@ -965,7 +965,7 @@ If you want to be notified when a socket is closed, you can set the `closedHandl
         public void handle(final NetSocket sock) {
             sock.closedHandler(new VoidHandler() {
                 public void handle() {
-                    log.info("The socket is now closed"); 
+                    log.info("The socket is now closed");
                 }
             });
         }
@@ -984,7 +984,7 @@ You can set an exception handler on the socket that will be called if an excepti
         public void handle(final NetSocket sock) {
             sock.exceptionHandler(new Handler<Throwable>() {
                 public void handle(Throwable t) {
-                    log.info("Oops, something went wrong", t);                      
+                    log.info("Oops, something went wrong", t);
                 }
             });
         }
@@ -1001,7 +1001,7 @@ For example to write some data to the NetSocket from a completely different vert
     String writeHandlerID = ... // E.g. retrieve the ID from shared data
 
     vertx.eventBus().send(writeHandlerID, buffer);
-    
+
 ### Read and Write Streams
 
 NetSocket also implements `org.vertx.java.core.streams.ReadStream` and `org.vertx.java.core.streams.WriteStream`. This allows flow control to occur on the connection and the connection data to be pumped to and from other object such as HTTP requests and responses, WebSockets and asynchronous files.
@@ -1015,7 +1015,7 @@ A verticle instance is strictly single threaded.
 
 If you create a simple TCP server and deploy a single instance of it then all the handlers for that server are always executed on the same event loop (thread).
 
-This means that if you are running on a server with a lot of cores, and you only have this one instance deployed then you will have at most one core utilised on your server! 
+This means that if you are running on a server with a lot of cores, and you only have this one instance deployed then you will have at most one core utilised on your server!
 
 To remedy this you can simply deploy more instances of the module in the server, e.g.
 
@@ -1024,7 +1024,7 @@ To remedy this you can simply deploy more instances of the module in the server,
 Or for a raw verticle
 
     vertx run foo.MyApp -instances 20
-    
+
 The above would run 20 instances of the module/verticle in the same Vert.x instance.
 
 Once you do this you will find the echo server works functionally identically to before, but, *as if by magic*, all your cores on your server can be utilised and more work can be handled.
@@ -1038,7 +1038,7 @@ When you deploy another server on the same host and port as an existing server i
 Instead it internally maintains just a single server, and, as incoming connections arrive it distributes them in a round-robin fashion to any of the connect handlers set by the verticles.
 
 Consequently Vert.x TCP servers can scale over available cores while each Vert.x verticle instance remains strictly single threaded, and you don't have to do any special tricks like writing load-balancers in order to scale your server on your multi-core machine.
-    
+
 ## NetClient
 
 A NetClient is used to make TCP connections to servers.
@@ -1054,17 +1054,17 @@ To create a TCP client you call the `createNetClient` method on your `vertx` ins
 To actually connect to a server you invoke the `connect` method:
 
     NetClient client = vertx.createNetClient();
-    
+
     client.connect(1234, "localhost", new AsyncResultHandler<NetSocket>() {
         public void handle(AsyncResult<NetSocket> asyncResult) {
             if (asyncResult.succeeded()) {
               log.info("We have connected! Socket is " + asyncResult.result());
 	    } else {
               asyncResult.cause().printStackTrace();
-            }            
+            }
         }
     });
-    
+
 The connect method takes the port number as the first parameter, followed by the hostname or ip address of the server. The third parameter is a connect handler. This handler will be called when the connection actually occurs.
 
 The argument passed into the connect handler is an `AsyncResult<NetSocket>`, and the `NetSocket` can be retrieved from the `result()` method. You can read and write data from the socket in exactly the same way as you do on the server side.
@@ -1076,11 +1076,11 @@ You can also close it, set the closed handler, set the exception handler and use
 A NetClient can be configured to automatically retry connecting or reconnecting to the server in the event that it cannot connect or has lost its connection. This is done by invoking the methods `setReconnectAttempts` and `setReconnectInterval`:
 
     NetClient client = vertx.createNetClient();
-    
+
     client.setReconnectAttempts(1000);
-    
+
     client.setReconnectInterval(500);
-    
+
 `ReconnectAttempts` determines how many times the client will try to connect to the server before giving up. A value of `-1` represents an infinite number of times. The default value is `0`. I.e. no reconnection is attempted.
 
 `ReconnectInterval` detemines how long, in milliseconds, the client will wait between reconnect attempts. The default value is `1000`.
@@ -1109,7 +1109,7 @@ The key store should contain the server certificate. This is mandatory - the cli
 
 The key store is configured on the server using the `setKeyStorePath()` and `setKeyStorePassword()` methods.
 
-The trust store is optional and contains the certificates of any clients it should trust. This is only used if client authentication is required. 
+The trust store is optional and contains the certificates of any clients it should trust. This is only used if client authentication is required.
 
 To configure a server to use server certificates only:
 
@@ -1117,7 +1117,7 @@ To configure a server to use server certificates only:
                    .setSSL(true)
                    .setKeyStorePath("/path/to/your/keystore/server-keystore.jks")
                    .setKeyStorePassword("password");
-    
+
 Making sure that `server-keystore.jks` contains the server certificate.
 
 To configure a server to also require client certificates:
@@ -1129,7 +1129,7 @@ To configure a server to also require client certificates:
                    .setTrustStorePath("/path/to/your/truststore/server-truststore.jks")
                    .setTrustStorePassword("password")
                    .setClientAuthRequired(true);
-    
+
 Making sure that `server-truststore.jks` contains the certificates of any clients who the server trusts.
 
 If `clientAuthRequired` is set to `true` and the client cannot provide a certificate, or it provides a certificate that the server does not trust then the connection attempt will not succeed.
@@ -1146,21 +1146,21 @@ If `setTrustAll(true)` has not been invoked then a client trust store must be co
 
 The client trust store is just a standard Java key store, the same as the key stores on the server side. The client trust store location is set by using the function `setTrustStorePath()` on the `NetClient`. If a server presents a certificate during connection which is not in the client trust store, the connection attempt will not succeed.
 
-If the server requires client authentication then the client must present its own certificate to the server when connecting. This certificate should reside in the client key store. Again it's just a regular Java key store. The client keystore location is set by using the function `setKeyStorePath()` on the `NetClient`. 
+If the server requires client authentication then the client must present its own certificate to the server when connecting. This certificate should reside in the client key store. Again it's just a regular Java key store. The client keystore location is set by using the function `setKeyStorePath()` on the `NetClient`.
 
 To configure a client to trust all server certificates (dangerous):
 
     NetClient client = vertx.createNetClient()
                    .setSSL(true)
                    .setTrustAll(true);
-    
+
 To configure a client to only trust those certificates it has in its trust store:
 
     NetClient client = vertx.createNetClient()
                    .setSSL(true)
                    .setTrustStorePath("/path/to/your/client/truststore/client-truststore.jks")
                    .setTrustStorePassword("password");
-                   
+
 To configure a client to only trust those certificates it has in its trust store, and also to supply a client certificate:
 
     NetClient client = vertx.createNetClient()
@@ -1171,40 +1171,40 @@ To configure a client to only trust those certificates it has in its trust store
                    .setKeyStorePath("/path/to/keystore/holding/client/cert/client-keystore.jks")
                    .setKeyStorePassword("password");
 
-# User Datagram Protocol (UDP) 
+# User Datagram Protocol (UDP)
 
-Using User Datagram Protocol (UDP) with Vert.x is a piece of cake. 
+Using User Datagram Protocol (UDP) with Vert.x is a piece of cake.
 
 UDP is a connection-less transport which basically means you have no persistent connection to a remote peer.
 
-Instead you can send and receive packages and the remote address is contained in each of them. 
+Instead you can send and receive packages and the remote address is contained in each of them.
 
 Beside this UDP is not as safe as TCP to use, which means there are no guarantees that a send Datagram
- packet will receive it's endpoint at all. 
+ packet will receive it's endpoint at all.
 
-The only guarantee is that it will either receive complete or not at all. 
+The only guarantee is that it will either receive complete or not at all.
 
 Also you usually can't send data which is bigger then the MTU size of your network interface, this is because each
- packet will be send as one packet. 
+ packet will be send as one packet.
 
-But be aware even if the packet size is smaller then the MTU it may still fail. 
+But be aware even if the packet size is smaller then the MTU it may still fail.
 
 At which size it will fail depends on the Operating System etc. So rule of thumb is to try to send small packets.
 
 Because of the nature of UDP it is best fit for Applications where you are allowed to drop packets (like for
- example a monitoring application). 
+ example a monitoring application).
 
 The benefits are that it has a lot less overhead compared to TCP, which can be handled by the NetServer and
  NetClient (see above).
 
 ## Creating a DatagramSocket
 
-To use UDP you first need t create a `DatagramSocket`. It does not matter here if you only want to send data 
+To use UDP you first need t create a `DatagramSocket`. It does not matter here if you only want to send data
 or send and receive.
 
     DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
 
-The returned `DatagramSocket` will not be bound to a specific port. 
+The returned `DatagramSocket` will not be bound to a specific port.
 
 This is not a problem if you only want to send data (like a client), but more on this in the next section.
 
@@ -1223,18 +1223,18 @@ Sending packets is as easy as shown here:
     socket.send(buffer, "10.0.0.1", 1234, new AsyncResultHandler<DatagramSocket>() {
         public void handle(AsyncResult<DatagramSocket> asyncResult) {
             log.info("Send succeeded? " + asyncResult.succeeded());
-        }  
+        }
     });
     // Send a String
     socket.send("A string used as content", "10.0.0.1", 1234, new AsyncResultHandler<DatagramSocket>() {
         public void handle(AsyncResult<DatagramSocket> asyncResult) {
             log.info("Send succeeded? " + asyncResult.succeeded());
-        }  
+        }
     });
 
 ## Receiving Datagram packets
 
-If you want to receive packets you need to bind the `DatagramSocket` by calling `listen(...)` on it. 
+If you want to receive packets you need to bind the `DatagramSocket` by calling `listen(...)` on it.
 
 This way you will be able to receive `DatagramPacket`s that were sent to the address and port on which
 the `DatagramSocket` listens.
@@ -1261,11 +1261,11 @@ So to listen on a specific address and port you would do something like shown he
             } else {
                 log.warn("Listen failed", asyncResult.cause());
             }
-        }  
+        }
     });
 
 
-Be aware that even if the `AsyncResult` is successed it only means it might be written on the network stack, 
+Be aware that even if the `AsyncResult` is successed it only means it might be written on the network stack,
 but gives no guarantee that it ever reached or will reach the remote peer at all.
 
 If you need such a guarantee then you want to use TCP with some handshaking logic build on top.
@@ -1277,9 +1277,9 @@ If you need such a guarantee then you want to use TCP with some handshaking logi
 Multicast allows multiple sockets to receive the same packets. This works by have same join a multicast
 group to which you can send packets.
 
-We will look at how you can joint a Multicast Group and so receive packets in the next section. 
+We will look at how you can joint a Multicast Group and so receive packets in the next section.
 
-For now let us focus on how to send those. Sending multicast packets is not different to send normal 
+For now let us focus on how to send those. Sending multicast packets is not different to send normal
 Datagram Packets.
 
 The only difference is that you would pass in a multicast group address to the send method.
@@ -1292,11 +1292,11 @@ This is show here:
     socket.send(buffer, "230.0.0.1", 1234, new AsyncResultHandler<DatagramSocket>() {
         public void handle(AsyncResult<DatagramSocket> asyncResult) {
             log.info("Send succeeded? " + asyncResult.succeeded());
-        }  
+        }
     });
 
 All sockets that have joined the multicast group 230.0.0.1 will receive the packet.
-   
+
 ### Receiving Multicast packets
 
 If you want to receive packets for specific Multicast group you need to bind the `DatagramSocket`
@@ -1337,15 +1337,15 @@ So to listen on a specific address and port and also receive packets for the Mul
             } else {
                 log.warn("Listen failed", asyncResult.cause());
             }
-        }  
+        }
     });
 
-### Unlisten / leave a Multicast group 
+### Unlisten / leave a Multicast group
 
 There are sometimes situations where you want to receive packets for a Multicast group for
- a limited time. 
+ a limited time.
 
-In this situations you can first start to listen for them and then later unlisten. 
+In this situations you can first start to listen for them and then later unlisten.
 
 This is shown here:
 
@@ -1357,7 +1357,7 @@ This is shown here:
                     public void handle(DatagramPacket packet) {
                         // Do something with the packet
                     }
-                });  
+                });
 
                 // join the multicast group
                 socket.listMulticastGroup("230.0.0.1", new AsyncResultHandler<DatagramSocket>() {
@@ -1385,7 +1385,7 @@ This is shown here:
             } else {
                 log.warn("Listen failed", asyncResult.cause());
             }
-        }  
+        }
     });
 
 ### Blocking multicast
@@ -1412,7 +1412,7 @@ To block multicast from a specic address you can call `blockMulticastGroup(...)`
 
 ## DatagramSocket properties
 
-When using the `DatagramSocket` there are multiple properties you can set to change it's behaviour. 
+When using the `DatagramSocket` there are multiple properties you can set to change it's behaviour.
 Those are listed here:
 
 * `setSendBufferSize(size)` Sets the send buffer size in bytes.
@@ -1424,12 +1424,12 @@ Those are listed here:
 
 * `setTrafficClass(trafficClass)`
 
-* `setBroadcast(broadcast)` Sets or clears the SO_BROADCAST socket option. When this option is set, 
+* `setBroadcast(broadcast)` Sets or clears the SO_BROADCAST socket option. When this option is set,
                             Datagram (UDP) packets may be sent to a local interface's broadcast address.
 
 * `setMulticastLoopbackMode(loopbackModeDisabled)` Sets or clears the IP_MULTICAST_LOOP socket option.
                                                    When this option is set, multicast packets will
-                                                   also be received on the local interface. 
+                                                   also be received on the local interface.
 
 * `setMulticastTimeToLive(int ttl)` Sets the IP_MULTICAST_TTL socket option. TTL stands for "Time to Live,"
                                     but in this context it specifies the number of IP hops that a packet is
@@ -1443,13 +1443,13 @@ You can find out the local address of the socket (i.e. the address of this side 
  `localAddress()`.
 This will only return an InetSocketAddress` if you bound the `DatagramSocket` with `listen(...)` before, otherwise
  it will return null.
-    
+
 ## Closing a DatagramSocket
 
 You can close a socket by invoking the `close` method. This will close the socket and release all resources
 
-               
-<a id="flow-control"> </a> 
+
+<a id="flow-control"> </a>
 # Flow Control - Streams and Pumps
 
 There are several objects in Vert.x that allow data to be read from and written to in the form of Buffers.
@@ -1472,17 +1472,17 @@ A naive way to do this would be to directly take the data that's been read and i
 
     server.connectHandler(new Handler<NetSocket>() {
         public void handle(final NetSocket sock) {
-        
+
             sock.dataHandler(new Handler<Buffer>() {
                 public void handle(Buffer buffer) {
                     // Write the data straight back
                     sock.write(buffer);
                 }
             });
-        
+
         }
     }).listen(1234, "localhost");
-    
+
 There's a problem with the above example: If data is read from the socket faster than it can be written back to the socket, it will build up in the write queue of the `NetSocket`, eventually running out of RAM. This might happen, for example if the client at the other end of the socket wasn't reading very fast, effectively putting back-pressure on the connection.
 
 Since `NetSocket` implements `WriteStream`, we can check if the `WriteStream` is full before writing to it:
@@ -1491,7 +1491,7 @@ Since `NetSocket` implements `WriteStream`, we can check if the `WriteStream` is
 
     server.connectHandler(new Handler<NetSocket>() {
         public void handle(final NetSocket sock) {
-        
+
             sock.dataHandler(new Handler<Buffer>() {
                 public void handle(Buffer buffer) {
                     if (!sock.writeQueueFull()) {
@@ -1499,17 +1499,17 @@ Since `NetSocket` implements `WriteStream`, we can check if the `WriteStream` is
                     }
                 }
             });
-        
+
         }
     }).listen(1234, "localhost");
-    
+
 This example won't run out of RAM but we'll end up losing data if the write queue gets full. What we really want to do is pause the `NetSocket` when the write queue is full. Let's do that:
 
     NetServer server = vertx.createNetServer();
 
     server.connectHandler(new Handler<NetSocket>() {
         public void handle(final NetSocket sock) {
-        
+
             sock.dataHandler(new Handler<Buffer>() {
                 public void handle(Buffer buffer) {
                     if (!sock.writeQueueFull()) {
@@ -1519,7 +1519,7 @@ This example won't run out of RAM but we'll end up losing data if the write queu
                     }
                 }
             });
-        
+
         }
     }).listen(1234, "localhost");
 
@@ -1529,7 +1529,7 @@ We're almost there, but not quite. The `NetSocket` now gets paused when the file
 
     server.connectHandler(new Handler<NetSocket>() {
         public void handle(final NetSocket sock) {
-        
+
             sock.dataHandler(new Handler<Buffer>() {
                 public void handle(Buffer buffer) {
                     if (!sock.writeQueueFull()) {
@@ -1544,7 +1544,7 @@ We're almost there, but not quite. The `NetSocket` now gets paused when the file
                     }
                 }
             });
-        
+
         }
     }).listen(1234, "localhost");
 
@@ -1555,11 +1555,11 @@ It's very common to want to do this when writing Vert.x applications, so we prov
     NetServer server = vertx.createNetServer();
 
     server.connectHandler(new Handler<NetSocket>() {
-        public void handle(NetSocket sock) {        
-            Pump.create(sock, sock).start();        
+        public void handle(NetSocket sock) {
+            Pump.create(sock, sock).start();
         }
     }).listen(1234, "localhost");
-    
+
 Which does exactly the same thing as the more verbose example.
 
 Let's look at the methods on `ReadStream` and `WriteStream` in more detail:
@@ -1612,16 +1612,16 @@ Vert.x allows you to easily write full featured, highly performant and scalable 
 To create an HTTP server you call the `createHttpServer` method on your `vertx` instance.
 
     HttpServer server = vertx.createHttpServer();
-    
-### Start the Server Listening    
-    
+
+### Start the Server Listening
+
 To tell that server to listen for incoming requests you use the `listen` method:
 
     HttpServer server = vertx.createHttpServer();
 
     server.listen(8080, "myhost");
-    
-The first parameter to `listen` is the port. 
+
+The first parameter to `listen` is the port.
 
 The second parameter is the hostname or ip address. If it is omitted it will default to `0.0.0.0` which means it will listen at all available interfaces.
 
@@ -1630,12 +1630,12 @@ The actual bind is asynchronous so the server might not actually be listening un
     server.listen(8080, "myhost", new AsyncResultHandler<Void>() {
         public void handle(AsyncResult<HttpServer> asyncResult) {
             log.info("Listen succeeded? " + asyncResult.succeeded());
-        }  
+        }
     });
 
 
 ### Getting Notified of Incoming Requests
-    
+
 To be notified when a request arrives you need to set a request handler. This is done by calling the `requestHandler` method of the server, passing in the handler:
 
     HttpServer server = vertx.createHttpServer();
@@ -1645,12 +1645,12 @@ To be notified when a request arrives you need to set a request handler. This is
             log.info("A request has arrived on the server!");
             request.response().end();
         }
-    });  
+    });
 
     server.listen(8080, "localhost");
-    
-Every time a request arrives on the server the handler is called passing in an instance of `org.vertx.java.core.http.HttpServerRequest`.    
-    
+
+Every time a request arrives on the server the handler is called passing in an instance of `org.vertx.java.core.http.HttpServerRequest`.
+
 You can try it by running the verticle and pointing your browser at `http://localhost:8080`.
 
 Similarly to `NetServer`, the return value of the `requestHandler` method is the server itself, so multiple invocations can be chained together. That means we can rewrite the above with:
@@ -1663,7 +1663,7 @@ Similarly to `NetServer`, the return value of the `requestHandler` method is the
             request.response().end();
         }
     }).listen(8080, "localhost");
-    
+
 Or:
 
     vertx.createHttpServer().requestHandler(new Handler<HttpServerRequest>() {
@@ -1672,8 +1672,8 @@ Or:
             request.response().end();
         }
     }).listen(8080, "localhost");
-    
-       
+
+
 ### Handling HTTP Requests
 
 So far we have seen how to create an `HttpServer` and be notified of requests. Lets take a look at how to handle the requests and do something useful with them.
@@ -1696,8 +1696,8 @@ The request object has a method `version()` which returns an enum representing t
 
 The request object has a method `uri()` which returns the full URI (Uniform Resource Locator) of the request. For example, if the request URI was:
 
-    /a/b/c/page.html?param1=abc&param2=xyz    
-    
+    /a/b/c/page.html?param1=abc&param2=xyz
+
 Then `request.uri()` would return the string `/a/b/c/page.html?param1=abc&param2=xyz`.
 
 Request URIs can be relative or absolute (with a domain) depending on what the client sent. In most cases they will be relative.
@@ -1708,18 +1708,18 @@ The request uri contains the value as defined in [Section 5.1.2 of the HTTP spec
 
 The request object has a method `path()` which returns the path of the request. For example, if the request URI was:
 
-    a/b/c/page.html?param1=abc&param2=xyz    
-    
+    a/b/c/page.html?param1=abc&param2=xyz
+
 Then `request.path()` would return the string `/a/b/c/page.html`
-   
+
 #### Request Query
 
 The request object has a method `query()` which contains the query of the request. For example, if the request URI was:
 
-    a/b/c/page.html?param1=abc&param2=xyz    
-    
-Then `request.query()` would return the string `param1=abc&param2=xyz`    
-        
+    a/b/c/page.html?param1=abc&param2=xyz
+
+Then `request.query()` would return the string `param1=abc&param2=xyz`
+
 #### Request Headers
 
 The request headers are available using the `headers()` method on the request object.
@@ -1737,21 +1737,21 @@ Here's an example that echoes the headers to the output of the response. Run it 
                 sb.append(header.getKey()).append(": ").append(header.getValue()).append("\n");
             }
             request.response().putHeader("content-type", "text/plain");
-            request.response().end(sb.toString());  
+            request.response().end(sb.toString());
         }
     }).listen(8080, "localhost");
 
 
 #### Request params
 
-Similarly to the headers, the request parameters are available using the `params()` method on the request object.   
+Similarly to the headers, the request parameters are available using the `params()` method on the request object.
 
-The returned object is an instance of `org.vertx.java.core.MultiMap`.   
+The returned object is an instance of `org.vertx.java.core.MultiMap`.
 
 Request parameters are sent on the request URI, after the path. For example if the URI was:
 
     /page.html?param1=abc&param2=xyz
-    
+
 Then the params multimap would contain the following entries:
 
     param1: 'abc'
@@ -1764,7 +1764,7 @@ Use the method `remoteAddress()` to find out the address of the other side of th
 #### Absolute URI
 
 Use the method `absoluteURI()` to return the absolute URI corresponding to the request.
-    
+
 #### Reading Data from the Request Body
 
 Sometimes an HTTP request contains a request body that we want to read. As previously mentioned the request handler is called when only the headers of the request have arrived so the `HttpServerRequest` object does not contain the body. This is because the body may be very large and we don't want to create problems with exceeding available memory.
@@ -1780,15 +1780,15 @@ To receive the body, you set the `dataHandler` on the request object. This will 
                     log.info('I received ' + buffer.length() + ' bytes');
                 }
             });
-             
+
         }
     }).listen(8080, "localhost");
 
-The `dataHandler` may be called more than once depending on the size of the body.    
+The `dataHandler` may be called more than once depending on the size of the body.
 
-You'll notice this is very similar to how data from `NetSocket` is read. 
+You'll notice this is very similar to how data from `NetSocket` is read.
 
-The request object implements the `ReadStream` interface so you can pump the request body to a `WriteStream`. See the chapter on [streams and pumps](#flow-control) for a detailed explanation. 
+The request object implements the `ReadStream` interface so you can pump the request body to a `WriteStream`. See the chapter on [streams and pumps](#flow-control) for a detailed explanation.
 
 In many cases, you know the body is not large and you just want to receive it in one go. To do this you could do something like the following:
 
@@ -1796,9 +1796,9 @@ In many cases, you know the body is not large and you just want to receive it in
 
     server.requestHandler(new Handler<HttpServerRequest>() {
         public void handle(HttpServerRequest request) {
-        
+
             final Buffer body = new Buffer(0);
-            
+
             request.dataHandler(new Handler<Buffer>() {
                 public void handle(Buffer buffer) {
                     body.appendBuffer(buffer);
@@ -1807,14 +1807,14 @@ In many cases, you know the body is not large and you just want to receive it in
             request.endHandler(new VoidHandler() {
                 public void handle() {
                   // The entire body has now been received
-                  log.info("The total body received was " + body.length() + " bytes");    
+                  log.info("The total body received was " + body.length() + " bytes");
                 }
             });
-             
+
         }
     }).listen(8080, "localhost");
 
-    
+
 Like any `ReadStream` the end handler is invoked when the end of stream is reached - in this case at the end of the request.
 
 If the HTTP request is using HTTP chunking, then each HTTP chunk of the request body will correspond to a single call of the data handler.
@@ -1830,13 +1830,13 @@ Here's an example using `bodyHandler`:
     HttpServer server = vertx.createHttpServer();
 
     server.requestHandler(new Handler<HttpServerRequest>() {
-        public void handle(HttpServerRequest request) {        
+        public void handle(HttpServerRequest request) {
             request.bodyHandler(new Handler<Buffer>() {
                 public void handle(Buffer body) {
                   // The entire body has now been received
-                  log.info("The total body received was " + body.length() + " bytes");   
+                  log.info("The total body received was " + body.length() + " bytes");
                 }
-            });            
+            });
         }
     }).listen(8080, "localhost");
 
@@ -1873,10 +1873,10 @@ If the request corresponds to an HTML form that was submitted you can use the me
             MultiMap attrs = request.formAttributes();
             // Do something with them
         }
-    });  
-    
-    
-### HTTP Server Responses 
+    });
+
+
+### HTTP Server Responses
 
 As previously mentioned, the HTTP request object contains a method `response()`. This returns the HTTP response for the request. You use it to write the response back to the client.
 
@@ -1887,15 +1887,15 @@ To set the HTTP status code for the response use the `setStatusCode()` method, e
     HttpServer server = vertx.createHttpServer();
 
     server.requestHandler(new Handler<HttpServerRequest>() {
-        public void handle(HttpServerRequest request) {        
-            request.response().setStatusCode(739).setStatusMessage("Too many gerbils").end();       
+        public void handle(HttpServerRequest request) {
+            request.response().setStatusCode(739).setStatusMessage("Too many gerbils").end();
         }
     }).listen(8080, "localhost");
-    
-You can also use the `setStatusMessage()` method to set the status message. If you do not set the status message a default message will be used.    
-  
-The default value for `statusCode` is `200`.    
-  
+
+You can also use the `setStatusMessage()` method to set the status message. If you do not set the status message a default message will be used.
+
+The default value for `statusCode` is `200`.
+
 #### Writing HTTP responses
 
 To write data to an HTTP response, you invoke the `write` function. This function can be invoked multiple times before the response is ended. It can be invoked in a few ways:
@@ -1904,33 +1904,33 @@ With a single buffer:
 
     Buffer myBuffer = ...
     request.response().write(myBuffer);
-    
+
 A string. In this case the string will encoded using UTF-8 and the result written to the wire.
 
-    request.response().write("hello");    
-    
-A string and an encoding. In this case the string will encoded using the specified encoding and the result written to the wire.     
+    request.response().write("hello");
+
+A string and an encoding. In this case the string will encoded using the specified encoding and the result written to the wire.
 
     request.response().write("hello", "UTF-16");
-    
+
 The `write` function is asynchronous and always returns immediately after the write has been queued.
 
 If you are just writing a single string or Buffer to the HTTP response you can write it and end the response in a single call to the `end` method.
 
 The first call to `write` results in the response header being being written to the response.
 
-Consequently, if you are not using HTTP chunking then you must set the `Content-Length` header before writing to the response, since it will be too late otherwise. If you are using HTTP chunking you do not have to worry. 
-   
+Consequently, if you are not using HTTP chunking then you must set the `Content-Length` header before writing to the response, since it will be too late otherwise. If you are using HTTP chunking you do not have to worry.
+
 #### Ending HTTP responses
 
 Once you have finished with the HTTP response you must call the `end()` function on it.
 
 This function can be invoked in several ways:
 
-With no arguments, the response is simply ended. 
+With no arguments, the response is simply ended.
 
     request.response().end();
-    
+
 The function can also be called with a string or Buffer in the same way `write` is called. In this case it's just the same as calling write with a string or Buffer followed by calling `end` with no arguments. For example:
 
     request.response().end("That's all folks");
@@ -1951,9 +1951,9 @@ HTTP response headers can be added to the response by adding them to the multima
 Individual HTTP response headers can also be written using the `putHeader` method. This allows a fluent API since calls to `putHeader` can be chained:
 
     request.response().putHeader("Some-Header", "elephants").putHeader("Pants", "Absent");
-    
+
 Response headers must all be added before any parts of the response body are written.
-    
+
 #### Chunked HTTP Responses and Trailers
 
 Vert.x supports [HTTP Chunked Transfer Encoding](http://en.wikipedia.org/wiki/Chunked_transfer_encoding). This allows the HTTP response body to be written in chunks, and is normally used when a large response body is being streamed to a client, whose size is not known in advance.
@@ -1961,10 +1961,10 @@ Vert.x supports [HTTP Chunked Transfer Encoding](http://en.wikipedia.org/wiki/Ch
 You put the HTTP response into chunked mode as follows:
 
     req.response().setChunked(true);
-    
-Default is non-chunked. When in chunked mode, each call to `response.write(...)` will result in a new HTTP chunk being written out.  
 
-When in chunked mode you can also write HTTP response trailers to the response. These are actually written in the final chunk of the response.  
+Default is non-chunked. When in chunked mode, each call to `response.write(...)` will result in a new HTTP chunk being written out.
+
+When in chunked mode you can also write HTTP response trailers to the response. These are actually written in the final chunk of the response.
 
 To add trailers to the response, add them to the multimap returned from the `trailers()` method:
 
@@ -1974,7 +1974,7 @@ To add trailers to the response, add them to the multimap returned from the `tra
 Like headers, individual HTTP response trailers can also be written using the `putTrailer()` method. This allows a fluent API since calls to `putTrailer` can be chained:
 
     request.response().putTrailer("Cat-Food", "Whiskas").putTrailer("Eye-Wear", "Monocle");
-    
+
 
 ### Serving files directly from disk
 
@@ -1989,20 +1989,20 @@ To do this use the `sendFile` function on the HTTP response. Here's a simple HTT
     HttpServer server = vertx.createHttpServer();
 
     server.requestHandler(new Handler<HttpServerRequest>() {
-        public void handle(HttpServerRequest req) {        
+        public void handle(HttpServerRequest req) {
           String file = "";
           if (req.path().equals("/")) {
             file = "index.html";
           } else if (!req.path().contains("..")) {
             file = req.path();
           }
-          req.response().sendFile("web/" + file);              
+          req.response().sendFile("web/" + file);
         }
     }).listen(8080, "localhost");
 
 There's also a version of `sendFile` which takes the name of a file to serve if the specified file cannot be found:
 
-    req.response().sendFile("web/" + file, "handler_404.html");    
+    req.response().sendFile("web/" + file, "handler_404.html");
 
 *Note: If you use `sendFile` while using HTTPS it will copy through userspace, since if the kernel is copying data directly from disk to socket it doesn't give us an opportunity to apply any encryption.*
 
@@ -2017,26 +2017,26 @@ Here's an example which echoes HttpRequest headers and body back in the HttpResp
     HttpServer server = vertx.createHttpServer();
 
     server.requestHandler(new Handler<HttpServerRequest>() {
-        public void handle(final HttpServerRequest req) {        
-          req.response().headers().set(req.headers());      
+        public void handle(final HttpServerRequest req) {
+          req.response().headers().set(req.headers());
           Pump.createPump(req, req.response()).start();
           req.endHandler(new VoidHandler() {
             public void handle() {
                 req.response().end();
             }
-          });           
+          });
         }
     }).listen(8080, "localhost");
 
 ### HTTP Compression
 
-Vert.x comes with support for HTTP Compression out of the box. 
-Which means you are able to automatically compress the body of the responses before they are sent back to the Client. 
-If the client does not support HTTP Compression the responses are sent back without compressing the body. 
+Vert.x comes with support for HTTP Compression out of the box.
+Which means you are able to automatically compress the body of the responses before they are sent back to the Client.
+If the client does not support HTTP Compression the responses are sent back without compressing the body.
 This allows to handle Client that support HTTP Compression and those that not support it at the same time.
 
 To enable compression you only need to do:
-    
+
     HttpServer server = vertx.createHttpServer();
     server.setCompressionSupported(true);
 
@@ -2056,22 +2056,22 @@ Be aware that compression may be able to reduce network traffic but is more cpu-
 To create an HTTP client you call the `createHttpClient` method on your `vertx` instance:
 
     HttpClient client = vertx.createHttpClient();
-    
+
 You set the port and hostname (or ip address) that the client will connect to using the `setHost` and `setPort` functions:
 
     HttpClient client = vertx.createHttpClient();
     client.setPort(8181);
     client.setHost("foo.com");
-    
+
 This, of course, can be chained:
 
     HttpClient client = vertx.createHttpClient()
         .setPort(8181)
         .setHost("foo.com");
-                   
+
 A single `HTTPClient` always connects to the same host and port. If you want to connect to different servers, create more instances.
 
-The default port is `80` and the default host is `localhost`. So if you don't explicitly set these values that's what the client will attempt to connect to.         
+The default port is `80` and the default host is `localhost`. So if you don't explicitly set these values that's what the client will attempt to connect to.
 
 ### Pooling and Keep Alive
 
@@ -2092,15 +2092,15 @@ You can set the maximum number of connections that the client will pool as follo
                    .setPort(8181)
                    .setHost("foo.com").
                    .setMaxPoolSize(10);
-                   
-The default value is `1`.         
+
+The default value is `1`.
 
 ### Closing the client
 
 Any HTTP clients created in a verticle are automatically closed for you when the verticle is stopped, however if you want to close it explicitly you can:
 
-    client.close();             
-                         
+    client.close();
+
 ### Making Requests
 
 To make a request using the client you invoke one the methods named after the HTTP method that you want to invoke.
@@ -2108,15 +2108,15 @@ To make a request using the client you invoke one the methods named after the HT
 For example, to make a `POST` request:
 
     HttpClient client = vertx.createHttpClient().setHost("foo.com");
-    
+
     HttpClientRequest request = client.post("/some-path/", new Handler<HttpClientResponse>() {
         public void handle(HttpClientResponse resp) {
             log.info("Got a response: " + resp.statusCode());
         }
     });
-    
+
     request.end();
-    
+
 To make a PUT request use the `put` method, to make a GET request use the `get` method, etc.
 
 Legal request methods are: `get`, `put`, `post`, `delete`, `head`, `options`, `connect`, `trace` and `patch`.
@@ -2134,20 +2134,20 @@ Once you have finished with the request you must call the `end()` method.
 If you don't know the name of the request method in advance there is a general `request` method which takes the HTTP method as a parameter:
 
     HttpClient client = vertx.createHttpClient().setHost("foo.com");
-    
+
     HttpClientRequest request = client.request("POST", "/some-path/",
         new Handler<HttpClientResponse>() {
             public void handle(HttpClientResponse resp) {
                 log.info("Got a response: " + resp.statusCode());
             }
         });
-    
+
     request.end();
-    
+
 There is also a method called `getNow` which does the same as `get`, but automatically ends the request. This is useful for simple GETs which don't have a request body:
 
     HttpClient client = vertx.createHttpClient().setHost("foo.com");
-    
+
     client.getNow("/some-path/", new Handler<HttpClientResponse>() {
         public void handle(HttpClientResponse resp) {
             log.info("Got a response: " + resp.statusCode());
@@ -2168,20 +2168,20 @@ With a single buffer:
 
     Buffer myBuffer = ...
     request.write(myBuffer);
-    
+
 A string. In this case the string will encoded using UTF-8 and the result written to the wire.
 
-    request.write("hello");    
-    
-A string and an encoding. In this case the string will encoded using the specified encoding and the result written to the wire.     
+    request.write("hello");
+
+A string and an encoding. In this case the string will encoded using the specified encoding and the result written to the wire.
 
     request.write("hello", "UTF-16");
-    
-The `write` function is asynchronous and always returns immediately after the write has been queued. The actual write might complete some time later.
-    
-If you are just writing a single string or Buffer to the HTTP request you can write it and end the request in a single call to the `end` function.   
 
-The first call to `write` will result in the request headers being written to the request. Consequently, if you are not using HTTP chunking then you must set the `Content-Length` header before writing to the request, since it will be too late otherwise. If you are using HTTP chunking you do not have to worry. 
+The `write` function is asynchronous and always returns immediately after the write has been queued. The actual write might complete some time later.
+
+If you are just writing a single string or Buffer to the HTTP request you can write it and end the request in a single call to the `end` function.
+
+The first call to `write` will result in the request headers being written to the request. Consequently, if you are not using HTTP chunking then you must set the `Content-Length` header before writing to the request, since it will be too late otherwise. If you are using HTTP chunking you do not have to worry.
 
 
 #### Ending HTTP requests
@@ -2190,10 +2190,10 @@ Once you have finished with the HTTP request you must call the `end` function on
 
 This function can be invoked in several ways:
 
-With no arguments, the request is simply ended. 
+With no arguments, the request is simply ended.
 
     request.end();
-    
+
 The function can also be called with a string or Buffer in the same way `write` is called. In this case it's just the same as calling write with a string or Buffer followed by calling `end` with no arguments.
 
 #### Writing Request Headers
@@ -2201,20 +2201,20 @@ The function can also be called with a string or Buffer in the same way `write` 
 To write headers to the request, add them to the multi-map returned from the `headers()` method:
 
     HttpClient client = vertx.createHttpClient().setHost("foo.com");
-    
+
     HttpClientRequest request = client.post("/some-path/", new Handler<HttpClientResponse>() {
         public void handle(HttpClientResponse resp) {
             log.info("Got a response: " + resp.statusCode());
         }
     });
-    
+
     request.headers().set("Some-Header", "Some-Value");
     request.end();
-    
+
 You can also adds them using the `putHeader` method. This enables a more fluent API since calls can be chained, for example:
 
     request.putHeader("Some-Header", "Some-Value").putHeader("Some-Other", "Blah");
-    
+
 These can all be chained together as per the common Vert.x API pattern:
 
     client.setHost("foo.com").post("/some-path/", new Handler<HttpClientResponse>() {
@@ -2234,8 +2234,8 @@ Vert.x supports [HTTP Chunked Transfer Encoding](http://en.wikipedia.org/wiki/Ch
 You put the HTTP request into chunked mode as follows:
 
     request.setChunked(true);
-    
-Default is non-chunked. When in chunked mode, each call to `request.write(...)` will result in a new HTTP chunk being written out.  
+
+Default is non-chunked. When in chunked mode, each call to `request.write(...)` will result in a new HTTP chunk being written out.
 
 ### HTTP Client Responses
 
@@ -2246,11 +2246,11 @@ The response object implements `ReadStream`, so it can be pumped to a `WriteStre
 To query the status code of the response use the `statusCode()` method. The `statusMessage()` method contains the status message. For example:
 
     HttpClient client = vertx.createHttpClient().setHost("foo.com");
-    
+
     client.getNow("/some-path/", new Handler<HttpClientResponse>() {
         public void handle(HttpClientResponse resp) {
-            log.info('server returned status code: ' + resp.statusCode());   
-            log.info('server returned status message: ' + resp.statusMessage());   
+            log.info('server returned status code: ' + resp.statusCode());
+            log.info('server returned status message: ' + resp.statusMessage());
         }
     });
 
@@ -2264,42 +2264,42 @@ Sometimes an HTTP response contains a body that we want to read. Like an HTTP re
 To receive the response body, you set a `dataHandler` on the response object which gets called as parts of the HTTP response arrive. Here's an example:
 
     HttpClient client = vertx.createHttpClient().setHost("foo.com");
-    
+
     client.getNow("/some-path/", new Handler<HttpClientResponse>() {
         public void handle(HttpClientResponse resp) {
             resp.dataHandler(new Handler<Buffer>() {
                 public void handle(Buffer data) {
                     log.info('I received ' + buffer.length() + ' bytes');
                 }
-            });  
+            });
         }
     });
 
 
-The response object implements the `ReadStream` interface so you can pump the response body to a `WriteStream`. See the chapter on [streams and pump](#flow-control) for a detailed explanation. 
+The response object implements the `ReadStream` interface so you can pump the response body to a `WriteStream`. See the chapter on [streams and pump](#flow-control) for a detailed explanation.
 
 The `dataHandler` can be called multiple times for a single HTTP response.
 
 As with a server request, if you wanted to read the entire response body before doing something with it you could do something like the following:
 
     HttpClient client = vertx.createHttpClient().setHost("foo.com");
-    
+
     client.getNow("/some-path/", new Handler<HttpClientResponse>() {
         public void handle(HttpClientResponse resp) {
-        
+
             final Buffer body = new Buffer(0);
-        
+
             resp.dataHandler(new Handler<Buffer>() {
                 public void handle(Buffer data) {
                     body.appendBuffer(data);
                 }
-            }); 
+            });
             resp.endHandler(new VoidHandler() {
                 public void handle() {
                    // The entire response body has been received
                    log.info('The total body received was ' + body.length() + ' bytes');
                 }
-            }); 
+            });
         }
     });
 
@@ -2316,15 +2316,15 @@ The body handler is called only once when the *entire* response body has been re
 Here's an example using `bodyHandler`:
 
     HttpClient client = vertx.createHttpClient().setHost("foo.com");
-    
+
     client.getNow("/some-path/", new Handler<HttpClientResponse>() {
-        public void handle(HttpClientResponse resp) {       
+        public void handle(HttpClientResponse resp) {
             resp.bodyHandler(new Handler<Buffer>() {
                 public void handle(Buffer body) {
                    // The entire response body has been received
                    log.info("The total body received was " + body.length() + " bytes");
                 }
-            }); 
+            });
         }
     });
 
@@ -2332,7 +2332,7 @@ Here's an example using `bodyHandler`:
 
 You can read the list of cookies from the response using the method `cookies()`.
 
-   
+
 ### 100-Continue Handling
 
 According to the [HTTP 1.1 specification](http://www.w3.org/Protocols/rfc2616/rfc2616-sec8.html) a client can set a header `Expect: 100-Continue` and send the request header before sending the rest of the request body.
@@ -2348,19 +2348,19 @@ This is used in conjunction with the `sendHead` function to send the head of the
 An example will illustrate this:
 
     HttpClient client = vertx.createHttpClient().setHost("foo.com");
-    
+
     final HttpClientRequest request = client.put("/some-path/", new Handler<HttpClientResponse>() {
-        public void handle(HttpClientResponse resp) {       
+        public void handle(HttpClientResponse resp) {
             log.info("Got a response " + resp.statusCode());
         }
     });
 
     request.putHeader("Expect", "100-Continue");
-    
+
     request.continueHandler(new VoidHandler() {
         public void handle() {
 
-            // OK to send rest of body            
+            // OK to send rest of body
             request.write("Some data").end();
         }
     });
@@ -2374,7 +2374,7 @@ compressed response bodies. A Http server is free to either compress with one of
 is only a hint for the Http server which it may ignore at all.
 
 To tell the Http server which compression is supported by the `HttpClient` it will include a 'Accept-Encoding' header with the supported
-compression algorithm as value. Multiple compression algorithms are supported. In case of Vert.x this will result in have the 
+compression algorithm as value. Multiple compression algorithms are supported. In case of Vert.x this will result in have the
 following header added:
 
     Accept-Encoding: gzip, deflate
@@ -2387,7 +2387,7 @@ If the body of the response was compressed via gzip it will include for example 
     Content-Encoding: gzip
 
 To enable compression you only need to do:
-    
+
     HttpClient client = vertx.createHttpClient();
     client.setTryUseCompression(true);
 
@@ -2396,7 +2396,7 @@ The default is false.
 ## Pumping Requests and Responses
 
 The HTTP client and server requests and responses all implement either `ReadStream` or `WriteStream`. This means you can pump between them and any other read and write streams.
-    
+
 
 ## HTTPS Servers
 
@@ -2410,7 +2410,7 @@ Configuration of an HTTPS server is done in exactly the same way as configuring 
 
 HTTPS clients can also be very easily written with Vert.x
 
-Configuring an HTTP client for HTTPS is done in exactly the same way as configuring a `NetClient` for SSL. Please see SSL client chapter for detailed instructions. 
+Configuring an HTTP client for HTTPS is done in exactly the same way as configuring a `NetClient` for SSL. Please see SSL client chapter for detailed instructions.
 
 ## Scaling HTTP servers
 
@@ -2421,7 +2421,7 @@ Scaling an HTTP or HTTPS server over multiple cores is as simple as deploying mo
 Or, for a raw verticle:
 
     vertx run foo.MyServer -instances 20
-    
+
 The scaling works in the same way as scaling a `NetServer`. Please see the chapter on scaling Net Servers for a detailed explanation of how this works.
 
 # Routing HTTP requests with Pattern Matching
@@ -2433,19 +2433,19 @@ This is particularly useful when developing REST-style web applications.
 To do this you simply create an instance of `org.vertx.java.core.http.RouteMatcher` and use it as handler in an HTTP server. See the chapter on HTTP servers for more information on setting HTTP handlers. Here's an example:
 
     HttpServer server = vertx.createHttpServer();
-    
+
     RouteMatcher routeMatcher = new RouteMatcher();
-        
+
     server.requestHandler(routeMatcher).listen(8080, "localhost");
-    
-## Specifying matches.    
-    
+
+## Specifying matches.
+
 You can then add different matches to the route matcher. For example, to send all GET requests with path `/animals/dogs` to one handler and all GET requests with path `/animals/cats` to another handler you would do:
 
     HttpServer server = vertx.createHttpServer();
-    
+
     RouteMatcher routeMatcher = new RouteMatcher();
-    
+
     routeMatcher.get("/animals/dogs", new Handler<HttpServerRequest>() {
         public void handle(HttpServerRequest req) {
             req.response().end("You requested dogs");
@@ -2456,9 +2456,9 @@ You can then add different matches to the route matcher. For example, to send al
             req.response().end("You requested cats");
         }
     });
-        
+
     server.requestHandler(routeMatcher).listen(8080, "localhost");
-    
+
 Corresponding methods exist for each HTTP method - `get`, `post`, `put`, `delete`, `head`, `options`, `trace`, `connect` and `patch`.
 
 There's also an `all` method which applies the match to any HTTP request method.
@@ -2474,19 +2474,19 @@ A request is sent to at most one handler.
 If you want to extract parameters from the path, you can do this too, by using the `:` (colon) character to denote the name of a parameter. For example:
 
     HttpServer server = vertx.createHttpServer();
-    
+
     RouteMatcher routeMatcher = new RouteMatcher();
-    
+
     routeMatcher.put("/:blogname/:post", new Handler<HttpServerRequest>() {
         public void handle(HttpServerRequest req) {
             String blogName = req.params().get("blogname");
             String post = req.params().get("post");
-            req.response().end("blogname is " + blogName + ", post is " + post);    
+            req.response().end("blogname is " + blogName + ", post is " + post);
         }
     });
-    
+
     server.requestHandler(routeMatcher).listen(8080, "localhost");
-    
+
 Any params extracted by pattern matching are added to the map of request parameters.
 
 In the above example, a PUT request to `/myblog/post1` would result in the variable `blogName` getting the value `myblog` and the variable `post` getting the value `post1`.
@@ -2497,7 +2497,7 @@ Valid parameter names must start with a letter of the alphabet and be followed b
 
 Regular Expressions can be used to extract more complex matches. In this case capture groups are used to capture any parameters.
 
-Since the capture groups are not named they are added to the request with names `param0`, `param1`, `param2`, etc. 
+Since the capture groups are not named they are added to the request with names `param0`, `param1`, `param2`, etc.
 
 Corresponding methods exist for each HTTP method - `getWithRegEx`, `postWithRegEx`, `putWithRegEx`, `deleteWithRegEx`, `headWithRegEx`, `optionsWithRegEx`, `traceWithRegEx`, `connectWithRegEx` and `patchWithRegEx`.
 
@@ -2506,17 +2506,17 @@ There's also an `allWithRegEx` method which applies the match to any HTTP reques
 For example:
 
     HttpServer server = vertx.createHttpServer();
-    
+
     RouteMatcher routeMatcher = new RouteMatcher();
-    
+
     routeMatcher.allWithRegEx("\\/([^\\/]+)\\/([^\\/]+)", new Handler<HttpServerRequest>() {
         public void handle(HttpServerRequest req) {
             String first = req.params().get("param0");
-            String second = req.params().get("param1");            
-            req.response.end("first is " + first + " and second is " + second);   
+            String second = req.params().get("param1");
+            req.response.end("first is " + first + " and second is " + second);
         }
     });
-    
+
     server.requestHandler(routeMatcher).listen(8080, "localhost");
 
 Run the above and point your browser at `http://localhost:8080/animals/cats`.
@@ -2530,7 +2530,7 @@ You can use the `noMatch` method to specify a handler that will be called if not
             req.response().end("Nothing matched");'
         }
     });
-    
+
 <a id="web-sockets"> </a>
 # WebSockets
 
@@ -2543,14 +2543,14 @@ To use WebSockets on the server you create an HTTP server as normal, but instead
     HttpServer server = vertx.createHttpServer();
 
     server.websocketHandler(new Handler<ServerWebSocket>() {
-        public void handle(ServerWebSocket ws) {  
-            // A WebSocket has connected!                        
+        public void handle(ServerWebSocket ws) {
+            // A WebSocket has connected!
         }
     }).listen(8080, "localhost");
 
-    
-### Reading from and Writing to WebSockets    
-    
+
+### Reading from and Writing to WebSockets
+
 The `websocket` instance passed into the handler implements both `ReadStream` and `WriteStream`, so you can read and write data to it in the normal ways. I.e by setting a `dataHandler` and calling the `write` method.
 
 See the chapter on [streams and pumps](#flow-control) for more information.
@@ -2560,16 +2560,16 @@ For example, to echo all data received on a WebSocket:
     HttpServer server = vertx.createHttpServer();
 
     server.websocketHandler(new Handler<ServerWebSocket>() {
-        public void handle(ServerWebSocket ws) {  
-            Pump.createPump(ws, ws).start();     
+        public void handle(ServerWebSocket ws) {
+            Pump.createPump(ws, ws).start();
         }
     }).listen(8080, "localhost");
-    
+
 The `websocket` instance also has method `writeBinaryFrame` for writing binary data. This has the same effect as calling `write`.
 
-Another method `writeTextFrame` also exists for writing text data. This is equivalent to calling 
+Another method `writeTextFrame` also exists for writing text data. This is equivalent to calling
 
-    websocket.write(new Buffer("some-string"));    
+    websocket.write(new Buffer("some-string"));
 
 ### Rejecting WebSockets
 
@@ -2580,9 +2580,9 @@ To check the path, you can query the `path()` method of the websocket. You can t
     HttpServer server = vertx.createHttpServer();
 
     server.websocketHandler(new Handler<ServerWebSocket>() {
-        public void handle(ServerWebSocket ws) {  
+        public void handle(ServerWebSocket ws) {
             if (ws.path().equals("/services/echo")) {
-                Pump.createPump(ws, ws).start();                        
+                Pump.createPump(ws, ws).start();
             } else {
                 ws.reject();
             }
@@ -2591,8 +2591,8 @@ To check the path, you can query the `path()` method of the websocket. You can t
 
 ### Headers on the websocket
 
-You can use the `headers()` method to retrieve the headers passed in the Http Request from the client that caused the upgrade to websockets.    
-    
+You can use the `headers()` method to retrieve the headers passed in the Http Request from the client that caused the upgrade to websockets.
+
 ## WebSockets on the HTTP client
 
 To use WebSockets from the HTTP client, you create the HTTP client as normal, then call the `connectWebsocket` function, passing in the URI that you wish to connect to at the server, and a handler.
@@ -2602,41 +2602,41 @@ The handler will then get called if the WebSocket successfully connects. If the 
 Here's an example of WebSocket connection;
 
     HttpClient client = vertx.createHttpClient().setHost("foo.com");
-    
+
     client.connectWebsocket("/some-uri", new Handler<WebSocket>() {
-        public void handle(WebSocket ws) {  
+        public void handle(WebSocket ws) {
             // Connected!
         }
-    }); 
+    });
 
 Note that the host (and port) is set on the `HttpClient` instance, and the uri passed in the connect is typically a *relative* URI.
-    
-Again, the client side WebSocket implements `ReadStream` and `WriteStream`, so you can read and write to it in the same way as any other stream object. 
+
+Again, the client side WebSocket implements `ReadStream` and `WriteStream`, so you can read and write to it in the same way as any other stream object.
 
 ## WebSockets in the browser
 
-To use WebSockets from a compliant browser, you use the standard WebSocket API. Here's some example client side JavaScript which uses a WebSocket. 
+To use WebSockets from a compliant browser, you use the standard WebSocket API. Here's some example client side JavaScript which uses a WebSocket.
 
     <script>
-    
+
         var socket = new WebSocket("ws://foo.com/services/echo");
 
         socket.onmessage = function(event) {
             alert("Received data from websocket: " + event.data);
         }
-        
+
         socket.onopen = function(event) {
             alert("Web Socket opened");
             socket.send("Hello World");
         };
-        
+
         socket.onclose = function(event) {
             alert("Web Socket closed");
         };
-    
+
     </script>
-    
-For more information see the [WebSocket API documentation](http://dev.w3.org/html5/websockets/) 
+
+For more information see the [WebSocket API documentation](http://dev.w3.org/html5/websockets/)
 
 <a id="sockjs"> </a>
 # SockJS
@@ -2662,36 +2662,36 @@ This enables Vert.x to be used for modern, so-called *real-time* (this is the *m
 To create a SockJS server you simply create a HTTP server as normal and then call the `createSockJSServer` method of your `vertx` instance passing in the Http server:
 
     HttpServer httpServer = vertx.createHttpServer();
-    
+
     SockJSServer sockJSServer = vertx.createSockJSServer(httpServer);
-    
+
 Each SockJS server can host multiple *applications*.
 
-Each application is defined by some configuration, and provides a handler which gets called when incoming SockJS connections arrive at the server.      
+Each application is defined by some configuration, and provides a handler which gets called when incoming SockJS connections arrive at the server.
 
 For example, to create a SockJS echo application:
 
     HttpServer httpServer = vertx.createHttpServer();
-    
+
     SockJSServer sockJSServer = vertx.createSockJSServer(httpServer);
-    
+
     JsonObject config = new JsonObject().putString("prefix", "/echo");
-    
+
     sockJSServer.installApp(config, new Handler<SockJSSocket>() {
         public void handle(SockJSSocket sock) {
             Pump.createPump(sock, sock).start();
         }
     });
-    
+
     httpServer.listen(8080);
-    
+
 The configuration is an instance of `org.vertx.java.core.json.JsonObject`, which takes the following fields:
 
 * `prefix`: A url prefix for the application. All http requests whose paths begins with selected prefix will be handled by the application. This property is mandatory.
 * `insert_JSESSIONID`: Some hosting providers enable sticky sessions only to requests that have JSESSIONID cookie set. This setting controls if the server should set this cookie to a dummy value. By default setting JSESSIONID cookie is enabled. More sophisticated beaviour can be achieved by supplying a function.
 * `session_timeout`: The server sends a `close` event when a client receiving connection have not been seen for a while. This delay is configured by this setting. By default the `close` event will be emitted when a receiving connection wasn't seen for 5 seconds.
 * `heartbeat_period`: In order to keep proxies and load balancers from closing long running http requests we need to pretend that the connecion is active and send a heartbeat packet once in a while. This setting controlls how often this is done. By default a heartbeat packet is sent every 5 seconds.
-* `max_bytes_streaming`: Most streaming transports save responses on the client side and don't free memory used by delivered messages. Such transports need to be garbage-collected once in a while. `max_bytes_streaming` sets a minimum number of bytes that can be send over a single http streaming request before it will be closed. After that client needs to open new request. Setting this value to one effectively disables streaming and will make streaming transports to behave like polling transports. The default value is 128K.    
+* `max_bytes_streaming`: Most streaming transports save responses on the client side and don't free memory used by delivered messages. Such transports need to be garbage-collected once in a while. `max_bytes_streaming` sets a minimum number of bytes that can be send over a single http streaming request before it will be closed. After that client needs to open new request. Setting this value to one effectively disables streaming and will make streaming transports to behave like polling transports. The default value is 128K.
 * `library_url`: Transports which don't support cross-domain communication natively ('eventsource' to name one) use an iframe trick. A simple page is served from the SockJS server (using its foreign domain) and is placed in an invisible iframe. Code run from this iframe doesn't need to worry about cross-domain issues, as it's being run from domain local to the SockJS server. This iframe also does need to load SockJS javascript client library, and this option lets you specify its url (if you're unsure, point it to the latest minified SockJS client release, this is the default). The default value is `http://cdn.sockjs.org/sockjs-0.3.4.min.js`
 
 ## Reading and writing data from a SockJS server
@@ -2699,29 +2699,29 @@ The configuration is an instance of `org.vertx.java.core.json.JsonObject`, which
 The `SockJSSocket` object passed into the SockJS handler implements `ReadStream` and `WriteStream` much like `NetSocket` or `WebSocket`. You can therefore use the standard API for reading and writing to the SockJS socket or using it in pumps.
 
 See the chapter on [Streams and Pumps](#flow-control) for more information.
-    
+
 ## SockJS client
 
 For full information on using the SockJS client library please see the SockJS website. A simple example:
 
     <script>
        var sock = new SockJS('http://mydomain.com/my_prefix');
-       
+
        sock.onopen = function() {
            console.log('open');
        };
-       
+
        sock.onmessage = function(e) {
            console.log('message', e.data);
        };
-       
+
        sock.onclose = function() {
            console.log('close');
        };
-    </script>   
-    
-As you can see the API is very similar to the WebSockets API.    
-            
+    </script>
+
+As you can see the API is very similar to the WebSockets API.
+
 # SockJS - EventBus Bridge
 
 ## Setting up the Bridge
@@ -2743,13 +2743,20 @@ You will also need to secure the bridge (see below).
 The following example bridges the event bus to client side JavaScript:
 
     HttpServer server = vertx.createHttpServer();
-    
-    JsonObject config = new JsonObject().putString("prefix", "/echo");
-    
-    vertx.createSockJSServer(server).bridge(config, new JsonArray(), new JsonArray());
-    
+
+    JsonObject config = new JsonObject().putString("prefix", "/eventbus");
+
+    JsonArray noPermitted = new JsonArray();
+    noPermitted.add(new JsonObject());
+
+    vertx.createSockJSServer(server).bridge(config, noPermitted, noPermitted);
+
     server.listen(8080);
-    
+
+To let all messages through you can specify two JSON array with a single empty JSON object which will match all messages.
+
+**Be very careful!**
+
 ## Using the Event Bus from client side JavaScript
 
 Once you've set up a bridge, you can use the event bus from the client side as follows:
@@ -2762,9 +2769,9 @@ In your web page, you need to load the script `vertxbus.js`, then you can access
     <script>
 
         var eb = new vertx.EventBus('http://localhost:8080/eventbus');
-        
+
         eb.onopen = function() {
-        
+
           eb.registerHandler('some-address', function(message) {
 
             console.log('received a message: ' + JSON.stringify(message);
@@ -2772,22 +2779,22 @@ In your web page, you need to load the script `vertxbus.js`, then you can access
           });
 
           eb.send('some-address', {name: 'tim', age: 587});
-        
+
         }
-       
+
     </script>
 
 You can find `vertxbus.js` in the `client` directory of the Vert.x distribution.
 
 The first thing the example does is to create a instance of the event bus
 
-    var eb = new vertx.EventBus('http://localhost:8080/eventbus'); 
-    
+    var eb = new vertx.EventBus('http://localhost:8080/eventbus');
+
 The parameter to the constructor is the URI where to connect to the event bus. Since we create our bridge with the prefix `eventbus` we will connect there.
 
 You can't actually do anything with the bridge until it is opened. When it is open the `onopen` handler will be called.
 
-The client side event bus API for registering and unregistering handlers and for sending messages is the same as the server side one. Please consult the chapter on the event bus for full information.    
+The client side event bus API for registering and unregistering handlers and for sending messages is the same as the server side one. Please consult the chapter on the event bus for full information.
 
 **There is one more thing to do before getting this working, please read the following section....**
 
@@ -2824,15 +2831,15 @@ When a message arrives at the bridge, it will look through the available permitt
 Here is an example:
 
     HttpServer server = vertx.createHttpServer();
-    
+
     JsonObject config = new JsonObject().putString("prefix", "/echo");
-    
+
     JsonArray inboundPermitted = new JsonArray();
-    
+
     // Let through any messages sent to 'demo.orderMgr'
     JsonObject inboundPermitted1 = new JsonObject().putString("address", "demo.orderMgr");
     inboundPermitted.add(inboundPermitted1);
-    
+
     // Allow calls to the address 'demo.persistor' as long as the messages
     // have an action field with value 'find' and a collection field with value
     // 'albums'
@@ -2840,8 +2847,8 @@ Here is an example:
         .putObject("match", new JsonObject().putString("action", "find")
                                             .putString("collection", "albums"));
     inboundPermitted.add(inboundPermitted2);
-              
-    // Allow through any message with a field `wibble` with value `foo`.                                            
+
+    // Allow through any message with a field `wibble` with value `foo`.
     JsonObject inboundPermitted3 = new JsonObject().putObject("match", new JsonObject().putString("wibble", "foo"));
     inboundPermitted.add(inboundPermitted3);
 
@@ -2856,22 +2863,8 @@ Here is an example:
     outboundPermitted.add(outboundPermitted2);
 
     vertx.createSockJSBridge(server).bridge(config, inboundPermitted, outboundPermitted);
-    
+
     server.listen(8080);
-   
-    
-To let all messages through you can specify two JSON array with a single empty JSON object which will match all messages.
-
-    ...
-
-    JsonArray permitted = new JsonArray();
-    permitted.add(new JsonObject());
-
-    vertx.createSockJSBridge(server).bridge(config, permitted, permitted);
-    
-    ...
-     
-**Be very careful!**
 
 ## Messages that require authorisation
 
@@ -2889,9 +2882,9 @@ To tell the bridge that certain messages require authorisation before being pass
       },
       requires_auth: true
     }
-    
-This tells the bridge that any messages to save orders in the `orders` collection, will only be passed if the user is successful authenticated (i.e. logged in ok) first.    
-       
+
+This tells the bridge that any messages to save orders in the `orders` collection, will only be passed if the user is successful authenticated (i.e. logged in ok) first.
+
 # File System
 
 Vert.x lets you manipulate files on the file system. File system operations are asynchronous and take a handler function as the last argument. This function will be called when the operation is complete, or an error has occurred.
@@ -2960,8 +2953,8 @@ Change permissions on a file.
 
     rwxr-xr-x
     r--r--r--
-  
-* `chmod(file, perms, dirPerms, handler)`.  
+
+* `chmod(file, perms, dirPerms, handler)`.
 
 Recursively change permissionson a directory. `file` is the directory name. `perms` is a Unix style permissions to apply recursively to any files in the directory. `dirPerms` is a Unix style permissions string to apply to the directory and any other child directories recursively.
 
@@ -2988,7 +2981,7 @@ Here's an example:
             if (ar.succeeded()) {
                 log.info("File props are:");
                 log.info("Last accessed: " + ar.result().lastAccessTime());
-                // etc 
+                // etc
             } else {
                 log.error("Failed to get props", ar.cause());
             }
@@ -3035,14 +3028,14 @@ Reads a symbolic link. I.e returns the path representing the file that the symbo
 
     vertx.fileSystem().readSymLink("somelink", new AsyncResultHandler<String>() {
         public void handle(AsyncResult<String> ar) {
-            if (ar.succeeded()) {                
-                log.info("Link points at  " + ar.result());                
+            if (ar.succeeded()) {
+                log.info("Link points at  " + ar.result());
             } else {
                 log.error("Failed to read", ar.cause());
             }
         }
     });
-  
+
 ## delete
 
 Deletes a file or recursively deletes a directory.
@@ -3070,17 +3063,17 @@ Makes a new empty directory with name `dirname`, and default permissions `
 * `mkdir(dirname, createParents, handler)`
 
 If `createParents` is `true`, this creates a new directory and creates any of its parents too. Here's an example
-    
+
     vertx.fileSystem().mkdir("a/b/c", true, new AsyncResultHandler<Void>() {
         public void handle(AsyncResult ar) {
-            if (ar.suceeded()) {                
-                log.info("Directory created ok");                
+            if (ar.suceeded()) {
+                log.info("Directory created ok");
             } else {
                 log.error("Failed to mkdir", ar.cause());
             }
         }
     });
-    
+
 * `mkdir(dirname, createParents, perms, handler)`
 
 Like `mkdir(dirname, createParents, handler)`, but also allows permissions for the newly created director(ies) to be specified. `perms` is a Unix style permissions string as explained earlier.
@@ -3101,19 +3094,19 @@ List only the contents of a directory which match the filter. Here's an example 
 
     vertx.fileSystem().readDir("mydirectory", ".*\\.txt", new AsyncResultHandler<String[]>() {
         public void handle(AsyncResult<String[]> ar) {
-            if (ar.succeeded() {                
+            if (ar.succeeded() {
                 log.info("Directory contains these .txt files");
                 for (int i = 0; i < ar.result().length; i++) {
-                  log.info(ar.result()[i]);  
-                }               
+                  log.info(ar.result()[i]);
+                }
             } else {
                 log.error("Failed to read", ar.cause());
             }
         }
     });
 
-The filter is a regular expression.    
-  
+The filter is a regular expression.
+
 ## readFile
 
 Read the entire contents of a file in one go. *Be careful if using this with large files since the entire file will be stored in memory at once*.
@@ -3126,8 +3119,8 @@ Here is an example:
 
     vertx.fileSystem().readFile("myfile.dat", new AsyncResultHandler<Buffer>() {
         public void handle(AsyncResult<Buffer> ar) {
-            if (ar.succeeded()) {                
-                log.info("File contains: " + ar.result().length() + " bytes");              
+            if (ar.succeeded()) {
+                log.info("File contains: " + ar.result().length() + " bytes");
             } else {
                 log.error("Failed to read", ar.cause());
             }
@@ -3156,8 +3149,8 @@ The result is returned in the handler.
 
     vertx.fileSystem().exists("some-file.txt", new AsyncResultHandler<Boolean>() {
         public void handle(AsyncResult<Boolean> ar) {
-            if (ar.succeeded()) {                
-                log.info("File " + (ar.result() ? "exists" : "does not exist"));             
+            if (ar.succeeded()) {
+                log.info("File " + (ar.result() ? "exists" : "does not exist"));
             } else {
                 log.error("Failed to check existence", ar.cause());
             }
@@ -3180,9 +3173,9 @@ Here is an example:
 
     vertx.fileSystem().fsProps("mydir", new AsyncResultHandler<FileSystemProps>() {
         public void handle(AsyncResult<FileSystemProps> ar) {
-            if (ar.succeeded()) {                
+            if (ar.succeeded()) {
                 log.info("total space: " + ar.result().totalSpace());
-                // etc            
+                // etc
             } else {
                 log.error("Failed to check existence", ar.cause());
             }
@@ -3215,20 +3208,20 @@ Opens a file. `file` is the file name. If `read` is `true` it is opened for read
 
 Opens a file. `file` is the file name. If `read` is `true` it is opened for reading. If `write` is `true` it is opened for writing. It `createNew` is `true` it creates it if it does not already exist. If `flush` is `true` all writes are immediately flushed through the OS cache (default value of `flush` is false).
 
-  
+
 When the file is opened, an instance of `org.vertx.java.core.file.AsyncFile` is passed into the result handler:
 
     vertx.fileSystem().open("some-file.dat", new AsyncResultHandler<AsyncFile>() {
         public void handle(AsyncResult<AsyncFile> ar) {
-            if (ar.succeeded()) {                
+            if (ar.succeeded()) {
                 log.info("File opened ok!");
-                // etc            
+                // etc
             } else {
                 log.error("Failed to open file", ar.cause());
             }
         }
     });
-        
+
 ## AsyncFile
 
 Instances of `org.vertx.java.core.file.AsyncFile` are returned from calls to `open` and you use them to read from and write to files asynchronously. They allow asynchronous random file access.
@@ -3243,7 +3236,7 @@ To use an `AsyncFile` for random access writing you use the `write` method.
 
 `write(buffer, position, handler)`.
 
-The parameters to the method are: 
+The parameters to the method are:
 
 * `buffer`: the buffer to write.
 * `position`: an integer position in the file where to write the buffer. If the position is greater or equal to the size of the file, the file will be enlarged to accomodate the offset.
@@ -3252,22 +3245,22 @@ Here is an example of random access writes:
 
     vertx.fileSystem().open("some-file.dat", new AsyncResultHandler<AsyncFile>() {
         public void handle(AsyncResult<AsyncFile> ar) {
-            if (ar.succeeded()) {    
-                AsyncFile asyncFile = ar.result();            
-                // File open, write a buffer 5 times into a file              
+            if (ar.succeeded()) {
+                AsyncFile asyncFile = ar.result();
+                // File open, write a buffer 5 times into a file
                 Buffer buff = new Buffer("foo");
                 for (int i = 0; i < 5; i++) {
                     asyncFile.write(buff, buff.length() * i, new AsyncResultHandler<Void>() {
                         public void handle(AsyncResult ar) {
-                            if (ar.succeeded()) {                
+                            if (ar.succeeded()) {
                                 log.info("Written ok!");
-                                // etc            
+                                // etc
                             } else {
                                 log.error("Failed to write", ar.cause());
                             }
                         }
-                    });    
-                }            
+                    });
+                }
             } else {
                 log.error("Failed to open file", ar.cause());
             }
@@ -3280,7 +3273,7 @@ To use an `AsyncFile` for random access reads you use the `read` method.
 
 `read(buffer, offset, position, length, handler)`.
 
-The parameters to the method are: 
+The parameters to the method are:
 
 * `buffer`: the buffer into which the data will be read.
 * `offset`: an integer offset into the buffer where the read data will be placed.
@@ -3291,21 +3284,21 @@ Here's an example of random access reads:
 
     vertx.fileSystem().open("some-file.dat", new AsyncResultHandler<AsyncFile>() {
         public void handle(AsyncResult<AsyncFile> ar) {
-            if (ar.succeeded()) {    
-                AsyncFile asyncFile = ar.result();            
+            if (ar.succeeded()) {
+                AsyncFile asyncFile = ar.result();
                 Buffer buff = new Buffer(1000);
                 for (int i = 0; i < 10; i++) {
                     asyncFile.read(buff, i * 100, i * 100, 100, new AsyncResultHandler<Buffer>() {
                         public void handle(AsyncResult<Buffer> ar) {
-                            if (ar.succeeded()) {                
+                            if (ar.succeeded()) {
                                 log.info("Read ok!");
-                                // etc            
+                                // etc
                             } else {
                                 log.error("Failed to write", ar.cause());
                             }
                         }
-                    });    
-                }      
+                    });
+                }
             } else {
                 log.error("Failed to open file", ar.cause());
             }
@@ -3313,7 +3306,7 @@ Here's an example of random access reads:
     });
 
 If you attempt to read past the end of file, the read will not fail but it will simply read zero bytes.
-    
+
 ### Flushing data to underlying storage.
 
 If the `AsyncFile` was not opened with `flush = true`, then you can manually flush any writes from the OS cache by calling the `flush()` method.
@@ -3327,10 +3320,10 @@ This method can also be called with an handler which will be called when the flu
 Here's an example of pumping data from a file on a client to a HTTP request:
 
     final HttpClient client = vertx.createHttpClient.setHost("foo.com");
-    
+
     vertx.fileSystem().open("some-file.dat", new AsyncResultHandler<AsyncFile>() {
         public void handle(AsyncResult<AsyncFile> ar) {
-            if (ar.succeeded()) {    
+            if (ar.succeeded()) {
                 final HttpClientRequest request = client.put("/uploads", new Handler<HttpClientResponse>() {
                     public void handle(HttpClientResponse resp) {
                         log.info("Received response: " + resp.statusCode());
@@ -3344,13 +3337,13 @@ Here's an example of pumping data from a file on a client to a HTTP request:
                         // File sent, end HTTP requuest
                         request.end();
                     }
-                });    
+                });
             } else {
                 log.error("Failed to open file", ar.cause());
             }
         }
     });
-    
+
 ### Closing an AsyncFile
 
 To close an `AsyncFile` call the `close()` method. Closing is asynchronous and if you want to be notified when the close has been completed you can specify a handler function as an argument.
@@ -3368,7 +3361,7 @@ Be aware that you can pass in a varargs of InetSocketAddress arguments to specif
 ## lookup
 
 Try to lookup the A (ipv4) or AAAA (ipv6) record for a given name. The first which is returned will be used, so it behaves the same way as you may be used from when using "nslookup" on your operation system.
-	
+
 To lookup the A / AAAA record for "vertx.io" you would typically use it like:
 
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
@@ -3378,7 +3371,7 @@ To lookup the A / AAAA record for "vertx.io" you would typically use it like:
                 System.out.println(ar.result());
             } else {
                 log.error("Failed to resolve entry", ar.cause());
-            }    
+            }
         }
     });
 
@@ -3388,7 +3381,7 @@ Be aware that it either would use an Inet4Address or Inet6Address in the AsyncRe
 ## lookup4
 
 Try to lookup the A (ipv4) record for a given name. The first which is returned will be used, so it behaves the same way as you may be used from when using "nslookup" on your operation system.
-	
+
 To lookup the A record for "vertx.io" you would typically use it like:
 
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
@@ -3398,17 +3391,17 @@ To lookup the A record for "vertx.io" you would typically use it like:
                 System.out.println(ar.result());
             } else {
                 log.error("Failed to resolve entry", ar.cause());
-            }    
+            }
         }
     });
- 
-  As it only resolves A records and so is ipv4 only it will use Inet4Address as result.  
- 
+
+  As it only resolves A records and so is ipv4 only it will use Inet4Address as result.
+
 
 ## lookup6
 
 Try to lookup the AAAA (ipv5) record for a given name. The first which is returned will be used, so it behaves the same way as you may be used from when using "nslookup" on your operation system.
-	
+
 To lookup the A record for "vertx.io" you would typically use it like:
 
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
@@ -3418,17 +3411,17 @@ To lookup the A record for "vertx.io" you would typically use it like:
                 System.out.println(ar.result());
             } else {
                 log.error("Failed to resolve entry", ar.cause());
-            }    
+            }
         }
     });
- 
- As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.  
+
+ As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.
 
 
 ## resolveA
 
 Try to resolve all A (ipv4) records for a given name. This is quite similar to using "dig" on unix like operation systems.
-	
+
 To lookup all the A records for "vertx.io" you would typically do:
 
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
@@ -3441,17 +3434,17 @@ To lookup all the A records for "vertx.io" you would typically do:
                 }
             } else {
                 log.error("Failed to resolve entry", ar.cause());
-            }    
+            }
         }
     });
- 
-As it only resolves A records and so is ipv4 only it will use Inet4Address as result.  
+
+As it only resolves A records and so is ipv4 only it will use Inet4Address as result.
 
 
 ## resolveAAAA
 
 Try to resolve all AAAA (ipv6) records for a given name. This is quite similar to using "dig" on unix like operation systems.
-	
+
 To lookup all the AAAAA records for "vertx.io" you would typically do:
 
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
@@ -3464,17 +3457,17 @@ To lookup all the AAAAA records for "vertx.io" you would typically do:
                 }
             } else {
                 log.error("Failed to resolve entry", ar.cause());
-            }    
+            }
         }
     });
 
- As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.  
+ As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.
 
 
 ## resolveCNAME
 
 Try to resolve all CNAME records for a given name. This is quite similar to using "dig" on unix like operation systems.
-	
+
 To lookup all the CNAME records for "vertx.io" you would typically do:
 
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
@@ -3487,7 +3480,7 @@ To lookup all the CNAME records for "vertx.io" you would typically do:
                 }
             } else {
                 log.error("Failed to resolve entry", ar.cause());
-            }    
+            }
         }
     });
 
@@ -3495,7 +3488,7 @@ To lookup all the CNAME records for "vertx.io" you would typically do:
 ## resolveMX
 
 Try to resolve all MX records for a given name. The MX records are used to define which Mail-Server accepts emails for a given domain.
-	
+
 To lookup all the MX records for "vertx.io" you would typically do:
 
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
@@ -3508,7 +3501,7 @@ To lookup all the MX records for "vertx.io" you would typically do:
                 }
             } else {
                 log.error("Failed to resolve entry", ar.cause());
-            }    
+            }
         }
     });
 
@@ -3524,7 +3517,7 @@ The MxRecord allows you to access the priority and the name of the MX record by 
 ## resolveTXT
 
 Try to resolve all TXT records for a given name. TXT records are often used to define extra informations for a domain.
-	
+
 To resolve all the TXT records for "vertx.io" you could use something along these lines:
 
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
@@ -3537,14 +3530,14 @@ To resolve all the TXT records for "vertx.io" you could use something along thes
                 }
             } else {
                 log.error("Failed to resolve entry", ar.cause());
-            }    
+            }
         }
     });
 
 ## resolveNS
 
 Try to resolve all NS records for a given name. The NS records specify which DNS Server hosts the DNS informations for a given domain.
-	
+
 To resolve all the NS records for "vertx.io" you could use something along these lines:
 
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
@@ -3557,7 +3550,7 @@ To resolve all the NS records for "vertx.io" you could use something along these
                 }
             } else {
                 log.error("Failed to resolve entry", ar.cause());
-            }    
+            }
         }
     });
 
@@ -3565,7 +3558,7 @@ To resolve all the NS records for "vertx.io" you could use something along these
 ## resolveSRV
 
 Try to resolve all SRV records for a given name. The SRV records are used to define extra informations like port and hostname of services. Some protocols need this extra informations.
-	
+
 To lookup all the SRV records for "vertx.io" you would typically do:
 
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
@@ -3578,7 +3571,7 @@ To lookup all the SRV records for "vertx.io" you would typically do:
                 }
             } else {
                 log.error("Failed to resolve entry", ar.cause());
-            }    
+            }
         }
     });
 
@@ -3602,7 +3595,7 @@ Please refer to the API docs for the exact details.
 ## resolvePTR
 
 Try to resolve the PTR record for a given name. The PTR record maps an ipaddress to a name.
-	
+
 To resolve the PTR record for the ipaddress 10.0.0.1 you would use the PTR notion of "1.0.0.10.in-addr.arpa"
 
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
@@ -3613,7 +3606,7 @@ To resolve the PTR record for the ipaddress 10.0.0.1 you would use the PTR notio
                 System.out.println(record);
             } else {
                 log.error("Failed to resolve entry", ar.cause());
-            }    
+            }
         }
     });
 
@@ -3632,7 +3625,7 @@ To do a reverse lookup for the ipaddress 10.0.0.1 do something similar like this
                 System.out.println(record);
             } else {
                 log.error("Failed to resolve entry", ar.cause());
-            }    
+            }
         }
     });
 
@@ -3645,7 +3638,7 @@ Possible DnsResponseCodes are:
 No record was found for a given query
 
 ### FORMERROR
-Format error 
+Format error
 
 ### SERVFAIL
 Server failure
@@ -3702,7 +3695,7 @@ You can obtain the DnsResponseCode from the DnsException like:
                 } else {
                 	log.error("Failed to resolve entry", ar.cause());
             	}
-            }    
+            }
         }
     });
 
