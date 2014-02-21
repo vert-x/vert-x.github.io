@@ -2393,12 +2393,17 @@ httpServer.listen(8080);
 <p>The following example bridges the event bus to client side JavaScript:</p>
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
 
-JsonObject config = new JsonObject().putString("prefix", "/echo");
+JsonObject config = new JsonObject().putString("prefix", "/eventbus");
 
-vertx.createSockJSServer(server).bridge(config, new JsonArray(), new JsonArray());
+JsonArray noPermitted = new JsonArray();
+noPermitted.add(new JsonObject());
+
+vertx.createSockJSBridge(server).bridge(config, noPermitted, noPermitted);
 
 server.listen(8080);
 </pre>
+<p>To let all messages through you can specify two JSON array with a single empty JSON object which will match all messages.</p>
+<p><strong>Be very careful!</strong></p>
 <h2 id="using-the-event-bus-from-client-side-javascript">Using the Event Bus from client side JavaScript</h2><br/>
 <p>Once you've set up a bridge, you can use the event bus from the client side as follows:</p>
 <p>In your web page, you need to load the script <code>vertxbus.js</code>, then you can access the Vert.x event bus API. Here's a rough idea of how to use it. For a full working examples, please consult the vert.x examples.</p>
@@ -2494,17 +2499,6 @@ vertx.createSockJSBridge(server).bridge(config, inboundPermitted, outboundPermit
 
 server.listen(8080);
 </pre>
-<p>To let all messages through you can specify two JSON array with a single empty JSON object which will match all messages.</p>
-<pre class="prettyprint">...
-
-JsonArray permitted = new JsonArray();
-permitted.add(new JsonObject());
-
-vertx.createSockJSBridge(server).bridge(config, permitted, permitted);
-
-...
-</pre>
-<p><strong>Be very careful!</strong></p>
 <h2 id="messages-that-require-authorisation">Messages that require authorisation</h2><br/>
 <p>The bridge can also refuse to let certain messages through if the user is not authorised.</p>
 <p>To enable this you need to make sure an instance of the <code>vertx.auth-mgr</code> module is available on the event bus. (Please see the modules manual for a full description of modules).</p>
