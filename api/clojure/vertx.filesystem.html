@@ -148,7 +148,7 @@ call, or a Handler that will be called with the AsyncResult object
 that wraps the exception.  
 
 When multiple writes are invoked on the same file there are no
-guarantees as to order in which those writes actually occur.</pre><div class="src-link"><a href="https://github.com/vert-x/mod-lang-clojure/tree/master/api/src/main/clojure/vertx/filesystem.clj#L308">Source</a></div></div><div class="public " id="var-write-file"><h3>write-file</h3><div class="usage"><code>(write-file path data handler)</code></div><pre class="doc">Creates the file, and writes the specified data to the file represented by path, asynchronously.
+guarantees as to the order in which those writes actually occur.</pre><div class="src-link"><a href="https://github.com/vert-x/mod-lang-clojure/tree/master/api/src/main/clojure/vertx/filesystem.clj#L308">Source</a></div></div><div class="public " id="var-write-file"><h3>write-file</h3><div class="usage"><code>(write-file path data handler)</code></div><pre class="doc">Creates the file, and writes the specified data to the file represented by path, asynchronously.
 data can anything bufferable (see vertx.buffer).  handler
 can either be a single-arity fn that will be passed the
 exception-map (if any) from the result of the call, or a Handler that

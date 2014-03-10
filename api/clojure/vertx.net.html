@@ -34,10 +34,15 @@ passed the socket. Returns the server instance.
 
 The server can only have at most one connect handler at any one
 time.</pre><div class="src-link"><a href="https://github.com/vert-x/mod-lang-clojure/tree/master/api/src/main/clojure/vertx/net.clj#L80">Source</a></div></div><div class="public " id="var-remote-address"><h3>remote-address</h3><div class="usage"><code>(remote-address socket)</code></div><pre class="doc">Returns the remote address for the socket as an address-map of the
-form {:address &quot;127.0.0.1&quot; :port 8888 :basis inet-socket-address-object}</pre><div class="src-link"><a href="https://github.com/vert-x/mod-lang-clojure/tree/master/api/src/main/clojure/vertx/net.clj#L117">Source</a></div></div><div class="public " id="var-send-file"><h3>send-file</h3><div class="usage"><code>(send-file socket filename)</code></div><pre class="doc">Stream a file directly from disk to the outgoing connection.
+form {:address &quot;127.0.0.1&quot; :port 8888 :basis inet-socket-address-object}</pre><div class="src-link"><a href="https://github.com/vert-x/mod-lang-clojure/tree/master/api/src/main/clojure/vertx/net.clj#L117">Source</a></div></div><div class="public " id="var-send-file"><h3>send-file</h3><div class="usage"><code>(send-file socket filename)</code><code>(send-file socket filename handler)</code></div><pre class="doc">Stream a file directly from disk to the outgoing connection.
 This bypasses userspace altogether where supported by the
 underlying operating system. This is a very efficient way to serve
-files. Returns the socket.</pre><div class="src-link"><a href="https://github.com/vert-x/mod-lang-clojure/tree/master/api/src/main/clojure/vertx/net.clj#L130">Source</a></div></div><div class="public " id="var-server"><h3>server</h3><div class="usage"><code>(server)</code><code>(server properties)</code></div><pre class="doc">Creates a TCP or SSL server (NetServer) instance using vertx.core/*vertx*.
+files. handler can either be a single-arity fn that will be passed
+the exception-map (if any) from the result of the send-file call,
+or a org.vertx.java.core.Handler that will be called with the
+AsyncResult object that wraps the exception
+
+Returns the socket.</pre><div class="src-link"><a href="https://github.com/vert-x/mod-lang-clojure/tree/master/api/src/main/clojure/vertx/net.clj#L130">Source</a></div></div><div class="public " id="var-server"><h3>server</h3><div class="usage"><code>(server)</code><code>(server properties)</code></div><pre class="doc">Creates a TCP or SSL server (NetServer) instance using vertx.core/*vertx*.
 properties is a map of properties to set on the newly created
 server instance. They are translated into .setXXX calls by
 camel-casing the keyword key. Example: {:key-store-path
@@ -45,5 +50,5 @@ camel-casing the keyword key. Example: {:key-store-path
 server object. See the docuementation for
 org.vertx.java.core.net.NetServer for a full list of properties.</pre><div class="src-link"><a href="https://github.com/vert-x/mod-lang-clojure/tree/master/api/src/main/clojure/vertx/net.clj#L31">Source</a></div></div><div class="public " id="var-ssl"><h3>ssl</h3><div class="usage"><code>(ssl socket handler)</code></div><pre class="doc">Upgrade a socket to use SSL/TLS.
  handler can either be a zero-arity fn or a Handler instance that
-will be called when the upgrade completes. Returns the socket.</pre><div class="src-link"><a href="https://github.com/vert-x/mod-lang-clojure/tree/master/api/src/main/clojure/vertx/net.clj#L138">Source</a></div></div><div class="public " id="var-ssl%3F"><h3>ssl?</h3><div class="usage"><code>(ssl? socket)</code></div><pre class="doc">Returns true if the socket is encrypted via SSL/TLS.
-</pre><div class="src-link"><a href="https://github.com/vert-x/mod-lang-clojure/tree/master/api/src/main/clojure/vertx/net.clj#L145">Source</a></div></div></div></body></html>
+will be called when the upgrade completes. Returns the socket.</pre><div class="src-link"><a href="https://github.com/vert-x/mod-lang-clojure/tree/master/api/src/main/clojure/vertx/net.clj#L146">Source</a></div></div><div class="public " id="var-ssl%3F"><h3>ssl?</h3><div class="usage"><code>(ssl? socket)</code></div><pre class="doc">Returns true if the socket is encrypted via SSL/TLS.
+</pre><div class="src-link"><a href="https://github.com/vert-x/mod-lang-clojure/tree/master/api/src/main/clojure/vertx/net.clj#L153">Source</a></div></div></div></body></html>
