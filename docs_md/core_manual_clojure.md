@@ -2282,7 +2282,7 @@ directory:
                     (let [path (.path req)]
                       (cond 
                         (= path "/") "index.html"
-                        (not (re-find #"\.\.")) path
+                        (not (re-find #"\.\." path)) path
                         :default "error.html"))))))
         (http/listen 8080))
                     
