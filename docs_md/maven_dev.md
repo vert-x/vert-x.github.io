@@ -59,6 +59,10 @@ You configure several things as properties in `pom.xml` including
 
 It also contains various properties used to configure versions of various dependencies.
 
+# Overriding default Vert.x configuration
+
+If you want to override any Vert.x platform configuration, e.g. `langs.properties`, `cluster.xml` or logging configuration, you can add those files to the directory `src/main/platform_lib` - these will then be added to the Vert.x platform classpath when you run the module with `mvn vertx:runMod`
+
 
 # Other useful Maven targets
 

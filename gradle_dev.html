@@ -79,6 +79,7 @@
 <li><a href="#clone-the-template-project">Clone the template project</a></li>
 <li><a href="#outputs">Outputs</a></li>
 <li><a href="#configuring-the-project">Configuring the project</a></li>
+<li><a href="#overriding-default-vertx-configuration">Overriding default Vert.x configuration</a></li>
 <li><a href="#other-useful-gradle-tasks">Other useful Gradle tasks</a></li>
 <li><a href="#setup-your-ide">Setup your IDE</a></li>
 <li><a href="#changing-the-dependencies-of-your-project">Changing the dependencies of your project</a></li>
@@ -125,6 +126,8 @@
 </li>
 </ul>
 <p>It also contains various properties used to configure versions of various dependencies.</p>
+<h1 id="overriding-default-vertx-configuration">Overriding default Vert.x configuration</h1><br/>
+<p>If you want to override any Vert.x platform configuration, e.g. <code>langs.properties</code>, <code>cluster.xml</code> or logging configuration, you can add those files to the directory <code>src/main/platform_lib</code> - these will then be added to the Vert.x platform classpath when you run the module with <code>./gradlew runMod</code></p>
 <h1 id="other-useful-gradle-tasks">Other useful Gradle tasks</h1><br/>
 <p>Open <code>build.gradle</code> and take a look at the comments there for a list of useful tasks supported by the build script.</p>
 <h1 id="setup-your-ide">Setup your IDE</h1><br/>
