@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>ExceptionSupport - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.streams.ExceptionSupport</title>
-          <meta name="description" content="ExceptionSupport - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.streams.ExceptionSupport" />
-          <meta name="keywords" content="ExceptionSupport mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.streams.ExceptionSupport" />
+          <title>ExceptionSupport - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.streams.ExceptionSupport</title>
+          <meta name="description" content="ExceptionSupport - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.streams.ExceptionSupport" />
+          <meta name="keywords" content="ExceptionSupport lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.streams.ExceptionSupport" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -35,16 +35,17 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <span class="name">ExceptionSupport</span><span class="result"> extends <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+        <span class="name">ExceptionSupport</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Exception handler.
+</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="org.vertx.scala.AsJava">AsJava</span>, <span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
           <span class="toggle">Known Subclasses</span>
-          <div class="subClasses hiddenContent"><a href="../file/AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>, <a href="../http/HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a>, <a href="../http/HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>, <a href="../http/HttpServerRequest.html" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>, <a href="../http/HttpServerResponse.html" class="extype" name="org.vertx.scala.core.http.HttpServerResponse">HttpServerResponse</a>, <a href="../net/NetSocket.html" class="extype" name="org.vertx.scala.core.net.NetSocket">NetSocket</a>, <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>, <a href="../http/ServerWebSocket.html" class="extype" name="org.vertx.scala.core.http.ServerWebSocket">ServerWebSocket</a>, <a href="../sockjs/SockJSSocket.html" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>, <a href="../http/WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">WebSocket</a>, <a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a>, <a href="WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a>, <a href="WrappedReadWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadWriteStream">WrappedReadWriteStream</a>, <a href="../http/WrappedWebSocketBase.html" class="extype" name="org.vertx.scala.core.http.WrappedWebSocketBase">WrappedWebSocketBase</a>, <a href="WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a>, <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></div>
+          <div class="subClasses hiddenContent"><a href="../file/AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>, <a href="../datagram/DatagramSocket.html" class="extype" name="org.vertx.scala.core.datagram.DatagramSocket">DatagramSocket</a>, <a href="../http/HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a>, <a href="../http/HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>, <a href="../http/HttpServerFileUpload.html" class="extype" name="org.vertx.scala.core.http.HttpServerFileUpload">HttpServerFileUpload</a>, <a href="../http/HttpServerRequest.html" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>, <a href="../http/HttpServerResponse.html" class="extype" name="org.vertx.scala.core.http.HttpServerResponse">HttpServerResponse</a>, <a href="../net/NetSocket.html" class="extype" name="org.vertx.scala.core.net.NetSocket">NetSocket</a>, <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>, <a href="ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>, <a href="../http/ServerWebSocket.html" class="extype" name="org.vertx.scala.core.http.ServerWebSocket">ServerWebSocket</a>, <a href="../sockjs/SockJSSocket.html" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>, <a href="../http/WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">WebSocket</a>, <a href="../http/WebSocketBase.html" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a>, <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></div>
         </div></div>
         
 
@@ -62,7 +63,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="org.vertx.scala.AsJava"><span>AsJava</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -84,63 +85,37 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.streams.ExceptionSupport.InternalType" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="InternalType&lt;:org.vertx.java.core.streams.ExceptionSupport[_]"></a>
-      <a id="InternalType:InternalType"></a>
+              <ol><li name="org.vertx.scala.core.streams.ExceptionSupport.J" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="J&lt;:org.vertx.java.core.streams.ExceptionSupport[_]"></a>
+      <a id="J:J"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">InternalType</span><span class="result"> &lt;: <span class="extype" name="org.vertx.java.core.streams.ExceptionSupport">java.core.streams.ExceptionSupport</span>[_]</span>
+        <span class="name">J</span><span class="result"> &lt;: <span class="extype" name="org.vertx.java.core.streams.ExceptionSupport">java.core.streams.ExceptionSupport</span>[_]</span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">The internal type of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> → AsJava</dd></dl></div>
     </li></ol>
             </div>
 
         <div id="values" class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="org.vertx.scala.core.streams.ExceptionSupport#exceptionHandler" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="exceptionHandler(handler:Throwable=&gt;Unit):ExceptionSupport.this.type"></a>
-      <a id="exceptionHandler((Throwable)⇒Unit):ExceptionSupport.this.type"></a>
+              <ol><li name="org.vertx.scala.AsJava#asJava" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="asJava:AsJava.this.J"></a>
+      <a id="asJava:J"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
-        <span class="kind">def</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: (<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>.this.type</span>
+        <span class="name">asJava</span><span class="result">: <a href="#J&lt;:org.vertx.java.core.streams.ExceptionSupport[_]" class="extmbr" name="org.vertx.scala.core.streams.ExceptionSupport.J">J</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set an exception handler.</p>
-    </li><li name="org.vertx.scala.core.streams.ExceptionSupport#exceptionHandler" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="exceptionHandler(handler:org.vertx.java.core.Handler[Throwable]):ExceptionSupport.this.type"></a>
-      <a id="exceptionHandler(java.core.Handler[Throwable]):ExceptionSupport.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: <span class="extype" name="org.vertx.java.core.Handler">java.core.Handler</span>[<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set an exception handler.</p>
-    </li><li name="org.vertx.scala.core.streams.ExceptionSupport#toJava" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="toJava():ExceptionSupport.this.InternalType"></a>
-      <a id="toJava():InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toJava</span><span class="params">()</span><span class="result">: <a href="#InternalType&lt;:org.vertx.java.core.streams.ExceptionSupport[_]" class="extmbr" name="org.vertx.scala.core.streams.ExceptionSupport.InternalType">InternalType</a></span>
-      </span>
-      </h4>
-      
+      <p class="shortcomment cmt">The internal instance of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd>AsJava</dd></dl></div>
     </li></ol>
             </div>
 
@@ -269,6 +244,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="exceptionHandler(handler:Throwable=&gt;Unit):ExceptionSupport.this.type"></a>
+      <a id="exceptionHandler((Throwable)⇒Unit):ExceptionSupport.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: (<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set an exception handler.</p>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -449,6 +437,23 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
+      <a id="wrap[X](⇒X):ExceptionSupport.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
     </li></ol>
             </div>
 
@@ -458,7 +463,11 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.AnyRef">
+        <div class="parent" name="org.vertx.scala.AsJava">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></h3>
+            </div><div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>

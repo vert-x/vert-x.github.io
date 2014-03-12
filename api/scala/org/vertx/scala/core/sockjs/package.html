@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>sockjs - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.sockjs</title>
-          <meta name="description" content="sockjs - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.sockjs" />
-          <meta name="keywords" content="sockjs mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.sockjs" />
+          <title>sockjs - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.sockjs</title>
+          <meta name="description" content="sockjs - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.sockjs" />
+          <meta name="keywords" content="sockjs lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.sockjs" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -58,29 +58,42 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.sockjs.SockJSServer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="SockJSServerextendsVertxWrapper"></a>
-      <a id="SockJSServer:SockJSServer"></a>
+              <ol><li name="org.vertx.scala.core.sockjs.EventBusBridgeHook" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EventBusBridgeHookextendsAnyVal"></a>
+      <a id="EventBusBridgeHook:EventBusBridgeHook"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="SockJSServer.html"><span class="name">SockJSServer</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
+        <a href="EventBusBridgeHook.html"><span class="name">EventBusBridgeHook</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A hook that you can use to receive various events on the EventBusBridge.</p>
+    </li><li name="org.vertx.scala.core.sockjs.SockJSServer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SockJSServerextendsSelf"></a>
+      <a id="SockJSServer:SockJSServer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SockJSServer.html"><span class="name">SockJSServer</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span></span>
       </span>
       </h4>
       <p class="comment cmt">This is an implementation of the server side part of <a href="https://github.com/sockjs">SockJS</a>.</a></p>
     </li><li name="org.vertx.scala.core.sockjs.SockJSSocket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="SockJSSocketextendsWrappedReadWriteStream"></a>
+      <a id="SockJSSocketextendsSelfwithReadStreamwithWriteStream"></a>
       <a id="SockJSSocket:SockJSSocket"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="SockJSSocket.html"><span class="name">SockJSSocket</span></a><span class="result"> extends <a href="../streams/WrappedReadWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadWriteStream">WrappedReadWriteStream</a></span>
+        <a href="SockJSSocket.html"><span class="name">SockJSSocket</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> with <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>
       </span>
       </h4>
       <p class="comment cmt">You interact with SockJS clients through instances of SockJS socket.</p>
@@ -91,7 +104,20 @@
 
         <div id="values" class="values members">
               <h3>Value Members</h3>
-              <ol><li name="org.vertx.scala.core.sockjs.SockJSServer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="org.vertx.scala.core.sockjs.EventBusBridgeHook" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EventBusBridgeHook"></a>
+      <a id="EventBusBridgeHook:EventBusBridgeHook"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="EventBusBridgeHook$.html"><span class="name">EventBusBridgeHook</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.sockjs.SockJSServer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="SockJSServer"></a>
       <a id="SockJSServer:SockJSServer"></a>
       <h4 class="signature">
@@ -103,7 +129,7 @@
         <a href="SockJSServer$.html"><span class="name">SockJSServer</span></a>
       </span>
       </h4>
-      <p class="comment cmt">Factory for <a href="SockJSServer.html" class="extype" name="org.vertx.scala.core.sockjs.SockJSServer">sockjs.SockJSServer</a> instances.</p>
+      <p class="comment cmt">Factory for <a href="SockJSServer.html" class="extype" name="org.vertx.scala.core.sockjs.SockJSServer">org.vertx.scala.core.sockjs.SockJSServer</a> instances.</p>
     </li><li name="org.vertx.scala.core.sockjs.SockJSSocket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="SockJSSocket"></a>
       <a id="SockJSSocket:SockJSSocket"></a>
@@ -116,7 +142,7 @@
         <a href="SockJSSocket$.html"><span class="name">SockJSSocket</span></a>
       </span>
       </h4>
-      <p class="comment cmt">Factory for <a href="SockJSSocket.html" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">sockjs.SockJSSocket</a> instances.</p>
+      <p class="comment cmt">Factory for <a href="SockJSSocket.html" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">org.vertx.scala.core.sockjs.SockJSSocket</a> instances.</p>
     </li></ol>
             </div>
 

@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>NetClient - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.net.NetClient</title>
-          <meta name="description" content="NetClient - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.net.NetClient" />
-          <meta name="keywords" content="NetClient mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.net.NetClient" />
+          <title>NetClient - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.net.NetClient</title>
+          <meta name="description" content="NetClient - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.net.NetClient" />
+          <meta name="keywords" content="NetClient lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.net.NetClient" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -31,11 +31,11 @@
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">NetClient</span><span class="result"> extends <a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a> with <a href="../WrappedClientSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedClientSSLSupport">WrappedClientSSLSupport</a></span>
+        <span class="name">NetClient</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a> with <a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a></span>
       </span>
       </h4>
       
@@ -45,7 +45,7 @@ be called on that same event loop. If an instance is instantiated from some othe
 thread (i.e. when using embedded) then an event loop will be assigned to the instance and used
 when any of its handlers are called.</p><p>Instances of this class are thread-safe.</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="../WrappedClientSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedClientSSLSupport">WrappedClientSSLSupport</a>, <a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a>, <a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a>, <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span>, <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a>, <a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a>, <a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a>, <a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a>, <span class="extype" name="org.vertx.scala.AsJava">AsJava</span>, <span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -63,7 +63,7 @@ when any of its handlers are called.</p><p>Instances of this class are thread-sa
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.core.net.NetClient"><span>NetClient</span></li><li class="in" name="org.vertx.scala.core.WrappedClientSSLSupport"><span>WrappedClientSSLSupport</span></li><li class="in" name="org.vertx.scala.core.WrappedSSLSupport"><span>WrappedSSLSupport</span></li><li class="in" name="org.vertx.scala.core.WrappedTCPSupport"><span>WrappedTCPSupport</span></li><li class="in" name="org.vertx.scala.VertxWrapper"><span>VertxWrapper</span></li><li class="in" name="org.vertx.scala.Wrap"><span>Wrap</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.core.net.NetClient"><span>NetClient</span></li><li class="in" name="org.vertx.scala.core.ClientSSLSupport"><span>ClientSSLSupport</span></li><li class="in" name="org.vertx.scala.core.SSLSupport"><span>SSLSupport</span></li><li class="in" name="org.vertx.scala.core.TCPSupport"><span>TCPSupport</span></li><li class="in" name="org.vertx.scala.core.NetworkSupport"><span>NetworkSupport</span></li><li class="in" name="org.vertx.scala.AsJava"><span>AsJava</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -81,39 +81,23 @@ when any of its handlers are called.</p><p>Instances of this class are thread-sa
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="org.vertx.scala.core.net.NetClient#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(internal:org.vertx.java.core.net.NetClient):org.vertx.scala.core.net.NetClient"></a>
-      <a id="&lt;init&gt;:NetClient"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">NetClient</span><span class="params">(<span name="internal">internal: <span class="extype" name="org.vertx.java.core.net.NetClient">java.core.net.NetClient</span></span>)</span>
-      </span>
-      </h4>
-      
-    </li></ol>
-            </div>
+        
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.net.NetClient.InternalType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="InternalType=org.vertx.java.core.net.NetClient"></a>
-      <a id="InternalType:InternalType"></a>
+              <ol><li name="org.vertx.scala.core.net.NetClient.J" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="J=org.vertx.java.core.net.NetClient"></a>
+      <a id="J:J"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">InternalType</span><span class="result"> = <span class="extype" name="org.vertx.java.core.net.NetClient">java.core.net.NetClient</span></span>
+        <span class="name">J</span><span class="result"> = <span class="extype" name="org.vertx.java.core.net.NetClient">java.core.net.NetClient</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">The internal type of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a> → <a href="../WrappedClientSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedClientSSLSupport">WrappedClientSSLSupport</a> → <a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a> → <a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a> → VertxWrapper</dd></dl></div>
+      <p class="shortcomment cmt">The internal type of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a> → <a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a> → <a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a> → <a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a> → <a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a> → AsJava</dd></dl></div>
     </li></ol>
             </div>
 
@@ -199,6 +183,19 @@ when any of its handlers are called.</p><p>Instances of this class are thread-sa
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.net.NetClient#asJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asJava:org.vertx.java.core.net.NetClient"></a>
+      <a id="asJava:java.core.net.NetClient"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asJava</span><span class="result">: <span class="extype" name="org.vertx.java.core.net.NetClient">java.core.net.NetClient</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The internal instance of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a> → AsJava</dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -244,9 +241,9 @@ when any of its handlers are called.</p><p>Instances of this class are thread-sa
         <span class="name">connect</span><span class="params">(<span name="port">port: <span class="extype" name="scala.Int">Int</span></span>, <span name="host">host: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="connectHandler">connectHandler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="NetSocket.html" class="extype" name="org.vertx.scala.core.net.NetSocket">NetSocket</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Attempt to open a connection to a server at the specific <code> port</code> and <code> host</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Attempt to open a connection to a server at the specific <code> port</code> and <code> host</code>.
-<code> host</code> can be a valid host name or IP address. The connect is done asynchronously and on success, a
-<code> NetSocket</code> instance is supplied via the <code> connectHandler</code> instance.
+      <p class="shortcomment cmt">Attempt to open a connection to a server at the specific <code>port</code> and <code>host</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Attempt to open a connection to a server at the specific <code>port</code> and <code>host</code>.
+<code>host</code> can be a valid host name or IP address. The connect is done asynchronously and on success, a
+<a href="NetSocket.html" class="extype" name="org.vertx.scala.core.net.NetSocket">org.vertx.scala.core.net.NetSocket</a> instance is supplied via the <code>connectHandler</code> instance.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
 </p></dd></dl></div>
     </li><li name="org.vertx.scala.core.net.NetClient#connect" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -261,11 +258,11 @@ when any of its handlers are called.</p><p>Instances of this class are thread-sa
         <span class="name">connect</span><span class="params">(<span name="port">port: <span class="extype" name="scala.Int">Int</span></span>, <span name="connectCallback">connectCallback: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="NetSocket.html" class="extype" name="org.vertx.scala.core.net.NetSocket">NetSocket</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Attempt to open a connection to a server at the specific <code> port</code> and host <code> localhost</code>
+      <p class="shortcomment cmt">Attempt to open a connection to a server at the specific <code>port</code> and host <code>localhost</code>
 The connect is done asynchronously and on success, a
-<code> NetSocket</code> instance is supplied via the <code> connectHandler</code> instance.</p><div class="fullcomment"><div class="comment cmt"><p>Attempt to open a connection to a server at the specific <code> port</code> and host <code> localhost</code>
+<a href="NetSocket.html" class="extype" name="org.vertx.scala.core.net.NetSocket">org.vertx.scala.core.net.NetSocket</a> instance is supplied via the <code>connectHandler</code> instance.</p><div class="fullcomment"><div class="comment cmt"><p>Attempt to open a connection to a server at the specific <code>port</code> and host <code>localhost</code>
 The connect is done asynchronously and on success, a
-<code> NetSocket</code> instance is supplied via the <code> connectHandler</code> instance.
+<a href="NetSocket.html" class="extype" name="org.vertx.scala.core.net.NetSocket">org.vertx.scala.core.net.NetSocket</a> instance is supplied via the <code>connectHandler</code> instance.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this so multiple method calls can be chained together.
 </p></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -327,162 +324,162 @@ The connect is done asynchronously and on success, a
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="org.vertx.scala.core.net.NetClient#getConnectTimeout" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getConnectTimeout():Int"></a>
-      <a id="getConnectTimeout():Int"></a>
+      <a id="getConnectTimeout:Int"></a>
+      <a id="getConnectTimeout:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getConnectTimeout</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getConnectTimeout</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt">Returns the connect timeout in milliseconds.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the connect timeout in milliseconds.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The connect timeout in milliseconds.
 </p></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#getKeyStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getKeyStorePassword():String"></a>
-      <a id="getKeyStorePassword():String"></a>
+    </li><li name="org.vertx.scala.core.SSLSupport#getKeyStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getKeyStorePassword:String"></a>
+      <a id="getKeyStorePassword:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getKeyStorePassword</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">getKeyStorePassword</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Get the key store password
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#getKeyStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getKeyStorePath():String"></a>
-      <a id="getKeyStorePath():String"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#getKeyStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getKeyStorePath:String"></a>
+      <a id="getKeyStorePath:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getKeyStorePath</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">getKeyStorePath</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Get the key store path
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#getReceiveBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getReceiveBufferSize():Int"></a>
-      <a id="getReceiveBufferSize():Int"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.NetworkSupport#getReceiveBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getReceiveBufferSize:Int"></a>
+      <a id="getReceiveBufferSize:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getReceiveBufferSize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getReceiveBufferSize</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The TCP receive buffer size
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The receive buffer size
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
     </li><li name="org.vertx.scala.core.net.NetClient#getReconnectAttempts" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getReconnectAttempts():Int"></a>
-      <a id="getReconnectAttempts():Int"></a>
+      <a id="getReconnectAttempts:Int"></a>
+      <a id="getReconnectAttempts:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getReconnectAttempts</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getReconnectAttempts</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt">Get the number of reconnect attempts.</p><div class="fullcomment"><div class="comment cmt"><p>Get the number of reconnect attempts.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The number of reconnect attempts.
 </p></dd></dl></div>
     </li><li name="org.vertx.scala.core.net.NetClient#getReconnectInterval" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getReconnectInterval():Long"></a>
-      <a id="getReconnectInterval():Long"></a>
+      <a id="getReconnectInterval:Long"></a>
+      <a id="getReconnectInterval:Long"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getReconnectInterval</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+        <span class="name">getReconnectInterval</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt">Get the reconnect interval, in milliseconds.</p><div class="fullcomment"><div class="comment cmt"><p>Get the reconnect interval, in milliseconds.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The reconnect interval in milliseconds.
 </p></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#getSendBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getSendBufferSize():Int"></a>
-      <a id="getSendBufferSize():Int"></a>
+    </li><li name="org.vertx.scala.core.NetworkSupport#getSendBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSendBufferSize:Int"></a>
+      <a id="getSendBufferSize:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getSendBufferSize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getSendBufferSize</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The TCP send buffer size
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#getSoLinger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getSoLinger():Int"></a>
-      <a id="getSoLinger():Int"></a>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The send buffer size
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#getSoLinger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSoLinger:Int"></a>
+      <a id="getSoLinger:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getSoLinger</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getSoLinger</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the value of TCP so linger
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#getTrafficClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getTrafficClass():Int"></a>
-      <a id="getTrafficClass():Int"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.NetworkSupport#getTrafficClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getTrafficClass:Int"></a>
+      <a id="getTrafficClass:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getTrafficClass</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getTrafficClass</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the value of TCP traffic class
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#getTrustStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getTrustStorePassword():String"></a>
-      <a id="getTrustStorePassword():String"></a>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the value of traffic class
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#getTrustStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getTrustStorePassword:String"></a>
+      <a id="getTrustStorePassword:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getTrustStorePassword</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">getTrustStorePassword</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Get trust store password
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#getTrustStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getTrustStorePath():String"></a>
-      <a id="getTrustStorePath():String"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#getTrustStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getTrustStorePath:String"></a>
+      <a id="getTrustStorePath:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getTrustStorePath</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">getTrustStorePath</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Get the trust store path
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <a id="hashCode():Int"></a>
@@ -496,19 +493,6 @@ The connect is done asynchronously and on success, a
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.net.NetClient#internal" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="internal:org.vertx.java.core.net.NetClient"></a>
-      <a id="internal:java.core.net.NetClient"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">internal</span><span class="result">: <span class="extype" name="org.vertx.java.core.net.NetClient">java.core.net.NetClient</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The internal instance of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the wrapped class.</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a> → VertxWrapper</dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -522,89 +506,90 @@ The connect is done asynchronously and on success, a
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#isReuseAddress" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isReuseAddress():Boolean"></a>
-      <a id="isReuseAddress():Boolean"></a>
+    </li><li name="org.vertx.scala.core.NetworkSupport#isReuseAddress" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isReuseAddress:Boolean"></a>
+      <a id="isReuseAddress:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isReuseAddress</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isReuseAddress</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The value of TCP reuse address
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#isSSL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isSSL():Boolean"></a>
-      <a id="isSSL():Boolean"></a>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The value of reuse address
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#isSSL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isSSL:Boolean"></a>
+      <a id="isSSL:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isSSL</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isSSL</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Is SSL enabled?
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#isTCPKeepAlive" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isTCPKeepAlive():Boolean"></a>
-      <a id="isTCPKeepAlive():Boolean"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#isTCPKeepAlive" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isTCPKeepAlive:Boolean"></a>
+      <a id="isTCPKeepAlive:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isTCPKeepAlive</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isTCPKeepAlive</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>true if TCP keep alive is enabled
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#isTCPNoDelay" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isTCPNoDelay():Boolean"></a>
-      <a id="isTCPNoDelay():Boolean"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#isTCPNoDelay" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isTCPNoDelay:Boolean"></a>
+      <a id="isTCPNoDelay:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isTCPNoDelay</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isTCPNoDelay</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>true if Nagle's algorithm is disabled.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedClientSSLSupport#isTrustAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isTrustAll():Boolean"></a>
-      <a id="isTrustAll():Boolean"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.ClientSSLSupport#isTrustAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isTrustAll:Boolean"></a>
+      <a id="isTrustAll:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isTrustAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isTrustAll</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedClientSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedClientSSLSupport">WrappedClientSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#isUsePooledBuffers" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isUsePooledBuffers():Boolean"></a>
-      <a id="isUsePooledBuffers():Boolean"></a>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>true if this client will trust all server certificates.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#isUsePooledBuffers" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isUsePooledBuffers:Boolean"></a>
+      <a id="isUsePooledBuffers:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isUsePooledBuffers</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isUsePooledBuffers</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code> true</code> if pooled buffers are used
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code>true</code> if pooled buffers are used
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -659,8 +644,8 @@ The connect is done asynchronously and on success, a
       <p class="shortcomment cmt">Set the connect timeout in milliseconds.</p><div class="fullcomment"><div class="comment cmt"><p>Set the connect timeout in milliseconds.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
 </p></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#setKeyStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setKeyStorePassword(pwd:String):WrappedSSLSupport.this.type"></a>
+    </li><li name="org.vertx.scala.core.SSLSupport#setKeyStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setKeyStorePassword(pwd:String):SSLSupport.this.type"></a>
       <a id="setKeyStorePassword(String):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -671,11 +656,11 @@ The connect is done asynchronously and on success, a
         <span class="name">setKeyStorePassword</span><span class="params">(<span name="pwd">pwd: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the password for the SSL key store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the password for the SSL key store. This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)</code>
-has been set to <code> true</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#setKeyStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setKeyStorePath(path:String):WrappedSSLSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the password for the SSL key store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the password for the SSL key store. This method should only be used in SSL mode, i.e. after
+<span class="extype" name="org.vertx.scala.core.SSLSupport.setSSL(boolean)">org.vertx.scala.core.SSLSupport.setSSL(boolean)</span> has been set to <code>true</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#setKeyStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setKeyStorePath(path:String):SSLSupport.this.type"></a>
       <a id="setKeyStorePath(String):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -686,12 +671,12 @@ has been set to <code> true</code>.</p></div><dl class="paramcmts block"><dt>ret
         <span class="name">setKeyStorePath</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the path to the SSL key store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the path to the SSL key store. This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)</code>
-has been set to <code> true</code>.</p><p>The SSL key store is a standard Java Key Store, and will contain the client certificate. Client certificates are
+      <p class="shortcomment cmt">Set the path to the SSL key store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the path to the SSL key store. This method should only be used in SSL
+mode, i.e. after <span class="extype" name="org.vertx.scala.core.SSLSupport.setSSL(boolean)">org.vertx.scala.core.SSLSupport.setSSL(boolean)</span> has been set to <code>true</code>.</p><p>The SSL key store is a standard Java Key Store, and will contain the client certificate. Client certificates are
 only required if the server requests client authentication.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setReceiveBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setReceiveBufferSize(size:Int):WrappedTCPSupport.this.type"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.NetworkSupport#setReceiveBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setReceiveBufferSize(size:Int):NetworkSupport.this.type"></a>
       <a id="setReceiveBufferSize(Int):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -702,8 +687,8 @@ only required if the server requests client authentication.</p></div><dl class="
         <span class="name">setReceiveBufferSize</span><span class="params">(<span name="size">size: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the TCP receive buffer size for connections created by this instance to <code> size</code> in bytes.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP receive buffer size for connections created by this instance to <code> size</code> in bytes.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
+      <p class="shortcomment cmt">Set the receive buffer size for connections created by this instance to <code>size</code> in bytes.</p><div class="fullcomment"><div class="comment cmt"><p>Set the receive buffer size for connections created by this instance to <code>size</code> in bytes.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
     </li><li name="org.vertx.scala.core.net.NetClient#setReconnectAttempts" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setReconnectAttempts(attempts:Int):org.vertx.scala.core.net.NetClient"></a>
       <a id="setReconnectAttempts(Int):NetClient"></a>
@@ -732,8 +717,8 @@ to connect a further number of times, before it fails. Default value is zero.
       </span>
       </h4>
       <p class="shortcomment cmt">Set the reconnect interval, in milliseconds.</p>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setReuseAddress" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setReuseAddress(reuse:Boolean):WrappedTCPSupport.this.type"></a>
+    </li><li name="org.vertx.scala.core.NetworkSupport#setReuseAddress" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setReuseAddress(reuse:Boolean):NetworkSupport.this.type"></a>
       <a id="setReuseAddress(Boolean):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -744,10 +729,10 @@ to connect a further number of times, before it fails. Default value is zero.
         <span class="name">setReuseAddress</span><span class="params">(<span name="reuse">reuse: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the TCP reuseAddress setting for connections created by this instance to <code> reuse</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP reuseAddress setting for connections created by this instance to <code> reuse</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#setSSL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setSSL(ssl:Boolean):WrappedSSLSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the reuseAddress setting for connections created by this instance to <code>reuse</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the reuseAddress setting for connections created by this instance to <code>reuse</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#setSSL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setSSL(ssl:Boolean):SSLSupport.this.type"></a>
       <a id="setSSL(Boolean):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -758,10 +743,10 @@ to connect a further number of times, before it fails. Default value is zero.
         <span class="name">setSSL</span><span class="params">(<span name="ssl">ssl: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">If <code> ssl</code> is <code> true</code>, this signifies that any connections will be SSL connections.</p><div class="fullcomment"><div class="comment cmt"><p>If <code> ssl</code> is <code> true</code>, this signifies that any connections will be SSL connections.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setSendBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setSendBufferSize(size:Int):WrappedTCPSupport.this.type"></a>
+      <p class="shortcomment cmt">If <code>ssl</code> is <code>true</code>, this signifies that any connections will be SSL connections.</p><div class="fullcomment"><div class="comment cmt"><p>If <code>ssl</code> is <code>true</code>, this signifies that any connections will be SSL connections.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.NetworkSupport#setSendBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setSendBufferSize(size:Int):NetworkSupport.this.type"></a>
       <a id="setSendBufferSize(Int):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -772,10 +757,10 @@ to connect a further number of times, before it fails. Default value is zero.
         <span class="name">setSendBufferSize</span><span class="params">(<span name="size">size: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the TCP send buffer size for connections created by this instance to <code> size</code> in bytes.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP send buffer size for connections created by this instance to <code> size</code> in bytes.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setSoLinger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setSoLinger(linger:Int):WrappedTCPSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the send buffer size for connections created by this instance to <code>size</code> in bytes.</p><div class="fullcomment"><div class="comment cmt"><p>Set the send buffer size for connections created by this instance to <code>size</code> in bytes.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#setSoLinger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setSoLinger(linger:Int):TCPSupport.this.type"></a>
       <a id="setSoLinger(Int):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -786,10 +771,10 @@ to connect a further number of times, before it fails. Default value is zero.
         <span class="name">setSoLinger</span><span class="params">(<span name="linger">linger: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the TCP soLinger setting for connections created by this instance to <code> linger</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP soLinger setting for connections created by this instance to <code> linger</code>.
-Using a negative value will disable soLinger.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setTCPKeepAlive" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setTCPKeepAlive(keepAlive:Boolean):WrappedTCPSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the TCP soLinger setting for connections created by this instance to <code>linger</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP soLinger setting for connections created by this instance to <code>linger</code>.
+Using a negative value will disable soLinger.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#setTCPKeepAlive" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTCPKeepAlive(keepAlive:Boolean):TCPSupport.this.type"></a>
       <a id="setTCPKeepAlive(Boolean):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -800,10 +785,10 @@ Using a negative value will disable soLinger.</p></div><dl class="paramcmts bloc
         <span class="name">setTCPKeepAlive</span><span class="params">(<span name="keepAlive">keepAlive: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the TCP keepAlive setting for connections created by this instance to <code> keepAlive</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP keepAlive setting for connections created by this instance to <code> keepAlive</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setTCPNoDelay" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setTCPNoDelay(tcpNoDelay:Boolean):WrappedTCPSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the TCP keepAlive setting for connections created by this instance to <code>keepAlive</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP keepAlive setting for connections created by this instance to <code>keepAlive</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#setTCPNoDelay" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTCPNoDelay(tcpNoDelay:Boolean):TCPSupport.this.type"></a>
       <a id="setTCPNoDelay(Boolean):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -814,12 +799,12 @@ Using a negative value will disable soLinger.</p></div><dl class="paramcmts bloc
         <span class="name">setTCPNoDelay</span><span class="params">(<span name="tcpNoDelay">tcpNoDelay: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">If <code> tcpNoDelay</code> is set to <code> true</code> then <a href="http://en.wikipedia.org/wiki/Nagle's_algorithm">Nagle's algorithm</a>
-will turned <b>off</b> for the TCP connections created by this instance.</b></a></p><div class="fullcomment"><div class="comment cmt"><p>If <code> tcpNoDelay</code> is set to <code> true</code> then <a href="http://en.wikipedia.org/wiki/Nagle's_algorithm">Nagle's algorithm</a>
+      <p class="shortcomment cmt">If <code>tcpNoDelay</code> is set to <code>true</code> then <a href="http://en.wikipedia.org/wiki/Nagle's_algorithm">Nagle's algorithm</a>
+will turned <b>off</b> for the TCP connections created by this instance.</b></a></p><div class="fullcomment"><div class="comment cmt"><p>If <code>tcpNoDelay</code> is set to <code>true</code> then <a href="http://en.wikipedia.org/wiki/Nagle's_algorithm">Nagle's algorithm</a>
 will turned <b>off</b> for the TCP connections created by this instance.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setTrafficClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setTrafficClass(trafficClass:Int):WrappedTCPSupport.this.type"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.NetworkSupport#setTrafficClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTrafficClass(trafficClass:Int):NetworkSupport.this.type"></a>
       <a id="setTrafficClass(Int):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -830,10 +815,10 @@ will turned <b>off</b> for the TCP connections created by this instance.</p></di
         <span class="name">setTrafficClass</span><span class="params">(<span name="trafficClass">trafficClass: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the TCP trafficClass setting for connections created by this instance to <code> trafficClass</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP trafficClass setting for connections created by this instance to <code> trafficClass</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedClientSSLSupport#setTrustAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setTrustAll(trustAll:Boolean):WrappedClientSSLSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the trafficClass setting for connections created by this instance to <code>trafficClass</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the trafficClass setting for connections created by this instance to <code>trafficClass</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.ClientSSLSupport#setTrustAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTrustAll(trustAll:Boolean):ClientSSLSupport.this.type"></a>
       <a id="setTrustAll(Boolean):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -844,9 +829,12 @@ will turned <b>off</b> for the TCP connections created by this instance.</p></di
         <span class="name">setTrustAll</span><span class="params">(<span name="trustAll">trustAll: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedClientSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedClientSSLSupport">WrappedClientSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#setTrustStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setTrustStorePassword(pwd:String):WrappedSSLSupport.this.type"></a>
+      <p class="shortcomment cmt">If you want an SSL client to trust *all* server certificates rather than match them
+against those in its trust store, you can set this to true.</p><div class="fullcomment"><div class="comment cmt"><p>If you want an SSL client to trust *all* server certificates rather than match them
+against those in its trust store, you can set this to true.</p><p>Use this with caution as you may be exposed to &quot;main in the middle&quot; attacks</p></div><dl class="paramcmts block"><dt class="param">trustAll</dt><dd class="cmt"><p>Set to true if you want to trust all server certificates
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#setTrustStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTrustStorePassword(pwd:String):SSLSupport.this.type"></a>
       <a id="setTrustStorePassword(String):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -857,11 +845,11 @@ will turned <b>off</b> for the TCP connections created by this instance.</p></di
         <span class="name">setTrustStorePassword</span><span class="params">(<span name="pwd">pwd: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the password for the SSL trust store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the password for the SSL trust store. This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)</code>
-has been set to <code> true</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#setTrustStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setTrustStorePath(path:String):WrappedSSLSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the password for the SSL trust store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the password for the SSL trust store. This method should only be used in SSL mode, i.e. after
+<span class="extype" name="org.vertx.scala.core.SSLSupport.setSSL(boolean)">org.vertx.scala.core.SSLSupport.setSSL(boolean)</span> has been set to <code>true</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#setTrustStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTrustStorePath(path:String):SSLSupport.this.type"></a>
       <a id="setTrustStorePath(String):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -872,11 +860,11 @@ has been set to <code> true</code>.</p></div><dl class="paramcmts block"><dt>ret
         <span class="name">setTrustStorePath</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the path to the SSL trust store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the path to the SSL trust store. This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)</code>
-has been set to <code> true</code>.</p><p>The trust store is a standard Java Key Store, and should contain the certificates of any servers that the client trusts.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setUsePooledBuffers" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setUsePooledBuffers(pooledBuffers:Boolean):WrappedTCPSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the path to the SSL trust store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the path to the SSL trust store. This method should only be used in SSL mode, i.e. after
+<span class="extype" name="org.vertx.scala.core.SSLSupport.setSSL(boolean)">org.vertx.scala.core.SSLSupport.setSSL(boolean)</span> has been set to <code>true</code>.</p><p>The trust store is a standard Java Key Store, and should contain the certificates of any servers that the client trusts.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#setUsePooledBuffers" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setUsePooledBuffers(pooledBuffers:Boolean):TCPSupport.this.type"></a>
       <a id="setUsePooledBuffers(Boolean):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -889,7 +877,7 @@ has been set to <code> true</code>.</p><p>The trust store is a standard Java Key
       </h4>
       <p class="shortcomment cmt">Set if vertx should use pooled buffers for performance reasons.</p><div class="fullcomment"><div class="comment cmt"><p>Set if vertx should use pooled buffers for performance reasons. Doing so will give the best throughput but
 may need a bit higher memory footprint.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -903,21 +891,6 @@ may need a bit higher memory footprint.</p></div><dl class="paramcmts block"><dt
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.VertxWrapper#toJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toJava():VertxWrapper.this.InternalType"></a>
-      <a id="toJava():InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toJava</span><span class="params">()</span><span class="result">: <a href="#InternalType=org.vertx.java.core.net.NetClient" class="extmbr" name="org.vertx.scala.core.net.NetClient.InternalType">InternalType</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Returns the internal type instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the internal type instance.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The internal type instance.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd>VertxWrapper</dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -988,8 +961,8 @@ may need a bit higher memory footprint.</p></div><dl class="paramcmts block"><dt
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.Wrap#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wrap[X](doStuff:=&gt;X):Wrap.this.type"></a>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
       <a id="wrap[X](⇒X):NetClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -997,10 +970,14 @@ may need a bit higher memory footprint.</p></div><dl class="paramcmts block"><dt
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Wrap.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.net.NetClient">NetClient</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></dd></dl></div>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
     </li></ol>
             </div>
 
@@ -1010,16 +987,18 @@ may need a bit higher memory footprint.</p></div><dl class="paramcmts block"><dt
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.vertx.scala.core.WrappedClientSSLSupport">
-              <h3>Inherited from <a href="../WrappedClientSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedClientSSLSupport">WrappedClientSSLSupport</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.WrappedSSLSupport">
-              <h3>Inherited from <a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.WrappedTCPSupport">
-              <h3>Inherited from <a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></h3>
-            </div><div class="parent" name="org.vertx.scala.VertxWrapper">
-              <h3>Inherited from <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></h3>
-            </div><div class="parent" name="org.vertx.scala.Wrap">
-              <h3>Inherited from <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></h3>
+        <div class="parent" name="org.vertx.scala.core.ClientSSLSupport">
+              <h3>Inherited from <a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.core.SSLSupport">
+              <h3>Inherited from <a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.core.TCPSupport">
+              <h3>Inherited from <a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.core.NetworkSupport">
+              <h3>Inherited from <a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.AsJava">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></h3>
+            </div><div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">

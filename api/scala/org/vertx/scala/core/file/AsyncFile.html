@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>AsyncFile - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.file.AsyncFile</title>
-          <meta name="description" content="AsyncFile - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.file.AsyncFile" />
-          <meta name="keywords" content="AsyncFile mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.file.AsyncFile" />
+          <title>AsyncFile - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.file.AsyncFile</title>
+          <meta name="description" content="AsyncFile - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.file.AsyncFile" />
+          <meta name="keywords" content="AsyncFile lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.file.AsyncFile" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -31,20 +31,20 @@
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">AsyncFile</span><span class="result"> extends <a href="../streams/WrappedReadWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadWriteStream">WrappedReadWriteStream</a></span>
+        <span class="name">AsyncFile</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> with <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a> with <a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">Closeable</a></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a file on the file-system which can be read from, or written to asynchronously.</p><p>This class also implements <code> org.vertx.java.core.streams.ReadStream</code> and
-<code> org.vertx.java.core.streams.WriteStream</code>. This allows the data to be pumped to and from
-other streams, e.g. an <code> org.vertx.java.core.http.HttpClientRequest</code> instance,
-using the <code> org.vertx.java.core.streams.Pump</code> class</p><p>Instances of AsyncFile are not thread-safe</p></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a file on the file-system which can be read from, or written to asynchronously.</p><p>This class also implements <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">org.vertx.scala.core.streams.ReadStream</a> and
+<a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a>. This allows the data to be pumped to and from
+other streams, e.g. an <a href="../http/HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance,
+using the <a href="../streams/Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a> class</p><p>Instances of AsyncFile are not thread-safe</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="../streams/WrappedReadWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadWriteStream">WrappedReadWriteStream</a>, <a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a>, <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a>, <a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a>, <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>, <a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a>, <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span>, <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a>, <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">Closeable</a>, <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a>, <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>, <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>], <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>, <span class="extype" name="org.vertx.scala.AsJava">AsJava</span>, <span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -62,7 +62,7 @@ using the <code> org.vertx.java.core.streams.Pump</code> class</p><p>Instances o
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.core.file.AsyncFile"><span>AsyncFile</span></li><li class="in" name="org.vertx.scala.core.streams.WrappedReadWriteStream"><span>WrappedReadWriteStream</span></li><li class="in" name="org.vertx.scala.core.streams.WrappedWriteStream"><span>WrappedWriteStream</span></li><li class="in" name="org.vertx.scala.core.streams.WriteStream"><span>WriteStream</span></li><li class="in" name="org.vertx.scala.core.streams.WrappedReadStream"><span>WrappedReadStream</span></li><li class="in" name="org.vertx.scala.core.streams.ReadStream"><span>ReadStream</span></li><li class="in" name="org.vertx.scala.core.streams.WrappedExceptionSupport"><span>WrappedExceptionSupport</span></li><li class="in" name="org.vertx.scala.VertxWrapper"><span>VertxWrapper</span></li><li class="in" name="org.vertx.scala.Wrap"><span>Wrap</span></li><li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.core.file.AsyncFile"><span>AsyncFile</span></li><li class="in" name="org.vertx.scala.core.Closeable"><span>Closeable</span></li><li class="in" name="org.vertx.scala.core.streams.WriteStream"><span>WriteStream</span></li><li class="in" name="org.vertx.scala.core.streams.ReadStream"><span>ReadStream</span></li><li class="in" name="org.vertx.scala.core.streams.ReadSupport"><span>ReadSupport</span></li><li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="org.vertx.scala.AsJava"><span>AsJava</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -80,39 +80,36 @@ using the <code> org.vertx.java.core.streams.Pump</code> class</p><p>Instances o
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="org.vertx.scala.core.file.AsyncFile#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(internal:org.vertx.java.core.file.AsyncFile):org.vertx.scala.core.file.AsyncFile"></a>
-      <a id="&lt;init&gt;:AsyncFile"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">AsyncFile</span><span class="params">(<span name="internal">internal: <span class="extype" name="org.vertx.java.core.file.AsyncFile">java.core.file.AsyncFile</span></span>)</span>
-      </span>
-      </h4>
-      
-    </li></ol>
-            </div>
+        
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.file.AsyncFile.InternalType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="InternalType=org.vertx.java.core.file.AsyncFile"></a>
-      <a id="InternalType:InternalType"></a>
+              <ol><li name="org.vertx.scala.core.Closeable.CloseType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CloseType=AnyRef{defclose():Unit;defclose(handler:org.vertx.scala.core.Handler[org.vertx.scala.core.AsyncResult[Void]]):Unit}"></a>
+      <a id="CloseType:CloseType"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">InternalType</span><span class="result"> = <span class="extype" name="org.vertx.java.core.file.AsyncFile">java.core.file.AsyncFile</span></span>
+        <span class="name">CloseType</span><span class="result"> = <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a> { ... /* 2 definitions in type refinement */ }</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">The internal type of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a> → <a href="../streams/WrappedReadWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadWriteStream">WrappedReadWriteStream</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → VertxWrapper → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">Closeable</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.file.AsyncFile.J" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="J=org.vertx.java.core.file.AsyncFile"></a>
+      <a id="J:J"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">J</span><span class="result"> = <span class="extype" name="org.vertx.java.core.file.AsyncFile">java.core.file.AsyncFile</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The internal type of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a> → <a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">Closeable</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a> → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> → AsJava</dd></dl></div>
     </li></ol>
             </div>
 
@@ -198,6 +195,19 @@ using the <code> org.vertx.java.core.streams.Pump</code> class</p><p>Instances o
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.file.AsyncFile#asJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asJava:org.vertx.java.core.file.AsyncFile"></a>
+      <a id="asJava:java.core.file.AsyncFile"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asJava</span><span class="result">: <span class="extype" name="org.vertx.java.core.file.AsyncFile">java.core.file.AsyncFile</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The internal instance of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a> → AsJava</dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -217,7 +227,7 @@ using the <code> org.vertx.java.core.streams.Pump</code> class</p><p>Instances o
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.core.file.AsyncFile#close" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="org.vertx.scala.core.Closeable#close" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="close(handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):Unit"></a>
       <a id="close((AsyncResult[Void])⇒Unit):Unit"></a>
       <h4 class="signature">
@@ -229,10 +239,11 @@ using the <code> org.vertx.java.core.streams.Pump</code> class</p><p>Instances o
         <span class="name">close</span><span class="params">(<span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Close the file.</p><div class="fullcomment"><div class="comment cmt"><p>Close the file. The actual close happens asynchronously.
-The handler will be called when the close is complete, or an error occurs.
-</p></div></div>
-    </li><li name="org.vertx.scala.core.file.AsyncFile#close" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <p class="shortcomment cmt">Close this <a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">org.vertx.scala.core.Closeable</a> instance asynchronously
+and notifies the handler once done.</p><div class="fullcomment"><div class="comment cmt"><p>Close this <a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">org.vertx.scala.core.Closeable</a> instance asynchronously
+and notifies the handler once done.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">Closeable</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.Closeable#close" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="close():Unit"></a>
       <a id="close():Unit"></a>
       <h4 class="signature">
@@ -244,10 +255,10 @@ The handler will be called when the close is complete, or an error occurs.
         <span class="name">close</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Close the file.</p><div class="fullcomment"><div class="comment cmt"><p>Close the file. The actual close happens asynchronously.
-</p></div></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#dataHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="dataHandler(handler:org.vertx.scala.core.buffer.Buffer=&gt;Unit):WrappedReadStream.this.type"></a>
+      <p class="shortcomment cmt">Close this <a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">org.vertx.scala.core.Closeable</a> instance asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Close this <a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">org.vertx.scala.core.Closeable</a> instance asynchronously.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">Closeable</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ReadStream#dataHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="dataHandler(handler:org.vertx.scala.core.buffer.Buffer=&gt;Unit):ReadStream.this.type"></a>
       <a id="dataHandler((Buffer)⇒Unit):AsyncFile.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -258,23 +269,10 @@ The handler will be called when the close is complete, or an error occurs.
         <span class="name">dataHandler</span><span class="params">(<span name="handler">handler: (<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#dataHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="dataHandler(handler:org.vertx.scala.core.Handler[org.vertx.scala.core.buffer.Buffer]):WrappedReadStream.this.type"></a>
-      <a id="dataHandler(Handler[Buffer]):AsyncFile.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">dataHandler</span><span class="params">(<span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>.this.type</span>
-      </span>
-      </h4>
       <p class="shortcomment cmt">Set a data handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set a data handler. As data is read, the handler will be called with the data.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#drainHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="drainHandler(handler:=&gt;Unit):WrappedWriteStream.this.type"></a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#drainHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="drainHandler(handler:=&gt;Unit):WriteStream.this.type"></a>
       <a id="drainHandler(⇒Unit):AsyncFile.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -286,25 +284,10 @@ The handler will be called when the close is complete, or an error occurs.
       </span>
       </h4>
       <p class="shortcomment cmt">Set a drain handler on the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
-queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of this being used.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#drainHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="drainHandler(handler:org.vertx.scala.core.Handler[Void]):WrappedWriteStream.this.type"></a>
-      <a id="drainHandler(Handler[Void]):AsyncFile.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">drainHandler</span><span class="params">(<span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<span class="extype" name="java.lang.Void">Void</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set a drain handler on the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
-queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of this being used.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#endHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="endHandler(handler:=&gt;Unit):WrappedReadStream.this.type"></a>
+queue has been reduced to maxSize / 2. See <a href="../streams/Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a> for an example of this being used.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ReadStream#endHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="endHandler(handler:=&gt;Unit):ReadStream.this.type"></a>
       <a id="endHandler(⇒Unit):AsyncFile.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -315,21 +298,9 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
         <span class="name">endHandler</span><span class="params">(<span name="handler">handler: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#endHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="endHandler(handler:org.vertx.scala.core.Handler[Void]):WrappedReadStream.this.type"></a>
-      <a id="endHandler(Handler[Void]):AsyncFile.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">endHandler</span><span class="params">(<span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<span class="extype" name="java.lang.Void">Void</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set an end handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an end handler. Once the stream has ended, and there is no more data to be read, this handler will be called.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
+      <p class="shortcomment cmt">Set an end handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an end handler. Once the stream has ended, and there is no more data
+to be read, this handler will be called.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -356,8 +327,8 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="exceptionHandler(handler:Throwable=&gt;Unit):WrappedExceptionSupport.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.ExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exceptionHandler(handler:Throwable=&gt;Unit):ExceptionSupport.this.type"></a>
       <a id="exceptionHandler((Throwable)⇒Unit):AsyncFile.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -369,21 +340,7 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
       </span>
       </h4>
       <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="exceptionHandler(handler:org.vertx.java.core.Handler[Throwable]):WrappedExceptionSupport.this.type"></a>
-      <a id="exceptionHandler(java.core.Handler[Throwable]):AsyncFile.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: <span class="extype" name="org.vertx.java.core.Handler">java.core.Handler</span>[<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -415,7 +372,7 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
         <span class="name">flush</span><span class="params">(<span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Same as <code> #flush</code> but the handler will be called when the flush is complete or if an error occurs
+      <p class="shortcomment cmt">Same as <a href="#flush(handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.AsyncFile" class="extmbr" name="org.vertx.scala.core.file.AsyncFile#flush">org.vertx.scala.core.file.AsyncFile.flush</a> but the handler will be called when the flush is complete or if an error occurs
 </p>
     </li><li name="org.vertx.scala.core.file.AsyncFile#flush" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="flush():org.vertx.scala.core.file.AsyncFile"></a>
@@ -429,7 +386,7 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
         <span class="name">flush</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Flush any writes made to this file to underlying persistent storage.</p><div class="fullcomment"><div class="comment cmt"><p>Flush any writes made to this file to underlying persistent storage.</p><p>If the file was opened with <code> flush</code> set to <code> true</code> then calling this method will have no effect.</p><p>The actual flush will happen asynchronously.
+      <p class="shortcomment cmt">Flush any writes made to this file to underlying persistent storage.</p><div class="fullcomment"><div class="comment cmt"><p>Flush any writes made to this file to underlying persistent storage.</p><p>If the file was opened with <code>flush</code> set to <code>true</code> then calling this method will have no effect.</p><p>The actual flush will happen asynchronously.
 </p></div></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
@@ -457,19 +414,6 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.file.AsyncFile#internal" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="internal:org.vertx.java.core.file.AsyncFile"></a>
-      <a id="internal:java.core.file.AsyncFile"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">internal</span><span class="result">: <span class="extype" name="org.vertx.java.core.file.AsyncFile">java.core.file.AsyncFile</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The internal instance of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the wrapped class.</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a> → VertxWrapper</dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -522,8 +466,8 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#pause" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="pause():WrappedReadStream.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.ReadSupport#pause" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="pause():ReadSupport.this.type"></a>
       <a id="pause():AsyncFile.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -534,8 +478,8 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
         <span class="name">pause</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Pause the <code> ReadStream</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Pause the <code> ReadStream</code>. While the stream is paused, no data will be sent to the <code> dataHandler</code>
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
+      <p class="shortcomment cmt">Pause the <code>ReadSupport</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Pause the <code>ReadSupport</code>. While it's paused, no data will be sent to the <code>dataHandler</code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
     </li><li name="org.vertx.scala.core.file.AsyncFile#read" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="read(buffer:org.vertx.scala.core.buffer.Buffer,offset:Int,position:Int,length:Int,handler:org.vertx.scala.core.AsyncResult[org.vertx.scala.core.buffer.Buffer]=&gt;Unit):org.vertx.scala.core.file.AsyncFile"></a>
       <a id="read(Buffer,Int,Int,Int,(AsyncResult[Buffer])⇒Unit):AsyncFile"></a>
@@ -548,11 +492,12 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
         <span class="name">read</span><span class="params">(<span name="buffer">buffer: <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>, <span name="offset">offset: <span class="extype" name="scala.Int">Int</span></span>, <span name="position">position: <span class="extype" name="scala.Int">Int</span></span>, <span name="length">length: <span class="extype" name="scala.Int">Int</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Reads <code> length</code> bytes of data from the file at position <code> position</code> in the file, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Reads <code> length</code> bytes of data from the file at position <code> position</code> in the file, asynchronously.
-The read data will be written into the specified <code> Buffer buffer</code> at position <code> offset</code>.</p><p>If data is read past the end of the file then zero bytes will be read.</p><p>When multiple reads are invoked on the same file there are no guarantees as to order in which those reads actually occur.</p><p>The handler will be called when the close is complete, or if an error occurs.
+      <p class="shortcomment cmt">Reads <code>length} bytes of data from the file at position </code>position<code> in the file, asynchronously.
+The read data will be written into the specified </code>Buffer buffer} at position <code>offset</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Reads <code>length} bytes of data from the file at position </code>position<code> in the file, asynchronously.
+The read data will be written into the specified </code>Buffer buffer} at position <code>offset</code>.</p><p>If data is read past the end of the file then zero bytes will be read.</p><p>When multiple reads are invoked on the same file there are no guarantees as to order in which those reads actually occur.</p><p>The handler will be called when the close is complete, or if an error occurs.
 </p></div></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#resume" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="resume():WrappedReadStream.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.ReadSupport#resume" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="resume():ReadSupport.this.type"></a>
       <a id="resume():AsyncFile.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -563,10 +508,10 @@ The read data will be written into the specified <code> Buffer buffer</code> at 
         <span class="name">resume</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Resume reading.</p><div class="fullcomment"><div class="comment cmt"><p>Resume reading. If the <code> ReadStream</code> has been paused, reading will recommence on it.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#setWriteQueueMaxSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setWriteQueueMaxSize(maxSize:Int):WrappedWriteStream.this.type"></a>
+      <p class="shortcomment cmt">Resume reading.</p><div class="fullcomment"><div class="comment cmt"><p>Resume reading. If the <code>ReadSupport</code> has been paused, reading will recommence on it.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#setWriteQueueMaxSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setWriteQueueMaxSize(maxSize:Int):WriteStream.this.type"></a>
       <a id="setWriteQueueMaxSize(Int):AsyncFile.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -577,10 +522,10 @@ The read data will be written into the specified <code> Buffer buffer</code> at 
         <span class="name">setWriteQueueMaxSize</span><span class="params">(<span name="maxSize">maxSize: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the maximum size of the write queue to <code> maxSize</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the maximum size of the write queue to <code> maxSize</code>. You will still be able to write to the stream even
-if there is more than <code> maxSize</code> bytes in the write queue. This is used as an indicator by classes such as
-<code> Pump</code> to provide flow control.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+      <p class="shortcomment cmt">Set the maximum size of the write queue to <code>maxSize</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the maximum size of the write queue to <code>maxSize</code>. You will still be able to write to the stream even
+if there is more than <code>maxSize</code> bytes in the write queue. This is used as an indicator by classes such as
+<code>Pump</code> to provide flow control.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -594,21 +539,6 @@ if there is more than <code> maxSize</code> bytes in the write queue. This is us
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#toJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toJava():WrappedWriteStream.this.InternalType"></a>
-      <a id="toJava():InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toJava</span><span class="params">()</span><span class="result">: <a href="#InternalType=org.vertx.java.core.file.AsyncFile" class="extmbr" name="org.vertx.scala.core.file.AsyncFile.InternalType">InternalType</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Returns the internal type instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the internal type instance.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The internal type instance.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → VertxWrapper → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -679,8 +609,8 @@ if there is more than <code> maxSize</code> bytes in the write queue. This is us
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.Wrap#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wrap[X](doStuff:=&gt;X):Wrap.this.type"></a>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
       <a id="wrap[X](⇒X):AsyncFile.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -688,10 +618,14 @@ if there is more than <code> maxSize</code> bytes in the write queue. This is us
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Wrap.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>.this.type</span>
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></dd></dl></div>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
     </li><li name="org.vertx.scala.core.file.AsyncFile#write" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="write(buffer:org.vertx.scala.core.buffer.Buffer,position:Int,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.AsyncFile"></a>
       <a id="write(Buffer,Int,(AsyncResult[Void])⇒Unit):AsyncFile"></a>
@@ -704,13 +638,13 @@ if there is more than <code> maxSize</code> bytes in the write queue. This is us
         <span class="name">write</span><span class="params">(<span name="buffer">buffer: <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>, <span name="position">position: <span class="extype" name="scala.Int">Int</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Write a <code> Buffer</code> to the file at position <code> position</code> in the file, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Write a <code> Buffer</code> to the file at position <code> position</code> in the file, asynchronously.
-If <code> position</code> lies outside of the current size
+      <p class="shortcomment cmt">Write a <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">org.vertx.scala.core.buffer.Buffer</a> to the file at position <code>position</code> in the file, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Write a <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">org.vertx.scala.core.buffer.Buffer</a> to the file at position <code>position</code> in the file, asynchronously.
+If <code>position</code> lies outside of the current size
 of the file, the file will be enlarged to encompass it.</p><p>When multiple writes are invoked on the same file
 there are no guarantees as to order in which those writes actually occur.</p><p>The handler will be called when the write is complete, or if an error occurs.
 </p></div></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#write" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="write(data:org.vertx.scala.core.buffer.Buffer):WrappedWriteStream.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#write" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="write(data:org.vertx.scala.core.buffer.Buffer):WriteStream.this.type"></a>
       <a id="write(Buffer):AsyncFile.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -723,9 +657,10 @@ there are no guarantees as to order in which those writes actually occur.</p><p>
       </h4>
       <p class="shortcomment cmt">Write some data to the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Write some data to the stream. The data is put on an internal write queue, and the write actually happens
 asynchronously. To avoid running out of memory by putting too much on the write queue,
-check the <code> #writeQueueFull</code> method before writing. This is done automatically if using a <code> Pump</code>.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#writeQueueFull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+check the <span class="extype" name="org.vertx.scala.core.streams.WriteStream.writeQueueFull()">org.vertx.scala.core.streams.WriteStream.writeQueueFull()</span>
+method before writing. This is done automatically if using a <a href="../streams/Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#writeQueueFull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="writeQueueFull():Boolean"></a>
       <a id="writeQueueFull():Boolean"></a>
       <h4 class="signature">
@@ -737,11 +672,11 @@ check the <code> #writeQueueFull</code> method before writing. This is done auto
         <span class="name">writeQueueFull</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This will return <code> true</code> if there are more bytes in the write queue than the value set using <code>
-#setWriteQueueMaxSize</code>
-</p><div class="fullcomment"><div class="comment cmt"><p>This will return <code> true</code> if there are more bytes in the write queue than the value set using <code>
-#setWriteQueueMaxSize</code>
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+      <p class="shortcomment cmt">This will return <code>true</code> if there are more bytes in the write queue than the value set using
+<span class="extype" name="org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()">org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()</span>
+</p><div class="fullcomment"><div class="comment cmt"><p>This will return <code>true</code> if there are more bytes in the write queue than the value set using
+<span class="extype" name="org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()">org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()</span>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
     </li></ol>
             </div>
 
@@ -751,24 +686,20 @@ check the <code> #writeQueueFull</code> method before writing. This is done auto
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.vertx.scala.core.streams.WrappedReadWriteStream">
-              <h3>Inherited from <a href="../streams/WrappedReadWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadWriteStream">WrappedReadWriteStream</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.streams.WrappedWriteStream">
-              <h3>Inherited from <a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a></h3>
+        <div class="parent" name="org.vertx.scala.core.Closeable">
+              <h3>Inherited from <a href="../Closeable.html" class="extype" name="org.vertx.scala.core.Closeable">Closeable</a></h3>
             </div><div class="parent" name="org.vertx.scala.core.streams.WriteStream">
               <h3>Inherited from <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.streams.WrappedReadStream">
-              <h3>Inherited from <a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a></h3>
             </div><div class="parent" name="org.vertx.scala.core.streams.ReadStream">
               <h3>Inherited from <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.streams.WrappedExceptionSupport">
-              <h3>Inherited from <a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a></h3>
-            </div><div class="parent" name="org.vertx.scala.VertxWrapper">
-              <h3>Inherited from <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></h3>
-            </div><div class="parent" name="org.vertx.scala.Wrap">
-              <h3>Inherited from <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></h3>
+            </div><div class="parent" name="org.vertx.scala.core.streams.ReadSupport">
+              <h3>Inherited from <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>]</h3>
             </div><div class="parent" name="org.vertx.scala.core.streams.ExceptionSupport">
               <h3>Inherited from <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.AsJava">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></h3>
+            </div><div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">

@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>ReadStream - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.streams.ReadStream</title>
-          <meta name="description" content="ReadStream - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.streams.ReadStream" />
-          <meta name="keywords" content="ReadStream mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.streams.ReadStream" />
+          <title>ReadStream - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.streams.ReadStream</title>
+          <meta name="description" content="ReadStream - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.streams.ReadStream" />
+          <meta name="keywords" content="ReadStream lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.streams.ReadStream" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -35,19 +35,19 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <span class="name">ReadStream</span><span class="result"> extends <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></span>
+        <span class="name">ReadStream</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>] with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a stream of data that can be read from.</p><p>Any class that implements this interface can be used by a <code> Pump</code> to pump data from it
-to a <code> WriteStream</code>.</p><p>This interface exposes a fluent api and the type T represents the type of the object that implements
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a stream of data that can be read from.</p><p>Any class that implements this interface can be used by a <a href="Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a>
+to pump data from it to a <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a>.</p><p>This interface exposes a fluent api and the type T represents the type of the object that implements
 the interface to allow method chaining
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>], <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>, <span class="extype" name="org.vertx.scala.AsJava">AsJava</span>, <span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
           <span class="toggle">Known Subclasses</span>
-          <div class="subClasses hiddenContent"><a href="../file/AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>, <a href="../http/HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>, <a href="../http/HttpServerRequest.html" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>, <a href="../net/NetSocket.html" class="extype" name="org.vertx.scala.core.net.NetSocket">NetSocket</a>, <a href="../http/ServerWebSocket.html" class="extype" name="org.vertx.scala.core.http.ServerWebSocket">ServerWebSocket</a>, <a href="../sockjs/SockJSSocket.html" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>, <a href="../http/WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">WebSocket</a>, <a href="WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a>, <a href="WrappedReadWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadWriteStream">WrappedReadWriteStream</a>, <a href="../http/WrappedWebSocketBase.html" class="extype" name="org.vertx.scala.core.http.WrappedWebSocketBase">WrappedWebSocketBase</a></div>
+          <div class="subClasses hiddenContent"><a href="../file/AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>, <a href="../http/HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>, <a href="../http/HttpServerFileUpload.html" class="extype" name="org.vertx.scala.core.http.HttpServerFileUpload">HttpServerFileUpload</a>, <a href="../http/HttpServerRequest.html" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>, <a href="../net/NetSocket.html" class="extype" name="org.vertx.scala.core.net.NetSocket">NetSocket</a>, <a href="../http/ServerWebSocket.html" class="extype" name="org.vertx.scala.core.http.ServerWebSocket">ServerWebSocket</a>, <a href="../sockjs/SockJSSocket.html" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>, <a href="../http/WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">WebSocket</a>, <a href="../http/WebSocketBase.html" class="extype" name="org.vertx.scala.core.http.WebSocketBase">WebSocketBase</a></div>
         </div></div>
         
 
@@ -65,7 +65,7 @@ the interface to allow method chaining
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.core.streams.ReadStream"><span>ReadStream</span></li><li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.core.streams.ReadStream"><span>ReadStream</span></li><li class="in" name="org.vertx.scala.core.streams.ReadSupport"><span>ReadSupport</span></li><li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="org.vertx.scala.AsJava"><span>AsJava</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -87,147 +87,37 @@ the interface to allow method chaining
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.streams.ReadStream.InternalType" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="InternalType&lt;:org.vertx.java.core.streams.ReadStream[_]withorg.vertx.java.core.streams.ExceptionSupport[_]"></a>
-      <a id="InternalType:InternalType"></a>
+              <ol><li name="org.vertx.scala.core.streams.ReadStream.J" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="J&lt;:org.vertx.java.core.streams.ReadStream[_]withorg.vertx.java.core.streams.ExceptionSupport[_]"></a>
+      <a id="J:J"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">InternalType</span><span class="result"> &lt;: <span class="extype" name="org.vertx.java.core.streams.ReadStream">java.core.streams.ReadStream</span>[_] with <span class="extype" name="org.vertx.java.core.streams.ExceptionSupport">java.core.streams.ExceptionSupport</span>[_]</span>
+        <span class="name">J</span><span class="result"> &lt;: <span class="extype" name="org.vertx.java.core.streams.ReadStream">java.core.streams.ReadStream</span>[_] with <span class="extype" name="org.vertx.java.core.streams.ExceptionSupport">java.core.streams.ExceptionSupport</span>[_]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
+      <p class="shortcomment cmt">The internal type of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a> → <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> → AsJava</dd></dl></div>
     </li></ol>
             </div>
 
         <div id="values" class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="org.vertx.scala.core.streams.ReadStream#dataHandler" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="dataHandler(handler:org.vertx.scala.core.buffer.Buffer=&gt;Unit):ReadStream.this.type"></a>
-      <a id="dataHandler((Buffer)⇒Unit):ReadStream.this.type"></a>
+              <ol><li name="org.vertx.scala.AsJava#asJava" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="asJava:AsJava.this.J"></a>
+      <a id="asJava:J"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
-        <span class="kind">def</span>
+        <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">dataHandler</span><span class="params">(<span name="handler">handler: (<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
+        <span class="name">asJava</span><span class="result">: <a href="#J&lt;:org.vertx.java.core.streams.ReadStream[_]withorg.vertx.java.core.streams.ExceptionSupport[_]" class="extmbr" name="org.vertx.scala.core.streams.ReadStream.J">J</a></span>
       </span>
       </h4>
-      
-    </li><li name="org.vertx.scala.core.streams.ReadStream#dataHandler" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="dataHandler(handler:org.vertx.scala.core.Handler[org.vertx.scala.core.buffer.Buffer]):ReadStream.this.type"></a>
-      <a id="dataHandler(Handler[Buffer]):ReadStream.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">dataHandler</span><span class="params">(<span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set a data handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set a data handler. As data is read, the handler will be called with the data.
-</p></div></div>
-    </li><li name="org.vertx.scala.core.streams.ReadStream#endHandler" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="endHandler(handler:=&gt;Unit):ReadStream.this.type"></a>
-      <a id="endHandler(⇒Unit):ReadStream.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">endHandler</span><span class="params">(<span name="handler">handler: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
-      </span>
-      </h4>
-      
-    </li><li name="org.vertx.scala.core.streams.ReadStream#endHandler" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="endHandler(endHandler:org.vertx.scala.core.Handler[Void]):ReadStream.this.type"></a>
-      <a id="endHandler(Handler[Void]):ReadStream.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">endHandler</span><span class="params">(<span name="endHandler">endHandler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<span class="extype" name="java.lang.Void">Void</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set an end handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an end handler. Once the stream has ended, and there is no more data to be read, this handler will be called.
-</p></div></div>
-    </li><li name="org.vertx.scala.core.streams.ExceptionSupport#exceptionHandler" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="exceptionHandler(handler:Throwable=&gt;Unit):ExceptionSupport.this.type"></a>
-      <a id="exceptionHandler((Throwable)⇒Unit):ReadStream.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: (<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.ExceptionSupport#exceptionHandler" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="exceptionHandler(handler:org.vertx.java.core.Handler[Throwable]):ExceptionSupport.this.type"></a>
-      <a id="exceptionHandler(java.core.Handler[Throwable]):ReadStream.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: <span class="extype" name="org.vertx.java.core.Handler">java.core.Handler</span>[<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.ReadStream#pause" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="pause():ReadStream.this.type"></a>
-      <a id="pause():ReadStream.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">pause</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Pause the <code> ReadStream</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Pause the <code> ReadStream</code>. While the stream is paused, no data will be sent to the <code> dataHandler</code>
-</p></div></div>
-    </li><li name="org.vertx.scala.core.streams.ReadStream#resume" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="resume():ReadStream.this.type"></a>
-      <a id="resume():ReadStream.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">resume</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Resume reading.</p><div class="fullcomment"><div class="comment cmt"><p>Resume reading. If the <code> ReadStream</code> has been paused, reading will recommence on it.
-</p></div></div>
-    </li><li name="org.vertx.scala.core.streams.ExceptionSupport#toJava" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="toJava():ExceptionSupport.this.InternalType"></a>
-      <a id="toJava():InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toJava</span><span class="params">()</span><span class="result">: <a href="#InternalType&lt;:org.vertx.java.core.streams.ReadStream[_]withorg.vertx.java.core.streams.ExceptionSupport[_]" class="extmbr" name="org.vertx.scala.core.streams.ReadStream.InternalType">InternalType</a></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
+      <p class="shortcomment cmt">The internal instance of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd>AsJava</dd></dl></div>
     </li></ol>
             </div>
 
@@ -330,6 +220,35 @@ the interface to allow method chaining
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ReadStream#dataHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="dataHandler(handler:org.vertx.scala.core.buffer.Buffer=&gt;Unit):ReadStream.this.type"></a>
+      <a id="dataHandler((Buffer)⇒Unit):ReadStream.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">dataHandler</span><span class="params">(<span name="handler">handler: (<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set a data handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set a data handler. As data is read, the handler will be called with the data.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ReadStream#endHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="endHandler(handler:=&gt;Unit):ReadStream.this.type"></a>
+      <a id="endHandler(⇒Unit):ReadStream.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">endHandler</span><span class="params">(<span name="handler">handler: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set an end handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an end handler. Once the stream has ended, and there is no more data
+to be read, this handler will be called.
+</p></div></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -356,6 +275,20 @@ the interface to allow method chaining
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exceptionHandler(handler:Throwable=&gt;Unit):ExceptionSupport.this.type"></a>
+      <a id="exceptionHandler((Throwable)⇒Unit):ReadStream.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: (<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -453,6 +386,34 @@ the interface to allow method chaining
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ReadSupport#pause" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="pause():ReadSupport.this.type"></a>
+      <a id="pause():ReadStream.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">pause</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Pause the <code>ReadSupport</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Pause the <code>ReadSupport</code>. While it's paused, no data will be sent to the <code>dataHandler</code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ReadSupport#resume" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="resume():ReadSupport.this.type"></a>
+      <a id="resume():ReadStream.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">resume</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Resume reading.</p><div class="fullcomment"><div class="comment cmt"><p>Resume reading. If the <code>ReadSupport</code> has been paused, reading will recommence on it.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -536,6 +497,23 @@ the interface to allow method chaining
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
+      <a id="wrap[X](⇒X):ReadStream.this.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>.this.type</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
     </li></ol>
             </div>
 
@@ -545,8 +523,14 @@ the interface to allow method chaining
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.vertx.scala.core.streams.ExceptionSupport">
+        <div class="parent" name="org.vertx.scala.core.streams.ReadSupport">
+              <h3>Inherited from <a href="ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>]</h3>
+            </div><div class="parent" name="org.vertx.scala.core.streams.ExceptionSupport">
               <h3>Inherited from <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.AsJava">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></h3>
+            </div><div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">

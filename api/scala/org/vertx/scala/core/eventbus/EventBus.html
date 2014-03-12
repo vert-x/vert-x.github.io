@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>EventBus - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.eventbus.EventBus</title>
-          <meta name="description" content="EventBus - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.eventbus.EventBus" />
-          <meta name="keywords" content="EventBus mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.eventbus.EventBus" />
+          <title>EventBus - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.eventbus.EventBus</title>
+          <meta name="description" content="EventBus - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.eventbus.EventBus" />
+          <meta name="keywords" content="EventBus lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.eventbus.EventBus" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -31,17 +31,32 @@
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">EventBus</span><span class="result"> extends <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
+        <span class="name">EventBus</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A distributed lightweight event bus which can encompass multiple vert.x instances.
+The event bus implements publish / subscribe, point to point messaging and request-response messaging.</p><p>Messages sent over the event bus are represented by instances of the <a href="Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">org.vertx.scala.core.eventbus.Message</a> class.</p><p>For publish / subscribe, messages can be published to an address using one of the <code>publish</code> methods.
+An address is a simple <span class="extype" name="java.lang.String">java.lang.String</span> instance.</p><p>Handlers are registered against an address. There can be multiple handlers registered against each address, and a particular handler can
+be registered against multiple addresses. The event bus will route a sent message to all handlers which are
+registered against that address.</p><p>For point to point messaging, messages can be sent to an address using one of the <code>send</code> methods.
+The messages will be delivered to a single handler, if one is registered on that address. If more than one
+handler is registered on the same address, Vert.x will choose one and deliver the message to that. Vert.x will
+aim to fairly distribute messages in a round-robin way, but does not guarantee strict round-robin under all
+circumstances.</p><p>All messages sent over the bus are transient. On event of failure of all or part of the event bus messages
+may be lost. Applications should be coded to cope with lost messages, e.g. by resending them, and making application
+services idempotent.</p><p>The order of messages received by any specific handler from a specific sender should match the order of messages
+sent from that sender.</p><p>When sending a message, a reply handler can be provided. If so, it will be called when the reply from the receiver
+has been received. Reply messages can also be replied to, etc, ad infinitum</p><p>Different event bus instances can be clustered together over a network, to give a single logical event bus.</p><p>Instances of EventBus are thread-safe.</p><p>If handlers are registered from an event loop, they will be executed using that same event loop. If they are
+registered from outside an event loop (i.e. when using Vert.x embedded) then Vert.x will assign an event loop
+to the handler and use it to deliver messages to that handler.
+</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span>, <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -59,7 +74,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.core.eventbus.EventBus"><span>EventBus</span></li><li class="in" name="org.vertx.scala.VertxWrapper"><span>VertxWrapper</span></li><li class="in" name="org.vertx.scala.Wrap"><span>Wrap</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.core.eventbus.EventBus"><span>EventBus</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -77,41 +92,9 @@
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="org.vertx.scala.core.eventbus.EventBus#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(internal:org.vertx.java.core.eventbus.EventBus):org.vertx.scala.core.eventbus.EventBus"></a>
-      <a id="&lt;init&gt;:EventBus"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">EventBus</span><span class="params">(<span name="internal">internal: <span class="extype" name="org.vertx.java.core.eventbus.EventBus">java.core.eventbus.EventBus</span></span>)</span>
-      </span>
-      </h4>
-      
-    </li></ol>
-            </div>
+        
 
-        <div id="types" class="types members">
-              <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.eventbus.EventBus.InternalType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="InternalType=org.vertx.java.core.eventbus.EventBus"></a>
-      <a id="InternalType:InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">type</span>
-      </span>
-      <span class="symbol">
-        <span class="name">InternalType</span><span class="result"> = <span class="extype" name="org.vertx.java.core.eventbus.EventBus">java.core.eventbus.EventBus</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The internal type of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a> → VertxWrapper</dd></dl></div>
-    </li></ol>
-            </div>
+        
 
         
 
@@ -195,6 +178,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.eventbus.EventBus#asJava" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="asJava:org.vertx.java.core.eventbus.EventBus"></a>
+      <a id="asJava:java.core.eventbus.EventBus"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asJava</span><span class="result">: <span class="extype" name="org.vertx.java.core.eventbus.EventBus">java.core.eventbus.EventBus</span></span>
+      </span>
+      </h4>
+      
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -214,7 +210,7 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.core.eventbus.EventBus#close" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="org.vertx.scala.core.eventbus.EventBus#close" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="close(doneHandler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):Unit"></a>
       <a id="close((AsyncResult[Void])⇒Unit):Unit"></a>
       <h4 class="signature">
@@ -226,7 +222,9 @@
         <span class="name">close</span><span class="params">(<span name="doneHandler">doneHandler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Close the EventBus and release all resources.</p><div class="fullcomment"><div class="comment cmt"><p>Close the EventBus and release all resources.
+</p></div><dl class="paramcmts block"><dt class="param">doneHandler</dt><dd class="cmt"><p>handler to notify when close is completed
+</p></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -285,6 +283,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.eventbus.EventBus#getDefaultReplyTimeout" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getDefaultReplyTimeout:Long"></a>
+      <a id="getDefaultReplyTimeout:Long"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getDefaultReplyTimeout</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Return the value for default send timeout.</p>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <a id="hashCode():Int"></a>
@@ -298,19 +309,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.eventbus.EventBus#internal" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="internal:org.vertx.java.core.eventbus.EventBus"></a>
-      <a id="internal:java.core.eventbus.EventBus"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">internal</span><span class="result">: <span class="extype" name="org.vertx.java.core.eventbus.EventBus">java.core.eventbus.EventBus</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The internal instance of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the wrapped class.</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a> → VertxWrapper</dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -363,8 +361,8 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.core.eventbus.EventBus#publish" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="publish[T](address:String,value:T)(implicitevidence$1:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.EventBus"></a>
+    </li><li name="org.vertx.scala.core.eventbus.EventBus#publish" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="publish[T](address:String,message:T)(implicitevidence$1:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.EventBus"></a>
       <a id="publish[T](String,T)((T)⇒MessageData):EventBus"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -372,90 +370,74 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">publish</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="value">value: <span class="extype" name="org.vertx.scala.core.eventbus.EventBus.publish.T">T</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.publish.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
+        <span class="name">publish</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="message">message: <span class="extype" name="org.vertx.scala.core.eventbus.EventBus.publish.T">T</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.publish.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
       </span>
       </h4>
-      
-    </li><li name="org.vertx.scala.core.eventbus.EventBus#registerHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="registerHandler[T](address:String,handler:org.vertx.scala.core.eventbus.Message[T]=&gt;Unit,resultHandler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit)(implicitevidence$5:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.EventBus"></a>
-      <a id="registerHandler[T](String,(Message[T])⇒Unit,(AsyncResult[Void])⇒Unit)((T)⇒MessageData):EventBus"></a>
+      <p class="shortcomment cmt">Publish a message.</p><div class="fullcomment"><div class="comment cmt"><p>Publish a message.</p></div><dl class="paramcmts block"><dt class="param">address</dt><dd class="cmt"><p>The address to publish it to</p></dd><dt class="param">message</dt><dd class="cmt"><p>The message
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.eventbus.EventBus#registerHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="registerHandler[T](address:String,handler:org.vertx.scala.core.eventbus.Message[T]=&gt;Unit,resultHandler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit)(implicitevidence$8:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.RegisteredHandler[T]"></a>
+      <a id="registerHandler[T](String,(Message[T])⇒Unit,(AsyncResult[Void])⇒Unit)((T)⇒MessageData):RegisteredHandler[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">registerHandler</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">Message</a>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerHandler.T">T</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>, <span name="resultHandler">resultHandler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerHandler.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
+        <span class="name">registerHandler</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">Message</a>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerHandler.T">T</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>, <span name="resultHandler">resultHandler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerHandler.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="RegisteredHandler.html" class="extype" name="org.vertx.scala.core.eventbus.RegisteredHandler">RegisteredHandler</a>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerHandler.T">T</span>]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Please bear in mind that you cannot unregister handlers you register with this method.</p>
-    </li><li name="org.vertx.scala.core.eventbus.EventBus#registerHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="registerHandler[T](address:String,handler:org.vertx.scala.core.eventbus.Message[T]=&gt;Unit)(implicitevidence$4:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.EventBus"></a>
-      <a id="registerHandler[T](String,(Message[T])⇒Unit)((T)⇒MessageData):EventBus"></a>
+      <p class="shortcomment cmt">Registers a handler against the specified address.</p><div class="fullcomment"><div class="comment cmt"><p>Registers a handler against the specified address. To unregister this handler, use the
+resulting RegisteredHandler object.</p></div><dl class="paramcmts block"><dt class="param">address</dt><dd class="cmt"><p>The address to register it at.</p></dd><dt class="param">handler</dt><dd class="cmt"><p>The handler.</p></dd><dt class="param">resultHandler</dt><dd class="cmt"><p>Optional completion handler. If specified, when the register has been
+propagated to all nodes of the event bus, the handler will be called.
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.eventbus.EventBus#registerHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="registerHandler[T](address:String,handler:org.vertx.scala.core.eventbus.Message[T]=&gt;Unit)(implicitevidence$7:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.RegisteredHandler[T]"></a>
+      <a id="registerHandler[T](String,(Message[T])⇒Unit)((T)⇒MessageData):RegisteredHandler[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">registerHandler</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">Message</a>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerHandler.T">T</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerHandler.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
+        <span class="name">registerHandler</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">Message</a>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerHandler.T">T</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerHandler.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="RegisteredHandler.html" class="extype" name="org.vertx.scala.core.eventbus.RegisteredHandler">RegisteredHandler</a>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerHandler.T">T</span>]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Please bear in mind that you cannot unregister handlers you register with this method.</p>
-    </li><li name="org.vertx.scala.core.eventbus.EventBus#registerLocalHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="registerLocalHandler[T](address:String,handler:org.vertx.scala.core.eventbus.Message[T]=&gt;Unit)(implicitevidence$6:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.EventBus"></a>
-      <a id="registerLocalHandler[T](String,(Message[T])⇒Unit)((T)⇒MessageData):EventBus"></a>
+      <p class="shortcomment cmt">Registers a handler against the specified address.</p><div class="fullcomment"><div class="comment cmt"><p>Registers a handler against the specified address. To unregister this handler, use the
+resulting RegisteredHandler object.</p></div><dl class="paramcmts block"><dt class="param">address</dt><dd class="cmt"><p>The address to register it at.</p></dd><dt class="param">handler</dt><dd class="cmt"><p>The handler.
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.eventbus.EventBus#registerLocalHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="registerLocalHandler[T](address:String,handler:org.vertx.scala.core.eventbus.Message[T]=&gt;Unit)(implicitevidence$9:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.RegisteredHandler[T]"></a>
+      <a id="registerLocalHandler[T](String,(Message[T])⇒Unit)((T)⇒MessageData):RegisteredHandler[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">registerLocalHandler</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">Message</a>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerLocalHandler.T">T</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerLocalHandler.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
+        <span class="name">registerLocalHandler</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">Message</a>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerLocalHandler.T">T</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerLocalHandler.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="RegisteredHandler.html" class="extype" name="org.vertx.scala.core.eventbus.RegisteredHandler">RegisteredHandler</a>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerLocalHandler.T">T</span>]</span>
       </span>
       </h4>
-      
-    </li><li name="org.vertx.scala.core.eventbus.EventBus#registerUnregisterableHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="registerUnregisterableHandler[X](address:String,handler:org.vertx.scala.core.Handler[org.vertx.java.core.eventbus.Message[X]],resultHandler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.eventbus.EventBus"></a>
-      <a id="registerUnregisterableHandler[X](String,Handler[java.core.eventbus.Message[X]],(AsyncResult[Void])⇒Unit):EventBus"></a>
+      <p class="shortcomment cmt">Registers a local handler against the specified address.</p><div class="fullcomment"><div class="comment cmt"><p>Registers a local handler against the specified address. The handler info won't
+be propagated across the cluster. To unregister this handler, use the
+resulting RegisteredHandler object.</p></div><dl class="paramcmts block"><dt class="param">address</dt><dd class="cmt"><p>The address to register it at.</p></dd><dt class="param">handler</dt><dd class="cmt"><p>The handler to register.
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.eventbus.EventBus#send" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="send[ST,RT](address:String,message:ST,replyHandler:org.vertx.scala.core.eventbus.Message[RT]=&gt;Unit)(implicitevidence$3:ST=&gt;org.vertx.scala.core.eventbus.MessageData,implicitevidence$4:RT=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.EventBus"></a>
+      <a id="send[ST,RT](String,ST,(Message[RT])⇒Unit)((ST)⇒MessageData,(RT)⇒MessageData):EventBus"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">registerUnregisterableHandler</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<span class="extype" name="org.vertx.java.core.eventbus.Message">java.core.eventbus.Message</span>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerUnregisterableHandler.X">X</span>]]</span>, <span name="resultHandler">resultHandler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
+        <span class="name">send</span><span class="tparams">[<span name="ST">ST</span>, <span name="RT">RT</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="message">message: <span class="extype" name="org.vertx.scala.core.eventbus.EventBus.send.ST">ST</span></span>, <span name="replyHandler">replyHandler: (<a href="Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">Message</a>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.send.RT">RT</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.send.ST">ST</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>, <span name="arg1">arg1: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.send.RT">RT</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
       </span>
       </h4>
-      
-    </li><li name="org.vertx.scala.core.eventbus.EventBus#registerUnregisterableHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="registerUnregisterableHandler[X](address:String,handler:org.vertx.scala.core.Handler[org.vertx.java.core.eventbus.Message[X]]):org.vertx.scala.core.eventbus.EventBus"></a>
-      <a id="registerUnregisterableHandler[X](String,Handler[java.core.eventbus.Message[X]]):EventBus"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">registerUnregisterableHandler</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<span class="extype" name="org.vertx.java.core.eventbus.Message">java.core.eventbus.Message</span>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.registerUnregisterableHandler.X">X</span>]]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.vertx.scala.core.eventbus.EventBus#send" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="send[T](address:String,value:T,handler:org.vertx.scala.core.eventbus.Message[T]=&gt;Unit)(implicitevidence$3:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.EventBus"></a>
-      <a id="send[T](String,T,(Message[T])⇒Unit)((T)⇒MessageData):EventBus"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">send</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="value">value: <span class="extype" name="org.vertx.scala.core.eventbus.EventBus.send.T">T</span></span>, <span name="handler">handler: (<a href="Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">Message</a>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.send.T">T</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.send.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.vertx.scala.core.eventbus.EventBus#send" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="send[T](address:String,value:T)(implicitevidence$2:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.EventBus"></a>
+      <p class="shortcomment cmt">Send a message.</p><div class="fullcomment"><div class="comment cmt"><p>Send a message.</p></div><dl class="paramcmts block"><dt class="param">address</dt><dd class="cmt"><p>The address to send it to</p></dd><dt class="param">message</dt><dd class="cmt"><p>The message</p></dd><dt class="param">replyHandler</dt><dd class="cmt"><p>Reply handler will be called when any reply from the recipient is received
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.eventbus.EventBus#send" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="send[T](address:String,message:T)(implicitevidence$2:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.EventBus"></a>
       <a id="send[T](String,T)((T)⇒MessageData):EventBus"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -463,10 +445,42 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">send</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="value">value: <span class="extype" name="org.vertx.scala.core.eventbus.EventBus.send.T">T</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.send.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
+        <span class="name">send</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="message">message: <span class="extype" name="org.vertx.scala.core.eventbus.EventBus.send.T">T</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.send.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Send a message.</p><div class="fullcomment"><div class="comment cmt"><p>Send a message.</p></div><dl class="paramcmts block"><dt class="param">address</dt><dd class="cmt"><p>The address to send it to</p></dd><dt class="param">message</dt><dd class="cmt"><p>The message
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.eventbus.EventBus#sendWithTimeout" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendWithTimeout[ST,RT](address:String,message:ST,timeout:Long,replyHandler:org.vertx.scala.core.AsyncResult[org.vertx.scala.core.eventbus.Message[RT]]=&gt;Unit)(implicitevidence$5:ST=&gt;org.vertx.scala.core.eventbus.MessageData,implicitevidence$6:RT=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.EventBus"></a>
+      <a id="sendWithTimeout[ST,RT](String,ST,Long,(AsyncResult[Message[RT]])⇒Unit)((ST)⇒MessageData,(RT)⇒MessageData):EventBus"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendWithTimeout</span><span class="tparams">[<span name="ST">ST</span>, <span name="RT">RT</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="message">message: <span class="extype" name="org.vertx.scala.core.eventbus.EventBus.sendWithTimeout.ST">ST</span></span>, <span name="timeout">timeout: <span class="extype" name="scala.Long">Long</span></span>, <span name="replyHandler">replyHandler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">Message</a>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.sendWithTimeout.RT">RT</span>]]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.sendWithTimeout.ST">ST</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>, <span name="arg1">arg1: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.sendWithTimeout.RT">RT</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Send a character as a message</p><div class="fullcomment"><div class="comment cmt"><p>Send a character as a message</p></div><dl class="paramcmts block"><dt class="param">address</dt><dd class="cmt"><p>The address to send it to</p></dd><dt class="param">message</dt><dd class="cmt"><p>The message</p></dd><dt class="param">timeout</dt><dd class="cmt"><p>- Timeout in ms. If no reply received within the timeout then the reply handler will be unregistered</p></dd><dt class="param">replyHandler</dt><dd class="cmt"><p>Reply handler will be called when any reply from the recipient is received
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.eventbus.EventBus#setDefaultReplyTimeout" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setDefaultReplyTimeout(timeoutMs:Long):org.vertx.scala.core.eventbus.EventBus"></a>
+      <a id="setDefaultReplyTimeout(Long):EventBus"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setDefaultReplyTimeout</span><span class="params">(<span name="timeoutMs">timeoutMs: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Sets a default timeout, in ms, for replies.</p><div class="fullcomment"><div class="comment cmt"><p>Sets a default timeout, in ms, for replies. If a messages is sent specify a reply handler
+but without specifying a timeout, then the reply handler is timed out, i.e. it is automatically unregistered
+if a message hasn't been received before timeout.
+The default value for default send timeout is -1, which means &quot;never timeout&quot;.</p></div><dl class="paramcmts block"><dt class="param">timeoutMs</dt><dd class="cmt"><p>timeout in milliseconds
+</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -480,21 +494,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.VertxWrapper#toJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toJava():VertxWrapper.this.InternalType"></a>
-      <a id="toJava():InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toJava</span><span class="params">()</span><span class="result">: <a href="#InternalType=org.vertx.java.core.eventbus.EventBus" class="extmbr" name="org.vertx.scala.core.eventbus.EventBus.InternalType">InternalType</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Returns the internal type instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the internal type instance.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The internal type instance.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd>VertxWrapper</dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -508,32 +507,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.eventbus.EventBus#unregisterHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="unregisterHandler[T](address:String,handler:org.vertx.scala.core.Handler[org.vertx.java.core.eventbus.Message[T]],resultHandler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit)(implicitevidence$8:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.EventBus"></a>
-      <a id="unregisterHandler[T](String,Handler[java.core.eventbus.Message[T]],(AsyncResult[Void])⇒Unit)((T)⇒MessageData):EventBus"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">unregisterHandler</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<span class="extype" name="org.vertx.java.core.eventbus.Message">java.core.eventbus.Message</span>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.unregisterHandler.T">T</span>]]</span>, <span name="resultHandler">resultHandler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.unregisterHandler.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.vertx.scala.core.eventbus.EventBus#unregisterHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="unregisterHandler[T](address:String,handler:org.vertx.scala.core.Handler[org.vertx.java.core.eventbus.Message[T]])(implicitevidence$7:T=&gt;org.vertx.scala.core.eventbus.MessageData):org.vertx.scala.core.eventbus.EventBus"></a>
-      <a id="unregisterHandler[T](String,Handler[java.core.eventbus.Message[T]])((T)⇒MessageData):EventBus"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">unregisterHandler</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<span class="extype" name="org.vertx.java.core.eventbus.Message">java.core.eventbus.Message</span>[<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.unregisterHandler.T">T</span>]]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (<span class="extype" name="org.vertx.scala.core.eventbus.EventBus.unregisterHandler.T">T</span>) ⇒ <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a></span>
-      </span>
-      </h4>
-      
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -591,8 +564,8 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.Wrap#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wrap[X](doStuff:=&gt;X):Wrap.this.type"></a>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
       <a id="wrap[X](⇒X):EventBus.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -600,10 +573,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Wrap.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a>.this.type</span>
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.eventbus.EventBus">EventBus</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></dd></dl></div>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
     </li></ol>
             </div>
 
@@ -613,10 +590,8 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.vertx.scala.VertxWrapper">
-              <h3>Inherited from <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></h3>
-            </div><div class="parent" name="org.vertx.scala.Wrap">
-              <h3>Inherited from <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></h3>
+        <div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">

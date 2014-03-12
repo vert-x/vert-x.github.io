@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>ScalaInterpreter - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.lang.ScalaInterpreter</title>
-          <meta name="description" content="ScalaInterpreter - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.lang.ScalaInterpreter" />
-          <meta name="keywords" content="ScalaInterpreter mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.lang.ScalaInterpreter" />
+          <title>ScalaInterpreter - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.lang.ScalaInterpreter</title>
+          <meta name="description" content="ScalaInterpreter - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.lang.ScalaInterpreter" />
+          <meta name="keywords" content="ScalaInterpreter lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.lang.ScalaInterpreter" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -89,7 +89,7 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ScalaInterpreter</span><span class="params">(<span name="settings">settings: <span class="extype" name="scala.tools.nsc.Settings">Settings</span></span>, <span name="vertx">vertx: <a href="../core/package$$Vertx.html" class="extype" name="org.vertx.scala.core.Vertx">Vertx</a></span>, <span name="container">container: <a href="../platform/Container.html" class="extype" name="org.vertx.scala.platform.Container">Container</a></span>, <span name="out">out: <span class="extype" name="java.io.PrintWriter">PrintWriter</span> = <span class="defval" name="new scala.tools.nsc.NewLinePrintWriter(new scala.tools.nsc.ConsoleWriter(), true)">...</span></span>)</span>
+        <span class="name">ScalaInterpreter</span><span class="params">(<span name="settings">settings: <span class="extype" name="scala.tools.nsc.Settings">Settings</span></span>, <span name="vertx">vertx: <a href="../core/Vertx.html" class="extype" name="org.vertx.scala.core.Vertx">Vertx</a></span>, <span name="container">container: <a href="../platform/Container.html" class="extype" name="org.vertx.scala.platform.Container">Container</a></span>, <span name="out">out: <span class="extype" name="java.io.PrintWriter">PrintWriter</span> = <span class="defval" name="new scala.tools.nsc.NewLinePrintWriter(new scala.tools.nsc.ConsoleWriter(), true)">...</span></span>)</span>
       </span>
       </h4>
       
@@ -226,15 +226,15 @@
       </h4>
       
     </li><li name="org.vertx.scala.lang.ScalaInterpreter#compileClass" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="compileClass(classFile:java.io.File,className:String):Option[Class[_]]"></a>
-      <a id="compileClass(File,String):Option[Class[_]]"></a>
+      <a id="compileClass(classFile:java.io.File):scala.util.Try[ClassLoader]"></a>
+      <a id="compileClass(File):Try[ClassLoader]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">compileClass</span><span class="params">(<span name="classFile">classFile: <span class="extype" name="java.io.File">File</span></span>, <span name="className">className: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.Class">Class</span>[_]]</span>
+        <span class="name">compileClass</span><span class="params">(<span name="classFile">classFile: <span class="extype" name="java.io.File">File</span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="java.lang.ClassLoader">ClassLoader</span>]</span>
       </span>
       </h4>
       
@@ -362,15 +362,15 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="org.vertx.scala.lang.ScalaInterpreter#runScript" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="runScript(script:java.net.URL):tools.nsc.interpreter.Results.Result"></a>
-      <a id="runScript(URL):Result"></a>
+      <a id="runScript(script:java.net.URL):scala.util.Try[Unit]"></a>
+      <a id="runScript(URL):Try[Unit]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">runScript</span><span class="params">(<span name="script">script: <span class="extype" name="java.net.URL">URL</span></span>)</span><span class="result">: <span class="extype" name="scala.tools.nsc.interpreter.Results.Result">Result</span></span>
+        <span class="name">runScript</span><span class="params">(<span name="script">script: <span class="extype" name="java.net.URL">URL</span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
       </span>
       </h4>
       

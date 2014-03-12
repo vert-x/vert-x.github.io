@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>RecordParser - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.parsetools.RecordParser</title>
-          <meta name="description" content="RecordParser - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.parsetools.RecordParser" />
-          <meta name="keywords" content="RecordParser mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.parsetools.RecordParser" />
+          <title>RecordParser - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.parsetools.RecordParser</title>
+          <meta name="description" content="RecordParser - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.parsetools.RecordParser" />
+          <meta name="keywords" content="RecordParser lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.parsetools.RecordParser" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -40,7 +40,7 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A helper class which allows you to easily parse protocols which are delimited by a sequence of bytes, or fixed
-size records.</p><p>Instances of this class take as input <code> Buffer</code> instances containing raw bytes, and output records.</p><p>For example, if I had a simple ASCII text protocol delimited by '\n' and the input was the following:</p><p><pre>
+size records.</p><p>Instances of this class take as input <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">org.vertx.scala.core.buffer.Buffer</a> instances containing raw bytes, and output records.</p><p>For example, if I had a simple ASCII text protocol delimited by '\n' and the input was the following:</p><p><pre>
 buffer1:HELLO\nHOW ARE Y
 buffer2:OU?\nI AM
 buffer3: DOING OK
@@ -298,7 +298,7 @@ a 1-1 byte-char mapping. TODO extend this class to cope with arbitrary character
 Please do not use this for non latin-1 characters
 </p><div class="fullcomment"><div class="comment cmt"><p>Helper method to convert a latin-1 String to an array of bytes for use as a delimiter
 Please do not use this for non latin-1 characters
-</p></div><dl class="paramcmts block"><dt class="param">str</dt><dd class="cmt"></dd><dt>returns</dt><dd class="cmt"><p>The byte[] form of the string
+</p></div><dl class="paramcmts block"><dt class="param">str</dt><dd class="cmt"><p>string to convert</p></dd><dt>returns</dt><dd class="cmt"><p>The byte[] form of the string
 </p></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
@@ -325,9 +325,9 @@ Please do not use this for non latin-1 characters
         <span class="name">newDelimited</span><span class="params">(<span name="delim">delim: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>, <span name="handler">handler: (<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <span class="extype" name="org.vertx.java.core.parsetools.RecordParser">java.core.parsetools.RecordParser</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create a new <code> RecordParser</code> instance, initially in delimited mode, and where the delimiter can be represented
-by the <code> byte[]</code> delim.</p><div class="fullcomment"><div class="comment cmt"><p>Create a new <code> RecordParser</code> instance, initially in delimited mode, and where the delimiter can be represented
-by the <code> byte[]</code> delim.</p><p><code> output</code> Will receive whole records which have been parsed.
+      <p class="shortcomment cmt">Create a new <code>RecordParser</code> instance, initially in delimited mode, and where the delimiter can be represented
+by the <code>byte[]</code> delim.</p><div class="fullcomment"><div class="comment cmt"><p>Create a new <code>RecordParser</code> instance, initially in delimited mode, and where the delimiter can be represented
+by the <code>byte[]</code> delim.</p><p><code>output</code> Will receive whole records which have been parsed.
 </p></div></div>
     </li><li name="org.vertx.scala.core.parsetools.RecordParser#newDelimited" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="newDelimited(delim:String,handler:org.vertx.scala.core.buffer.Buffer=&gt;Unit):org.vertx.java.core.parsetools.RecordParser"></a>
@@ -341,9 +341,9 @@ by the <code> byte[]</code> delim.</p><p><code> output</code> Will receive whole
         <span class="name">newDelimited</span><span class="params">(<span name="delim">delim: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <span class="extype" name="org.vertx.java.core.parsetools.RecordParser">java.core.parsetools.RecordParser</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create a new <code> RecordParser</code> instance, initially in delimited mode, and where the delimiter can be represented
-by the String <code><code> delim endcoded in latin-1 . Don't use this if your String contains other than latin-1 characters.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Create a new <code> RecordParser</code> instance, initially in delimited mode, and where the delimiter can be represented
-by the String <code><code> delim endcoded in latin-1 . Don't use this if your String contains other than latin-1 characters.</code></code></p><p><code> output</code> Will receive whole records which have been parsed.
+      <p class="shortcomment cmt">Create a new <code>RecordParser</code> instance, initially in delimited mode, and where the delimiter can be represented
+by the String delim endcoded in latin-1 .</p><div class="fullcomment"><div class="comment cmt"><p>Create a new <code>RecordParser</code> instance, initially in delimited mode, and where the delimiter can be represented
+by the String delim endcoded in latin-1 . Don't use this if your String contains other than latin-1 characters.</p><p><code>output</code> Will receive whole records which have been parsed.
 </p></div></div>
     </li><li name="org.vertx.scala.core.parsetools.RecordParser#newFixed" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="newFixed(size:Int,handler:org.vertx.scala.core.buffer.Buffer=&gt;Unit):org.vertx.java.core.parsetools.RecordParser"></a>
@@ -357,9 +357,9 @@ by the String <code><code> delim endcoded in latin-1 . Don't use this if your St
         <span class="name">newFixed</span><span class="params">(<span name="size">size: <span class="extype" name="scala.Int">Int</span></span>, <span name="handler">handler: (<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <span class="extype" name="org.vertx.java.core.parsetools.RecordParser">java.core.parsetools.RecordParser</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create a new <code> RecordParser</code> instance, initially in fixed size mode, and where the record size is specified
-by the <code> size</code> parameter.</p><div class="fullcomment"><div class="comment cmt"><p>Create a new <code> RecordParser</code> instance, initially in fixed size mode, and where the record size is specified
-by the <code> size</code> parameter.</p><p><code> output</code> Will receive whole records which have been parsed.
+      <p class="shortcomment cmt">Create a new <code>RecordParser</code> instance, initially in fixed size mode, and where the record size is specified
+by the <code>size</code> parameter.</p><div class="fullcomment"><div class="comment cmt"><p>Create a new <code>RecordParser</code> instance, initially in fixed size mode, and where the record size is specified
+by the <code>size</code> parameter.</p><p><code>output</code> Will receive whole records which have been parsed.
 </p></div></div>
     </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>

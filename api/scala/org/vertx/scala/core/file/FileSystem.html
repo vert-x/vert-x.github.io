@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>FileSystem - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.file.FileSystem</title>
-          <meta name="description" content="FileSystem - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.file.FileSystem" />
-          <meta name="keywords" content="FileSystem mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.file.FileSystem" />
+          <title>FileSystem - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.file.FileSystem</title>
+          <meta name="description" content="FileSystem - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.file.FileSystem" />
+          <meta name="keywords" content="FileSystem lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.file.FileSystem" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -31,18 +31,18 @@
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">FileSystem</span><span class="result"> extends <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
+        <span class="name">FileSystem</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Contains a broad set of operations for manipulating files.</p><p>An asynchronous and a synchronous version of each operation is provided.</p><p>The asynchronous versions take a handler which is called when the operation completes or an error occurs.</p><p>The synchronous versions return the results, or throw exceptions directly.</p><p>It is highly recommended the asynchronous versions are used unless you are sure the operation
 will not block for a significant period of time.</p><p>Instances of FileSystem are thread-safe.</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span>, <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -60,7 +60,7 @@ will not block for a significant period of time.</p><p>Instances of FileSystem a
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.core.file.FileSystem"><span>FileSystem</span></li><li class="in" name="org.vertx.scala.VertxWrapper"><span>VertxWrapper</span></li><li class="in" name="org.vertx.scala.Wrap"><span>Wrap</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.core.file.FileSystem"><span>FileSystem</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -78,41 +78,9 @@ will not block for a significant period of time.</p><p>Instances of FileSystem a
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="org.vertx.scala.core.file.FileSystem#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(internal:org.vertx.java.core.file.FileSystem):org.vertx.scala.core.file.FileSystem"></a>
-      <a id="&lt;init&gt;:FileSystem"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">FileSystem</span><span class="params">(<span name="internal">internal: <span class="extype" name="org.vertx.java.core.file.FileSystem">java.core.file.FileSystem</span></span>)</span>
-      </span>
-      </h4>
-      
-    </li></ol>
-            </div>
+        
 
-        <div id="types" class="types members">
-              <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.file.FileSystem.InternalType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="InternalType=org.vertx.java.core.file.FileSystem"></a>
-      <a id="InternalType:InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">type</span>
-      </span>
-      <span class="symbol">
-        <span class="name">InternalType</span><span class="result"> = <span class="extype" name="org.vertx.java.core.file.FileSystem">java.core.file.FileSystem</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The internal type of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a> → VertxWrapper</dd></dl></div>
-    </li></ol>
-            </div>
+        
 
         
 
@@ -196,6 +164,19 @@ will not block for a significant period of time.</p><p>Instances of FileSystem a
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.file.FileSystem#asJava" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="asJava:org.vertx.java.core.file.FileSystem"></a>
+      <a id="asJava:java.core.file.FileSystem"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asJava</span><span class="result">: <span class="extype" name="org.vertx.java.core.file.FileSystem">java.core.file.FileSystem</span></span>
+      </span>
+      </h4>
+      
     </li><li name="org.vertx.scala.core.file.FileSystem#chmod" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="chmod(path:String,perms:String,dirPerms:String,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
       <a id="chmod(String,String,String,(AsyncResult[Void])⇒Unit):FileSystem"></a>
@@ -208,10 +189,10 @@ will not block for a significant period of time.</p><p>Instances of FileSystem a
         <span class="name">chmod</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="dirPerms">dirPerms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Change the permissions on the file represented by <code> path</code> to <code> perms</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Change the permissions on the file represented by <code> path</code> to <code> perms</code>, asynchronously.
+      <p class="shortcomment cmt">Change the permissions on the file represented by <code>path</code> to <code>perms</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Change the permissions on the file represented by <code>path</code> to <code>perms</code>, asynchronously.
 The permission String takes the form rwxr-x--- as
 specified in {<a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFilePermissions.html">here</a>}.</p><p>If the file is directory then all contents will also have their permissions changed recursively. Any directory permissions will
-be set to <code> dirPerms</code>, whilst any normal file permissions will be set to <code> perms</code>.</p></div></div>
+be set to <code>dirPerms</code>, whilst any normal file permissions will be set to <code>perms</code>.</p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#chmod" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="chmod(path:String,perms:String,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
       <a id="chmod(String,String,(AsyncResult[Void])⇒Unit):FileSystem"></a>
@@ -224,7 +205,7 @@ be set to <code> dirPerms</code>, whilst any normal file permissions will be set
         <span class="name">chmod</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Change the permissions on the file represented by <code> path</code> to <code> perms</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Change the permissions on the file represented by <code> path</code> to <code> perms</code>, asynchronously.
+      <p class="shortcomment cmt">Change the permissions on the file represented by <code>path</code> to <code>perms</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Change the permissions on the file represented by <code>path</code> to <code>perms</code>, asynchronously.
 The permission String takes the form rwxr-x--- as
 specified <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFilePermissions.html">here</a>.</p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#chmodSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
@@ -239,7 +220,7 @@ specified <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/at
         <span class="name">chmodSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="dirPerms">dirPerms: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #chmod(String, String, String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.chmod(String,">String, String, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#chmodSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="chmodSync(path:String,perms:String):org.vertx.scala.core.file.FileSystem"></a>
@@ -253,8 +234,34 @@ specified <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/at
         <span class="name">chmodSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #chmod(String, String, Handler) </code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.chmod(String,">String, Handler)</span>
 </p>
+    </li><li name="org.vertx.scala.core.file.FileSystem#chown" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="chown(path:String,user:Option[String],group:Option[String],handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
+      <a id="chown(String,Option[String],Option[String],(AsyncResult[Void])⇒Unit):FileSystem"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">chown</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="user">user: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="group">group: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Change the ownership on the file represented by <code>path</code> to <code>user</code> and <code>group</code>, asynchronously.</p>
+    </li><li name="org.vertx.scala.core.file.FileSystem#chownSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="chownSync(path:String,user:Option[String],group:Option[String]):org.vertx.scala.core.file.FileSystem"></a>
+      <a id="chownSync(String,Option[String],Option[String]):FileSystem"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">chownSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="user">user: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="group">group: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.chown(String,">Option[String], Option[String], AsyncResult[Void] =&gt; Unit)</span>.</p>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -286,8 +293,8 @@ specified <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/at
         <span class="name">copy</span><span class="params">(<span name="from">from: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="to">to: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="recursive">recursive: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Copy a file from the path <code> from</code> to path <code> to</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Copy a file from the path <code> from</code> to path <code> to</code>, asynchronously.</p><p>If <code> recursive</code> is <code> true</code> and <code> from</code> represents a directory, then the directory and its contents
-will be copied recursively to the destination <code> to</code>.</p><p>The copy will fail if the destination if the destination already exists.</p></div></div>
+      <p class="shortcomment cmt">Copy a file from the path <code>from</code> to path <code>to</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Copy a file from the path <code>from</code> to path <code>to</code>, asynchronously.</p><p>If <code>recursive</code> is <code>true</code> and <code>from</code> represents a directory, then the directory and its contents
+will be copied recursively to the destination <code>to</code>.</p><p>The copy will fail if the destination if the destination already exists.</p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#copy" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="copy(from:String,to:String,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
       <a id="copy(String,String,(AsyncResult[Void])⇒Unit):FileSystem"></a>
@@ -300,7 +307,7 @@ will be copied recursively to the destination <code> to</code>.</p><p>The copy w
         <span class="name">copy</span><span class="params">(<span name="from">from: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="to">to: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Copy a file from the path <code> from</code> to path <code> to</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Copy a file from the path <code> from</code> to path <code> to</code>, asynchronously.</p><p>The copy will fail if the destination already exists.</p></div></div>
+      <p class="shortcomment cmt">Copy a file from the path <code>from</code> to path <code>to</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Copy a file from the path <code>from</code> to path <code>to</code>, asynchronously.</p><p>The copy will fail if the destination already exists.</p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#copySync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="copySync(from:String,to:String,recursive:Boolean):org.vertx.scala.core.file.FileSystem"></a>
       <a id="copySync(String,String,Boolean):FileSystem"></a>
@@ -313,7 +320,7 @@ will be copied recursively to the destination <code> to</code>.</p><p>The copy w
         <span class="name">copySync</span><span class="params">(<span name="from">from: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="to">to: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="recursive">recursive: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #copy(String, String, boolean, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.copy(String,">String, boolean, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#copySync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="copySync(from:String,to:String):org.vertx.scala.core.file.FileSystem"></a>
@@ -327,7 +334,7 @@ will be copied recursively to the destination <code> to</code>.</p><p>The copy w
         <span class="name">copySync</span><span class="params">(<span name="from">from: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="to">to: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #copy(String, String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.copy(String,">String, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#createFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="createFile(path:String,perms:String,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
@@ -341,7 +348,7 @@ will be copied recursively to the destination <code> to</code>.</p><p>The copy w
         <span class="name">createFile</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Creates an empty file with the specified <code> path</code> and permissions <code> perms</code>, asynchronously.</p>
+      <p class="shortcomment cmt">Creates an empty file with the specified <code>path</code> and permissions <code>perms</code>, asynchronously.</p>
     </li><li name="org.vertx.scala.core.file.FileSystem#createFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="createFile(path:String,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
       <a id="createFile(String,(AsyncResult[Void])⇒Unit):FileSystem"></a>
@@ -354,7 +361,7 @@ will be copied recursively to the destination <code> to</code>.</p><p>The copy w
         <span class="name">createFile</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Creates an empty file with the specified <code> path</code>, asynchronously.</p>
+      <p class="shortcomment cmt">Creates an empty file with the specified <code>path</code>, asynchronously.</p>
     </li><li name="org.vertx.scala.core.file.FileSystem#createFileSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="createFileSync(path:String,perms:String):org.vertx.scala.core.file.FileSystem"></a>
       <a id="createFileSync(String,String):FileSystem"></a>
@@ -367,7 +374,7 @@ will be copied recursively to the destination <code> to</code>.</p><p>The copy w
         <span class="name">createFileSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #createFile(String, String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.createFile(String,">String, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#createFileSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="createFileSync(path:String):org.vertx.scala.core.file.FileSystem"></a>
@@ -381,7 +388,7 @@ will be copied recursively to the destination <code> to</code>.</p><p>The copy w
         <span class="name">createFileSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #createFile(String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.createFile(String,">Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#delete" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="delete(path:String,recursive:Boolean,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
@@ -395,7 +402,7 @@ will be copied recursively to the destination <code> to</code>.</p><p>The copy w
         <span class="name">delete</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="recursive">recursive: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Deletes the file represented by the specified <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Deletes the file represented by the specified <code> path</code>, asynchronously.</p><p>If the path represents a directory and <code> recursive = true</code> then the directory and its contents will be
+      <p class="shortcomment cmt">Deletes the file represented by the specified <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Deletes the file represented by the specified <code>path</code>, asynchronously.</p><p>If the path represents a directory and <code>recursive = true</code> then the directory and its contents will be
 deleted recursively.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#delete" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
@@ -410,7 +417,7 @@ deleted recursively.
         <span class="name">delete</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Deletes the file represented by the specified <code> path</code>, asynchronously.</p>
+      <p class="shortcomment cmt">Deletes the file represented by the specified <code>path</code>, asynchronously.</p>
     </li><li name="org.vertx.scala.core.file.FileSystem#deleteSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="deleteSync(path:String,recursive:Boolean):org.vertx.scala.core.file.FileSystem"></a>
       <a id="deleteSync(String,Boolean):FileSystem"></a>
@@ -423,7 +430,7 @@ deleted recursively.
         <span class="name">deleteSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="recursive">recursive: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #delete(String, boolean, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.delete(String,">boolean, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#deleteSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="deleteSync(path:String):org.vertx.scala.core.file.FileSystem"></a>
@@ -437,7 +444,7 @@ deleted recursively.
         <span class="name">deleteSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #delete(String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.delete(String,">Handler)</span>
 </p>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
@@ -477,7 +484,7 @@ deleted recursively.
         <span class="name">exists</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="scala.Boolean">Boolean</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Determines whether the file as specified by the path <code> path</code> exists, asynchronously.</p>
+      <p class="shortcomment cmt">Determines whether the file as specified by the path <code>path</code> exists, asynchronously.</p>
     </li><li name="org.vertx.scala.core.file.FileSystem#existsSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="existsSync(path:String):Boolean"></a>
       <a id="existsSync(String):Boolean"></a>
@@ -490,7 +497,7 @@ deleted recursively.
         <span class="name">existsSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #exists(String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.exists(String,">Handler)</span>
 </p>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
@@ -523,7 +530,7 @@ deleted recursively.
         <span class="name">fsProps</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="FileSystemProps.html" class="extype" name="org.vertx.scala.core.file.FileSystemProps">FileSystemProps</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns properties of the file-system being used by the specified <code> path</code>, asynchronously.</p>
+      <p class="shortcomment cmt">Returns properties of the file-system being used by the specified <code>path</code>, asynchronously.</p>
     </li><li name="org.vertx.scala.core.file.FileSystem#fsPropsSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="fsPropsSync(path:String):org.vertx.scala.core.file.FileSystemProps"></a>
       <a id="fsPropsSync(String):FileSystemProps"></a>
@@ -536,7 +543,7 @@ deleted recursively.
         <span class="name">fsPropsSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="FileSystemProps.html" class="extype" name="org.vertx.scala.core.file.FileSystemProps">FileSystemProps</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #fsProps(String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.fsProps(String,">Handler)</span>
 </p>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
@@ -564,19 +571,6 @@ deleted recursively.
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.file.FileSystem#internal" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="internal:org.vertx.java.core.file.FileSystem"></a>
-      <a id="internal:java.core.file.FileSystem"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">internal</span><span class="result">: <span class="extype" name="org.vertx.java.core.file.FileSystem">java.core.file.FileSystem</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The internal instance of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the wrapped class.</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a> → VertxWrapper</dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -602,7 +596,7 @@ deleted recursively.
         <span class="name">link</span><span class="params">(<span name="link">link: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="existing">existing: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create a hard link on the file system from <code> link</code> to <code> existing</code>, asynchronously.</p>
+      <p class="shortcomment cmt">Create a hard link on the file system from <code>link</code> to <code>existing</code>, asynchronously.</p>
     </li><li name="org.vertx.scala.core.file.FileSystem#linkSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="linkSync(link:String,existing:String):org.vertx.scala.core.file.FileSystem"></a>
       <a id="linkSync(String,String):FileSystem"></a>
@@ -615,7 +609,7 @@ deleted recursively.
         <span class="name">linkSync</span><span class="params">(<span name="link">link: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="existing">existing: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #link(String, String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.link(String,">String, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#lprops" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="lprops(path:String,handler:org.vertx.scala.core.AsyncResult[org.vertx.scala.core.file.FileProps]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
@@ -629,7 +623,7 @@ deleted recursively.
         <span class="name">lprops</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="FileProps.html" class="extype" name="org.vertx.scala.core.file.FileProps">FileProps</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Obtain properties for the link represented by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Obtain properties for the link represented by <code> path</code>, asynchronously.
+      <p class="shortcomment cmt">Obtain properties for the link represented by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Obtain properties for the link represented by <code>path</code>, asynchronously.
 The link will not be followed.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#lpropsSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
@@ -644,7 +638,7 @@ The link will not be followed.
         <span class="name">lpropsSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="FileProps.html" class="extype" name="org.vertx.scala.core.file.FileProps">FileProps</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #lprops(String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.lprops(String,">Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#mkdir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mkdir(path:String,perms:String,createParents:Boolean,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
@@ -658,9 +652,9 @@ The link will not be followed.
         <span class="name">mkdir</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="createParents">createParents: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create the directory represented by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Create the directory represented by <code> path</code>, asynchronously.</p><p>The new directory will be created with permissions as specified by <code> perms</code>.
+      <p class="shortcomment cmt">Create the directory represented by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Create the directory represented by <code>path</code>, asynchronously.</p><p>The new directory will be created with permissions as specified by <code>perms</code>.
 The permission String takes the form rwxr-x--- as specified
-in <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFilePermissions.html">here</a>.</p><p>If <code> createParents</code> is set to <code> true</code> then any non-existent parent directories of the directory
+in <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFilePermissions.html">here</a>.</p><p>If <code>createParents</code> is set to <code>true</code> then any non-existent parent directories of the directory
 will also be created.</p><p>The operation will fail if the directory already exists.</p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#mkdir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mkdir(path:String,perms:String,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
@@ -674,7 +668,7 @@ will also be created.</p><p>The operation will fail if the directory already exi
         <span class="name">mkdir</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create the directory represented by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Create the directory represented by <code> path</code>, asynchronously.</p><p>The new directory will be created with permissions as specified by <code> perms</code>.
+      <p class="shortcomment cmt">Create the directory represented by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Create the directory represented by <code>path</code>, asynchronously.</p><p>The new directory will be created with permissions as specified by <code>perms</code>.
 The permission String takes the form rwxr-x--- as specified
 in <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFilePermissions.html">here</a>.</p><p>The operation will fail if the directory already exists.
 </p></div></div>
@@ -690,7 +684,7 @@ in <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute
         <span class="name">mkdir</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="createParents">createParents: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create the directory represented by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Create the directory represented by <code> path</code>, asynchronously.</p><p>If <code> createParents</code> is set to <code> true</code> then any non-existent parent directories of the directory
+      <p class="shortcomment cmt">Create the directory represented by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Create the directory represented by <code>path</code>, asynchronously.</p><p>If <code>createParents</code> is set to <code>true</code> then any non-existent parent directories of the directory
 will also be created.</p><p>The operation will fail if the directory already exists.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#mkdir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -705,7 +699,7 @@ will also be created.</p><p>The operation will fail if the directory already exi
         <span class="name">mkdir</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create the directory represented by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Create the directory represented by <code> path</code>, asynchronously.</p><p>The operation will fail if the directory already exists.
+      <p class="shortcomment cmt">Create the directory represented by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Create the directory represented by <code>path</code>, asynchronously.</p><p>The operation will fail if the directory already exists.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#mkdirSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="mkdirSync(path:String,perms:String,createParents:Boolean):org.vertx.scala.core.file.FileSystem"></a>
@@ -719,7 +713,7 @@ will also be created.</p><p>The operation will fail if the directory already exi
         <span class="name">mkdirSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="createParents">createParents: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #mkdir(String, String, boolean, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.mkdir(String,">String, boolean, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#mkdirSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="mkdirSync(path:String,perms:String):org.vertx.scala.core.file.FileSystem"></a>
@@ -733,7 +727,7 @@ will also be created.</p><p>The operation will fail if the directory already exi
         <span class="name">mkdirSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #mkdir(String, String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.mkdir(String,">String, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#mkdirSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="mkdirSync(path:String,createParents:Boolean):org.vertx.scala.core.file.FileSystem"></a>
@@ -747,7 +741,7 @@ will also be created.</p><p>The operation will fail if the directory already exi
         <span class="name">mkdirSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="createParents">createParents: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #mkdir(String, boolean, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.mkdir(String,">boolean, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#mkdirSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="mkdirSync(path:String):org.vertx.scala.core.file.FileSystem"></a>
@@ -761,7 +755,7 @@ will also be created.</p><p>The operation will fail if the directory already exi
         <span class="name">mkdirSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #mkdir(String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.mkdir(String,">Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#move" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="move(from:String,to:String,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
@@ -775,7 +769,7 @@ will also be created.</p><p>The operation will fail if the directory already exi
         <span class="name">move</span><span class="params">(<span name="from">from: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="to">to: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Move a file from the path <code> from</code> to path <code> to</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Move a file from the path <code> from</code> to path <code> to</code>, asynchronously.</p><p>The move will fail if the destination already exists.</p></div></div>
+      <p class="shortcomment cmt">Move a file from the path <code>from</code> to path <code>to</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Move a file from the path <code>from</code> to path <code>to</code>, asynchronously.</p><p>The move will fail if the destination already exists.</p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#moveSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="moveSync(from:String,to:String):org.vertx.scala.core.file.FileSystem"></a>
       <a id="moveSync(String,String):FileSystem"></a>
@@ -788,7 +782,7 @@ will also be created.</p><p>The operation will fail if the directory already exi
         <span class="name">moveSync</span><span class="params">(<span name="from">from: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="to">to: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #move(String, String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.move(String,">String, Handler)</span>
 </p>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
@@ -841,10 +835,10 @@ will also be created.</p><p>The operation will fail if the directory already exi
         <span class="name">open</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="read">read: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="write">write: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="createNew">createNew: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="flush">flush: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Open the file represented by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Open the file represented by <code> path</code>, asynchronously.</p><p>If <code> read</code> is <code> true</code> the file will be opened for reading. If <code> write</code> is <code> true</code> the file
+      <p class="shortcomment cmt">Open the file represented by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Open the file represented by <code>path</code>, asynchronously.</p><p>If <code>read</code> is <code>true</code> the file will be opened for reading. If <code>write</code> is <code>true</code> the file
 will be opened for writing.</p><p>If the file does not already exist and
-<code> createNew</code> is <code> true</code> it will be created with the permissions as specified by <code> perms</code>, otherwise
-the operation will fail.</p><p>If <code> flush</code> is <code> true</code> then all writes will be automatically flushed through OS buffers to the underlying
+<code>createNew</code> is <code>true</code> it will be created with the permissions as specified by <code>perms</code>, otherwise
+the operation will fail.</p><p>If <code>flush</code> is <code>true</code> then all writes will be automatically flushed through OS buffers to the underlying
 storage on each write.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#open" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -859,9 +853,9 @@ storage on each write.
         <span class="name">open</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="read">read: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="write">write: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="createNew">createNew: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Open the file represented by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Open the file represented by <code> path</code>, asynchronously.</p><p>If <code> read</code> is <code> true</code> the file will be opened for reading. If <code> write</code> is <code> true</code> the file
+      <p class="shortcomment cmt">Open the file represented by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Open the file represented by <code>path</code>, asynchronously.</p><p>If <code>read</code> is <code>true</code> the file will be opened for reading. If <code>write</code> is <code>true</code> the file
 will be opened for writing.</p><p>If the file does not already exist and
-<code> createNew</code> is <code> true</code> it will be created with the permissions as specified by <code> perms</code>, otherwise
+<code>createNew</code> is <code>true</code> it will be created with the permissions as specified by <code>perms</code>, otherwise
 the operation will fail.</p><p>Write operations will not automatically flush to storage.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#open" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -876,8 +870,8 @@ the operation will fail.</p><p>Write operations will not automatically flush to 
         <span class="name">open</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="createNew">createNew: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Open the file represented by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Open the file represented by <code> path</code>, asynchronously.</p><p>The file is opened for both reading and writing. If the file does not already exist and
-<code> createNew</code> is <code> true</code> it will be created with the permissions as specified by <code> perms</code>, otherwise
+      <p class="shortcomment cmt">Open the file represented by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Open the file represented by <code>path</code>, asynchronously.</p><p>The file is opened for both reading and writing. If the file does not already exist and
+<code>createNew</code> is <code>true</code> it will be created with the permissions as specified by <code>perms</code>, otherwise
 the operation will fail.
 Write operations will not automatically flush to storage.
 </p></div></div>
@@ -893,8 +887,8 @@ Write operations will not automatically flush to storage.
         <span class="name">open</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Open the file represented by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Open the file represented by <code> path</code>, asynchronously.</p><p>The file is opened for both reading and writing. If the file does not already exist it will be created with the
-permissions as specified by <code> perms</code>.
+      <p class="shortcomment cmt">Open the file represented by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Open the file represented by <code>path</code>, asynchronously.</p><p>The file is opened for both reading and writing. If the file does not already exist it will be created with the
+permissions as specified by <code>perms</code>.
 Write operations will not automatically flush to storage.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#open" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -909,7 +903,7 @@ Write operations will not automatically flush to storage.
         <span class="name">open</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Open the file represented by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Open the file represented by <code> path</code>, asynchronously.</p><p>The file is opened for both reading and writing. If the file does not already exist it will be created.
+      <p class="shortcomment cmt">Open the file represented by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Open the file represented by <code>path</code>, asynchronously.</p><p>The file is opened for both reading and writing. If the file does not already exist it will be created.
 Write operations will not automatically flush to storage.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#openSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
@@ -924,7 +918,7 @@ Write operations will not automatically flush to storage.
         <span class="name">openSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="read">read: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="write">write: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="createNew">createNew: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="flush">flush: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #open(String, String, boolean, boolean, boolean, boolean, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.open(String,">String, boolean, boolean, boolean, boolean, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#openSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="openSync(path:String,perms:String,read:Boolean,write:Boolean,createNew:Boolean):org.vertx.scala.core.file.AsyncFile"></a>
@@ -938,7 +932,7 @@ Write operations will not automatically flush to storage.
         <span class="name">openSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="read">read: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="write">write: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="createNew">createNew: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #open(String, String, boolean, boolean, boolean, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.open(String,">String, boolean, boolean, boolean, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#openSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="openSync(path:String,perms:String,createNew:Boolean):org.vertx.scala.core.file.AsyncFile"></a>
@@ -952,7 +946,7 @@ Write operations will not automatically flush to storage.
         <span class="name">openSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="createNew">createNew: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #open(String, String, boolean, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.open(String,">String, boolean, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#openSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="openSync(path:String,perms:String):org.vertx.scala.core.file.AsyncFile"></a>
@@ -966,7 +960,7 @@ Write operations will not automatically flush to storage.
         <span class="name">openSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="perms">perms: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #open(String, String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.open(String,">String, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#openSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="openSync(path:String):org.vertx.scala.core.file.AsyncFile"></a>
@@ -980,7 +974,7 @@ Write operations will not automatically flush to storage.
         <span class="name">openSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #open(String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.open(String,">Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#props" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="props(path:String,handler:org.vertx.scala.core.AsyncResult[org.vertx.scala.core.file.FileProps]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
@@ -994,7 +988,7 @@ Write operations will not automatically flush to storage.
         <span class="name">props</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="FileProps.html" class="extype" name="org.vertx.scala.core.file.FileProps">FileProps</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Obtain properties for the file represented by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Obtain properties for the file represented by <code> path</code>, asynchronously.
+      <p class="shortcomment cmt">Obtain properties for the file represented by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Obtain properties for the file represented by <code>path</code>, asynchronously.
 If the file is a link, the link will be followed.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#propsSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
@@ -1009,7 +1003,7 @@ If the file is a link, the link will be followed.
         <span class="name">propsSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="FileProps.html" class="extype" name="org.vertx.scala.core.file.FileProps">FileProps</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #props(String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.props(String,">Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#readDir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="readDir(path:String,filter:String,handler:org.vertx.scala.core.AsyncResult[Array[String]]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
@@ -1023,7 +1017,7 @@ If the file is a link, the link will be followed.
         <span class="name">readDir</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="filter">filter: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Predef.String">String</span>]]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Read the contents of the directory specified by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Read the contents of the directory specified by <code> path</code>, asynchronously.</p><p>The parameter <code> filter</code> is a regular expression. If <code> filter</code> is specified then only the paths that
+      <p class="shortcomment cmt">Read the contents of the directory specified by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Read the contents of the directory specified by <code>path</code>, asynchronously.</p><p>The parameter <code>filter</code> is a regular expression. If <code>filter</code> is specified then only the paths that
 match  @{filter}will be returned.</p><p>The result is an array of String representing the paths of the files inside the directory.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#readDir" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -1038,7 +1032,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">readDir</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Predef.String">String</span>]]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Read the contents of the directory specified by <code> path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Read the contents of the directory specified by <code> path</code>, asynchronously.</p><p>The result is an array of String representing the paths of the files inside the directory.
+      <p class="shortcomment cmt">Read the contents of the directory specified by <code>path</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Read the contents of the directory specified by <code>path</code>, asynchronously.</p><p>The result is an array of String representing the paths of the files inside the directory.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#readDirSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="readDirSync(path:String,filter:String):Array[String]"></a>
@@ -1052,7 +1046,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">readDirSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="filter">filter: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #readDir(String, String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.readDir(String,">String, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#readDirSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="readDirSync(path:String):Array[String]"></a>
@@ -1066,7 +1060,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">readDirSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #readDir(String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.readDir(String,">Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#readFile" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="readFile(path:String,handler:org.vertx.scala.core.AsyncResult[org.vertx.scala.core.buffer.Buffer]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
@@ -1080,7 +1074,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">readFile</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Reads the entire file as represented by the path <code> path</code> as a <code> Buffer</code>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Reads the entire file as represented by the path <code> path</code> as a <code> Buffer</code>, asynchronously.</p><p>Do not user this method to read very large files or you risk running out of available RAM.
+      <p class="shortcomment cmt">Reads the entire file as represented by the path <code>path</code> as a <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">org.vertx.scala.core.buffer.Buffer</a>, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Reads the entire file as represented by the path <code>path</code> as a <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">org.vertx.scala.core.buffer.Buffer</a>, asynchronously.</p><p>Do not user this method to read very large files or you risk running out of available RAM.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#readFileSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="readFileSync(path:String):org.vertx.scala.core.buffer.Buffer"></a>
@@ -1094,7 +1088,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">readFileSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #readFile(String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.readFile(String,">Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#readSymlink" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="readSymlink(link:String,handler:org.vertx.scala.core.AsyncResult[String]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
@@ -1108,7 +1102,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">readSymlink</span><span class="params">(<span name="link">link: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="scala.Predef.String">String</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns the path representing the file that the symbolic link specified by <code> link</code> points to, asynchronously.</p>
+      <p class="shortcomment cmt">Returns the path representing the file that the symbolic link specified by <code>link</code> points to, asynchronously.</p>
     </li><li name="org.vertx.scala.core.file.FileSystem#readSymlinkSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="readSymlinkSync(link:String):String"></a>
       <a id="readSymlinkSync(String):String"></a>
@@ -1121,7 +1115,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">readSymlinkSync</span><span class="params">(<span name="link">link: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #readSymlink(String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.readSymlink(String,">Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#symlink" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="symlink(link:String,existing:String,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
@@ -1135,7 +1129,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">symlink</span><span class="params">(<span name="link">link: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="existing">existing: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create a symbolic link on the file system from <code> link</code> to <code> existing</code>, asynchronously.</p>
+      <p class="shortcomment cmt">Create a symbolic link on the file system from <code>link</code> to <code>existing</code>, asynchronously.</p>
     </li><li name="org.vertx.scala.core.file.FileSystem#symlinkSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="symlinkSync(link:String,existing:String):org.vertx.scala.core.file.FileSystem"></a>
       <a id="symlinkSync(String,String):FileSystem"></a>
@@ -1148,7 +1142,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">symlinkSync</span><span class="params">(<span name="link">link: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="existing">existing: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #link(String, String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.link(String,">String, Handler)</span>
 </p>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
@@ -1163,21 +1157,6 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.VertxWrapper#toJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toJava():VertxWrapper.this.InternalType"></a>
-      <a id="toJava():InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toJava</span><span class="params">()</span><span class="result">: <a href="#InternalType=org.vertx.java.core.file.FileSystem" class="extmbr" name="org.vertx.scala.core.file.FileSystem.InternalType">InternalType</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Returns the internal type instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the internal type instance.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The internal type instance.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd>VertxWrapper</dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -1203,7 +1182,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">truncate</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="len">len: <span class="extype" name="scala.Long">Long</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Truncate the file represented by <code> path</code> to length <code> len</code> in bytes, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Truncate the file represented by <code> path</code> to length <code> len</code> in bytes, asynchronously.</p><p>The operation will fail if the file does not exist or <code> len</code> is less than <code> zero</code>.
+      <p class="shortcomment cmt">Truncate the file represented by <code>path</code> to length <code>len</code> in bytes, asynchronously.</p><div class="fullcomment"><div class="comment cmt"><p>Truncate the file represented by <code>path</code> to length <code>len</code> in bytes, asynchronously.</p><p>The operation will fail if the file does not exist or <code>len</code> is less than <code>zero</code>.
 </p></div></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#truncateSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="truncateSync(path:String,len:Long):org.vertx.scala.core.file.FileSystem"></a>
@@ -1217,7 +1196,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">truncateSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="len">len: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #truncate(String, long, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.truncate(String,">long, Handler)</span>
 </p>
     </li><li name="org.vertx.scala.core.file.FileSystem#unlink" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="unlink(link:String,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
@@ -1231,7 +1210,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">unlink</span><span class="params">(<span name="link">link: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Unlinks the link on the file system represented by the path <code> link</code>, asynchronously.</p>
+      <p class="shortcomment cmt">Unlinks the link on the file system represented by the path <code>link</code>, asynchronously.</p>
     </li><li name="org.vertx.scala.core.file.FileSystem#unlinkSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="unlinkSync(link:String):org.vertx.scala.core.file.FileSystem"></a>
       <a id="unlinkSync(String):FileSystem"></a>
@@ -1244,7 +1223,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">unlinkSync</span><span class="params">(<span name="link">link: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #unlink(String, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.unlink(String,">Handler)</span>
 </p>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
@@ -1303,8 +1282,8 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.Wrap#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wrap[X](doStuff:=&gt;X):Wrap.this.type"></a>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
       <a id="wrap[X](⇒X):FileSystem.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1312,10 +1291,14 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Wrap.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a>.this.type</span>
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></dd></dl></div>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
     </li><li name="org.vertx.scala.core.file.FileSystem#writeFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="writeFile(path:String,data:org.vertx.scala.core.buffer.Buffer,handler:org.vertx.scala.core.AsyncResult[Void]=&gt;Unit):org.vertx.scala.core.file.FileSystem"></a>
       <a id="writeFile(String,Buffer,(AsyncResult[Void])⇒Unit):FileSystem"></a>
@@ -1328,7 +1311,7 @@ match  @{filter}will be returned.</p><p>The result is an array of String represe
         <span class="name">writeFile</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="data">data: <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>, <span name="handler">handler: (<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="java.lang.Void">Void</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Creates the file, and writes the specified <code> Buffer data</code> to the file represented by the path <code> path</code>,
+      <p class="shortcomment cmt">Creates the file, and writes the specified <code>Buffer data</code> to the file represented by the path <code>path</code>,
 asynchronously.</p>
     </li><li name="org.vertx.scala.core.file.FileSystem#writeFileSync" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="writeFileSync(path:String,data:org.vertx.scala.core.buffer.Buffer):org.vertx.scala.core.file.FileSystem"></a>
@@ -1342,7 +1325,7 @@ asynchronously.</p>
         <span class="name">writeFileSync</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="data">data: <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.file.FileSystem">FileSystem</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Synchronous version of <code> #writeFile(String, Buffer, Handler)</code>
+      <p class="shortcomment cmt">Synchronous version of <span class="extype" name="org.vertx.scala.core.file.FileSystem.writeFile(String,">Buffer, Handler)</span>
 </p>
     </li></ol>
             </div>
@@ -1353,10 +1336,8 @@ asynchronously.</p>
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.vertx.scala.VertxWrapper">
-              <h3>Inherited from <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></h3>
-            </div><div class="parent" name="org.vertx.scala.Wrap">
-              <h3>Inherited from <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></h3>
+        <div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">

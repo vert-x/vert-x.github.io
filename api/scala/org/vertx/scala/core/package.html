@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>core - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core</title>
-          <meta name="description" content="core - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core" />
-          <meta name="keywords" content="core mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core" />
+          <title>core - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core</title>
+          <meta name="description" content="core - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core" />
+          <meta name="keywords" content="core lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -94,6 +94,32 @@
       </span>
       </h4>
       
+    </li><li name="org.vertx.scala.core.ClientSSLSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ClientSSLSupportextendsSelfwithSSLSupport"></a>
+      <a id="ClientSSLSupport:ClientSSLSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ClientSSLSupport.html"><span class="name">ClientSSLSupport</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Supports <span class="extype" name="org.vertx.java.core.ClientSSLSupport">org.vertx.java.core.ClientSSLSupport</span> functionality.</p>
+    </li><li name="org.vertx.scala.core.Closeable" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CloseableextendsAsJava"></a>
+      <a id="Closeable:Closeable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Closeable.html"><span class="name">Closeable</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Signals that an instance can be closed.</p>
     </li><li name="org.vertx.scala.core.FunctionConverters" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="FunctionConvertersextendsAnyRef"></a>
       <a id="FunctionConverters:FunctionConverters"></a>
@@ -121,7 +147,7 @@
       </h4>
       
     </li><li name="org.vertx.scala.core.MultiMap" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="MultiMap=org.vertx.java.core.MultiMap"></a>
+      <a id="MultiMap=scala.collection.mutable.MultiMap[String,String]"></a>
       <a id="MultiMap:MultiMap"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -129,114 +155,101 @@
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">MultiMap</span><span class="result"> = <span class="extype" name="org.vertx.java.core.MultiMap">java.core.MultiMap</span></span>
+        <span class="name">MultiMap</span><span class="result"> = <span class="extype" name="scala.collection.mutable.MultiMap">scala.collection.mutable.MultiMap</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       </h4>
       
+    </li><li name="org.vertx.scala.core.NetworkSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="NetworkSupportextendsSelfwithAsJava"></a>
+      <a id="NetworkSupport:NetworkSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="NetworkSupport.html"><span class="name">NetworkSupport</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Offers methods that can be used to configure a service that provide network services.</p>
+    </li><li name="org.vertx.scala.core.SSLSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SSLSupportextendsSelfwithAsJava"></a>
+      <a id="SSLSupport:SSLSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SSLSupport.html"><span class="name">SSLSupport</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.ServerSSLSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ServerSSLSupportextendsSelfwithSSLSupport"></a>
+      <a id="ServerSSLSupport:ServerSSLSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ServerSSLSupport.html"><span class="name">ServerSSLSupport</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Supports <span class="extype" name="org.vertx.java.core.ServerSSLSupport">org.vertx.java.core.ServerSSLSupport</span> functionality.</p>
+    </li><li name="org.vertx.scala.core.ServerTCPSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ServerTCPSupportextendsSelfwithTCPSupport"></a>
+      <a id="ServerTCPSupport:ServerTCPSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ServerTCPSupport.html"><span class="name">ServerTCPSupport</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Supports <span class="extype" name="org.vertx.java.core.ServerTCPSupport">org.vertx.java.core.ServerTCPSupport</span> functionality.</p>
+    </li><li name="org.vertx.scala.core.TCPSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TCPSupportextendsSelfwithNetworkSupport"></a>
+      <a id="TCPSupport:TCPSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TCPSupport.html"><span class="name">TCPSupport</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Supports <span class="extype" name="org.vertx.java.core.TCPSupport">org.vertx.java.core.TCPSupport</span> functionality.</p>
     </li><li name="org.vertx.scala.core.Vertx" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="VertxextendsAnyRef"></a>
       <a id="Vertx:Vertx"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier">implicit </span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="package$$Vertx.html"><span class="name">Vertx</span></a><span class="result"> extends <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+        <a href="Vertx.html"><span class="name">Vertx</span></a><span class="result"> extends <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
       </span>
       </h4>
-      
-    </li><li name="org.vertx.scala.core.VertxExecutionContext" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="VertxExecutionContextextendsExecutionContext"></a>
-      <a id="VertxExecutionContext:VertxExecutionContext"></a>
+      <p class="comment cmt">The control centre of the Vert.</p>
+    </li><li name="org.vertx.scala.core.VertxAccess" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="VertxAccessextendsAnyRef"></a>
+      <a id="VertxAccess:VertxAccess"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="VertxExecutionContext.html"><span class="name">VertxExecutionContext</span></a><span class="result"> extends <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>
+        <a href="VertxAccess.html"><span class="name">VertxAccess</span></a><span class="result"> extends <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
       </span>
       </h4>
-      
-    </li><li name="org.vertx.scala.core.WrappedClientSSLSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="WrappedClientSSLSupportextendsWrappedSSLSupport"></a>
-      <a id="WrappedClientSSLSupport:WrappedClientSSLSupport"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="WrappedClientSSLSupport.html"><span class="name">WrappedClientSSLSupport</span></a><span class="result"> extends <a href="WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.vertx.scala.core.WrappedCloseable" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="WrappedCloseableextendsVertxWrapper"></a>
-      <a id="WrappedCloseable:WrappedCloseable"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="WrappedCloseable.html"><span class="name">WrappedCloseable</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="WrappedSSLSupportextendsVertxWrapper"></a>
-      <a id="WrappedSSLSupport:WrappedSSLSupport"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="WrappedSSLSupport.html"><span class="name">WrappedSSLSupport</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.vertx.scala.core.WrappedServerSSLSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="WrappedServerSSLSupportextendsWrappedSSLSupport"></a>
-      <a id="WrappedServerSSLSupport:WrappedServerSSLSupport"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="WrappedServerSSLSupport.html"><span class="name">WrappedServerSSLSupport</span></a><span class="result"> extends <a href="WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></span>
-      </span>
-      </h4>
-      <p class="comment cmt"></p>
-    </li><li name="org.vertx.scala.core.WrappedServerTCPSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="WrappedServerTCPSupportextendsWrappedTCPSupport"></a>
-      <a id="WrappedServerTCPSupport:WrappedServerTCPSupport"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="WrappedServerTCPSupport.html"><span class="name">WrappedServerTCPSupport</span></a><span class="result"> extends <a href="WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></span>
-      </span>
-      </h4>
-      <p class="comment cmt"></p>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="WrappedTCPSupportextendsVertxWrapper"></a>
-      <a id="WrappedTCPSupport:WrappedTCPSupport"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="WrappedTCPSupport.html"><span class="name">WrappedTCPSupport</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
-      </span>
-      </h4>
-      
+      <p class="comment cmt">Classes implementing this trait provide direct access to <code>Vertx</code>, <code>Container</code> and <code>Logger</code>.</p>
     </li></ol>
             </div>
 
@@ -257,6 +270,19 @@
       </span>
       </h4>
       
+    </li><li name="org.vertx.scala.core.Vertx" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Vertx"></a>
+      <a id="Vertx:Vertx"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Vertx$.html"><span class="name">Vertx</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Factory for <a href="Vertx.html" class="extype" name="org.vertx.scala.core.Vertx">org.vertx.scala.core.Vertx</a> instances.</p>
     </li><li name="org.vertx.scala.core.VertxExecutionContext" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="VertxExecutionContext"></a>
       <a id="VertxExecutionContext:VertxExecutionContext"></a>
@@ -266,10 +292,10 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="VertxExecutionContext$.html"><span class="name">VertxExecutionContext</span></a><span class="result"> extends <a href="VertxExecutionContext.html" class="extype" name="org.vertx.scala.core.VertxExecutionContext">VertxExecutionContext</a></span>
+        <a href="VertxExecutionContext$.html"><span class="name">VertxExecutionContext</span></a>
       </span>
       </h4>
-      
+      <p class="comment cmt">Vert.</p>
     </li><li name="org.vertx.scala.core.buffer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="buffer"></a>
       <a id="buffer:buffer"></a>
@@ -283,6 +309,19 @@
       </span>
       </h4>
       <p class="comment cmt"></p>
+    </li><li name="org.vertx.scala.core.datagram" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="datagram"></a>
+      <a id="datagram:datagram"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="datagram/package.html"><span class="name">datagram</span></a>
+      </span>
+      </h4>
+      
     </li><li name="org.vertx.scala.core.dns" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="dns"></a>
       <a id="dns:dns"></a>
@@ -335,6 +374,19 @@
       </span>
       </h4>
       
+    </li><li name="org.vertx.scala.core.package#javaVertxToScalaVertx" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="javaVertxToScalaVertx(jvertx:org.vertx.java.core.Vertx):org.vertx.scala.core.Vertx"></a>
+      <a id="javaVertxToScalaVertx(java.core.Vertx):Vertx"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">javaVertxToScalaVertx</span><span class="params">(<span name="jvertx">jvertx: <span class="extype" name="org.vertx.java.core.Vertx">java.core.Vertx</span></span>)</span><span class="result">: <a href="Vertx.html" class="extype" name="org.vertx.scala.core.Vertx">Vertx</a></span>
+      </span>
+      </h4>
+      
     </li><li name="org.vertx.scala.core.json" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="json"></a>
       <a id="json:json"></a>
@@ -375,7 +427,7 @@
       </h4>
       
     </li><li name="org.vertx.scala.core.package#newVertx" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="newVertx(hostname:String):org.vertx.scala.core.package.Vertx"></a>
+      <a id="newVertx(hostname:String):org.vertx.scala.core.Vertx"></a>
       <a id="newVertx(String):Vertx"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -383,12 +435,12 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">newVertx</span><span class="params">(<span name="hostname">hostname: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="package$$Vertx.html" class="extype" name="org.vertx.scala.core.Vertx">Vertx</a></span>
+        <span class="name">newVertx</span><span class="params">(<span name="hostname">hostname: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="Vertx.html" class="extype" name="org.vertx.scala.core.Vertx">Vertx</a></span>
       </span>
       </h4>
       
     </li><li name="org.vertx.scala.core.package#newVertx" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="newVertx(port:Int,hostname:String):org.vertx.scala.core.package.Vertx"></a>
+      <a id="newVertx(port:Int,hostname:String):org.vertx.scala.core.Vertx"></a>
       <a id="newVertx(Int,String):Vertx"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -396,12 +448,12 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">newVertx</span><span class="params">(<span name="port">port: <span class="extype" name="scala.Int">Int</span></span>, <span name="hostname">hostname: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="package$$Vertx.html" class="extype" name="org.vertx.scala.core.Vertx">Vertx</a></span>
+        <span class="name">newVertx</span><span class="params">(<span name="port">port: <span class="extype" name="scala.Int">Int</span></span>, <span name="hostname">hostname: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="Vertx.html" class="extype" name="org.vertx.scala.core.Vertx">Vertx</a></span>
       </span>
       </h4>
       
     </li><li name="org.vertx.scala.core.package#newVertx" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="newVertx():org.vertx.scala.core.package.Vertx"></a>
+      <a id="newVertx():org.vertx.scala.core.Vertx"></a>
       <a id="newVertx():Vertx"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -409,7 +461,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">newVertx</span><span class="params">()</span><span class="result">: <a href="package$$Vertx.html" class="extype" name="org.vertx.scala.core.Vertx">Vertx</a></span>
+        <span class="name">newVertx</span><span class="params">()</span><span class="result">: <a href="Vertx.html" class="extype" name="org.vertx.scala.core.Vertx">Vertx</a></span>
       </span>
       </h4>
       

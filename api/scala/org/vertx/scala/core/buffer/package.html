@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>buffer - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.buffer</title>
-          <meta name="description" content="buffer - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.buffer" />
-          <meta name="keywords" content="buffer mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.buffer" />
+          <title>buffer - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.buffer</title>
+          <meta name="description" content="buffer - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.buffer" />
+          <meta name="keywords" content="buffer lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.buffer" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -82,19 +82,32 @@
         <div id="types" class="types members">
               <h3>Type Members</h3>
               <ol><li name="org.vertx.scala.core.buffer.Buffer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="BufferextendsVertxWrapper"></a>
+      <a id="BufferextendsSelf"></a>
       <a id="Buffer:Buffer"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="Buffer.html"><span class="name">Buffer</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
+        <a href="Buffer.html"><span class="name">Buffer</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span></span>
       </span>
       </h4>
       <p class="comment cmt">A Buffer represents a sequence of zero or more bytes that can be written to or read from, and which expands as
 necessary to accommodate any bytes written to it.</p>
+    </li><li name="org.vertx.scala.core.buffer.BufferSeekType" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="BufferSeekType[T]extendsAnyRef"></a>
+      <a id="BufferSeekType[T]:BufferSeekType[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$BufferSeekType.html"><span class="name">BufferSeekType</span></a><span class="tparams">[<span name="T">T</span>]</span><span class="result"> extends <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4>
+      
     </li><li name="org.vertx.scala.core.buffer.BufferType" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="BufferType[T]extendsAnyRef"></a>
       <a id="BufferType[T]:BufferType[T]"></a>
@@ -141,6 +154,19 @@ necessary to accommodate any bytes written to it.</p>
       </span>
       </h4>
       
+    </li><li name="org.vertx.scala.core.buffer.BufferSeekElem" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BufferSeekElem"></a>
+      <a id="BufferSeekElem:BufferSeekElem"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$BufferSeekElem$.html"><span class="name">BufferSeekElem</span></a><span class="result"> extends <a href="package$$BufferSeekType.html" class="extype" name="org.vertx.scala.core.buffer.BufferSeekType">BufferSeekType</a>[<a href="Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>]</span>
+      </span>
+      </h4>
+      
     </li><li name="org.vertx.scala.core.buffer.ByteElem" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ByteElem"></a>
       <a id="ByteElem:ByteElem"></a>
@@ -164,6 +190,19 @@ necessary to accommodate any bytes written to it.</p>
       </span>
       <span class="symbol">
         <a href="package$$BytesElem$.html"><span class="name">BytesElem</span></a><span class="result"> extends <a href="package$$BufferType.html" class="extype" name="org.vertx.scala.core.buffer.BufferType">BufferType</a>[<span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]]</span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.buffer.BytesSeekElem" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BytesSeekElem"></a>
+      <a id="BytesSeekElem:BytesSeekElem"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$BytesSeekElem$.html"><span class="name">BytesSeekElem</span></a><span class="result"> extends <a href="package$$BufferSeekType.html" class="extype" name="org.vertx.scala.core.buffer.BufferSeekType">BufferSeekType</a>[<span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]]</span>
       </span>
       </h4>
       

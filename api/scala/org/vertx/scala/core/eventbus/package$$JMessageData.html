@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>JMessageData - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.eventbus.JMessageData</title>
-          <meta name="description" content="JMessageData - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.eventbus.JMessageData" />
-          <meta name="keywords" content="JMessageData mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.eventbus.JMessageData" />
+          <title>JMessageData - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.eventbus.JMessageData</title>
+          <meta name="description" content="JMessageData - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.eventbus.JMessageData" />
+          <meta name="keywords" content="JMessageData lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.eventbus.JMessageData" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -102,7 +102,20 @@
 
         <div id="values" class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="org.vertx.scala.core.eventbus.MessageData#data" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+              <ol><li name="org.vertx.scala.core.eventbus.JMessageData#asScala" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="asScala:org.vertx.scala.core.eventbus.package.MessageData"></a>
+      <a id="asScala:MessageData"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asScala</span><span class="result">: <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.eventbus.MessageData#data" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="data:MessageData.this.InternalType"></a>
       <a id="data:InternalType"></a>
       <h4 class="signature">
@@ -154,6 +167,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.eventbus.MessageData#replyWithTimeout" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="replyWithTimeout[A,B](msg:org.vertx.java.core.eventbus.Message[A],timeout:Long,resultHandler:org.vertx.scala.core.Handler[org.vertx.scala.core.AsyncResult[org.vertx.java.core.eventbus.Message[B]]]):Unit"></a>
+      <a id="replyWithTimeout[A,B](java.core.eventbus.Message[A],Long,Handler[AsyncResult[java.core.eventbus.Message[B]]]):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">replyWithTimeout</span><span class="tparams">[<span name="A">A</span>, <span name="B">B</span>]</span><span class="params">(<span name="msg">msg: <span class="extype" name="org.vertx.java.core.eventbus.Message">java.core.eventbus.Message</span>[<span class="extype" name="org.vertx.scala.core.eventbus.MessageData.replyWithTimeout.A">A</span>]</span>, <span name="timeout">timeout: <span class="extype" name="scala.Long">Long</span></span>, <span name="resultHandler">resultHandler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="org.vertx.java.core.eventbus.Message">java.core.eventbus.Message</span>[<span class="extype" name="org.vertx.scala.core.eventbus.MessageData.replyWithTimeout.B">B</span>]]]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></dd></dl></div>
     </li><li name="org.vertx.scala.core.eventbus.MessageData#send" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="send[X](eb:org.vertx.java.core.eventbus.EventBus,address:String,resultHandler:org.vertx.scala.core.Handler[org.vertx.java.core.eventbus.Message[X]]):Unit"></a>
       <a id="send[X](java.core.eventbus.EventBus,String,Handler[java.core.eventbus.Message[X]]):Unit"></a>
@@ -180,19 +206,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.eventbus.JMessageData#toScalaMessageData" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="toScalaMessageData():org.vertx.scala.core.eventbus.package.MessageData"></a>
-      <a id="toScalaMessageData():MessageData"></a>
+    </li><li name="org.vertx.scala.core.eventbus.MessageData#sendWithTimeout" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="sendWithTimeout[X](eb:org.vertx.java.core.eventbus.EventBus,address:String,resultHandler:org.vertx.scala.core.Handler[org.vertx.scala.core.AsyncResult[org.vertx.java.core.eventbus.Message[X]]],timeout:Long):Unit"></a>
+      <a id="sendWithTimeout[X](java.core.eventbus.EventBus,String,Handler[AsyncResult[java.core.eventbus.Message[X]]],Long):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">toScalaMessageData</span><span class="params">()</span><span class="result">: <a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></span>
+        <span class="name">sendWithTimeout</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="eb">eb: <span class="extype" name="org.vertx.java.core.eventbus.EventBus">java.core.eventbus.EventBus</span></span>, <span name="address">address: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="resultHandler">resultHandler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<a href="../package.html#AsyncResult[T]=org.vertx.java.core.AsyncResult[T]" class="extmbr" name="org.vertx.scala.core.AsyncResult">AsyncResult</a>[<span class="extype" name="org.vertx.java.core.eventbus.Message">java.core.eventbus.Message</span>[<span class="extype" name="org.vertx.scala.core.eventbus.MessageData.sendWithTimeout.X">X</span>]]]</span>, <span name="timeout">timeout: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4>
-      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="package$$MessageData.html" class="extype" name="org.vertx.scala.core.eventbus.MessageData">MessageData</a></dd></dl></div>
     </li></ol>
             </div>
 

@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>HttpServerRequest - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.http.HttpServerRequest</title>
-          <meta name="description" content="HttpServerRequest - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.http.HttpServerRequest" />
-          <meta name="keywords" content="HttpServerRequest mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.http.HttpServerRequest" />
+          <title>HttpServerRequest - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.http.HttpServerRequest</title>
+          <meta name="description" content="HttpServerRequest - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.http.HttpServerRequest" />
+          <meta name="keywords" content="HttpServerRequest lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.http.HttpServerRequest" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -31,21 +31,21 @@
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">HttpServerRequest</span><span class="result"> extends <a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> with <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
+        <span class="name">HttpServerRequest</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a server-side HTTP request.</p><p>Instances are created for each request that is handled by the server
-and is passed to the user via the <code> org.vertx.java.core.Handler</code> instance
-registered with the <code> HttpServer</code> using the method <code> HttpServer#requestHandler(org.vertx.java.core.Handler)</code>.</p><p>Each instance of this class is associated with a corresponding <code> HttpServerResponse</code> instance via
-the <code> response</code> field.</p><p>It implements <code> org.vertx.java.core.streams.ReadStream</code> so it can be used with
-<code> org.vertx.java.core.streams.Pump</code> to pump data with flow control.</p><p>Instances of this class are not thread-safe</p></div><div class="toggleContainer block">
+and is passed to the user via the <span class="extype" name="org.vertx.java.core.Handler">org.vertx.java.core.Handler</span> instance
+registered with the <a href="HttpServer.html" class="extype" name="org.vertx.scala.core.http.HttpServer">org.vertx.scala.core.http.HttpServer</a> using the method <span class="extype" name="org.vertx.scala.core.http.HttpServer.requestHandler(org.vertx.java.core.Handler)">org.vertx.scala.core.http.HttpServer.requestHandler(org.vertx.java.core.Handler)</span>.</p><p>Each instance of this class is associated with a corresponding <a href="HttpServerResponse.html" class="extype" name="org.vertx.scala.core.http.HttpServerResponse">org.vertx.scala.core.http.HttpServerResponse</a> instance via
+the <code>response</code> field.</p><p>It implements <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">org.vertx.scala.core.streams.ReadStream</a> so it can be used with
+<a href="../streams/Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a> to pump data with flow control.</p><p>Instances of this class are not thread-safe</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a>, <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>, <a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a>, <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span>, <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a>, <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>, <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>], <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>, <span class="extype" name="org.vertx.scala.AsJava">AsJava</span>, <span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -63,7 +63,7 @@ the <code> response</code> field.</p><p>It implements <code> org.vertx.java.core
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.core.http.HttpServerRequest"><span>HttpServerRequest</span></li><li class="in" name="org.vertx.scala.core.streams.WrappedReadStream"><span>WrappedReadStream</span></li><li class="in" name="org.vertx.scala.core.streams.ReadStream"><span>ReadStream</span></li><li class="in" name="org.vertx.scala.core.streams.WrappedExceptionSupport"><span>WrappedExceptionSupport</span></li><li class="in" name="org.vertx.scala.VertxWrapper"><span>VertxWrapper</span></li><li class="in" name="org.vertx.scala.Wrap"><span>Wrap</span></li><li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.core.http.HttpServerRequest"><span>HttpServerRequest</span></li><li class="in" name="org.vertx.scala.core.streams.ReadStream"><span>ReadStream</span></li><li class="in" name="org.vertx.scala.core.streams.ReadSupport"><span>ReadSupport</span></li><li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="org.vertx.scala.AsJava"><span>AsJava</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -81,39 +81,23 @@ the <code> response</code> field.</p><p>It implements <code> org.vertx.java.core
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="org.vertx.scala.core.http.HttpServerRequest#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(internal:org.vertx.java.core.http.HttpServerRequest):org.vertx.scala.core.http.HttpServerRequest"></a>
-      <a id="&lt;init&gt;:HttpServerRequest"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">HttpServerRequest</span><span class="params">(<span name="internal">internal: <span class="extype" name="org.vertx.java.core.http.HttpServerRequest">java.core.http.HttpServerRequest</span></span>)</span>
-      </span>
-      </h4>
-      
-    </li></ol>
-            </div>
+        
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.http.HttpServerRequest.InternalType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="InternalType=org.vertx.java.core.http.HttpServerRequest"></a>
-      <a id="InternalType:InternalType"></a>
+              <ol><li name="org.vertx.scala.core.http.HttpServerRequest.J" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="J=org.vertx.java.core.http.HttpServerRequest"></a>
+      <a id="J:J"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">InternalType</span><span class="result"> = <span class="extype" name="org.vertx.java.core.http.HttpServerRequest">java.core.http.HttpServerRequest</span></span>
+        <span class="name">J</span><span class="result"> = <span class="extype" name="org.vertx.java.core.http.HttpServerRequest">java.core.http.HttpServerRequest</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">The internal type of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → VertxWrapper → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
+      <p class="shortcomment cmt">The internal type of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a> → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> → AsJava</dd></dl></div>
     </li></ol>
             </div>
 
@@ -213,6 +197,19 @@ the <code> response</code> field.</p><p>It implements <code> org.vertx.java.core
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpServerRequest#asJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asJava:org.vertx.java.core.http.HttpServerRequest"></a>
+      <a id="asJava:java.core.http.HttpServerRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asJava</span><span class="result">: <span class="extype" name="org.vertx.java.core.http.HttpServerRequest">java.core.http.HttpServerRequest</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The internal instance of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a> → AsJava</dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpServerRequest#bodyHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="bodyHandler(handler:org.vertx.scala.core.buffer.Buffer=&gt;Unit):org.vertx.scala.core.http.HttpServerRequest"></a>
       <a id="bodyHandler((Buffer)⇒Unit):HttpServerRequest"></a>
@@ -228,7 +225,8 @@ the <code> response</code> field.</p><p>It implements <code> org.vertx.java.core
       <p class="shortcomment cmt">Convenience method for receiving the entire request body in one piece.</p><div class="fullcomment"><div class="comment cmt"><p>Convenience method for receiving the entire request body in one piece. This saves the user having to manually
 set a data and end handler and append the chunks of the body until the whole body received.
 Don't use this if your request body is large - you could potentially run out of RAM.
-</p></div></div>
+</p></div><dl class="paramcmts block"><dt class="param">handler</dt><dd class="cmt"><p>This handler will be called after all the body has been received
+</p></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -248,8 +246,8 @@ Don't use this if your request body is large - you could potentially run out of 
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#dataHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="dataHandler(handler:org.vertx.scala.core.buffer.Buffer=&gt;Unit):WrappedReadStream.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.ReadStream#dataHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="dataHandler(handler:org.vertx.scala.core.buffer.Buffer=&gt;Unit):ReadStream.this.type"></a>
       <a id="dataHandler((Buffer)⇒Unit):HttpServerRequest.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -260,23 +258,10 @@ Don't use this if your request body is large - you could potentially run out of 
         <span class="name">dataHandler</span><span class="params">(<span name="handler">handler: (<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#dataHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="dataHandler(handler:org.vertx.scala.core.Handler[org.vertx.scala.core.buffer.Buffer]):WrappedReadStream.this.type"></a>
-      <a id="dataHandler(Handler[Buffer]):HttpServerRequest.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">dataHandler</span><span class="params">(<span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>.this.type</span>
-      </span>
-      </h4>
       <p class="shortcomment cmt">Set a data handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set a data handler. As data is read, the handler will be called with the data.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#endHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="endHandler(handler:=&gt;Unit):WrappedReadStream.this.type"></a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ReadStream#endHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="endHandler(handler:=&gt;Unit):ReadStream.this.type"></a>
       <a id="endHandler(⇒Unit):HttpServerRequest.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -287,21 +272,9 @@ Don't use this if your request body is large - you could potentially run out of 
         <span class="name">endHandler</span><span class="params">(<span name="handler">handler: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#endHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="endHandler(handler:org.vertx.scala.core.Handler[Void]):WrappedReadStream.this.type"></a>
-      <a id="endHandler(Handler[Void]):HttpServerRequest.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">endHandler</span><span class="params">(<span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<span class="extype" name="java.lang.Void">Void</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set an end handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an end handler. Once the stream has ended, and there is no more data to be read, this handler will be called.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
+      <p class="shortcomment cmt">Set an end handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an end handler. Once the stream has ended, and there is no more data
+to be read, this handler will be called.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -328,8 +301,8 @@ Don't use this if your request body is large - you could potentially run out of 
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="exceptionHandler(handler:Throwable=&gt;Unit):WrappedExceptionSupport.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.ExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exceptionHandler(handler:Throwable=&gt;Unit):ExceptionSupport.this.type"></a>
       <a id="exceptionHandler((Throwable)⇒Unit):HttpServerRequest.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -341,21 +314,7 @@ Don't use this if your request body is large - you could potentially run out of 
       </span>
       </h4>
       <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="exceptionHandler(handler:org.vertx.java.core.Handler[Throwable]):WrappedExceptionSupport.this.type"></a>
-      <a id="exceptionHandler(java.core.Handler[Throwable]):HttpServerRequest.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: <span class="extype" name="org.vertx.java.core.Handler">java.core.Handler</span>[<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpServerRequest#expectMultiPart" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="expectMultiPart(expect:Boolean):org.vertx.scala.core.http.HttpServerRequest"></a>
       <a id="expectMultiPart(Boolean):HttpServerRequest"></a>
@@ -370,7 +329,7 @@ Don't use this if your request body is large - you could potentially run out of 
       </h4>
       <p class="shortcomment cmt">Call this with true if you are expecting a multi-part form to be submitted in the request
 This must be called before the body of the request has been received.</p><div class="fullcomment"><div class="comment cmt"><p>Call this with true if you are expecting a multi-part form to be submitted in the request
-This must be called before the body of the request has been received.</p></div><dl class="paramcmts block"><dt class="param">expect</dt><dd class="cmt"><p>
+This must be called before the body of the request has been received.</p></div><dl class="paramcmts block"><dt class="param">expect</dt><dd class="cmt"><p><code>true</code> if expecting multi-part form, <code>false</code> otherwise
 </p></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
@@ -400,12 +359,12 @@ This must be called before the body of the request has been received.</p></div><
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">formAttributes</span><span class="params">()</span><span class="result">: <a href="../package.html#MultiMap=org.vertx.java.core.MultiMap" class="extmbr" name="org.vertx.scala.core.MultiMap">MultiMap</a></span>
+        <span class="name">formAttributes</span><span class="params">()</span><span class="result">: <a href="../package.html#MultiMap=scala.collection.mutable.MultiMap[String,String]" class="extmbr" name="org.vertx.scala.core.MultiMap">MultiMap</a></span>
       </span>
       </h4>
       <p class="shortcomment cmt">Returns a map of all form attributes which was found in the request.</p><div class="fullcomment"><div class="comment cmt"><p>Returns a map of all form attributes which was found in the request. Be aware that this message should only get
 called after the endHandler was notified as the map will be filled on-the-fly.
-<code> #expectMultiPart(boolean)</code> must be called first before trying to get the formAttributes
+<span class="extype" name="org.vertx.scala.core.http.HttpServerRequest.expectMultiPart(boolean)">org.vertx.scala.core.http.HttpServerRequest.expectMultiPart(boolean)</span> must be called first before trying to get the formAttributes
 </p></div></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
@@ -442,29 +401,16 @@ called after the endHandler was notified as the map will be filled on-the-fly.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">headers</span><span class="params">()</span><span class="result">: <a href="../package.html#MultiMap=org.vertx.java.core.MultiMap" class="extmbr" name="org.vertx.scala.core.MultiMap">MultiMap</a></span>
+        <span class="name">headers</span><span class="params">()</span><span class="result">: <a href="../package.html#MultiMap=scala.collection.mutable.MultiMap[String,String]" class="extmbr" name="org.vertx.scala.core.MultiMap">MultiMap</a></span>
       </span>
       </h4>
       <p class="shortcomment cmt">A map of all headers in the request, If the request contains multiple headers with the same key, the values
 will be concatenated together into a single header with the same key value, with each value separated by a comma,
 as specified <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2">here</a>.</a></p><div class="fullcomment"><div class="comment cmt"><p>A map of all headers in the request, If the request contains multiple headers with the same key, the values
 will be concatenated together into a single header with the same key value, with each value separated by a comma,
-as specified <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2">here</a>.
-The headers will be automatically lower-cased when they reach the server
+as specified <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2">here</a>.</p><p>The headers will be automatically lower-cased when they reach the server</p><p>This method converts a Java collection into a Scala collection every
+time it gets called, so use it sensibly.
 </p></div></div>
-    </li><li name="org.vertx.scala.core.http.HttpServerRequest#internal" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="internal:org.vertx.java.core.http.HttpServerRequest"></a>
-      <a id="internal:java.core.http.HttpServerRequest"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">internal</span><span class="result">: <span class="extype" name="org.vertx.java.core.http.HttpServerRequest">java.core.http.HttpServerRequest</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The internal instance of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the wrapped class.</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a> → VertxWrapper</dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -478,6 +424,20 @@ The headers will be automatically lower-cased when they reach the server
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpServerRequest#localAddress" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="localAddress():java.net.InetSocketAddress"></a>
+      <a id="localAddress():InetSocketAddress"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">localAddress</span><span class="params">()</span><span class="result">: <span class="extype" name="java.net.InetSocketAddress">InetSocketAddress</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Return the local (server side) address of the server that handles the request
+</p>
     </li><li name="org.vertx.scala.core.http.HttpServerRequest#method" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="method():String"></a>
       <a id="method():String"></a>
@@ -555,10 +515,11 @@ Writing to the socket directly if you don't know what you're doing can easily br
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">params</span><span class="params">()</span><span class="result">: <a href="../package.html#MultiMap=org.vertx.java.core.MultiMap" class="extmbr" name="org.vertx.scala.core.MultiMap">MultiMap</a></span>
+        <span class="name">params</span><span class="params">()</span><span class="result">: <a href="../package.html#MultiMap=scala.collection.mutable.MultiMap[String,String]" class="extmbr" name="org.vertx.scala.core.MultiMap">MultiMap</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns a map of all the parameters in the request.</p><div class="fullcomment"><div class="comment cmt"><p>Returns a map of all the parameters in the request.
+      <p class="shortcomment cmt">Returns a map of all the parameters in the request.</p><div class="fullcomment"><div class="comment cmt"><p>Returns a map of all the parameters in the request.</p><p>This method converts a Java collection into a Scala collection every
+time it gets called, so use it sensibly.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A map of all the parameters in the request.
 </p></dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpServerRequest#path" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -575,8 +536,8 @@ Writing to the socket directly if you don't know what you're doing can easily br
       </h4>
       <p class="shortcomment cmt">The path part of the uri.</p><div class="fullcomment"><div class="comment cmt"><p>The path part of the uri. For example /somepath/somemorepath/someresource.foo
 </p></div></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#pause" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="pause():WrappedReadStream.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.ReadSupport#pause" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="pause():ReadSupport.this.type"></a>
       <a id="pause():HttpServerRequest.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -587,8 +548,8 @@ Writing to the socket directly if you don't know what you're doing can easily br
         <span class="name">pause</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Pause the <code> ReadStream</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Pause the <code> ReadStream</code>. While the stream is paused, no data will be sent to the <code> dataHandler</code>
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
+      <p class="shortcomment cmt">Pause the <code>ReadSupport</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Pause the <code>ReadSupport</code>. While it's paused, no data will be sent to the <code>dataHandler</code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpServerRequest#peerCertificateChain" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="peerCertificateChain():Array[javax.security.cert.X509Certificate]"></a>
       <a id="peerCertificateChain():Array[X509Certificate]"></a>
@@ -643,11 +604,11 @@ Writing to the socket directly if you don't know what you're doing can easily br
         <span class="name">response</span><span class="params">()</span><span class="result">: <a href="HttpServerResponse.html" class="extype" name="org.vertx.scala.core.http.HttpServerResponse">HttpServerResponse</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">The response.</p><div class="fullcomment"><div class="comment cmt"><p>The response. Each instance of this class has an <code> HttpServerResponse</code> instance attached to it. This is used
+      <p class="shortcomment cmt">The response.</p><div class="fullcomment"><div class="comment cmt"><p>The response. Each instance of this class has an <a href="HttpServerResponse.html" class="extype" name="org.vertx.scala.core.http.HttpServerResponse">org.vertx.scala.core.http.HttpServerResponse</a> instance attached to it. This is used
 to send the response back to the client.
 </p></div></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#resume" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="resume():WrappedReadStream.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.ReadSupport#resume" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="resume():ReadSupport.this.type"></a>
       <a id="resume():HttpServerRequest.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -658,8 +619,8 @@ to send the response back to the client.
         <span class="name">resume</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Resume reading.</p><div class="fullcomment"><div class="comment cmt"><p>Resume reading. If the <code> ReadStream</code> has been paused, reading will recommence on it.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
+      <p class="shortcomment cmt">Resume reading.</p><div class="fullcomment"><div class="comment cmt"><p>Resume reading. If the <code>ReadSupport</code> has been paused, reading will recommence on it.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -673,21 +634,6 @@ to send the response back to the client.
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#toJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toJava():WrappedReadStream.this.InternalType"></a>
-      <a id="toJava():InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toJava</span><span class="params">()</span><span class="result">: <a href="#InternalType=org.vertx.java.core.http.HttpServerRequest" class="extmbr" name="org.vertx.scala.core.http.HttpServerRequest.InternalType">InternalType</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Returns the internal type instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the internal type instance.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The internal type instance.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → VertxWrapper → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -702,15 +648,15 @@ to send the response back to the client.
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpServerRequest#uploadHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="uploadHandler(handler:org.vertx.scala.core.Handler[org.vertx.scala.core.http.HttpServerFileUpload]):org.vertx.scala.core.http.HttpServerRequest"></a>
-      <a id="uploadHandler(Handler[HttpServerFileUpload]):HttpServerRequest"></a>
+      <a id="uploadHandler(handler:org.vertx.scala.core.http.HttpServerFileUpload=&gt;Unit):org.vertx.scala.core.http.HttpServerRequest"></a>
+      <a id="uploadHandler((HttpServerFileUpload)⇒Unit):HttpServerRequest"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">uploadHandler</span><span class="params">(<span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<a href="package.html#HttpServerFileUpload=org.vertx.java.core.http.HttpServerFileUpload" class="extmbr" name="org.vertx.scala.core.http.HttpServerFileUpload">HttpServerFileUpload</a>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a></span>
+        <span class="name">uploadHandler</span><span class="params">(<span name="handler">handler: (<a href="HttpServerFileUpload.html" class="extype" name="org.vertx.scala.core.http.HttpServerFileUpload">HttpServerFileUpload</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a></span>
       </span>
       </h4>
       <p class="shortcomment cmt">Set the upload handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set the upload handler. The handler will get notified once a new file upload was received and so allow to
@@ -802,8 +748,8 @@ http://www.somedomain.com/somepath/somemorepath/someresource.foo?someparam=32&am
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.Wrap#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wrap[X](doStuff:=&gt;X):Wrap.this.type"></a>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
       <a id="wrap[X](⇒X):HttpServerRequest.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -811,10 +757,14 @@ http://www.somedomain.com/somepath/somemorepath/someresource.foo?someparam=32&am
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Wrap.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>.this.type</span>
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">HttpServerRequest</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></dd></dl></div>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
     </li></ol>
             </div>
 
@@ -824,18 +774,16 @@ http://www.somedomain.com/somepath/somemorepath/someresource.foo?someparam=32&am
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.vertx.scala.core.streams.WrappedReadStream">
-              <h3>Inherited from <a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.streams.ReadStream">
+        <div class="parent" name="org.vertx.scala.core.streams.ReadStream">
               <h3>Inherited from <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.streams.WrappedExceptionSupport">
-              <h3>Inherited from <a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a></h3>
-            </div><div class="parent" name="org.vertx.scala.VertxWrapper">
-              <h3>Inherited from <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></h3>
-            </div><div class="parent" name="org.vertx.scala.Wrap">
-              <h3>Inherited from <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></h3>
+            </div><div class="parent" name="org.vertx.scala.core.streams.ReadSupport">
+              <h3>Inherited from <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>]</h3>
             </div><div class="parent" name="org.vertx.scala.core.streams.ExceptionSupport">
               <h3>Inherited from <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.AsJava">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></h3>
+            </div><div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">

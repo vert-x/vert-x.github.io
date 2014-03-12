@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>WrappedWriteStream - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.streams.WrappedWriteStream</title>
-          <meta name="description" content="WrappedWriteStream - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.streams.WrappedWriteStream" />
-          <meta name="keywords" content="WrappedWriteStream mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.streams.WrappedWriteStream" />
+          <title>DrainSupport - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.streams.DrainSupport</title>
+          <meta name="description" content="DrainSupport - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.streams.DrainSupport" />
+          <meta name="keywords" content="DrainSupport lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.streams.DrainSupport" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -12,7 +12,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../../index.html';
-            var hash = 'org.vertx.scala.core.streams.WrappedWriteStream';
+            var hash = 'org.vertx.scala.core.streams.DrainSupport';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -26,7 +26,7 @@
       <div id="definition">
         <img src="../../../../../lib/trait_big.png" />
         <p id="owner"><a href="../../../../package.html" class="extype" name="org">org</a>.<a href="../../../package.html" class="extype" name="org.vertx">vertx</a>.<a href="../../package.html" class="extype" name="org.vertx.scala">scala</a>.<a href="../package.html" class="extype" name="org.vertx.scala.core">core</a>.<a href="package.html" class="extype" name="org.vertx.scala.core.streams">streams</a></p>
-        <h1>WrappedWriteStream</h1>
+        <h1>DrainSupport</h1>
       </div>
 
       <h4 id="signature" class="signature">
@@ -35,16 +35,19 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <span class="name">WrappedWriteStream</span><span class="result"> extends <a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> with <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>
+        <span class="name">DrainSupport</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Allows to set a <code>Handler</code> which is notified once the write queue is
+drained again. This way you can stop writing once the write queue consumes
+to much memory and so prevent an OutOfMemoryError.
+</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a>, <a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a>, <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span>, <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a>, <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="org.vertx.scala.AsJava">AsJava</span>, <span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
           <span class="toggle">Known Subclasses</span>
-          <div class="subClasses hiddenContent"><a href="../file/AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">AsyncFile</a>, <a href="../http/HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a>, <a href="../http/HttpServerResponse.html" class="extype" name="org.vertx.scala.core.http.HttpServerResponse">HttpServerResponse</a>, <a href="../net/NetSocket.html" class="extype" name="org.vertx.scala.core.net.NetSocket">NetSocket</a>, <a href="../http/ServerWebSocket.html" class="extype" name="org.vertx.scala.core.http.ServerWebSocket">ServerWebSocket</a>, <a href="../sockjs/SockJSSocket.html" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>, <a href="../http/WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">WebSocket</a>, <a href="WrappedReadWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadWriteStream">WrappedReadWriteStream</a>, <a href="../http/WrappedWebSocketBase.html" class="extype" name="org.vertx.scala.core.http.WrappedWebSocketBase">WrappedWebSocketBase</a></div>
+          <div class="subClasses hiddenContent"><a href="../datagram/DatagramSocket.html" class="extype" name="org.vertx.scala.core.datagram.DatagramSocket">DatagramSocket</a></div>
         </div></div>
         
 
@@ -62,7 +65,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.core.streams.WrappedWriteStream"><span>WrappedWriteStream</span></li><li class="in" name="org.vertx.scala.core.streams.WriteStream"><span>WriteStream</span></li><li class="in" name="org.vertx.scala.core.streams.WrappedExceptionSupport"><span>WrappedExceptionSupport</span></li><li class="in" name="org.vertx.scala.VertxWrapper"><span>VertxWrapper</span></li><li class="in" name="org.vertx.scala.Wrap"><span>Wrap</span></li><li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.core.streams.DrainSupport"><span>DrainSupport</span></li><li class="in" name="org.vertx.scala.AsJava"><span>AsJava</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -84,37 +87,37 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.streams.WriteStream.InternalType" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="InternalType&lt;:org.vertx.java.core.streams.WriteStream[_]"></a>
-      <a id="InternalType:InternalType"></a>
+              <ol><li name="org.vertx.scala.core.streams.DrainSupport.J" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="J&lt;:org.vertx.java.core.streams.DrainSupport[_]"></a>
+      <a id="J:J"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">InternalType</span><span class="result"> &lt;: <span class="extype" name="org.vertx.java.core.streams.WriteStream">java.core.streams.WriteStream</span>[_]</span>
+        <span class="name">J</span><span class="result"> &lt;: <span class="extype" name="org.vertx.java.core.streams.DrainSupport">java.core.streams.DrainSupport</span>[_]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a> → <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
+      <p class="shortcomment cmt">The internal type of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.DrainSupport">DrainSupport</a> → AsJava</dd></dl></div>
     </li></ol>
             </div>
 
         <div id="values" class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="org.vertx.scala.VertxWrapper#internal" visbl="prt" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="internal:VertxWrapper.this.InternalType"></a>
-      <a id="internal:InternalType"></a>
+              <ol><li name="org.vertx.scala.AsJava#asJava" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="asJava:AsJava.this.J"></a>
+      <a id="asJava:J"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">internal</span><span class="result">: <a href="#InternalType&lt;:org.vertx.java.core.streams.WriteStream[_]" class="extmbr" name="org.vertx.scala.core.streams.WrappedWriteStream.InternalType">InternalType</a></span>
+        <span class="name">asJava</span><span class="result">: <a href="#J&lt;:org.vertx.java.core.streams.DrainSupport[_]" class="extmbr" name="org.vertx.scala.core.streams.DrainSupport.J">J</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">The internal instance of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the wrapped class.</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>VertxWrapper</dd></dl></div>
+      <p class="shortcomment cmt">The internal instance of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd>AsJava</dd></dl></div>
     </li></ol>
             </div>
 
@@ -217,36 +220,22 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#drainHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="drainHandler(handler:=&gt;Unit):WrappedWriteStream.this.type"></a>
-      <a id="drainHandler(⇒Unit):WrappedWriteStream.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.DrainSupport#drainHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="drainHandler(handler:=&gt;Unit):DrainSupport.this.type"></a>
+      <a id="drainHandler(⇒Unit):DrainSupport.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">drainHandler</span><span class="params">(<span name="handler">handler: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a>.this.type</span>
+        <span class="name">drainHandler</span><span class="params">(<span name="handler">handler: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.DrainSupport">DrainSupport</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set a drain handler on the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
-queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of this being used.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#drainHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="drainHandler(handler:org.vertx.scala.core.Handler[Void]):WrappedWriteStream.this.type"></a>
-      <a id="drainHandler(Handler[Void]):WrappedWriteStream.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">drainHandler</span><span class="params">(<span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<span class="extype" name="java.lang.Void">Void</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set a drain handler on the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
-queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of this being used.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+      <p class="shortcomment cmt">Set a drain handler on the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Set a drain handler on the stream. If the write queue is full, then the
+handler will be called when the write queue has been reduced to
+maxSize / 2. See <code>Pump</code> for an example of this being used.
+</p></div></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -273,34 +262,6 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="exceptionHandler(handler:Throwable=&gt;Unit):WrappedExceptionSupport.this.type"></a>
-      <a id="exceptionHandler((Throwable)⇒Unit):WrappedWriteStream.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: (<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="exceptionHandler(handler:org.vertx.java.core.Handler[Throwable]):WrappedExceptionSupport.this.type"></a>
-      <a id="exceptionHandler(java.core.Handler[Throwable]):WrappedWriteStream.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: <span class="extype" name="org.vertx.java.core.Handler">java.core.Handler</span>[<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -398,22 +359,23 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#setWriteQueueMaxSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setWriteQueueMaxSize(maxSize:Int):WrappedWriteStream.this.type"></a>
-      <a id="setWriteQueueMaxSize(Int):WrappedWriteStream.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.DrainSupport#setWriteQueueMaxSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setWriteQueueMaxSize(maxSize:Int):DrainSupport.this.type"></a>
+      <a id="setWriteQueueMaxSize(Int):DrainSupport.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">setWriteQueueMaxSize</span><span class="params">(<span name="maxSize">maxSize: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a>.this.type</span>
+        <span class="name">setWriteQueueMaxSize</span><span class="params">(<span name="maxSize">maxSize: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.DrainSupport">DrainSupport</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the maximum size of the write queue to <code> maxSize</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the maximum size of the write queue to <code> maxSize</code>. You will still be able to write to the stream even
-if there is more than <code> maxSize</code> bytes in the write queue. This is used as an indicator by classes such as
-<code> Pump</code> to provide flow control.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+      <p class="shortcomment cmt">Set the maximum size of the write queue to <code>maxSize</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the maximum size of the write queue to <code>maxSize</code>. You will still be
+able to write to the stream even if there is more than <code>maxSize</code> bytes in
+the write queue. This is used as an indicator by classes such as <code>Pump</code>
+to provide flow control.
+</p></div></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -427,21 +389,6 @@ if there is more than <code> maxSize</code> bytes in the write queue. This is us
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#toJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toJava():WrappedWriteStream.this.InternalType"></a>
-      <a id="toJava():InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toJava</span><span class="params">()</span><span class="result">: <a href="#InternalType&lt;:org.vertx.java.core.streams.WriteStream[_]" class="extmbr" name="org.vertx.scala.core.streams.WrappedWriteStream.InternalType">InternalType</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Returns the internal type instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the internal type instance.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The internal type instance.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → VertxWrapper → <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -512,52 +459,38 @@ if there is more than <code> maxSize</code> bytes in the write queue. This is us
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.Wrap#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wrap[X](doStuff:=&gt;X):Wrap.this.type"></a>
-      <a id="wrap[X](⇒X):WrappedWriteStream.this.type"></a>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
+      <a id="wrap[X](⇒X):DrainSupport.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Wrap.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a>.this.type</span>
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.DrainSupport">DrainSupport</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#write" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="write(data:org.vertx.scala.core.buffer.Buffer):WrappedWriteStream.this.type"></a>
-      <a id="write(Buffer):WrappedWriteStream.this.type"></a>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.DrainSupport#writeQueueFull" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="writeQueueFull:Boolean"></a>
+      <a id="writeQueueFull:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">write</span><span class="params">(<span name="data">data: <a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a>.this.type</span>
+        <span class="name">writeQueueFull</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Write some data to the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Write some data to the stream. The data is put on an internal write queue, and the write actually happens
-asynchronously. To avoid running out of memory by putting too much on the write queue,
-check the <code> #writeQueueFull</code> method before writing. This is done automatically if using a <code> Pump</code>.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#writeQueueFull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="writeQueueFull():Boolean"></a>
-      <a id="writeQueueFull():Boolean"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">writeQueueFull</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">This will return <code> true</code> if there are more bytes in the write queue than the value set using <code>
-#setWriteQueueMaxSize</code>
-</p><div class="fullcomment"><div class="comment cmt"><p>This will return <code> true</code> if there are more bytes in the write queue than the value set using <code>
-#setWriteQueueMaxSize</code>
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+      <p class="shortcomment cmt">This will return <code>true</code> if there are more bytes in the write queue than
+the value set using <a href="#setWriteQueueMaxSize(maxSize:Int):DrainSupport.this.type" class="extmbr" name="org.vertx.scala.core.streams.DrainSupport#setWriteQueueMaxSize">org.vertx.scala.core.streams.DrainSupport.setWriteQueueMaxSize</a>
+</p>
     </li></ol>
             </div>
 
@@ -567,16 +500,10 @@ check the <code> #writeQueueFull</code> method before writing. This is done auto
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.vertx.scala.core.streams.WriteStream">
-              <h3>Inherited from <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.streams.WrappedExceptionSupport">
-              <h3>Inherited from <a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a></h3>
-            </div><div class="parent" name="org.vertx.scala.VertxWrapper">
-              <h3>Inherited from <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></h3>
-            </div><div class="parent" name="org.vertx.scala.Wrap">
-              <h3>Inherited from <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.streams.ExceptionSupport">
-              <h3>Inherited from <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></h3>
+        <div class="parent" name="org.vertx.scala.AsJava">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></h3>
+            </div><div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">

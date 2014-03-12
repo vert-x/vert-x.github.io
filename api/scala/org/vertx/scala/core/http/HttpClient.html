@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>HttpClient - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.http.HttpClient</title>
-          <meta name="description" content="HttpClient - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.http.HttpClient" />
-          <meta name="keywords" content="HttpClient mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.http.HttpClient" />
+          <title>HttpClient - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.http.HttpClient</title>
+          <meta name="description" content="HttpClient - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.http.HttpClient" />
+          <meta name="keywords" content="HttpClient lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.http.HttpClient" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -31,22 +31,22 @@
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">HttpClient</span><span class="result"> extends <a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a> with <a href="../WrappedClientSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedClientSSLSupport">WrappedClientSSLSupport</a></span>
+        <span class="name">HttpClient</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a> with <a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>An HTTP client that maintains a pool of connections to a specific host, at a specific port. The client supports
-pipelining of requests.</p><p>As well as HTTP requests, the client can act as a factory for <code> WebSocket websockets</code>.</p><p>If an instance is instantiated from an event loop then the handlers
+pipelining of requests.</p><p>As well as HTTP requests, the client can act as a factory for <code>WebSocket websockets</code>.</p><p>If an instance is instantiated from an event loop then the handlers
 of the instance will always be called on that same event loop.
 If an instance is instantiated from some other arbitrary Java thread (i.e. when running embedded) then
 and event loop will be assigned to the instance and used when any of its handlers
 are called.</p><p>Instances of HttpClient are thread-safe.</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="../WrappedClientSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedClientSSLSupport">WrappedClientSSLSupport</a>, <a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a>, <a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a>, <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span>, <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a>, <a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a>, <a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a>, <a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a>, <span class="extype" name="org.vertx.scala.AsJava">AsJava</span>, <span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -64,7 +64,7 @@ are called.</p><p>Instances of HttpClient are thread-safe.</p></div><div class="
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.core.http.HttpClient"><span>HttpClient</span></li><li class="in" name="org.vertx.scala.core.WrappedClientSSLSupport"><span>WrappedClientSSLSupport</span></li><li class="in" name="org.vertx.scala.core.WrappedSSLSupport"><span>WrappedSSLSupport</span></li><li class="in" name="org.vertx.scala.core.WrappedTCPSupport"><span>WrappedTCPSupport</span></li><li class="in" name="org.vertx.scala.VertxWrapper"><span>VertxWrapper</span></li><li class="in" name="org.vertx.scala.Wrap"><span>Wrap</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.core.http.HttpClient"><span>HttpClient</span></li><li class="in" name="org.vertx.scala.core.ClientSSLSupport"><span>ClientSSLSupport</span></li><li class="in" name="org.vertx.scala.core.SSLSupport"><span>SSLSupport</span></li><li class="in" name="org.vertx.scala.core.TCPSupport"><span>TCPSupport</span></li><li class="in" name="org.vertx.scala.core.NetworkSupport"><span>NetworkSupport</span></li><li class="in" name="org.vertx.scala.AsJava"><span>AsJava</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -82,39 +82,23 @@ are called.</p><p>Instances of HttpClient are thread-safe.</p></div><div class="
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="org.vertx.scala.core.http.HttpClient#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(internal:org.vertx.java.core.http.HttpClient):org.vertx.scala.core.http.HttpClient"></a>
-      <a id="&lt;init&gt;:HttpClient"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">HttpClient</span><span class="params">(<span name="internal">internal: <span class="extype" name="org.vertx.java.core.http.HttpClient">java.core.http.HttpClient</span></span>)</span>
-      </span>
-      </h4>
-      
-    </li></ol>
-            </div>
+        
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.http.HttpClient.InternalType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="InternalType=org.vertx.java.core.http.HttpClient"></a>
-      <a id="InternalType:InternalType"></a>
+              <ol><li name="org.vertx.scala.core.http.HttpClient.J" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="J=org.vertx.java.core.http.HttpClient"></a>
+      <a id="J:J"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">InternalType</span><span class="result"> = <span class="extype" name="org.vertx.java.core.http.HttpClient">java.core.http.HttpClient</span></span>
+        <span class="name">J</span><span class="result"> = <span class="extype" name="org.vertx.java.core.http.HttpClient">java.core.http.HttpClient</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">The internal type of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a> → <a href="../WrappedClientSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedClientSSLSupport">WrappedClientSSLSupport</a> → <a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a> → <a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a> → VertxWrapper</dd></dl></div>
+      <p class="shortcomment cmt">The internal type of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a> → <a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a> → <a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a> → <a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a> → <a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a> → AsJava</dd></dl></div>
     </li></ol>
             </div>
 
@@ -200,6 +184,19 @@ are called.</p><p>Instances of HttpClient are thread-safe.</p></div><div class="
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClient#asJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asJava:org.vertx.java.core.http.HttpClient"></a>
+      <a id="asJava:java.core.http.HttpClient"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asJava</span><span class="result">: <span class="extype" name="org.vertx.java.core.http.HttpClient">java.core.http.HttpClient</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The internal instance of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a> → AsJava</dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -245,7 +242,7 @@ are called.</p><p>Instances of HttpClient are thread-safe.</p></div><div class="
         <span class="name">connect</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This method returns an <code> HttpClientRequest</code> instance which represents an HTTP CONNECT request with the specified <code> uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <code> HttpClientRequest</code> instance which represents an HTTP CONNECT request with the specified <code> uri</code>.</p><p>When an HTTP response is received from the server the <code> responseHandler</code> is called passing in the response.
+      <p class="shortcomment cmt">This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP CONNECT request with the specified <code>uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP CONNECT request with the specified <code>uri</code>.</p><p>When an HTTP response is received from the server the <code>responseHandler</code> is called passing in the response.
 </p></div></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#connectWebsocket" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="connectWebsocket(uri:String,wsVersion:org.vertx.scala.core.http.WebSocketVersion,headers:org.vertx.scala.core.MultiMap,wsConnect:org.vertx.scala.core.http.WebSocket=&gt;Unit):org.vertx.scala.core.http.HttpClient"></a>
@@ -256,12 +253,12 @@ are called.</p><p>Instances of HttpClient are thread-safe.</p></div><div class="
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">connectWebsocket</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="wsVersion">wsVersion: <a href="package.html#WebSocketVersion=org.vertx.java.core.http.WebSocketVersion" class="extmbr" name="org.vertx.scala.core.http.WebSocketVersion">WebSocketVersion</a></span>, <span name="headers">headers: <a href="../package.html#MultiMap=org.vertx.java.core.MultiMap" class="extmbr" name="org.vertx.scala.core.MultiMap">MultiMap</a></span>, <span name="wsConnect">wsConnect: (<a href="WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">WebSocket</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
+        <span class="name">connectWebsocket</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="wsVersion">wsVersion: <a href="package.html#WebSocketVersion=org.vertx.java.core.http.WebSocketVersion" class="extmbr" name="org.vertx.scala.core.http.WebSocketVersion">WebSocketVersion</a></span>, <span name="headers">headers: <a href="../package.html#MultiMap=scala.collection.mutable.MultiMap[String,String]" class="extmbr" name="org.vertx.scala.core.MultiMap">MultiMap</a></span>, <span name="wsConnect">wsConnect: (<a href="WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">WebSocket</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Attempt to connect an HTML5 websocket to the specified URI</p><div class="fullcomment"><div class="comment cmt"><p>Attempt to connect an HTML5 websocket to the specified URI</p><p>This version of the method allows you to specify the websockets version using the <code> wsVersion parameter</code>
+      <p class="shortcomment cmt">Attempt to connect an HTML5 websocket to the specified URI</p><div class="fullcomment"><div class="comment cmt"><p>Attempt to connect an HTML5 websocket to the specified URI</p><p>This version of the method allows you to specify the websockets version using the <code>wsVersion parameter</code>
 You can also specify a set of headers to append to the upgrade request
-The connect is done asynchronously and <code> wsConnect</code> is called back with the websocket
+The connect is done asynchronously and <code>wsConnect</code> is called back with the websocket
 </p></div></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#connectWebsocket" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="connectWebsocket(uri:String,wsVersion:org.vertx.scala.core.http.WebSocketVersion,wsConnect:org.vertx.scala.core.http.WebSocket=&gt;Unit):org.vertx.scala.core.http.HttpClient"></a>
@@ -275,8 +272,8 @@ The connect is done asynchronously and <code> wsConnect</code> is called back wi
         <span class="name">connectWebsocket</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="wsVersion">wsVersion: <a href="package.html#WebSocketVersion=org.vertx.java.core.http.WebSocketVersion" class="extmbr" name="org.vertx.scala.core.http.WebSocketVersion">WebSocketVersion</a></span>, <span name="wsConnect">wsConnect: (<a href="WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">WebSocket</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Attempt to connect an HTML5 websocket to the specified URI</p><div class="fullcomment"><div class="comment cmt"><p>Attempt to connect an HTML5 websocket to the specified URI</p><p>This version of the method allows you to specify the websockets version using the <code> wsVersion parameter</code>
-The connect is done asynchronously and <code> wsConnect</code> is called back with the websocket
+      <p class="shortcomment cmt">Attempt to connect an HTML5 websocket to the specified URI</p><div class="fullcomment"><div class="comment cmt"><p>Attempt to connect an HTML5 websocket to the specified URI</p><p>This version of the method allows you to specify the websockets version using the <code>wsVersion parameter</code>
+The connect is done asynchronously and <code>wsConnect</code> is called back with the websocket
 </p></div></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#connectWebsocket" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="connectWebsocket(uri:String,wsConnect:org.vertx.scala.core.http.WebSocket=&gt;Unit):org.vertx.scala.core.http.HttpClient"></a>
@@ -290,7 +287,7 @@ The connect is done asynchronously and <code> wsConnect</code> is called back wi
         <span class="name">connectWebsocket</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="wsConnect">wsConnect: (<a href="WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">WebSocket</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Attempt to connect an HTML5 websocket to the specified URI</p><div class="fullcomment"><div class="comment cmt"><p>Attempt to connect an HTML5 websocket to the specified URI</p><p>The connect is done asynchronously and <code> wsConnect</code> is called back with the websocket
+      <p class="shortcomment cmt">Attempt to connect an HTML5 websocket to the specified URI</p><div class="fullcomment"><div class="comment cmt"><p>Attempt to connect an HTML5 websocket to the specified URI</p><p>The connect is done asynchronously and <code>wsConnect</code> is called back with the websocket
 </p></div></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#delete" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="delete(uri:String,responseHandler:org.vertx.scala.core.http.HttpClientResponse=&gt;Unit):org.vertx.scala.core.http.HttpClientRequest"></a>
@@ -304,7 +301,7 @@ The connect is done asynchronously and <code> wsConnect</code> is called back wi
         <span class="name">delete</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This method returns an <code> HttpClientRequest</code> instance which represents an HTTP DELETE request with the specified <code> uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <code> HttpClientRequest</code> instance which represents an HTTP DELETE request with the specified <code> uri</code>.</p><p>When an HTTP response is received from the server the <code> responseHandler</code> is called passing in the response.
+      <p class="shortcomment cmt">This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP DELETE request with the specified <code>uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP DELETE request with the specified <code>uri</code>.</p><p>When an HTTP response is received from the server the <code>responseHandler</code> is called passing in the response.
 </p></div></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
@@ -379,7 +376,7 @@ The connect is done asynchronously and <code> wsConnect</code> is called back wi
         <span class="name">get</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This method returns an <code> HttpClientRequest</code> instance which represents an HTTP GET request with the specified <code> uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <code> HttpClientRequest</code> instance which represents an HTTP GET request with the specified <code> uri</code>.</p><p>When an HTTP response is received from the server the <code> responseHandler</code> is called passing in the response.
+      <p class="shortcomment cmt">This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP GET request with the specified <code>uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP GET request with the specified <code>uri</code>.</p><p>When an HTTP response is received from the server the <code>responseHandler</code> is called passing in the response.
 </p></div></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
@@ -395,75 +392,88 @@ The connect is done asynchronously and <code> wsConnect</code> is called back wi
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#getConnectTimeout" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getConnectTimeout():Int"></a>
-      <a id="getConnectTimeout():Int"></a>
+      <a id="getConnectTimeout:Int"></a>
+      <a id="getConnectTimeout:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getConnectTimeout</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getConnectTimeout</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The connect timeout in milliseconds
 </p></dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#getHost" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getHost():String"></a>
-      <a id="getHost():String"></a>
+      <a id="getHost:String"></a>
+      <a id="getHost:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getHost</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">getHost</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The host
 </p></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#getKeyStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getKeyStorePassword():String"></a>
-      <a id="getKeyStorePassword():String"></a>
+    </li><li name="org.vertx.scala.core.SSLSupport#getKeyStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getKeyStorePassword:String"></a>
+      <a id="getKeyStorePassword:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getKeyStorePassword</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">getKeyStorePassword</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Get the key store password
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#getKeyStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getKeyStorePath():String"></a>
-      <a id="getKeyStorePath():String"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#getKeyStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getKeyStorePath:String"></a>
+      <a id="getKeyStorePath:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getKeyStorePath</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">getKeyStorePath</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Get the key store path
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#getMaxPoolSize" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="getMaxPoolSize():Int"></a>
-      <a id="getMaxPoolSize():Int"></a>
+      <a id="getMaxPoolSize:Int"></a>
+      <a id="getMaxPoolSize:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getMaxPoolSize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getMaxPoolSize</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt">Returns the maximum number of connections in the pool
 </p>
+    </li><li name="org.vertx.scala.core.http.HttpClient#getMaxWebSocketFrameSize" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getMaxWebSocketFrameSize:Int"></a>
+      <a id="getMaxWebSocketFrameSize:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getMaxWebSocketFrameSize</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Get the  maximum websocket frame size in bytes.</p>
     </li><li name="org.vertx.scala.core.http.HttpClient#getNow" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="getNow(uri:String,headers:org.vertx.scala.core.MultiMap,responseHandler:org.vertx.scala.core.http.HttpClientResponse=&gt;Unit):org.vertx.scala.core.http.HttpClient"></a>
       <a id="getNow(String,MultiMap,(HttpClientResponse)⇒Unit):HttpClient"></a>
@@ -473,11 +483,11 @@ The connect is done asynchronously and <code> wsConnect</code> is called back wi
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getNow</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="headers">headers: <a href="../package.html#MultiMap=org.vertx.java.core.MultiMap" class="extmbr" name="org.vertx.scala.core.MultiMap">MultiMap</a></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
+        <span class="name">getNow</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="headers">headers: <a href="../package.html#MultiMap=scala.collection.mutable.MultiMap[String,String]" class="extmbr" name="org.vertx.scala.core.MultiMap">MultiMap</a></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This method works in the same manner as <code> #getNow(String, org.vertx.java.core.Handler)</code>,
-except that it allows you specify a set of <code> headers</code> that will be sent with the request.</p>
+      <p class="shortcomment cmt">This method works in the same manner as <span class="extype" name="org.vertx.scala.core.http.HttpClient.getNow(String,">org.vertx.java.core.Handler)</span>,
+except that it allows you specify a set of <code>headers</code> that will be sent with the request.</p>
     </li><li name="org.vertx.scala.core.http.HttpClient#getNow" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getNow(uri:String,responseHandler:org.vertx.scala.core.http.HttpClientResponse=&gt;Unit):org.vertx.scala.core.http.HttpClient"></a>
       <a id="getNow(String,(HttpClientResponse)⇒Unit):HttpClient"></a>
@@ -490,109 +500,122 @@ except that it allows you specify a set of <code> headers</code> that will be se
         <span class="name">getNow</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This is a quick version of the <code> #get(String, org.vertx.java.core.Handler)</code>
-method where you do not want to do anything with the request before sending.</p><div class="fullcomment"><div class="comment cmt"><p>This is a quick version of the <code> #get(String, org.vertx.java.core.Handler)</code>
+      <p class="shortcomment cmt">This is a quick version of the <span class="extype" name="org.vertx.scala.core.http.HttpClient.get(String,">org.vertx.java.core.Handler)</span>
+method where you do not want to do anything with the request before sending.</p><div class="fullcomment"><div class="comment cmt"><p>This is a quick version of the <span class="extype" name="org.vertx.scala.core.http.HttpClient.get(String,">org.vertx.java.core.Handler)</span>
 method where you do not want to do anything with the request before sending.</p><p>Normally with any of the HTTP methods you create the request then when you are ready to send it you call
-<code> HttpClientRequest#end()</code> on it. With this method the request is immediately sent.</p><p>When an HTTP response is received from the server the <code> responseHandler</code> is called passing in the response.
+<span class="extype" name="org.vertx.scala.core.http.HttpClientRequest.end()">org.vertx.scala.core.http.HttpClientRequest.end()</span> on it. With this method the request is immediately sent.</p><p>When an HTTP response is received from the server the <code>responseHandler</code> is called passing in the response.
 </p></div></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#getPort" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getPort():Int"></a>
-      <a id="getPort():Int"></a>
+      <a id="getPort:Int"></a>
+      <a id="getPort:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getPort</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getPort</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The port
 </p></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#getReceiveBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getReceiveBufferSize():Int"></a>
-      <a id="getReceiveBufferSize():Int"></a>
+    </li><li name="org.vertx.scala.core.NetworkSupport#getReceiveBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getReceiveBufferSize:Int"></a>
+      <a id="getReceiveBufferSize:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getReceiveBufferSize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getReceiveBufferSize</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The TCP receive buffer size
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#getSendBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getSendBufferSize():Int"></a>
-      <a id="getSendBufferSize():Int"></a>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The receive buffer size
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.NetworkSupport#getSendBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSendBufferSize:Int"></a>
+      <a id="getSendBufferSize:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getSendBufferSize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getSendBufferSize</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The TCP send buffer size
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#getSoLinger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getSoLinger():Int"></a>
-      <a id="getSoLinger():Int"></a>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The send buffer size
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#getSoLinger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSoLinger:Int"></a>
+      <a id="getSoLinger:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getSoLinger</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getSoLinger</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the value of TCP so linger
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#getTrafficClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getTrafficClass():Int"></a>
-      <a id="getTrafficClass():Int"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.NetworkSupport#getTrafficClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getTrafficClass:Int"></a>
+      <a id="getTrafficClass:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getTrafficClass</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">getTrafficClass</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the value of TCP traffic class
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#getTrustStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getTrustStorePassword():String"></a>
-      <a id="getTrustStorePassword():String"></a>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the value of traffic class
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#getTrustStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getTrustStorePassword:String"></a>
+      <a id="getTrustStorePassword:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getTrustStorePassword</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">getTrustStorePassword</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Get trust store password
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#getTrustStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getTrustStorePath():String"></a>
-      <a id="getTrustStorePath():String"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#getTrustStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getTrustStorePath:String"></a>
+      <a id="getTrustStorePath:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getTrustStorePath</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">getTrustStorePath</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Get the trust store path
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClient#getTryUseCompression" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getTryUseCompression:Boolean"></a>
+      <a id="getTryUseCompression:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getTryUseCompression</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Returns <code>true</code> if the <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">org.vertx.scala.core.http.HttpClient</a> should try to use compression.</p>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <a id="hashCode():Int"></a>
@@ -618,21 +641,8 @@ method where you do not want to do anything with the request before sending.</p>
         <span class="name">head</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This method returns an <code> HttpClientRequest</code> instance which represents an HTTP HEAD request with the specified <code> uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <code> HttpClientRequest</code> instance which represents an HTTP HEAD request with the specified <code> uri</code>.</p><p>When an HTTP response is received from the server the <code> responseHandler</code> is called passing in the response.
+      <p class="shortcomment cmt">This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP HEAD request with the specified <code>uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP HEAD request with the specified <code>uri</code>.</p><p>When an HTTP response is received from the server the <code>responseHandler</code> is called passing in the response.
 </p></div></div>
-    </li><li name="org.vertx.scala.core.http.HttpClient#internal" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="internal:org.vertx.java.core.http.HttpClient"></a>
-      <a id="internal:java.core.http.HttpClient"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">internal</span><span class="result">: <span class="extype" name="org.vertx.java.core.http.HttpClient">java.core.http.HttpClient</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The internal instance of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the wrapped class.</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a> → VertxWrapper</dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -647,112 +657,113 @@ method where you do not want to do anything with the request before sending.</p>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#isKeepAlive" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isKeepAlive():Boolean"></a>
-      <a id="isKeepAlive():Boolean"></a>
+      <a id="isKeepAlive:Boolean"></a>
+      <a id="isKeepAlive:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isKeepAlive</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isKeepAlive</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Is the client keep alive?
 </p></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#isReuseAddress" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isReuseAddress():Boolean"></a>
-      <a id="isReuseAddress():Boolean"></a>
+    </li><li name="org.vertx.scala.core.NetworkSupport#isReuseAddress" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isReuseAddress:Boolean"></a>
+      <a id="isReuseAddress:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isReuseAddress</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isReuseAddress</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The value of TCP reuse address
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#isSSL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isSSL():Boolean"></a>
-      <a id="isSSL():Boolean"></a>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The value of reuse address
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#isSSL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isSSL:Boolean"></a>
+      <a id="isSSL:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isSSL</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isSSL</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Is SSL enabled?
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#isTCPKeepAlive" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isTCPKeepAlive():Boolean"></a>
-      <a id="isTCPKeepAlive():Boolean"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#isTCPKeepAlive" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isTCPKeepAlive:Boolean"></a>
+      <a id="isTCPKeepAlive:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isTCPKeepAlive</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isTCPKeepAlive</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>true if TCP keep alive is enabled
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#isTCPNoDelay" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isTCPNoDelay():Boolean"></a>
-      <a id="isTCPNoDelay():Boolean"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#isTCPNoDelay" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isTCPNoDelay:Boolean"></a>
+      <a id="isTCPNoDelay:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isTCPNoDelay</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isTCPNoDelay</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>true if Nagle's algorithm is disabled.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedClientSSLSupport#isTrustAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isTrustAll():Boolean"></a>
-      <a id="isTrustAll():Boolean"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.ClientSSLSupport#isTrustAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isTrustAll:Boolean"></a>
+      <a id="isTrustAll:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isTrustAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isTrustAll</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedClientSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedClientSSLSupport">WrappedClientSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#isUsePooledBuffers" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isUsePooledBuffers():Boolean"></a>
-      <a id="isUsePooledBuffers():Boolean"></a>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>true if this client will trust all server certificates.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#isUsePooledBuffers" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isUsePooledBuffers:Boolean"></a>
+      <a id="isUsePooledBuffers:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isUsePooledBuffers</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isUsePooledBuffers</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code> true</code> if pooled buffers are used
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code>true</code> if pooled buffers are used
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#isVerifyHost" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="isVerifyHost():Boolean"></a>
-      <a id="isVerifyHost():Boolean"></a>
+      <a id="isVerifyHost:Boolean"></a>
+      <a id="isVerifyHost:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isVerifyHost</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isVerifyHost</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>true if this client will validate the remote server's certificate hostname against the requested host
@@ -808,7 +819,7 @@ method where you do not want to do anything with the request before sending.</p>
         <span class="name">options</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This method returns an <code> HttpClientRequest</code> instance which represents an HTTP OPTIONS request with the specified <code> uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <code> HttpClientRequest</code> instance which represents an HTTP OPTIONS request with the specified <code> uri</code>.</p><p>When an HTTP response is received from the server the <code> responseHandler</code> is called passing in the response.
+      <p class="shortcomment cmt">This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP OPTIONS request with the specified <code>uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP OPTIONS request with the specified <code>uri</code>.</p><p>When an HTTP response is received from the server the <code>responseHandler</code> is called passing in the response.
 </p></div></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#patch" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="patch(uri:String,responseHandler:org.vertx.scala.core.http.HttpClientResponse=&gt;Unit):org.vertx.scala.core.http.HttpClientRequest"></a>
@@ -822,7 +833,7 @@ method where you do not want to do anything with the request before sending.</p>
         <span class="name">patch</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This method returns an <code> HttpClientRequest</code> instance which represents an HTTP PATCH request with the specified <code> uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <code> HttpClientRequest</code> instance which represents an HTTP PATCH request with the specified <code> uri</code>.</p><p>When an HTTP response is received from the server the <code> responseHandler</code> is called passing in the response.
+      <p class="shortcomment cmt">This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP PATCH request with the specified <code>uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP PATCH request with the specified <code>uri</code>.</p><p>When an HTTP response is received from the server the <code>responseHandler</code> is called passing in the response.
 </p></div></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#post" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="post(uri:String,responseHandler:org.vertx.scala.core.http.HttpClientResponse=&gt;Unit):org.vertx.scala.core.http.HttpClientRequest"></a>
@@ -836,7 +847,7 @@ method where you do not want to do anything with the request before sending.</p>
         <span class="name">post</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This method returns an <code> HttpClientRequest</code> instance which represents an HTTP POST request with the specified <code> uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <code> HttpClientRequest</code> instance which represents an HTTP POST request with the specified <code> uri</code>.</p><p>When an HTTP response is received from the server the <code> responseHandler</code> is called passing in the response.
+      <p class="shortcomment cmt">This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP POST request with the specified <code>uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP POST request with the specified <code>uri</code>.</p><p>When an HTTP response is received from the server the <code>responseHandler</code> is called passing in the response.
 </p></div></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#put" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="put(uri:String,responseHandler:org.vertx.scala.core.http.HttpClientResponse=&gt;Unit):org.vertx.scala.core.http.HttpClientRequest"></a>
@@ -850,7 +861,7 @@ method where you do not want to do anything with the request before sending.</p>
         <span class="name">put</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This method returns an <code> HttpClientRequest</code> instance which represents an HTTP PUT request with the specified <code> uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <code> HttpClientRequest</code> instance which represents an HTTP PUT request with the specified <code> uri</code>.</p><p>When an HTTP response is received from the server the <code> responseHandler</code> is called passing in the response.
+      <p class="shortcomment cmt">This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP PUT request with the specified <code>uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP PUT request with the specified <code>uri</code>.</p><p>When an HTTP response is received from the server the <code>responseHandler</code> is called passing in the response.
 </p></div></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#request" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="request(method:String,uri:String,responseHandler:org.vertx.scala.core.http.HttpClientResponse=&gt;Unit):org.vertx.scala.core.http.HttpClientRequest"></a>
@@ -864,8 +875,8 @@ method where you do not want to do anything with the request before sending.</p>
         <span class="name">request</span><span class="params">(<span name="method">method: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This method returns an <code> HttpClientRequest</code> instance which represents an HTTP request with the specified <code> uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <code> HttpClientRequest</code> instance which represents an HTTP request with the specified <code> uri</code>.
-The specific HTTP method (e.g. GET, POST, PUT etc) is specified using the parameter <code> method</code></p><p>When an HTTP response is received from the server the <code> responseHandler</code> is called passing in the response.
+      <p class="shortcomment cmt">This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP request with the specified <code>uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP request with the specified <code>uri</code>.
+The specific HTTP method (e.g. GET, POST, PUT etc) is specified using the parameter <code>method</code></p><p>When an HTTP response is received from the server the <code>responseHandler</code> is called passing in the response.
 </p></div></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#setConnectTimeout" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setConnectTimeout(timeout:Int):org.vertx.scala.core.http.HttpClient"></a>
@@ -893,8 +904,8 @@ The specific HTTP method (e.g. GET, POST, PUT etc) is specified using the parame
         <span class="name">setHost</span><span class="params">(<span name="host">host: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the host that the client will attempt to connect to the server on to <code> host</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the host that the client will attempt to connect to the server on to <code> host</code>. The default value is
-<code> localhost</code></p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+      <p class="shortcomment cmt">Set the host that the client will attempt to connect to the server on to <code>host</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the host that the client will attempt to connect to the server on to <code>host</code>. The default value is
+<code>localhost</code></p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
 </p></dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#setKeepAlive" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setKeepAlive(keepAlive:Boolean):org.vertx.scala.core.http.HttpClient"></a>
@@ -908,15 +919,15 @@ The specific HTTP method (e.g. GET, POST, PUT etc) is specified using the parame
         <span class="name">setKeepAlive</span><span class="params">(<span name="keepAlive">keepAlive: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">If <code> keepAlive</code> is <code> true</code> then, after the request has ended the connection will be returned to the pool
-where it can be used by another request.</p><div class="fullcomment"><div class="comment cmt"><p>If <code> keepAlive</code> is <code> true</code> then, after the request has ended the connection will be returned to the pool
+      <p class="shortcomment cmt">If <code>keepAlive</code> is <code>true</code> then, after the request has ended the connection will be returned to the pool
+where it can be used by another request.</p><div class="fullcomment"><div class="comment cmt"><p>If <code>keepAlive</code> is <code>true</code> then, after the request has ended the connection will be returned to the pool
 where it can be used by another request. In this manner, many HTTP requests can be pipe-lined over an HTTP connection.
-Keep alive connections will not be closed until the <code> #close() close()</code> method is invoked.</p><p>If <code> keepAlive</code> is <code> false</code> then a new connection will be created for each request and it won't ever go in the pool,
+Keep alive connections will not be closed until the <span class="extype" name="org.vertx.scala.core.http.HttpClient.close()">org.vertx.scala.core.http.HttpClient.close()</span> method is invoked.</p><p>If <code>keepAlive</code> is <code>false</code> then a new connection will be created for each request and it won't ever go in the pool,
 the connection will closed after the response has been received. Even with no keep alive,
-the client will not allow more than <code> #getMaxPoolSize()</code> connections to be created at any one time.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+the client will not allow more than <span class="extype" name="org.vertx.scala.core.http.HttpClient.getMaxPoolSize()">org.vertx.scala.core.http.HttpClient.getMaxPoolSize()</span> connections to be created at any one time.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
 </p></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#setKeyStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setKeyStorePassword(pwd:String):WrappedSSLSupport.this.type"></a>
+    </li><li name="org.vertx.scala.core.SSLSupport#setKeyStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setKeyStorePassword(pwd:String):SSLSupport.this.type"></a>
       <a id="setKeyStorePassword(String):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -927,11 +938,11 @@ the client will not allow more than <code> #getMaxPoolSize()</code> connections 
         <span class="name">setKeyStorePassword</span><span class="params">(<span name="pwd">pwd: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the password for the SSL key store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the password for the SSL key store. This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)</code>
-has been set to <code> true</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#setKeyStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setKeyStorePath(path:String):WrappedSSLSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the password for the SSL key store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the password for the SSL key store. This method should only be used in SSL mode, i.e. after
+<span class="extype" name="org.vertx.scala.core.SSLSupport.setSSL(boolean)">org.vertx.scala.core.SSLSupport.setSSL(boolean)</span> has been set to <code>true</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#setKeyStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setKeyStorePath(path:String):SSLSupport.this.type"></a>
       <a id="setKeyStorePath(String):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -942,10 +953,10 @@ has been set to <code> true</code>.</p></div><dl class="paramcmts block"><dt>ret
         <span class="name">setKeyStorePath</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the path to the SSL key store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the path to the SSL key store. This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)</code>
-has been set to <code> true</code>.</p><p>The SSL key store is a standard Java Key Store, and will contain the client certificate. Client certificates are
+      <p class="shortcomment cmt">Set the path to the SSL key store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the path to the SSL key store. This method should only be used in SSL
+mode, i.e. after <span class="extype" name="org.vertx.scala.core.SSLSupport.setSSL(boolean)">org.vertx.scala.core.SSLSupport.setSSL(boolean)</span> has been set to <code>true</code>.</p><p>The SSL key store is a standard Java Key Store, and will contain the client certificate. Client certificates are
 only required if the server requests client authentication.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#setMaxPoolSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setMaxPoolSize(maxConnections:Int):org.vertx.scala.core.http.HttpClient"></a>
       <a id="setMaxPoolSize(Int):HttpClient"></a>
@@ -958,7 +969,21 @@ only required if the server requests client authentication.</p></div><dl class="
         <span class="name">setMaxPoolSize</span><span class="params">(<span name="maxConnections">maxConnections: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the maximum pool size</p><div class="fullcomment"><div class="comment cmt"><p>Set the maximum pool size</p><p>The client will maintain up to <code> maxConnections</code> HTTP connections in an internal pool</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+      <p class="shortcomment cmt">Set the maximum pool size</p><div class="fullcomment"><div class="comment cmt"><p>Set the maximum pool size</p><p>The client will maintain up to <code>maxConnections</code> HTTP connections in an internal pool</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+</p></dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClient#setMaxWebSocketFrameSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setMaxWebSocketFrameSize(maxSize:Int):org.vertx.scala.core.http.HttpClient"></a>
+      <a id="setMaxWebSocketFrameSize(Int):HttpClient"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setMaxWebSocketFrameSize</span><span class="params">(<span name="maxSize">maxSize: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Sets the maximum websocket frame size in bytes.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the maximum websocket frame size in bytes. Default is 65536 bytes.</p></div><dl class="paramcmts block"><dt class="param">maxSize</dt><dd class="cmt"><p>The size in bytes
 </p></dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#setPort" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setPort(port:Int):org.vertx.scala.core.http.HttpClient"></a>
@@ -972,11 +997,11 @@ only required if the server requests client authentication.</p></div><dl class="
         <span class="name">setPort</span><span class="params">(<span name="port">port: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the port that the client will attempt to connect to the server on to <code> port</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the port that the client will attempt to connect to the server on to <code> port</code>. The default value is
-<code> 80</code></p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+      <p class="shortcomment cmt">Set the port that the client will attempt to connect to the server on to <code>port</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the port that the client will attempt to connect to the server on to <code>port</code>. The default value is
+<code>80</code></p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
 </p></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setReceiveBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setReceiveBufferSize(size:Int):WrappedTCPSupport.this.type"></a>
+    </li><li name="org.vertx.scala.core.NetworkSupport#setReceiveBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setReceiveBufferSize(size:Int):NetworkSupport.this.type"></a>
       <a id="setReceiveBufferSize(Int):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -987,10 +1012,10 @@ only required if the server requests client authentication.</p></div><dl class="
         <span class="name">setReceiveBufferSize</span><span class="params">(<span name="size">size: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the TCP receive buffer size for connections created by this instance to <code> size</code> in bytes.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP receive buffer size for connections created by this instance to <code> size</code> in bytes.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setReuseAddress" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setReuseAddress(reuse:Boolean):WrappedTCPSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the receive buffer size for connections created by this instance to <code>size</code> in bytes.</p><div class="fullcomment"><div class="comment cmt"><p>Set the receive buffer size for connections created by this instance to <code>size</code> in bytes.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.NetworkSupport#setReuseAddress" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setReuseAddress(reuse:Boolean):NetworkSupport.this.type"></a>
       <a id="setReuseAddress(Boolean):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1001,10 +1026,10 @@ only required if the server requests client authentication.</p></div><dl class="
         <span class="name">setReuseAddress</span><span class="params">(<span name="reuse">reuse: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the TCP reuseAddress setting for connections created by this instance to <code> reuse</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP reuseAddress setting for connections created by this instance to <code> reuse</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#setSSL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setSSL(ssl:Boolean):WrappedSSLSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the reuseAddress setting for connections created by this instance to <code>reuse</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the reuseAddress setting for connections created by this instance to <code>reuse</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#setSSL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setSSL(ssl:Boolean):SSLSupport.this.type"></a>
       <a id="setSSL(Boolean):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1015,10 +1040,10 @@ only required if the server requests client authentication.</p></div><dl class="
         <span class="name">setSSL</span><span class="params">(<span name="ssl">ssl: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">If <code> ssl</code> is <code> true</code>, this signifies that any connections will be SSL connections.</p><div class="fullcomment"><div class="comment cmt"><p>If <code> ssl</code> is <code> true</code>, this signifies that any connections will be SSL connections.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setSendBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setSendBufferSize(size:Int):WrappedTCPSupport.this.type"></a>
+      <p class="shortcomment cmt">If <code>ssl</code> is <code>true</code>, this signifies that any connections will be SSL connections.</p><div class="fullcomment"><div class="comment cmt"><p>If <code>ssl</code> is <code>true</code>, this signifies that any connections will be SSL connections.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.NetworkSupport#setSendBufferSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setSendBufferSize(size:Int):NetworkSupport.this.type"></a>
       <a id="setSendBufferSize(Int):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1029,10 +1054,10 @@ only required if the server requests client authentication.</p></div><dl class="
         <span class="name">setSendBufferSize</span><span class="params">(<span name="size">size: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the TCP send buffer size for connections created by this instance to <code> size</code> in bytes.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP send buffer size for connections created by this instance to <code> size</code> in bytes.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setSoLinger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setSoLinger(linger:Int):WrappedTCPSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the send buffer size for connections created by this instance to <code>size</code> in bytes.</p><div class="fullcomment"><div class="comment cmt"><p>Set the send buffer size for connections created by this instance to <code>size</code> in bytes.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#setSoLinger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setSoLinger(linger:Int):TCPSupport.this.type"></a>
       <a id="setSoLinger(Int):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1043,10 +1068,10 @@ only required if the server requests client authentication.</p></div><dl class="
         <span class="name">setSoLinger</span><span class="params">(<span name="linger">linger: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the TCP soLinger setting for connections created by this instance to <code> linger</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP soLinger setting for connections created by this instance to <code> linger</code>.
-Using a negative value will disable soLinger.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setTCPKeepAlive" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setTCPKeepAlive(keepAlive:Boolean):WrappedTCPSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the TCP soLinger setting for connections created by this instance to <code>linger</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP soLinger setting for connections created by this instance to <code>linger</code>.
+Using a negative value will disable soLinger.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#setTCPKeepAlive" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTCPKeepAlive(keepAlive:Boolean):TCPSupport.this.type"></a>
       <a id="setTCPKeepAlive(Boolean):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1057,10 +1082,10 @@ Using a negative value will disable soLinger.</p></div><dl class="paramcmts bloc
         <span class="name">setTCPKeepAlive</span><span class="params">(<span name="keepAlive">keepAlive: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the TCP keepAlive setting for connections created by this instance to <code> keepAlive</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP keepAlive setting for connections created by this instance to <code> keepAlive</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setTCPNoDelay" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setTCPNoDelay(tcpNoDelay:Boolean):WrappedTCPSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the TCP keepAlive setting for connections created by this instance to <code>keepAlive</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP keepAlive setting for connections created by this instance to <code>keepAlive</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.TCPSupport#setTCPNoDelay" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTCPNoDelay(tcpNoDelay:Boolean):TCPSupport.this.type"></a>
       <a id="setTCPNoDelay(Boolean):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1071,12 +1096,12 @@ Using a negative value will disable soLinger.</p></div><dl class="paramcmts bloc
         <span class="name">setTCPNoDelay</span><span class="params">(<span name="tcpNoDelay">tcpNoDelay: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">If <code> tcpNoDelay</code> is set to <code> true</code> then <a href="http://en.wikipedia.org/wiki/Nagle's_algorithm">Nagle's algorithm</a>
-will turned <b>off</b> for the TCP connections created by this instance.</b></a></p><div class="fullcomment"><div class="comment cmt"><p>If <code> tcpNoDelay</code> is set to <code> true</code> then <a href="http://en.wikipedia.org/wiki/Nagle's_algorithm">Nagle's algorithm</a>
+      <p class="shortcomment cmt">If <code>tcpNoDelay</code> is set to <code>true</code> then <a href="http://en.wikipedia.org/wiki/Nagle's_algorithm">Nagle's algorithm</a>
+will turned <b>off</b> for the TCP connections created by this instance.</b></a></p><div class="fullcomment"><div class="comment cmt"><p>If <code>tcpNoDelay</code> is set to <code>true</code> then <a href="http://en.wikipedia.org/wiki/Nagle's_algorithm">Nagle's algorithm</a>
 will turned <b>off</b> for the TCP connections created by this instance.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setTrafficClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setTrafficClass(trafficClass:Int):WrappedTCPSupport.this.type"></a>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.NetworkSupport#setTrafficClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTrafficClass(trafficClass:Int):NetworkSupport.this.type"></a>
       <a id="setTrafficClass(Int):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1087,10 +1112,10 @@ will turned <b>off</b> for the TCP connections created by this instance.</p></di
         <span class="name">setTrafficClass</span><span class="params">(<span name="trafficClass">trafficClass: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the TCP trafficClass setting for connections created by this instance to <code> trafficClass</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the TCP trafficClass setting for connections created by this instance to <code> trafficClass</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedClientSSLSupport#setTrustAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setTrustAll(trustAll:Boolean):WrappedClientSSLSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the trafficClass setting for connections created by this instance to <code>trafficClass</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the trafficClass setting for connections created by this instance to <code>trafficClass</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.ClientSSLSupport#setTrustAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTrustAll(trustAll:Boolean):ClientSSLSupport.this.type"></a>
       <a id="setTrustAll(Boolean):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1101,9 +1126,12 @@ will turned <b>off</b> for the TCP connections created by this instance.</p></di
         <span class="name">setTrustAll</span><span class="params">(<span name="trustAll">trustAll: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedClientSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedClientSSLSupport">WrappedClientSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#setTrustStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setTrustStorePassword(pwd:String):WrappedSSLSupport.this.type"></a>
+      <p class="shortcomment cmt">If you want an SSL client to trust *all* server certificates rather than match them
+against those in its trust store, you can set this to true.</p><div class="fullcomment"><div class="comment cmt"><p>If you want an SSL client to trust *all* server certificates rather than match them
+against those in its trust store, you can set this to true.</p><p>Use this with caution as you may be exposed to &quot;main in the middle&quot; attacks</p></div><dl class="paramcmts block"><dt class="param">trustAll</dt><dd class="cmt"><p>Set to true if you want to trust all server certificates
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#setTrustStorePassword" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTrustStorePassword(pwd:String):SSLSupport.this.type"></a>
       <a id="setTrustStorePassword(String):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1114,11 +1142,11 @@ will turned <b>off</b> for the TCP connections created by this instance.</p></di
         <span class="name">setTrustStorePassword</span><span class="params">(<span name="pwd">pwd: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the password for the SSL trust store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the password for the SSL trust store. This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)</code>
-has been set to <code> true</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedSSLSupport#setTrustStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setTrustStorePath(path:String):WrappedSSLSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the password for the SSL trust store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the password for the SSL trust store. This method should only be used in SSL mode, i.e. after
+<span class="extype" name="org.vertx.scala.core.SSLSupport.setSSL(boolean)">org.vertx.scala.core.SSLSupport.setSSL(boolean)</span> has been set to <code>true</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.SSLSupport#setTrustStorePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setTrustStorePath(path:String):SSLSupport.this.type"></a>
       <a id="setTrustStorePath(String):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1129,11 +1157,24 @@ has been set to <code> true</code>.</p></div><dl class="paramcmts block"><dt>ret
         <span class="name">setTrustStorePath</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the path to the SSL trust store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the path to the SSL trust store. This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)</code>
-has been set to <code> true</code>.</p><p>The trust store is a standard Java Key Store, and should contain the certificates of any servers that the client trusts.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.WrappedTCPSupport#setUsePooledBuffers" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setUsePooledBuffers(pooledBuffers:Boolean):WrappedTCPSupport.this.type"></a>
+      <p class="shortcomment cmt">Set the path to the SSL trust store.</p><div class="fullcomment"><div class="comment cmt"><p>Set the path to the SSL trust store. This method should only be used in SSL mode, i.e. after
+<span class="extype" name="org.vertx.scala.core.SSLSupport.setSSL(boolean)">org.vertx.scala.core.SSLSupport.setSSL(boolean)</span> has been set to <code>true</code>.</p><p>The trust store is a standard Java Key Store, and should contain the certificates of any servers that the client trusts.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.http.HttpClient#setTryUseCompression" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="setTryUseCompression(tryUseCompression:Boolean):org.vertx.scala.core.http.HttpClient"></a>
+      <a id="setTryUseCompression(Boolean):HttpClient"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setTryUseCompression</span><span class="params">(<span name="tryUseCompression">tryUseCompression: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set if the <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">org.vertx.scala.core.http.HttpClient</a> should try to use compression.</p>
+    </li><li name="org.vertx.scala.core.TCPSupport#setUsePooledBuffers" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setUsePooledBuffers(pooledBuffers:Boolean):TCPSupport.this.type"></a>
       <a id="setUsePooledBuffers(Boolean):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1146,7 +1187,7 @@ has been set to <code> true</code>.</p><p>The trust store is a standard Java Key
       </h4>
       <p class="shortcomment cmt">Set if vertx should use pooled buffers for performance reasons.</p><div class="fullcomment"><div class="comment cmt"><p>Set if vertx should use pooled buffers for performance reasons. Doing so will give the best throughput but
 may need a bit higher memory footprint.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a reference to this so multiple method calls can be chained together
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></dd></dl></div>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></dd></dl></div>
     </li><li name="org.vertx.scala.core.http.HttpClient#setVerifyHost" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setVerifyHost(verifyHost:Boolean):org.vertx.scala.core.http.HttpClient"></a>
       <a id="setVerifyHost(Boolean):HttpClient"></a>
@@ -1159,10 +1200,10 @@ may need a bit higher memory footprint.</p></div><dl class="paramcmts block"><dt
         <span class="name">setVerifyHost</span><span class="params">(<span name="verifyHost">verifyHost: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">If <code> verifyHost</code> is <code> true</code>, then the client will try to validate the remote server's certificate
-hostname against the requested host.</p><div class="fullcomment"><div class="comment cmt"><p>If <code> verifyHost</code> is <code> true</code>, then the client will try to validate the remote server's certificate
+      <p class="shortcomment cmt">If <code>verifyHost</code> is <code>true</code>, then the client will try to validate the remote server's certificate
+hostname against the requested host.</p><div class="fullcomment"><div class="comment cmt"><p>If <code>verifyHost</code> is <code>true</code>, then the client will try to validate the remote server's certificate
 hostname against the requested host. Should default to 'true'.
-This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)</code> has been set to <code> true</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
+This method should only be used in SSL mode, i.e. after <span class="extype" name="org.vertx.scala.core.http.HttpClient.setSSL(boolean)">org.vertx.scala.core.http.HttpClient.setSSL(boolean)</span> has been set to <code>true</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to this, so multiple invocations can be chained together.
 </p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
@@ -1177,21 +1218,6 @@ This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)<
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.VertxWrapper#toJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toJava():VertxWrapper.this.InternalType"></a>
-      <a id="toJava():InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toJava</span><span class="params">()</span><span class="result">: <a href="#InternalType=org.vertx.java.core.http.HttpClient" class="extmbr" name="org.vertx.scala.core.http.HttpClient.InternalType">InternalType</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Returns the internal type instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the internal type instance.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The internal type instance.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd>VertxWrapper</dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -1217,7 +1243,7 @@ This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)<
         <span class="name">trace</span><span class="params">(<span name="uri">uri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="responseHandler">responseHandler: (<a href="HttpClientResponse.html" class="extype" name="org.vertx.scala.core.http.HttpClientResponse">HttpClientResponse</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">HttpClientRequest</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This method returns an <code> HttpClientRequest</code> instance which represents an HTTP TRACE request with the specified <code> uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <code> HttpClientRequest</code> instance which represents an HTTP TRACE request with the specified <code> uri</code>.</p><p>When an HTTP response is received from the server the <code> responseHandler</code> is called passing in the response.
+      <p class="shortcomment cmt">This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP TRACE request with the specified <code>uri</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method returns an <a href="HttpClientRequest.html" class="extype" name="org.vertx.scala.core.http.HttpClientRequest">org.vertx.scala.core.http.HttpClientRequest</a> instance which represents an HTTP TRACE request with the specified <code>uri</code>.</p><p>When an HTTP response is received from the server the <code>responseHandler</code> is called passing in the response.
 </p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
@@ -1276,8 +1302,8 @@ This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)<
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.Wrap#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wrap[X](doStuff:=&gt;X):Wrap.this.type"></a>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
       <a id="wrap[X](⇒X):HttpClient.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -1285,10 +1311,14 @@ This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)<
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Wrap.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.http.HttpClient">HttpClient</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></dd></dl></div>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
     </li></ol>
             </div>
 
@@ -1298,16 +1328,18 @@ This method should only be used in SSL mode, i.e. after <code> #setSSL(boolean)<
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.vertx.scala.core.WrappedClientSSLSupport">
-              <h3>Inherited from <a href="../WrappedClientSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedClientSSLSupport">WrappedClientSSLSupport</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.WrappedSSLSupport">
-              <h3>Inherited from <a href="../WrappedSSLSupport.html" class="extype" name="org.vertx.scala.core.WrappedSSLSupport">WrappedSSLSupport</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.WrappedTCPSupport">
-              <h3>Inherited from <a href="../WrappedTCPSupport.html" class="extype" name="org.vertx.scala.core.WrappedTCPSupport">WrappedTCPSupport</a></h3>
-            </div><div class="parent" name="org.vertx.scala.VertxWrapper">
-              <h3>Inherited from <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></h3>
-            </div><div class="parent" name="org.vertx.scala.Wrap">
-              <h3>Inherited from <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></h3>
+        <div class="parent" name="org.vertx.scala.core.ClientSSLSupport">
+              <h3>Inherited from <a href="../ClientSSLSupport.html" class="extype" name="org.vertx.scala.core.ClientSSLSupport">ClientSSLSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.core.SSLSupport">
+              <h3>Inherited from <a href="../SSLSupport.html" class="extype" name="org.vertx.scala.core.SSLSupport">SSLSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.core.TCPSupport">
+              <h3>Inherited from <a href="../TCPSupport.html" class="extype" name="org.vertx.scala.core.TCPSupport">TCPSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.core.NetworkSupport">
+              <h3>Inherited from <a href="../NetworkSupport.html" class="extype" name="org.vertx.scala.core.NetworkSupport">NetworkSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.AsJava">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></h3>
+            </div><div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">

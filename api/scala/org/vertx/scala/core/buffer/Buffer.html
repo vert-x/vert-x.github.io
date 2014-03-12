@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>Buffer - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.buffer.Buffer</title>
-          <meta name="description" content="Buffer - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.buffer.Buffer" />
-          <meta name="keywords" content="Buffer mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.buffer.Buffer" />
+          <title>Buffer - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.buffer.Buffer</title>
+          <meta name="description" content="Buffer - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.buffer.Buffer" />
+          <meta name="keywords" content="Buffer lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.buffer.Buffer" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -31,24 +31,24 @@
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">Buffer</span><span class="result"> extends <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
+        <span class="name">Buffer</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A Buffer represents a sequence of zero or more bytes that can be written to or read from, and which expands as
-necessary to accommodate any bytes written to it.</p><p>There are two ways to write data to a Buffer: The first method involves methods that take the form <code> setXXX</code>.
+necessary to accommodate any bytes written to it.</p><p>There are two ways to write data to a Buffer: The first method involves methods that take the form <code>setXXX</code>.
 These methods write data into the buffer starting at the specified position. The position does not have to be inside data that
 has already been written to the buffer; the buffer will automatically expand to encompass the position plus any data that needs
-to be written. All positions are measured in bytes and start with zero.</p><p>The second method involves methods that take the form <code> appendXXX</code>; these methods append data
-at the end of the buffer.</p><p>Methods exist to both <code> set</code> and <code> append</code> all primitive types, <code> java.lang.String</code>, <code> java.nio.ByteBuffer</code> and
-other instances of Buffer.</p><p>Data can be read from a buffer by invoking methods which take the form <code> getXXX</code>. These methods take a parameter
+to be written. All positions are measured in bytes and start with zero.</p><p>The second method involves methods that take the form <code>appendXXX</code>; these methods append data
+at the end of the buffer.</p><p>Methods exist to both <code>set</code> and <code>append</code> all primitive types, <span class="extype" name="java.lang.String">java.lang.String</span>}, <span class="extype" name="java.nio.ByteBuffer">java.nio.ByteBuffer</span> and
+other instances of Buffer.</p><p>Data can be read from a buffer by invoking methods which take the form <code>getXXX</code>. These methods take a parameter
 representing the position in the Buffer from where to read data.</p><p>Once a buffer has been written to a socket or other write stream, the same buffer instance can't be written again to another WriteStream.</p><p>Instances of this class are not thread-safe.</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span>, <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -66,7 +66,7 @@ representing the position in the Buffer from where to read data.</p><p>Once a bu
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.core.buffer.Buffer"><span>Buffer</span></li><li class="in" name="org.vertx.scala.VertxWrapper"><span>VertxWrapper</span></li><li class="in" name="org.vertx.scala.Wrap"><span>Wrap</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.core.buffer.Buffer"><span>Buffer</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -84,41 +84,9 @@ representing the position in the Buffer from where to read data.</p><p>Once a bu
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="org.vertx.scala.core.buffer.Buffer#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(internal:org.vertx.java.core.buffer.Buffer):org.vertx.scala.core.buffer.Buffer"></a>
-      <a id="&lt;init&gt;:Buffer"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">Buffer</span><span class="params">(<span name="internal">internal: <span class="extype" name="org.vertx.java.core.buffer.Buffer">java.core.buffer.Buffer</span></span>)</span>
-      </span>
-      </h4>
-      
-    </li></ol>
-            </div>
+        
 
-        <div id="types" class="types members">
-              <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.buffer.Buffer.InternalType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="InternalType=org.vertx.java.core.buffer.Buffer"></a>
-      <a id="InternalType:InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">type</span>
-      </span>
-      <span class="symbol">
-        <span class="name">InternalType</span><span class="result"> = <span class="extype" name="org.vertx.java.core.buffer.Buffer">java.core.buffer.Buffer</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The internal type of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a> → VertxWrapper</dd></dl></div>
-    </li></ol>
-            </div>
+        
 
         
 
@@ -190,6 +158,24 @@ representing the position in the Buffer from where to read data.</p><p>Once a bu
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#append" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="append[T](value:T,offset:Int,len:Int)(implicitevidence$2:org.vertx.scala.core.buffer.BufferSeekType[T]):org.vertx.scala.core.buffer.Buffer"></a>
+      <a id="append[T](T,Int,Int)(BufferSeekType[T]):Buffer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">append</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="value">value: <span class="extype" name="org.vertx.scala.core.buffer.Buffer.append.T">T</span></span>, <span name="offset">offset: <span class="extype" name="scala.Int">Int</span></span>, <span name="len">len: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="package$$BufferSeekType.html" class="extype" name="org.vertx.scala.core.buffer.BufferSeekType">BufferSeekType</a>[<span class="extype" name="org.vertx.scala.core.buffer.Buffer.append.T">T</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Appends the specified <code>T</code> starting at the <code>offset</code> using <code>len</code> to the end of this Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Appends the specified <code>T</code> starting at the <code>offset</code> using <code>len</code> to the end of this Buffer. The buffer will
+expand as necessary to accommodate any bytes written.</p><p>Returns a reference to <code>this</code> so multiple operations can be appended together.
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if <code>len</code> is less than <code>0</code>
+</p></span><span class="cmt">IndexOutOfBoundsException<p>
+        if the specified <code>offset</code> is less than <code>0</code>,
+        if <code>offset</code> + <code>len</code> is greater than the buffer's capacity</p></span></dd></dl></div>
+    </li><li name="org.vertx.scala.core.buffer.Buffer#append" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="append[T](value:T)(implicitevidence$1:org.vertx.scala.core.buffer.BufferType[T]):org.vertx.scala.core.buffer.Buffer"></a>
       <a id="append[T](T)(BufferType[T]):Buffer"></a>
       <h4 class="signature">
@@ -201,9 +187,9 @@ representing the position in the Buffer from where to read data.</p><p>Once a bu
         <span class="name">append</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="value">value: <span class="extype" name="org.vertx.scala.core.buffer.Buffer.append.T">T</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="package$$BufferType.html" class="extype" name="org.vertx.scala.core.buffer.BufferType">BufferType</a>[<span class="extype" name="org.vertx.scala.core.buffer.Buffer.append.T">T</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Appends the specified <code> T</code> to the end of the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Appends the specified <code> T</code> to the end of the Buffer. The buffer will expand as necessary
-to accommodate any bytes written.</p><p>Returns a reference to <code> this</code> so multiple operations can be appended together.
-</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>The value to append to the Buffer.</p></dd><dt>returns</dt><dd class="cmt"><p>A reference to <code> this</code> so multiple operations can be appended together.
+      <p class="shortcomment cmt">Appends the specified <code>T</code> to the end of the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Appends the specified <code>T</code> to the end of the Buffer. The buffer will
+expand as necessary to accommodate any bytes written.</p><p>Returns a reference to <code>this</code> so multiple operations can be appended together.
+</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>The value to append to the Buffer.</p></dd><dt>returns</dt><dd class="cmt"><p>A reference to <code>this</code> so multiple operations can be appended together.
 </p></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
@@ -218,6 +204,19 @@ to accommodate any bytes written.</p><p>Returns a reference to <code> this</code
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.buffer.Buffer#asJava" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="asJava:org.vertx.java.core.buffer.Buffer"></a>
+      <a id="asJava:java.core.buffer.Buffer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asJava</span><span class="result">: <span class="extype" name="org.vertx.java.core.buffer.Buffer">java.core.buffer.Buffer</span></span>
+      </span>
+      </h4>
+      
     </li><li name="org.vertx.scala.core.buffer.Buffer#canEqual" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="canEqual(other:Any):Boolean"></a>
       <a id="canEqual(Any):Boolean"></a>
@@ -320,8 +319,8 @@ to accommodate any bytes written.</p><p>Returns a reference to <code> this</code
         <span class="name">getBuffer</span><span class="params">(<span name="start">start: <span class="extype" name="scala.Int">Int</span></span>, <span name="end">end: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns a copy of a sub-sequence the Buffer as a <code> Buffer</code> starting at position <code> start</code>
-and ending at position <code> end - 1</code>
+      <p class="shortcomment cmt">Returns a copy of a sub-sequence the Buffer as a <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">org.vertx.scala.core.buffer.Buffer</a> starting
+at position <code>start</code> and ending at position <code>end - 1</code>
 </p>
     </li><li name="org.vertx.scala.core.buffer.Buffer#getByte" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getByte(pos:Int):Byte"></a>
@@ -335,22 +334,23 @@ and ending at position <code> end - 1</code>
         <span class="name">getByte</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Byte">Byte</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns the <code> byte</code> at position <code> pos</code> in the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the <code> byte</code> at position <code> pos</code> in the Buffer.
-</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IndexOutOfBoundsException<p>if the specified <code> pos</code> is less than <code> 0</code> or <code> pos + 1</code> is greater than the length of the Buffer.
+      <p class="shortcomment cmt">Returns the <code>byte</code> at position <code>pos</code> in the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the <code>byte</code> at position <code>pos</code> in the Buffer.
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IndexOutOfBoundsException<p>if the specified <code>pos</code> is less than <code>0</code>
+                                  or <code>pos + 1</code> is greater than the length of the Buffer.
 </p></span></dd></dl></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#getByteBuf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getByteBuf():io.netty.buffer.ByteBuf"></a>
-      <a id="getByteBuf():ByteBuf"></a>
+      <a id="getByteBuf:io.netty.buffer.ByteBuf"></a>
+      <a id="getByteBuf:ByteBuf"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getByteBuf</span><span class="params">()</span><span class="result">: <span class="extype" name="io.netty.buffer.ByteBuf">ByteBuf</span></span>
+        <span class="name">getByteBuf</span><span class="result">: <span class="extype" name="io.netty.buffer.ByteBuf">ByteBuf</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns the Buffer as a Netty <code> ByteBuf</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the Buffer as a Netty <code> ByteBuf</code>.</p><p>This method is meant for internal use only.
+      <p class="shortcomment cmt">Returns the Buffer as a Netty <code>ByteBuf</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the Buffer as a Netty <code>ByteBuf</code>.</p><p>This method is meant for internal use only.
 </p></div></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#getBytes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="getBytes(start:Int,end:Int):Array[Byte]"></a>
@@ -364,22 +364,22 @@ and ending at position <code> end - 1</code>
         <span class="name">getBytes</span><span class="params">(<span name="start">start: <span class="extype" name="scala.Int">Int</span></span>, <span name="end">end: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns a copy of a sub-sequence the Buffer as a <code> byte[]</code> starting at position <code> start</code>
-and ending at position <code> end - 1</code>
+      <p class="shortcomment cmt">Returns a copy of a sub-sequence the Buffer as a <code>byte[]</code> starting at position <code>start</code>
+and ending at position <code>end - 1</code>
 </p>
     </li><li name="org.vertx.scala.core.buffer.Buffer#getBytes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="getBytes():Array[Byte]"></a>
-      <a id="getBytes():Array[Byte]"></a>
+      <a id="getBytes:Array[Byte]"></a>
+      <a id="getBytes:Array[Byte]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getBytes</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>
+        <span class="name">getBytes</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns a copy of the entire Buffer as a <code> byte[]</code>
+      <p class="shortcomment cmt">Returns a copy of the entire Buffer as a <code>byte[]</code>
 </p>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
@@ -406,8 +406,9 @@ and ending at position <code> end - 1</code>
         <span class="name">getDouble</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns the <code> double</code> at position <code> pos</code> in the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the <code> double</code> at position <code> pos</code> in the Buffer.
-</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IndexOutOfBoundsException<p>if the specified <code> pos</code> is less than <code> 0</code> or <code> pos + 8</code> is greater than the length of the Buffer.
+      <p class="shortcomment cmt">Returns the <code>double</code> at position <code>pos</code> in the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the <code>double</code> at position <code>pos</code> in the Buffer.
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IndexOutOfBoundsException<p>if the specified <code>pos</code> is less than <code>0</code>
+                                  or <code>pos + 8</code> is greater than the length of the Buffer.
 </p></span></dd></dl></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#getFloat" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getFloat(pos:Int):Float"></a>
@@ -421,8 +422,9 @@ and ending at position <code> end - 1</code>
         <span class="name">getFloat</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Float">Float</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns the <code> float</code> at position <code> pos</code> in the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the <code> float</code> at position <code> pos</code> in the Buffer.
-</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IndexOutOfBoundsException<p>if the specified <code> pos</code> is less than <code> 0</code> or <code> pos + 4</code> is greater than the length of the Buffer.
+      <p class="shortcomment cmt">Returns the <code>float</code> at position <code>pos</code> in the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the <code>float</code> at position <code>pos</code> in the Buffer.
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IndexOutOfBoundsException<p>if the specified <code>pos</code> is less than <code>0</code>
+                                  or <code>pos + 4</code> is greater than the length of the Buffer.
 </p></span></dd></dl></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#getInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getInt(pos:Int):Int"></a>
@@ -436,8 +438,9 @@ and ending at position <code> end - 1</code>
         <span class="name">getInt</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns the <code> int</code> at position <code> pos</code> in the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the <code> int</code> at position <code> pos</code> in the Buffer.
-</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IndexOutOfBoundsException<p>if the specified <code> pos</code> is less than <code> 0</code> or <code> pos + 4</code> is greater than the length of the Buffer.
+      <p class="shortcomment cmt">Returns the <code>int</code> at position <code>pos</code> in the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the <code>int</code> at position <code>pos</code> in the Buffer.
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IndexOutOfBoundsException<p>if the specified <code>pos</code> is less than <code>0</code>
+                                  or <code>pos + 4</code> is greater than the length of the Buffer.
 </p></span></dd></dl></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#getLong" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getLong(pos:Int):Long"></a>
@@ -451,8 +454,9 @@ and ending at position <code> end - 1</code>
         <span class="name">getLong</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns the <code> long</code> at position <code> pos</code> in the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the <code> long</code> at position <code> pos</code> in the Buffer.
-</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IndexOutOfBoundsException<p>if the specified <code> pos</code> is less than <code> 0</code> or <code> pos + 8</code> is greater than the length of the Buffer.
+      <p class="shortcomment cmt">Returns the <code>long</code> at position <code>pos</code> in the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the <code>long</code> at position <code>pos</code> in the Buffer.
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IndexOutOfBoundsException<p>if the specified <code>pos</code> is less than <code>0</code>
+                                  or <code>pos + 8</code> is greater than the length of the Buffer.
 </p></span></dd></dl></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#getShort" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getShort(pos:Int):Short"></a>
@@ -466,8 +470,9 @@ and ending at position <code> end - 1</code>
         <span class="name">getShort</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Short">Short</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns the <code> short</code> at position <code> pos</code> in the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the <code> short</code> at position <code> pos</code> in the Buffer.
-</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IndexOutOfBoundsException<p>if the specified <code> pos</code> is less than <code> 0</code> or <code> pos + 2</code> is greater than the length of the Buffer.
+      <p class="shortcomment cmt">Returns the <code>short</code> at position <code>pos</code> in the Buffer.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the <code>short</code> at position <code>pos</code> in the Buffer.
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IndexOutOfBoundsException<p>if the specified <code>pos</code> is less than <code>0</code>
+                                  or <code>pos + 2</code> is greater than the length of the Buffer.
 </p></span></dd></dl></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#getString" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="getString(start:Int,end:Int):String"></a>
@@ -481,8 +486,8 @@ and ending at position <code> end - 1</code>
         <span class="name">getString</span><span class="params">(<span name="start">start: <span class="extype" name="scala.Int">Int</span></span>, <span name="end">end: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns a copy of a sub-sequence the Buffer as a <code> String</code> starting at position <code> start</code>
-and ending at position <code> end - 1</code> interpreted as a String in UTF-8 encoding
+      <p class="shortcomment cmt">Returns a copy of a sub-sequence the Buffer as a <code>String</code> starting at position <code>start</code>
+and ending at position <code>end - 1</code> interpreted as a String in UTF-8 encoding
 </p>
     </li><li name="org.vertx.scala.core.buffer.Buffer#getString" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="getString(start:Int,end:Int,enc:String):String"></a>
@@ -496,8 +501,8 @@ and ending at position <code> end - 1</code> interpreted as a String in UTF-8 en
         <span class="name">getString</span><span class="params">(<span name="start">start: <span class="extype" name="scala.Int">Int</span></span>, <span name="end">end: <span class="extype" name="scala.Int">Int</span></span>, <span name="enc">enc: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns a copy of a sub-sequence the Buffer as a <code> String</code> starting at position <code> start</code>
-and ending at position <code> end - 1</code> interpreted as a String in the specified encoding
+      <p class="shortcomment cmt">Returns a copy of a sub-sequence the Buffer as a <code>String</code> starting at position <code>start</code>
+and ending at position <code>end - 1</code> interpreted as a String in the specified encoding
 </p>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
@@ -512,19 +517,6 @@ and ending at position <code> end - 1</code> interpreted as a String in the spec
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.buffer.Buffer#internal" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="internal:org.vertx.java.core.buffer.Buffer"></a>
-      <a id="internal:java.core.buffer.Buffer"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">internal</span><span class="result">: <span class="extype" name="org.vertx.java.core.buffer.Buffer">java.core.buffer.Buffer</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The internal instance of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the wrapped class.</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a> → VertxWrapper</dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -593,6 +585,22 @@ All positions are indexed from zero.
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#setBuffer" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setBuffer(pos:Int,b:org.vertx.scala.core.buffer.Buffer,offset:Int,len:Int):org.vertx.scala.core.buffer.Buffer"></a>
+      <a id="setBuffer(Int,Buffer,Int,Int):Buffer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setBuffer</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="b">b: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>, <span name="offset">offset: <span class="extype" name="scala.Int">Int</span></span>, <span name="len">len: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Sets the bytes at position <code>pos</code> in the Buffer to the bytes represented by the <code>Buffer b</code>
+on the given <code>offset</code> and <code>len</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the bytes at position <code>pos</code> in the Buffer to the bytes represented by the <code>Buffer b</code>
+on the given <code>offset</code> and <code>len</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
+</p></div></div>
+    </li><li name="org.vertx.scala.core.buffer.Buffer#setBuffer" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setBuffer(pos:Int,b:org.vertx.scala.core.buffer.Buffer):org.vertx.scala.core.buffer.Buffer"></a>
       <a id="setBuffer(Int,Buffer):Buffer"></a>
       <h4 class="signature">
@@ -604,7 +612,7 @@ All positions are indexed from zero.
         <span class="name">setBuffer</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="b">b: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Sets the bytes at position <code> pos</code> in the Buffer to the bytes represented by the <code> Buffer b</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the bytes at position <code> pos</code> in the Buffer to the bytes represented by the <code> Buffer b</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
+      <p class="shortcomment cmt">Sets the bytes at position <code>pos</code> in the Buffer to the bytes represented by the <code>Buffer b</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the bytes at position <code>pos</code> in the Buffer to the bytes represented by the <code>Buffer b</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
 </p></div></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#setByte" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setByte(pos:Int,b:Byte):org.vertx.scala.core.buffer.Buffer"></a>
@@ -618,8 +626,28 @@ All positions are indexed from zero.
         <span class="name">setByte</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="b">b: <span class="extype" name="scala.Byte">Byte</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Sets the <code> byte</code> at position <code> pos</code> in the Buffer to the value <code> b</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the <code> byte</code> at position <code> pos</code> in the Buffer to the value <code> b</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
+      <p class="shortcomment cmt">Sets the <code>byte</code> at position <code>pos</code> in the Buffer to the value <code>b</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the <code>byte</code> at position <code>pos</code> in the Buffer to the value <code>b</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
 </p></div></div>
+    </li><li name="org.vertx.scala.core.buffer.Buffer#setBytes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setBytes(pos:Int,b:Array[Byte],offset:Int,len:Int):org.vertx.scala.core.buffer.Buffer"></a>
+      <a id="setBytes(Int,Array[Byte],Int,Int):Buffer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setBytes</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="b">b: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>, <span name="offset">offset: <span class="extype" name="scala.Int">Int</span></span>, <span name="len">len: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Sets the given number of bytes at position <code>pos</code> in the Buffer to
+the bytes represented by the <code>byte[] b</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the given number of bytes at position <code>pos</code> in the Buffer to
+the bytes represented by the <code>byte[] b</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
+</p></div><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>if <code>len</code> is less than <code>0</code>
+</p></span><span class="cmt">IndexOutOfBoundsException<p>
+        if the specified <code>offset</code> is less than <code>0</code>,
+        if <code>offset</code> + <code>len</code> is greater than the buffer's capacity, or
+        if <code>pos</code> + <code>length</code> is greater than <code>b.length</code></p></span></dd></dl></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#setBytes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setBytes(pos:Int,b:Array[Byte]):org.vertx.scala.core.buffer.Buffer"></a>
       <a id="setBytes(Int,Array[Byte]):Buffer"></a>
@@ -632,7 +660,7 @@ All positions are indexed from zero.
         <span class="name">setBytes</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="b">b: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Sets the bytes at position <code> pos</code> in the Buffer to the bytes represented by the <code> byte[] b</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the bytes at position <code> pos</code> in the Buffer to the bytes represented by the <code> byte[] b</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
+      <p class="shortcomment cmt">Sets the bytes at position <code>pos</code> in the Buffer to the bytes represented by the <code>byte[] b</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the bytes at position <code>pos</code> in the Buffer to the bytes represented by the <code>byte[] b</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
 </p></div></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#setBytes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setBytes(pos:Int,b:java.nio.ByteBuffer):org.vertx.scala.core.buffer.Buffer"></a>
@@ -646,7 +674,7 @@ All positions are indexed from zero.
         <span class="name">setBytes</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="b">b: <span class="extype" name="java.nio.ByteBuffer">ByteBuffer</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Sets the bytes at position <code> pos</code> in the Buffer to the bytes represented by the <code> ByteBuffer b</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the bytes at position <code> pos</code> in the Buffer to the bytes represented by the <code> ByteBuffer b</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
+      <p class="shortcomment cmt">Sets the bytes at position <code>pos</code> in the Buffer to the bytes represented by the <code>ByteBuffer b</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the bytes at position <code>pos</code> in the Buffer to the bytes represented by the <code>ByteBuffer b</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
 </p></div></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#setDouble" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setDouble(pos:Int,d:Double):org.vertx.scala.core.buffer.Buffer"></a>
@@ -660,7 +688,7 @@ All positions are indexed from zero.
         <span class="name">setDouble</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="d">d: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Sets the <code> double</code> at position <code> pos</code> in the Buffer to the value <code> d</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the <code> double</code> at position <code> pos</code> in the Buffer to the value <code> d</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
+      <p class="shortcomment cmt">Sets the <code>double</code> at position <code>pos</code> in the Buffer to the value <code>d</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the <code>double</code> at position <code>pos</code> in the Buffer to the value <code>d</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
 </p></div></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#setFloat" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setFloat(pos:Int,f:Float):org.vertx.scala.core.buffer.Buffer"></a>
@@ -674,7 +702,7 @@ All positions are indexed from zero.
         <span class="name">setFloat</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="f">f: <span class="extype" name="scala.Float">Float</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Sets the <code> float</code> at position <code> pos</code> in the Buffer to the value <code> f</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the <code> float</code> at position <code> pos</code> in the Buffer to the value <code> f</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
+      <p class="shortcomment cmt">Sets the <code>float</code> at position <code>pos</code> in the Buffer to the value <code>f</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the <code>float</code> at position <code>pos</code> in the Buffer to the value <code>f</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
 </p></div></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#setInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setInt(pos:Int,i:Int):org.vertx.scala.core.buffer.Buffer"></a>
@@ -688,7 +716,7 @@ All positions are indexed from zero.
         <span class="name">setInt</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Sets the <code> int</code> at position <code> pos</code> in the Buffer to the value <code> i</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the <code> int</code> at position <code> pos</code> in the Buffer to the value <code> i</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
+      <p class="shortcomment cmt">Sets the <code>int</code> at position <code>pos</code> in the Buffer to the value <code>i</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the <code>int</code> at position <code>pos</code> in the Buffer to the value <code>i</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
 </p></div></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#setLong" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setLong(pos:Int,l:Long):org.vertx.scala.core.buffer.Buffer"></a>
@@ -702,7 +730,7 @@ All positions are indexed from zero.
         <span class="name">setLong</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="l">l: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Sets the <code> long</code> at position <code> pos</code> in the Buffer to the value <code> l</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the <code> long</code> at position <code> pos</code> in the Buffer to the value <code> l</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
+      <p class="shortcomment cmt">Sets the <code>long</code> at position <code>pos</code> in the Buffer to the value <code>l</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the <code>long</code> at position <code>pos</code> in the Buffer to the value <code>l</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
 </p></div></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#setShort" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setShort(pos:Int,s:Short):org.vertx.scala.core.buffer.Buffer"></a>
@@ -716,7 +744,7 @@ All positions are indexed from zero.
         <span class="name">setShort</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="s">s: <span class="extype" name="scala.Short">Short</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Sets the <code> short</code> at position <code> pos</code> in the Buffer to the value <code> s</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the <code> short</code> at position <code> pos</code> in the Buffer to the value <code> s</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
+      <p class="shortcomment cmt">Sets the <code>short</code> at position <code>pos</code> in the Buffer to the value <code>s</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the <code>short</code> at position <code>pos</code> in the Buffer to the value <code>s</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
 </p></div></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#setString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setString(pos:Int,str:String,enc:String):org.vertx.scala.core.buffer.Buffer"></a>
@@ -730,7 +758,7 @@ All positions are indexed from zero.
         <span class="name">setString</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="str">str: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="enc">enc: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Sets the bytes at position <code> pos</code> in the Buffer to the value of <code> str</code> encoded in encoding <code> enc</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the bytes at position <code> pos</code> in the Buffer to the value of <code> str</code> encoded in encoding <code> enc</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
+      <p class="shortcomment cmt">Sets the bytes at position <code>pos</code> in the Buffer to the value of <code>str</code> encoded in encoding <code>enc</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the bytes at position <code>pos</code> in the Buffer to the value of <code>str</code> encoded in encoding <code>enc</code>.</p><p>The buffer will expand as necessary to accommodate any value written.
 </p></div></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#setString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setString(pos:Int,str:String):org.vertx.scala.core.buffer.Buffer"></a>
@@ -744,7 +772,7 @@ All positions are indexed from zero.
         <span class="name">setString</span><span class="params">(<span name="pos">pos: <span class="extype" name="scala.Int">Int</span></span>, <span name="str">str: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Sets the bytes at position <code> pos</code> in the Buffer to the value of <code> str</code> encoded in UTF-8.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the bytes at position <code> pos</code> in the Buffer to the value of <code> str</code> encoded in UTF-8.</p><p>The buffer will expand as necessary to accommodate any value written.
+      <p class="shortcomment cmt">Sets the bytes at position <code>pos</code> in the Buffer to the value of <code>str</code> encoded in UTF-8.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the bytes at position <code>pos</code> in the Buffer to the value of <code>str</code> encoded in UTF-8.</p><p>The buffer will expand as necessary to accommodate any value written.
 </p></div></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
@@ -759,21 +787,6 @@ All positions are indexed from zero.
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.VertxWrapper#toJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toJava():VertxWrapper.this.InternalType"></a>
-      <a id="toJava():InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toJava</span><span class="params">()</span><span class="result">: <a href="#InternalType=org.vertx.java.core.buffer.Buffer" class="extmbr" name="org.vertx.scala.core.buffer.Buffer.InternalType">InternalType</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Returns the internal type instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the internal type instance.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The internal type instance.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd>VertxWrapper</dd></dl></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString(enc:String):String"></a>
       <a id="toString(String):String"></a>
@@ -786,7 +799,7 @@ All positions are indexed from zero.
         <span class="name">toString</span><span class="params">(<span name="enc">enc: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns a <code> String</code> representation of the Buffer with the encoding specified by <code> enc</code></p><div class="fullcomment"><div class="comment cmt"><p>Returns a <code> String</code> representation of the Buffer with the encoding specified by <code> enc</code></p></div><dl class="paramcmts block"><dt class="param">enc</dt><dd class="cmt"><p>The encoding to use to compute the String.</p></dd><dt>returns</dt><dd class="cmt"><p>A string representation of the Buffer.
+      <p class="shortcomment cmt">Returns a <code>String</code> representation of the Buffer with the encoding specified by <code>enc</code></p><div class="fullcomment"><div class="comment cmt"><p>Returns a <code>String</code> representation of the Buffer with the encoding specified by <code>enc</code></p></div><dl class="paramcmts block"><dt class="param">enc</dt><dd class="cmt"><p>The encoding to use to compute the String.</p></dd><dt>returns</dt><dd class="cmt"><p>A string representation of the Buffer.
 </p></dd></dl></div>
     </li><li name="org.vertx.scala.core.buffer.Buffer#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
@@ -800,7 +813,9 @@ All positions are indexed from zero.
         <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns a <code> String</code> representation of the Buffer assuming it contains a <code> String</code> encoding in UTF-8.</p><div class="fullcomment"><div class="comment cmt"><p>Returns a <code> String</code> representation of the Buffer assuming it contains a <code> String</code> encoding in UTF-8.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A string representation of the Buffer.
+      <p class="shortcomment cmt">Returns a <code>String</code> representation of the Buffer assuming it contains a
+<code>String</code> encoding in UTF-8.</p><div class="fullcomment"><div class="comment cmt"><p>Returns a <code>String</code> representation of the Buffer assuming it contains a
+<code>String</code> encoding in UTF-8.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A string representation of the Buffer.
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a> → AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
@@ -859,8 +874,8 @@ All positions are indexed from zero.
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.Wrap#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wrap[X](doStuff:=&gt;X):Wrap.this.type"></a>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
       <a id="wrap[X](⇒X):Buffer.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -868,10 +883,14 @@ All positions are indexed from zero.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Wrap.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>.this.type</span>
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></dd></dl></div>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
     </li></ol>
             </div>
 
@@ -881,10 +900,8 @@ All positions are indexed from zero.
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.vertx.scala.VertxWrapper">
-              <h3>Inherited from <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></h3>
-            </div><div class="parent" name="org.vertx.scala.Wrap">
-              <h3>Inherited from <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></h3>
+        <div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">

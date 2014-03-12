@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>Verticle - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.platform.Verticle</title>
-          <meta name="description" content="Verticle - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.platform.Verticle" />
-          <meta name="keywords" content="Verticle mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.platform.Verticle" />
+          <title>Verticle - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.platform.Verticle</title>
+          <meta name="description" content="Verticle - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.platform.Verticle" />
+          <meta name="keywords" content="Verticle lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.platform.Verticle" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -35,16 +35,16 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <span class="name">Verticle</span><span class="result"> extends <a href="../core/VertxExecutionContext.html" class="extype" name="org.vertx.scala.core.VertxExecutionContext">VertxExecutionContext</a></span>
+        <span class="name">Verticle</span><span class="result"> extends <a href="../core/VertxAccess.html" class="extype" name="org.vertx.scala.core.VertxAccess">VertxAccess</a></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A verticle is the unit of execution in the Vert.x platform</p><p>Vert.x code is packaged into Verticle's and then deployed and executed by the Vert.x platform.</p><p>Verticles can be written in different languages.</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="../core/VertxExecutionContext.html" class="extype" name="org.vertx.scala.core.VertxExecutionContext">VertxExecutionContext</a>, <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span>, <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="../core/VertxAccess.html" class="extype" name="org.vertx.scala.core.VertxAccess">VertxAccess</a>, <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
           <span class="toggle">Known Subclasses</span>
-          <div class="subClasses hiddenContent"><a href="../mods/ModuleBase.html" class="extype" name="org.vertx.scala.mods.ModuleBase">ModuleBase</a>, <a href="../testtools/TestVerticle.html" class="extype" name="org.vertx.scala.testtools.TestVerticle">TestVerticle</a></div>
+          <div class="subClasses hiddenContent"><a href="../testtools/TestVerticle.html" class="extype" name="org.vertx.scala.testtools.TestVerticle">TestVerticle</a></div>
         </div></div>
         
 
@@ -62,7 +62,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.platform.Verticle"><span>Verticle</span></li><li class="in" name="org.vertx.scala.core.VertxExecutionContext"><span>VertxExecutionContext</span></li><li class="in" name="scala.concurrent.ExecutionContext"><span>ExecutionContext</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.platform.Verticle"><span>Verticle</span></li><li class="in" name="org.vertx.scala.core.VertxAccess"><span>VertxAccess</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -82,23 +82,7 @@
         <div id="allMembers">
         
 
-        <div id="types" class="types members">
-              <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.VertxExecutionContext.HasLogger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="HasLogger=AnyRef{deflogger:org.vertx.scala.core.logging.Logger}"></a>
-      <a id="HasLogger:HasLogger"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">type</span>
-      </span>
-      <span class="symbol">
-        <span class="name">HasLogger</span><span class="result"> = <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a> { def logger: org.vertx.scala.core.logging.Logger }</span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../core/VertxExecutionContext.html" class="extype" name="org.vertx.scala.core.VertxExecutionContext">VertxExecutionContext</a></dd></dl></div>
-    </li></ol>
-            </div>
+        
 
         
 
@@ -214,7 +198,7 @@
       </span>
       </h4>
       <p class="shortcomment cmt">A reference to the Vert.</p><div class="fullcomment"><div class="comment cmt"><p>A reference to the Vert.x container.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to the Container.
-</p></dd></dl></div>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.platform.Verticle">Verticle</a> → <a href="../core/VertxAccess.html" class="extype" name="org.vertx.scala.core.VertxAccess">VertxAccess</a></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -241,32 +225,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.VertxExecutionContext#execute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="execute(runnable:Runnable):Unit"></a>
-      <a id="execute(Runnable):Unit"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">execute</span><span class="params">(<span name="runnable">runnable: <span class="extype" name="java.lang.Runnable">Runnable</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../core/VertxExecutionContext.html" class="extype" name="org.vertx.scala.core.VertxExecutionContext">VertxExecutionContext</a> → ExecutionContext</dd></dl></div>
-    </li><li name="org.vertx.scala.core.VertxExecutionContext#executionContext" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="executionContext:org.vertx.scala.core.VertxExecutionContext.type"></a>
-      <a id="executionContext:VertxExecutionContext.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">implicit </span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">executionContext</span><span class="result">: <a href="../core/VertxExecutionContext$.html" class="extype" name="org.vertx.scala.core.VertxExecutionContext">VertxExecutionContext</a>.type</span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../core/VertxExecutionContext.html" class="extype" name="org.vertx.scala.core.VertxExecutionContext">VertxExecutionContext</a></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -325,7 +283,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="org.vertx.scala.platform.Verticle#logger" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="org.vertx.scala.platform.Verticle#logger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="logger:org.vertx.scala.core.logging.Logger"></a>
       <a id="logger:Logger"></a>
       <h4 class="signature">
@@ -337,7 +295,7 @@
         <span class="name">logger</span><span class="result">: <a href="../core/logging/Logger.html" class="extype" name="org.vertx.scala.core.logging.Logger">Logger</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt"></p>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.platform.Verticle">Verticle</a> → <a href="../core/VertxAccess.html" class="extype" name="org.vertx.scala.core.VertxAccess">VertxAccess</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -377,32 +335,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.concurrent.ExecutionContext#prepare" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="prepare():scala.concurrent.ExecutionContext"></a>
-      <a id="prepare():ExecutionContext"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">prepare</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ExecutionContext</dd></dl></div>
-    </li><li name="org.vertx.scala.core.VertxExecutionContext#reportFailure" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="reportFailure(t:Throwable):Unit"></a>
-      <a id="reportFailure(Throwable):Unit"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">reportFailure</span><span class="params">(<span name="t">t: <a href="../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../core/VertxExecutionContext.html" class="extype" name="org.vertx.scala.core.VertxExecutionContext">VertxExecutionContext</a> → ExecutionContext</dd></dl></div>
     </li><li name="org.vertx.scala.platform.Verticle#start" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="start(promise:scala.concurrent.Promise[Unit]):Unit"></a>
       <a id="start(Promise[Unit]):Unit"></a>
@@ -484,11 +416,11 @@ Put any cleanup code for your verticle in here
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">vertx</span><span class="result">: <a href="../core/package$$Vertx.html" class="extype" name="org.vertx.scala.core.Vertx">Vertx</a></span>
+        <span class="name">vertx</span><span class="result">: <a href="../core/Vertx.html" class="extype" name="org.vertx.scala.core.Vertx">Vertx</a></span>
       </span>
       </h4>
       <p class="shortcomment cmt">A reference to the Vert.</p><div class="fullcomment"><div class="comment cmt"><p>A reference to the Vert.x runtime.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A reference to a Vertx.
-</p></dd></dl></div>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.platform.Verticle">Verticle</a> → <a href="../core/VertxAccess.html" class="extype" name="org.vertx.scala.core.VertxAccess">VertxAccess</a></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -555,10 +487,8 @@ Put any cleanup code for your verticle in here
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.vertx.scala.core.VertxExecutionContext">
-              <h3>Inherited from <a href="../core/VertxExecutionContext.html" class="extype" name="org.vertx.scala.core.VertxExecutionContext">VertxExecutionContext</a></h3>
-            </div><div class="parent" name="scala.concurrent.ExecutionContext">
-              <h3>Inherited from <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></h3>
+        <div class="parent" name="org.vertx.scala.core.VertxAccess">
+              <h3>Inherited from <a href="../core/VertxAccess.html" class="extype" name="org.vertx.scala.core.VertxAccess">VertxAccess</a></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">

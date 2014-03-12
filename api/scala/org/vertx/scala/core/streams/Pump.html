@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>Pump - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.streams.Pump</title>
-          <meta name="description" content="Pump - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.streams.Pump" />
-          <meta name="keywords" content="Pump mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.streams.Pump" />
+          <title>Pump - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.streams.Pump</title>
+          <meta name="description" content="Pump - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.streams.Pump" />
+          <meta name="keywords" content="Pump lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.streams.Pump" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -31,17 +31,31 @@
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">Pump</span><span class="result"> extends <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
+        <span class="name">Pump</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Pumps data from a <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">org.vertx.scala.core.streams.ReadStream</a> to a
+<a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a> and performs flow control where necessary to
+prevent the write stream buffer from getting overfull.</p><p>Instances of this class read bytes from a <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">org.vertx.scala.core.streams.ReadStream</a>
+and write them to a <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a>. If data
+can be read faster than it can be written this could result in the write
+queue of the <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a> growing
+without bound, eventually causing it to exhaust all available RAM.</p><p>To prevent this, after each write, instances of this class check whether the write queue of the
+<a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a> is full, and if so, the
+<a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">org.vertx.scala.core.streams.ReadStream</a> is paused, and a <code>drainHandler</code> is set on the
+<a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a>. When the <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a>
+has processed half of its backlog, the <code>drainHandler</code> will be
+called, which results in the pump resuming the <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">org.vertx.scala.core.streams.ReadStream</a>.</p><p>This class can be used to pump from any <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">org.vertx.scala.core.streams.ReadStream</a>
+to any <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a>, e.g. from an
+<a href="../http/HttpServerRequest.html" class="extype" name="org.vertx.scala.core.http.HttpServerRequest">org.vertx.scala.core.http.HttpServerRequest</a> to an <a href="../file/AsyncFile.html" class="extype" name="org.vertx.scala.core.file.AsyncFile">org.vertx.scala.core.file.AsyncFile</a>,
+or from <a href="../net/NetSocket.html" class="extype" name="org.vertx.scala.core.net.NetSocket">org.vertx.scala.core.net.NetSocket</a> to a <a href="../http/WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">org.vertx.scala.core.http.WebSocket</a>.</p><p>Instances of this class are not thread-safe.</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span>, <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -59,7 +73,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.core.streams.Pump"><span>Pump</span></li><li class="in" name="org.vertx.scala.VertxWrapper"><span>VertxWrapper</span></li><li class="in" name="org.vertx.scala.Wrap"><span>Wrap</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.core.streams.Pump"><span>Pump</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -77,41 +91,9 @@
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="org.vertx.scala.core.streams.Pump#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(internal:org.vertx.java.core.streams.Pump):org.vertx.scala.core.streams.Pump"></a>
-      <a id="&lt;init&gt;:Pump"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">Pump</span><span class="params">(<span name="internal">internal: <span class="extype" name="org.vertx.java.core.streams.Pump">java.core.streams.Pump</span></span>)</span>
-      </span>
-      </h4>
-      
-    </li></ol>
-            </div>
+        
 
-        <div id="types" class="types members">
-              <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.streams.Pump.InternalType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="InternalType=org.vertx.java.core.streams.Pump"></a>
-      <a id="InternalType:InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">type</span>
-      </span>
-      <span class="symbol">
-        <span class="name">InternalType</span><span class="result"> = <span class="extype" name="org.vertx.java.core.streams.Pump">java.core.streams.Pump</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The internal type of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.Pump">Pump</a> → VertxWrapper</dd></dl></div>
-    </li></ol>
-            </div>
+        
 
         
 
@@ -195,6 +177,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.Pump#asJava" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="asJava:org.vertx.java.core.streams.Pump"></a>
+      <a id="asJava:java.core.streams.Pump"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asJava</span><span class="result">: <span class="extype" name="org.vertx.java.core.streams.Pump">java.core.streams.Pump</span></span>
+      </span>
+      </h4>
+      
     </li><li name="org.vertx.scala.core.streams.Pump#bytesPumped" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="bytesPumped():Int"></a>
       <a id="bytesPumped():Int"></a>
@@ -298,19 +293,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.Pump#internal" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="internal:org.vertx.java.core.streams.Pump"></a>
-      <a id="internal:java.core.streams.Pump"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">internal</span><span class="result">: <span class="extype" name="org.vertx.java.core.streams.Pump">java.core.streams.Pump</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">The internal instance of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the wrapped class.</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.streams.Pump">Pump</a> → VertxWrapper</dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -375,7 +357,7 @@
         <span class="name">setWriteQueueMaxSize</span><span class="params">(<span name="maxSize">maxSize: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.Pump">Pump</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the write queue max size to <code> maxSize</code>
+      <p class="shortcomment cmt">Set the write queue max size to <code>maxSize</code>
 </p>
     </li><li name="org.vertx.scala.core.streams.Pump#start" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="start():org.vertx.scala.core.streams.Pump"></a>
@@ -418,21 +400,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.VertxWrapper#toJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toJava():VertxWrapper.this.InternalType"></a>
-      <a id="toJava():InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toJava</span><span class="params">()</span><span class="result">: <a href="#InternalType=org.vertx.java.core.streams.Pump" class="extmbr" name="org.vertx.scala.core.streams.Pump.InternalType">InternalType</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Returns the internal type instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the internal type instance.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The internal type instance.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd>VertxWrapper</dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -503,8 +470,8 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.Wrap#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wrap[X](doStuff:=&gt;X):Wrap.this.type"></a>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
       <a id="wrap[X](⇒X):Pump.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -512,10 +479,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Wrap.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.Pump">Pump</a>.this.type</span>
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.streams.Pump">Pump</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></dd></dl></div>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
     </li></ol>
             </div>
 
@@ -525,10 +496,8 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.vertx.scala.VertxWrapper">
-              <h3>Inherited from <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></h3>
-            </div><div class="parent" name="org.vertx.scala.Wrap">
-              <h3>Inherited from <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></h3>
+        <div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">

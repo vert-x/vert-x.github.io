@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>streams - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.streams</title>
-          <meta name="description" content="streams - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.streams" />
-          <meta name="keywords" content="streams mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.streams" />
+          <title>streams - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.streams</title>
+          <meta name="description" content="streams - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.streams" />
+          <meta name="keywords" content="streams lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.streams" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -58,8 +58,22 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.streams.ExceptionSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="ExceptionSupportextendsAnyRef"></a>
+              <ol><li name="org.vertx.scala.core.streams.DrainSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="DrainSupportextendsSelfwithAsJava"></a>
+      <a id="DrainSupport:DrainSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="DrainSupport.html"><span class="name">DrainSupport</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Allows to set a <code>Handler</code> which is notified once the write queue is
+drained again.</p>
+    </li><li name="org.vertx.scala.core.streams.ExceptionSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ExceptionSupportextendsSelfwithAsJava"></a>
       <a id="ExceptionSupport:ExceptionSupport"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -67,25 +81,27 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="ExceptionSupport.html"><span class="name">ExceptionSupport</span></a><span class="result"> extends <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+        <a href="ExceptionSupport.html"><span class="name">ExceptionSupport</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
       </span>
       </h4>
-      <p class="comment cmt"></p>
+      <p class="comment cmt">Exception handler.</p>
     </li><li name="org.vertx.scala.core.streams.Pump" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="PumpextendsVertxWrapper"></a>
+      <a id="PumpextendsSelf"></a>
       <a id="Pump:Pump"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="Pump.html"><span class="name">Pump</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
+        <a href="Pump.html"><span class="name">Pump</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span></span>
       </span>
       </h4>
-      
+      <p class="comment cmt">Pumps data from a <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">org.vertx.scala.core.streams.ReadStream</a> to a
+<a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a> and performs flow control where necessary to
+prevent the write stream buffer from getting overfull.</p>
     </li><li name="org.vertx.scala.core.streams.ReadStream" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="ReadStreamextendsExceptionSupport"></a>
+      <a id="ReadStreamextendsSelfwithReadSupport[org.vertx.scala.core.buffer.Buffer]withAsJava"></a>
       <a id="ReadStream:ReadStream"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -93,64 +109,25 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="ReadStream.html"><span class="name">ReadStream</span></a><span class="result"> extends <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></span>
+        <a href="ReadStream.html"><span class="name">ReadStream</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>] with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
       </span>
       </h4>
       <p class="comment cmt">Represents a stream of data that can be read from.</p>
-    </li><li name="org.vertx.scala.core.streams.WrappedExceptionSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="WrappedExceptionSupportextendsExceptionSupportwithVertxWrapper"></a>
-      <a id="WrappedExceptionSupport:WrappedExceptionSupport"></a>
+    </li><li name="org.vertx.scala.core.streams.ReadSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ReadSupport[E]extendsSelfwithExceptionSupportwithAsJava"></a>
+      <a id="ReadSupport[E]:ReadSupport[E]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="WrappedExceptionSupport.html"><span class="name">WrappedExceptionSupport</span></a><span class="result"> extends <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> with <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
+        <a href="ReadSupport.html"><span class="name">ReadSupport</span></a><span class="tparams">[<span name="E">E</span>]</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
       </span>
       </h4>
-      
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="WrappedReadStreamextendsWrappedExceptionSupportwithReadStream"></a>
-      <a id="WrappedReadStream:WrappedReadStream"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="WrappedReadStream.html"><span class="name">WrappedReadStream</span></a><span class="result"> extends <a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> with <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>
-      </span>
-      </h4>
-      <p class="comment cmt"></p>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadWriteStream" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="WrappedReadWriteStreamextendsWrappedReadStreamwithWrappedWriteStreamwithWrappedExceptionSupport"></a>
-      <a id="WrappedReadWriteStream:WrappedReadWriteStream"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="WrappedReadWriteStream.html"><span class="name">WrappedReadWriteStream</span></a><span class="result"> extends <a href="WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> with <a href="WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> with <a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="WrappedWriteStreamextendsWrappedExceptionSupportwithWriteStream"></a>
-      <a id="WrappedWriteStream:WrappedWriteStream"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="WrappedWriteStream.html"><span class="name">WrappedWriteStream</span></a><span class="result"> extends <a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> with <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>
-      </span>
-      </h4>
-      <p class="comment cmt"></p>
+      <p class="comment cmt">Allows to set a handler which is notified once data was read.</p>
     </li><li name="org.vertx.scala.core.streams.WriteStream" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="WriteStreamextendsExceptionSupport"></a>
+      <a id="WriteStreamextendsSelfwithExceptionSupportwithAsJava"></a>
       <a id="WriteStream:WriteStream"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -158,7 +135,7 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="WriteStream.html"><span class="name">WriteStream</span></a><span class="result"> extends <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></span>
+        <a href="WriteStream.html"><span class="name">WriteStream</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> with <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></span>
       </span>
       </h4>
       <p class="comment cmt">Represents a stream of data that can be written to</p>
@@ -181,8 +158,7 @@
         <a href="Pump$.html"><span class="name">Pump</span></a>
       </span>
       </h4>
-      <p class="comment cmt">Pumps data from a <code> ReadStream</code> to a <code> WriteStream</code> and performs flow control where necessary to
-prevent the write stream buffer from getting overfull.</p>
+      
     </li></ol>
             </div>
 

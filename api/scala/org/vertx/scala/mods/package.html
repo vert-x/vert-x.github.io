@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>mods - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.mods</title>
-          <meta name="description" content="mods - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.mods" />
-          <meta name="keywords" content="mods mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.mods" />
+          <title>mods - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.mods</title>
+          <meta name="description" content="mods - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.mods" />
+          <meta name="keywords" content="mods lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.mods" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -58,25 +58,80 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.mods.ModuleBase" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="ModuleBaseextendsVerticle"></a>
-      <a id="ModuleBase:ModuleBase"></a>
+              <ol><li name="org.vertx.scala.mods.BusModException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BusModExceptionextendsExceptionwithProductwithSerializable"></a>
+      <a id="BusModException:BusModException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="BusModException.html"><span class="name">BusModException</span></a><span class="params">(<span name="message">message: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="cause">cause: <a href="../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a> = <span class="symbol">null</span></span>, <span name="id">id: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;MODULE_EXCEPTION&quot;</span></span>)</span><span class="result"> extends <a href="../../../../scala/package.html#Exception=Exception" class="extmbr" name="scala.Exception">Exception</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.mods.ScalaBusMod" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ScalaBusModextendsorg.vertx.scala.core.eventbus.Message[org.vertx.scala.core.json.JsonObject]=&gt;UnitwithVertxAccess"></a>
+      <a id="ScalaBusMod:ScalaBusMod"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="ModuleBase.html"><span class="name">ModuleBase</span></a><span class="result"> extends <a href="../platform/Verticle.html" class="extype" name="org.vertx.scala.platform.Verticle">Verticle</a></span>
+        <a href="ScalaBusMod.html"><span class="name">ScalaBusMod</span></a><span class="result"> extends (<a href="../core/eventbus/Message.html" class="extype" name="org.vertx.scala.core.eventbus.Message">Message</a>[<a href="../core/json/package.html#JsonObject=org.vertx.java.core.json.JsonObject" class="extmbr" name="org.vertx.scala.core.json.JsonObject">JsonObject</a>]) ⇒ <span class="extype" name="scala.Unit">Unit</span> with <a href="../core/VertxAccess.html" class="extype" name="org.vertx.scala.core.VertxAccess">VertxAccess</a></span>
       </span>
       </h4>
-      <p class="comment cmt"></p>
+      <p class="comment cmt">Extend this trait to get an easy to use interface for your EventBus module.</p>
+    </li><li name="org.vertx.scala.mods.UnknownActionException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UnknownActionExceptionextendsBusModException"></a>
+      <a id="UnknownActionException:UnknownActionException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="UnknownActionException.html"><span class="name">UnknownActionException</span></a><span class="result"> extends <a href="BusModException.html" class="extype" name="org.vertx.scala.mods.BusModException">BusModException</a></span>
+      </span>
+      </h4>
+      
     </li></ol>
             </div>
 
         
 
-        
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.vertx.scala.mods.ScalaBusMod" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScalaBusMod"></a>
+      <a id="ScalaBusMod:ScalaBusMod"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ScalaBusMod$.html"><span class="name">ScalaBusMod</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.mods.replies" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="replies"></a>
+      <a id="replies:replies"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="replies/package.html"><span class="name">replies</span></a>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
 
         
 

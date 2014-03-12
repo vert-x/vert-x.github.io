@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>SockJSSocket - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.sockjs.SockJSSocket</title>
-          <meta name="description" content="SockJSSocket - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.sockjs.SockJSSocket" />
-          <meta name="keywords" content="SockJSSocket mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.sockjs.SockJSSocket" />
+          <title>SockJSSocket - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.sockjs.SockJSSocket</title>
+          <meta name="description" content="SockJSSocket - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.sockjs.SockJSSocket" />
+          <meta name="keywords" content="SockJSSocket lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.sockjs.SockJSSocket" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -31,20 +31,20 @@
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">SockJSSocket</span><span class="result"> extends <a href="../streams/WrappedReadWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadWriteStream">WrappedReadWriteStream</a></span>
+        <span class="name">SockJSSocket</span><span class="result"> extends <span class="extype" name="org.vertx.scala.Self">Self</span> with <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> with <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>You interact with SockJS clients through instances of SockJS socket.</p><p>The API is very similar to <code> org.vertx.java.core.http.WebSocket</code>. It implements both
-<code> ReadStream</code> and <code> WriteStream</code> so it can be used with
-<code> org.vertx.scala.core.streams.Pump</code> to pump data with flow control.</p><p>Instances of this class are not thread-safe.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>You interact with SockJS clients through instances of SockJS socket.</p><p>The API is very similar to <a href="../http/WebSocket.html" class="extype" name="org.vertx.scala.core.http.WebSocket">org.vertx.scala.core.http.WebSocket</a>. It implements both
+<a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">org.vertx.scala.core.streams.ReadStream</a> and <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">org.vertx.scala.core.streams.WriteStream</a> so it can be used with
+<a href="../streams/Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a> to pump data with flow control.</p><p>Instances of this class are not thread-safe.
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="../streams/WrappedReadWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadWriteStream">WrappedReadWriteStream</a>, <a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a>, <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a>, <a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a>, <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>, <a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a>, <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span>, <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a>, <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a>, <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a>, <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>], <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a>, <span class="extype" name="org.vertx.scala.AsJava">AsJava</span>, <span class="extype" name="org.vertx.scala.Self">Self</span>, <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -62,7 +62,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.vertx.scala.core.sockjs.SockJSSocket"><span>SockJSSocket</span></li><li class="in" name="org.vertx.scala.core.streams.WrappedReadWriteStream"><span>WrappedReadWriteStream</span></li><li class="in" name="org.vertx.scala.core.streams.WrappedWriteStream"><span>WrappedWriteStream</span></li><li class="in" name="org.vertx.scala.core.streams.WriteStream"><span>WriteStream</span></li><li class="in" name="org.vertx.scala.core.streams.WrappedReadStream"><span>WrappedReadStream</span></li><li class="in" name="org.vertx.scala.core.streams.ReadStream"><span>ReadStream</span></li><li class="in" name="org.vertx.scala.core.streams.WrappedExceptionSupport"><span>WrappedExceptionSupport</span></li><li class="in" name="org.vertx.scala.VertxWrapper"><span>VertxWrapper</span></li><li class="in" name="org.vertx.scala.Wrap"><span>Wrap</span></li><li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.vertx.scala.core.sockjs.SockJSSocket"><span>SockJSSocket</span></li><li class="in" name="org.vertx.scala.core.streams.WriteStream"><span>WriteStream</span></li><li class="in" name="org.vertx.scala.core.streams.ReadStream"><span>ReadStream</span></li><li class="in" name="org.vertx.scala.core.streams.ReadSupport"><span>ReadSupport</span></li><li class="in" name="org.vertx.scala.core.streams.ExceptionSupport"><span>ExceptionSupport</span></li><li class="in" name="org.vertx.scala.AsJava"><span>AsJava</span></li><li class="in" name="org.vertx.scala.Self"><span>Self</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -80,39 +80,23 @@
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="org.vertx.scala.core.sockjs.SockJSSocket#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(internal:org.vertx.java.core.sockjs.SockJSSocket):org.vertx.scala.core.sockjs.SockJSSocket"></a>
-      <a id="&lt;init&gt;:SockJSSocket"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">SockJSSocket</span><span class="params">(<span name="internal">internal: <span class="extype" name="org.vertx.java.core.sockjs.SockJSSocket">java.core.sockjs.SockJSSocket</span></span>)</span>
-      </span>
-      </h4>
-      
-    </li></ol>
-            </div>
+        
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="org.vertx.scala.core.sockjs.SockJSSocket.InternalType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="InternalType=org.vertx.java.core.sockjs.SockJSSocket"></a>
-      <a id="InternalType:InternalType"></a>
+              <ol><li name="org.vertx.scala.core.sockjs.SockJSSocket.J" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="J=org.vertx.java.core.sockjs.SockJSSocket"></a>
+      <a id="J:J"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">InternalType</span><span class="result"> = <span class="extype" name="org.vertx.java.core.sockjs.SockJSSocket">java.core.sockjs.SockJSSocket</span></span>
+        <span class="name">J</span><span class="result"> = <span class="extype" name="org.vertx.java.core.sockjs.SockJSSocket">java.core.sockjs.SockJSSocket</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">The internal type of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a> → <a href="../streams/WrappedReadWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadWriteStream">WrappedReadWriteStream</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → VertxWrapper → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
+      <p class="shortcomment cmt">The internal type of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal type of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a> → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> → AsJava</dd></dl></div>
     </li></ol>
             </div>
 
@@ -198,6 +182,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.sockjs.SockJSSocket#asJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asJava:org.vertx.java.core.sockjs.SockJSSocket"></a>
+      <a id="asJava:java.core.sockjs.SockJSSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asJava</span><span class="result">: <span class="extype" name="org.vertx.java.core.sockjs.SockJSSocket">java.core.sockjs.SockJSSocket</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The internal instance of the Java wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the Java wrapped class.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a> → AsJava</dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -231,8 +228,8 @@
       </h4>
       <p class="shortcomment cmt">Close it
 </p>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#dataHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="dataHandler(handler:org.vertx.scala.core.buffer.Buffer=&gt;Unit):WrappedReadStream.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.ReadStream#dataHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="dataHandler(handler:org.vertx.scala.core.buffer.Buffer=&gt;Unit):ReadStream.this.type"></a>
       <a id="dataHandler((Buffer)⇒Unit):SockJSSocket.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -243,23 +240,10 @@
         <span class="name">dataHandler</span><span class="params">(<span name="handler">handler: (<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#dataHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="dataHandler(handler:org.vertx.scala.core.Handler[org.vertx.scala.core.buffer.Buffer]):WrappedReadStream.this.type"></a>
-      <a id="dataHandler(Handler[Buffer]):SockJSSocket.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">dataHandler</span><span class="params">(<span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>.this.type</span>
-      </span>
-      </h4>
       <p class="shortcomment cmt">Set a data handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set a data handler. As data is read, the handler will be called with the data.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#drainHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="drainHandler(handler:=&gt;Unit):WrappedWriteStream.this.type"></a>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a> → <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#drainHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="drainHandler(handler:=&gt;Unit):WriteStream.this.type"></a>
       <a id="drainHandler(⇒Unit):SockJSSocket.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -271,25 +255,10 @@
       </span>
       </h4>
       <p class="shortcomment cmt">Set a drain handler on the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
-queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of this being used.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#drainHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="drainHandler(handler:org.vertx.scala.core.Handler[Void]):WrappedWriteStream.this.type"></a>
-      <a id="drainHandler(Handler[Void]):SockJSSocket.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">drainHandler</span><span class="params">(<span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<span class="extype" name="java.lang.Void">Void</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set a drain handler on the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
-queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of this being used.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#endHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="endHandler(handler:=&gt;Unit):WrappedReadStream.this.type"></a>
+queue has been reduced to maxSize / 2. See <a href="../streams/Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a> for an example of this being used.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.ReadStream#endHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="endHandler(handler:=&gt;Unit):ReadStream.this.type"></a>
       <a id="endHandler(⇒Unit):SockJSSocket.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -300,21 +269,9 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
         <span class="name">endHandler</span><span class="params">(<span name="handler">handler: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#endHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="endHandler(handler:org.vertx.scala.core.Handler[Void]):WrappedReadStream.this.type"></a>
-      <a id="endHandler(Handler[Void]):SockJSSocket.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">endHandler</span><span class="params">(<span name="handler">handler: <a href="../package.html#Handler[T]=org.vertx.java.core.Handler[T]" class="extmbr" name="org.vertx.scala.core.Handler">Handler</a>[<span class="extype" name="java.lang.Void">Void</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set an end handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an end handler. Once the stream has ended, and there is no more data to be read, this handler will be called.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
+      <p class="shortcomment cmt">Set an end handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an end handler. Once the stream has ended, and there is no more data
+to be read, this handler will be called.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -341,8 +298,8 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="exceptionHandler(handler:Throwable=&gt;Unit):WrappedExceptionSupport.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.ExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exceptionHandler(handler:Throwable=&gt;Unit):ExceptionSupport.this.type"></a>
       <a id="exceptionHandler((Throwable)⇒Unit):SockJSSocket.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -354,21 +311,7 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
       </span>
       </h4>
       <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedExceptionSupport#exceptionHandler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="exceptionHandler(handler:org.vertx.java.core.Handler[Throwable]):WrappedExceptionSupport.this.type"></a>
-      <a id="exceptionHandler(java.core.Handler[Throwable]):SockJSSocket.this.type"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">exceptionHandler</span><span class="params">(<span name="handler">handler: <span class="extype" name="org.vertx.java.core.Handler">java.core.Handler</span>[<a href="../../../../../scala/package.html#Throwable=Throwable" class="extmbr" name="scala.Throwable">Throwable</a>]</span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>.this.type</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Set an exception handler.</p><div class="fullcomment"><div class="comment cmt"><p>Set an exception handler.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -414,19 +357,23 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.vertx.scala.core.sockjs.SockJSSocket#internal" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="internal:org.vertx.java.core.sockjs.SockJSSocket"></a>
-      <a id="internal:java.core.sockjs.SockJSSocket"></a>
+    </li><li name="org.vertx.scala.core.sockjs.SockJSSocket#headers" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="headers:org.vertx.scala.core.MultiMap"></a>
+      <a id="headers:MultiMap"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">internal</span><span class="result">: <span class="extype" name="org.vertx.java.core.sockjs.SockJSSocket">java.core.sockjs.SockJSSocket</span></span>
+        <span class="name">headers</span><span class="result">: <a href="../package.html#MultiMap=scala.collection.mutable.MultiMap[String,String]" class="extmbr" name="org.vertx.scala.core.MultiMap">MultiMap</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">The internal instance of the wrapped class.</p><div class="fullcomment"><div class="comment cmt"><p>The internal instance of the wrapped class.</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a> → VertxWrapper</dd></dl></div>
+      <p class="shortcomment cmt">Return the headers corresponding to the last request for this socket or the websocket handshake
+Any cookie headers will be removed for security reasons</p><div class="fullcomment"><div class="comment cmt"><p>Return the headers corresponding to the last request for this socket or the websocket handshake
+Any cookie headers will be removed for security reasons</p><p>This method converts a Java collection into a Scala collection every
+time it gets called, so use it sensibly.
+</p></div></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -440,6 +387,20 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.sockjs.SockJSSocket#localAddress" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="localAddress():java.net.InetSocketAddress"></a>
+      <a id="localAddress():InetSocketAddress"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">localAddress</span><span class="params">()</span><span class="result">: <span class="extype" name="java.net.InetSocketAddress">InetSocketAddress</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Return the local address for this socket
+</p>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -479,8 +440,8 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#pause" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="pause():WrappedReadStream.this.type"></a>
+    </li><li name="org.vertx.scala.core.streams.ReadSupport#pause" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="pause():ReadSupport.this.type"></a>
       <a id="pause():SockJSSocket.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -491,10 +452,24 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
         <span class="name">pause</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Pause the <code> ReadStream</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Pause the <code> ReadStream</code>. While the stream is paused, no data will be sent to the <code> dataHandler</code>
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedReadStream#resume" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="resume():WrappedReadStream.this.type"></a>
+      <p class="shortcomment cmt">Pause the <code>ReadSupport</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Pause the <code>ReadSupport</code>. While it's paused, no data will be sent to the <code>dataHandler</code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.sockjs.SockJSSocket#remoteAddress" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="remoteAddress():java.net.InetSocketAddress"></a>
+      <a id="remoteAddress():InetSocketAddress"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">remoteAddress</span><span class="params">()</span><span class="result">: <span class="extype" name="java.net.InetSocketAddress">InetSocketAddress</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Return the remote address for this socket
+</p>
+    </li><li name="org.vertx.scala.core.streams.ReadSupport#resume" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="resume():ReadSupport.this.type"></a>
       <a id="resume():SockJSSocket.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -505,10 +480,10 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
         <span class="name">resume</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Resume reading.</p><div class="fullcomment"><div class="comment cmt"><p>Resume reading. If the <code> ReadStream</code> has been paused, reading will recommence on it.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> → <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#setWriteQueueMaxSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setWriteQueueMaxSize(maxSize:Int):WrappedWriteStream.this.type"></a>
+      <p class="shortcomment cmt">Resume reading.</p><div class="fullcomment"><div class="comment cmt"><p>Resume reading. If the <code>ReadSupport</code> has been paused, reading will recommence on it.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a></dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#setWriteQueueMaxSize" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setWriteQueueMaxSize(maxSize:Int):WriteStream.this.type"></a>
       <a id="setWriteQueueMaxSize(Int):SockJSSocket.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -519,10 +494,10 @@ queue has been reduced to maxSize / 2. See <code> Pump</code> for an example of 
         <span class="name">setWriteQueueMaxSize</span><span class="params">(<span name="maxSize">maxSize: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>.this.type</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Set the maximum size of the write queue to <code> maxSize</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the maximum size of the write queue to <code> maxSize</code>. You will still be able to write to the stream even
-if there is more than <code> maxSize</code> bytes in the write queue. This is used as an indicator by classes such as
-<code> Pump</code> to provide flow control.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+      <p class="shortcomment cmt">Set the maximum size of the write queue to <code>maxSize</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Set the maximum size of the write queue to <code>maxSize</code>. You will still be able to write to the stream even
+if there is more than <code>maxSize</code> bytes in the write queue. This is used as an indicator by classes such as
+<code>Pump</code> to provide flow control.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -536,21 +511,6 @@ if there is more than <code> maxSize</code> bytes in the write queue. This is us
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#toJava" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toJava():WrappedWriteStream.this.InternalType"></a>
-      <a id="toJava():InternalType"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toJava</span><span class="params">()</span><span class="result">: <a href="#InternalType=org.vertx.java.core.sockjs.SockJSSocket" class="extmbr" name="org.vertx.scala.core.sockjs.SockJSSocket.InternalType">InternalType</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Returns the internal type instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the internal type instance.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The internal type instance.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> → VertxWrapper → <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -564,6 +524,20 @@ if there is more than <code> maxSize</code> bytes in the write queue. This is us
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.vertx.scala.core.sockjs.SockJSSocket#uri" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="uri:String"></a>
+      <a id="uri:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">uri</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Return the URI corresponding to the last request for this socket or the websocket handshake
+</p>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -621,8 +595,8 @@ if there is more than <code> maxSize</code> bytes in the write queue. This is us
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.vertx.scala.Wrap#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wrap[X](doStuff:=&gt;X):Wrap.this.type"></a>
+    </li><li name="org.vertx.scala.Self#wrap" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wrap[X](doStuff:=&gt;X):Self.this.type"></a>
       <a id="wrap[X](⇒X):SockJSSocket.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -630,12 +604,16 @@ if there is more than <code> maxSize</code> bytes in the write queue. This is us
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Wrap.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>.this.type</span>
+        <span class="name">wrap</span><span class="tparams">[<span name="X">X</span>]</span><span class="params">(<span name="doStuff">doStuff: ⇒ <span class="extype" name="org.vertx.scala.Self.wrap.X">X</span></span>)</span><span class="result">: <a href="" class="extype" name="org.vertx.scala.core.sockjs.SockJSSocket">SockJSSocket</a>.this.type</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></dd></dl></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#write" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="write(data:org.vertx.scala.core.buffer.Buffer):WrappedWriteStream.this.type"></a>
+      <p class="shortcomment cmt">Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p><div class="fullcomment"><div class="comment cmt"><p>Helper method wrapping invocations and returning the Scala type, once
+again to help provide fluent return types
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd>Self</dd></dl></div>
+    </li><li name="org.vertx.scala.core.streams.WriteStream#write" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="write(data:org.vertx.scala.core.buffer.Buffer):WriteStream.this.type"></a>
       <a id="write(Buffer):SockJSSocket.this.type"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -648,8 +626,9 @@ if there is more than <code> maxSize</code> bytes in the write queue. This is us
       </h4>
       <p class="shortcomment cmt">Write some data to the stream.</p><div class="fullcomment"><div class="comment cmt"><p>Write some data to the stream. The data is put on an internal write queue, and the write actually happens
 asynchronously. To avoid running out of memory by putting too much on the write queue,
-check the <code> #writeQueueFull</code> method before writing. This is done automatically if using a <code> Pump</code>.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+check the <span class="extype" name="org.vertx.scala.core.streams.WriteStream.writeQueueFull()">org.vertx.scala.core.streams.WriteStream.writeQueueFull()</span>
+method before writing. This is done automatically if using a <a href="../streams/Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">org.vertx.scala.core.streams.Pump</a>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
     </li><li name="org.vertx.scala.core.sockjs.SockJSSocket#writeHandlerID" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="writeHandlerID():String"></a>
       <a id="writeHandlerID():String"></a>
@@ -662,13 +641,13 @@ check the <code> #writeQueueFull</code> method before writing. This is done auto
         <span class="name">writeHandlerID</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">When a <code> SockJSSocket</code> is created it automatically registers an event handler with the event bus, the ID of that
-handler is given by <code> writeHandlerID</code>.</p><div class="fullcomment"><div class="comment cmt"><p>When a <code> SockJSSocket</code> is created it automatically registers an event handler with the event bus, the ID of that
-handler is given by <code> writeHandlerID</code>.</p><p>Given this ID, a different event loop can send a buffer to that event handler using the event bus and
+      <p class="shortcomment cmt">When a <code>SockJSSocket</code> is created it automatically registers an event handler with the event bus, the ID of that
+handler is given by <code>writeHandlerID</code>.</p><div class="fullcomment"><div class="comment cmt"><p>When a <code>SockJSSocket</code> is created it automatically registers an event handler with the event bus, the ID of that
+handler is given by <code>writeHandlerID</code>.</p><p>Given this ID, a different event loop can send a buffer to that event handler using the event bus and
 that buffer will be received by this instance in its own event loop and written to the underlying socket. This
 allows you to write data to other sockets which are owned by different event loops.
 </p></div></div>
-    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream#writeQueueFull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="org.vertx.scala.core.streams.WriteStream#writeQueueFull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="writeQueueFull():Boolean"></a>
       <a id="writeQueueFull():Boolean"></a>
       <h4 class="signature">
@@ -680,11 +659,11 @@ allows you to write data to other sockets which are owned by different event loo
         <span class="name">writeQueueFull</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">This will return <code> true</code> if there are more bytes in the write queue than the value set using <code>
-#setWriteQueueMaxSize</code>
-</p><div class="fullcomment"><div class="comment cmt"><p>This will return <code> true</code> if there are more bytes in the write queue than the value set using <code>
-#setWriteQueueMaxSize</code>
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> → <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
+      <p class="shortcomment cmt">This will return <code>true</code> if there are more bytes in the write queue than the value set using
+<span class="extype" name="org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()">org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()</span>
+</p><div class="fullcomment"><div class="comment cmt"><p>This will return <code>true</code> if there are more bytes in the write queue than the value set using
+<span class="extype" name="org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()">org.vertx.scala.core.streams.WriteStream.setWriteQueueMaxSize()</span>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></dd></dl></div>
     </li></ol>
             </div>
 
@@ -694,24 +673,18 @@ allows you to write data to other sockets which are owned by different event loo
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.vertx.scala.core.streams.WrappedReadWriteStream">
-              <h3>Inherited from <a href="../streams/WrappedReadWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadWriteStream">WrappedReadWriteStream</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.streams.WrappedWriteStream">
-              <h3>Inherited from <a href="../streams/WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.streams.WriteStream">
+        <div class="parent" name="org.vertx.scala.core.streams.WriteStream">
               <h3>Inherited from <a href="../streams/WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.streams.WrappedReadStream">
-              <h3>Inherited from <a href="../streams/WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a></h3>
             </div><div class="parent" name="org.vertx.scala.core.streams.ReadStream">
               <h3>Inherited from <a href="../streams/ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></h3>
-            </div><div class="parent" name="org.vertx.scala.core.streams.WrappedExceptionSupport">
-              <h3>Inherited from <a href="../streams/WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a></h3>
-            </div><div class="parent" name="org.vertx.scala.VertxWrapper">
-              <h3>Inherited from <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></h3>
-            </div><div class="parent" name="org.vertx.scala.Wrap">
-              <h3>Inherited from <a href="../../Wrap.html" class="extype" name="org.vertx.scala.Wrap">Wrap</a></h3>
+            </div><div class="parent" name="org.vertx.scala.core.streams.ReadSupport">
+              <h3>Inherited from <a href="../streams/ReadSupport.html" class="extype" name="org.vertx.scala.core.streams.ReadSupport">ReadSupport</a>[<a href="../buffer/Buffer.html" class="extype" name="org.vertx.scala.core.buffer.Buffer">Buffer</a>]</h3>
             </div><div class="parent" name="org.vertx.scala.core.streams.ExceptionSupport">
               <h3>Inherited from <a href="../streams/ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></h3>
+            </div><div class="parent" name="org.vertx.scala.AsJava">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.AsJava">AsJava</span></h3>
+            </div><div class="parent" name="org.vertx.scala.Self">
+              <h3>Inherited from <span class="extype" name="org.vertx.scala.Self">Self</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">

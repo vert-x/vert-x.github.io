@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>Pump - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.streams.Pump</title>
-          <meta name="description" content="Pump - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.streams.Pump" />
-          <meta name="keywords" content="Pump mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.streams.Pump" />
+          <title>Pump - lang-scala.git 0.4.0-SNAPSHOT API - org.vertx.scala.core.streams.Pump</title>
+          <meta name="description" content="Pump - lang - scala.git 0.4.0 - SNAPSHOT API - org.vertx.scala.core.streams.Pump" />
+          <meta name="keywords" content="Pump lang scala.git 0.4.0 SNAPSHOT API org.vertx.scala.core.streams.Pump" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -39,15 +39,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Pumps data from a <code> ReadStream</code> to a <code> WriteStream</code> and performs flow control where necessary to
-prevent the write stream buffer from getting overfull.</p><p>Instances of this class read bytes from a <code> ReadStream</code> and write them to a <code> WriteStream</code>. If data
-can be read faster than it can be written this could result in the write queue of the <code> WriteStream</code> growing
-without bound, eventually causing it to exhaust all available RAM.</p><p>To prevent this, after each write, instances of this class check whether the write queue of the <code>
-WriteStream</code> is full, and if so, the <code> ReadStream</code> is paused, and a <code> drainHandler</code> is set on the
-<code> WriteStream</code>. When the <code> WriteStream</code> has processed half of its backlog, the <code> drainHandler</code> will be
-called, which results in the pump resuming the <code> ReadStream</code>.</p><p>This class can be used to pump from any <code> ReadStream</code> to any <code> WriteStream</code>,
-e.g. from an <code> org.vertx.java.core.http.HttpServerRequest</code> to an <code> org.vertx.java.core.file.AsyncFile</code>,
-or from <code> org.vertx.java.core.net.NetSocket</code> to a <code> org.vertx.java.core.http.WebSocket</code>.</p><p>Instances of this class are not thread-safe.</p></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -170,8 +162,8 @@ or from <code> org.vertx.java.core.net.NetSocket</code> to a <code> org.vertx.ja
         <span class="name">apply</span><span class="tparams">[<span name="A">A &lt;: <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>, <span name="B">B &lt;: <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>]</span><span class="params">(<span name="rs">rs: <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>, <span name="ws">ws: <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>, <span name="writeQueueMaxSize">writeQueueMaxSize: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">Pump</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create a new <code> Pump</code> with the given <code> ReadStream</code> and <code> WriteStream</code> and
-<code> writeQueueMaxSize</code>
+      <p class="shortcomment cmt">Create a new <code>Pump</code> with the given <code>ReadStream</code> and <code>WriteStream</code> and
+<code>writeQueueMaxSize</code>
 </p>
     </li><li name="org.vertx.scala.core.streams.Pump#apply" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="apply[A&lt;:org.vertx.scala.core.streams.ReadStream,B&lt;:org.vertx.scala.core.streams.WriteStream](rs:org.vertx.scala.core.streams.ReadStream,ws:org.vertx.scala.core.streams.WriteStream):org.vertx.scala.core.streams.Pump"></a>
@@ -185,7 +177,7 @@ or from <code> org.vertx.java.core.net.NetSocket</code> to a <code> org.vertx.ja
         <span class="name">apply</span><span class="tparams">[<span name="A">A &lt;: <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>, <span name="B">B &lt;: <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>]</span><span class="params">(<span name="rs">rs: <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>, <span name="ws">ws: <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>)</span><span class="result">: <a href="Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">Pump</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create a new <code> Pump</code> with the given <code> ReadStream</code> and <code> WriteStream</code>
+      <p class="shortcomment cmt">Create a new <code>Pump</code> with the given <code>ReadStream</code> and <code>WriteStream</code>
 </p>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
@@ -231,8 +223,8 @@ or from <code> org.vertx.java.core.net.NetSocket</code> to a <code> org.vertx.ja
         <span class="name">createPump</span><span class="tparams">[<span name="A">A &lt;: <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>, <span name="B">B &lt;: <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>]</span><span class="params">(<span name="rs">rs: <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>, <span name="ws">ws: <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>, <span name="writeQueueMaxSize">writeQueueMaxSize: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">Pump</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create a new <code> Pump</code> with the given <code> ReadStream</code> and <code> WriteStream</code> and
-<code> writeQueueMaxSize</code>
+      <p class="shortcomment cmt">Create a new <code>Pump</code> with the given <code>ReadStream</code> and <code>WriteStream</code> and
+<code>writeQueueMaxSize</code>
 </p>
     </li><li name="org.vertx.scala.core.streams.Pump#createPump" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="createPump[A&lt;:org.vertx.scala.core.streams.ReadStream,B&lt;:org.vertx.scala.core.streams.WriteStream](rs:org.vertx.scala.core.streams.ReadStream,ws:org.vertx.scala.core.streams.WriteStream):org.vertx.scala.core.streams.Pump"></a>
@@ -246,7 +238,7 @@ or from <code> org.vertx.java.core.net.NetSocket</code> to a <code> org.vertx.ja
         <span class="name">createPump</span><span class="tparams">[<span name="A">A &lt;: <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>, <span name="B">B &lt;: <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>]</span><span class="params">(<span name="rs">rs: <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>, <span name="ws">ws: <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>)</span><span class="result">: <a href="Pump.html" class="extype" name="org.vertx.scala.core.streams.Pump">Pump</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create a new <code> Pump</code> with the given <code> ReadStream</code> and <code> WriteStream</code>
+      <p class="shortcomment cmt">Create a new <code>Pump</code> with the given <code>ReadStream</code> and <code>WriteStream</code>
 </p>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
