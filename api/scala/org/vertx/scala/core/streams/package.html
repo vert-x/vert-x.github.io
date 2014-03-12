@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>streams - mod-lang-scala 0.2.0-SNAPSHOT API - org.vertx.scala.core.streams</title>
+          <meta name="description" content="streams - mod - lang - scala 0.2.0 - SNAPSHOT API - org.vertx.scala.core.streams" />
+          <meta name="keywords" content="streams mod lang scala 0.2.0 SNAPSHOT API org.vertx.scala.core.streams" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'org.vertx.scala.core.streams.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="org">org</a>.<a href="../../../package.html" class="extype" name="org.vertx">vertx</a>.<a href="../../package.html" class="extype" name="org.vertx.scala">scala</a>.<a href="../package.html" class="extype" name="org.vertx.scala.core">core</a></p>
+        <h1>streams</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">streams</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.vertx.scala.core.streams.ExceptionSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ExceptionSupportextendsAnyRef"></a>
+      <a id="ExceptionSupport:ExceptionSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ExceptionSupport.html"><span class="name">ExceptionSupport</span></a><span class="result"> extends <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt"></p>
+    </li><li name="org.vertx.scala.core.streams.Pump" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PumpextendsVertxWrapper"></a>
+      <a id="Pump:Pump"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Pump.html"><span class="name">Pump</span></a><span class="result"> extends <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.streams.ReadStream" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ReadStreamextendsExceptionSupport"></a>
+      <a id="ReadStream:ReadStream"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ReadStream.html"><span class="name">ReadStream</span></a><span class="result"> extends <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents a stream of data that can be read from.</p>
+    </li><li name="org.vertx.scala.core.streams.WrappedExceptionSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WrappedExceptionSupportextendsExceptionSupportwithVertxWrapper"></a>
+      <a id="WrappedExceptionSupport:WrappedExceptionSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WrappedExceptionSupport.html"><span class="name">WrappedExceptionSupport</span></a><span class="result"> extends <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a> with <span class="extype" name="org.vertx.scala.VertxWrapper">VertxWrapper</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.streams.WrappedReadStream" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WrappedReadStreamextendsWrappedExceptionSupportwithReadStream"></a>
+      <a id="WrappedReadStream:WrappedReadStream"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WrappedReadStream.html"><span class="name">WrappedReadStream</span></a><span class="result"> extends <a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> with <a href="ReadStream.html" class="extype" name="org.vertx.scala.core.streams.ReadStream">ReadStream</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt"></p>
+    </li><li name="org.vertx.scala.core.streams.WrappedReadWriteStream" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WrappedReadWriteStreamextendsWrappedReadStreamwithWrappedWriteStreamwithWrappedExceptionSupport"></a>
+      <a id="WrappedReadWriteStream:WrappedReadWriteStream"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WrappedReadWriteStream.html"><span class="name">WrappedReadWriteStream</span></a><span class="result"> extends <a href="WrappedReadStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedReadStream">WrappedReadStream</a> with <a href="WrappedWriteStream.html" class="extype" name="org.vertx.scala.core.streams.WrappedWriteStream">WrappedWriteStream</a> with <a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.vertx.scala.core.streams.WrappedWriteStream" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WrappedWriteStreamextendsWrappedExceptionSupportwithWriteStream"></a>
+      <a id="WrappedWriteStream:WrappedWriteStream"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WrappedWriteStream.html"><span class="name">WrappedWriteStream</span></a><span class="result"> extends <a href="WrappedExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.WrappedExceptionSupport">WrappedExceptionSupport</a> with <a href="WriteStream.html" class="extype" name="org.vertx.scala.core.streams.WriteStream">WriteStream</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt"></p>
+    </li><li name="org.vertx.scala.core.streams.WriteStream" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WriteStreamextendsExceptionSupport"></a>
+      <a id="WriteStream:WriteStream"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WriteStream.html"><span class="name">WriteStream</span></a><span class="result"> extends <a href="ExceptionSupport.html" class="extype" name="org.vertx.scala.core.streams.ExceptionSupport">ExceptionSupport</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents a stream of data that can be written to</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.vertx.scala.core.streams.Pump" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Pump"></a>
+      <a id="Pump:Pump"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Pump$.html"><span class="name">Pump</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Pumps data from a <code> ReadStream</code> to a <code> WriteStream</code> and performs flow control where necessary to
+prevent the write stream buffer from getting overfull.</p>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+    </body>
+      </html>
