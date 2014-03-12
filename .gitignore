@@ -1,2 +1,5 @@
-.idea
+# ignore IDEA files
 *.iml
+*.ipr
+*.iws
+.idea
