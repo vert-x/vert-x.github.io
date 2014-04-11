@@ -225,7 +225,7 @@ Any verticles that you deploy programmatically from within a verticle and all of
 
     Vertx.deploy_verticle('my_verticle.rb') do |err, deployment_id|
         # Immediately undeploy it
-        Vertx.undeploy_verticle(deploymentID) if !err
+        Vertx.undeploy_verticle(deployment_id) if !err
     end   
 
 # Scaling your application
