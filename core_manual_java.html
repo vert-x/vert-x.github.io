@@ -855,7 +855,6 @@ JsonObject obj = new JsonObject().putString("foo", "wibble")
 
 eb.send("some-address", obj);
 
-
 // ....
 // And in a handler somewhere:
 
@@ -1318,7 +1317,7 @@ socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
             });
 
             // join the multicast group
-            socket.listMulticastGroup("230.0.0.1", new AsyncResultHandler&lt;DatagramSocket&gt;() {
+            socket.listenMulticastGroup("230.0.0.1", new AsyncResultHandler&lt;DatagramSocket&gt;() {
                 public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
                     log.info("Listen succeeded? " + asyncResult.succeeded());
                 }
@@ -1345,7 +1344,7 @@ socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
             });
 
             // join the multicast group
-            socket.listMulticastGroup("230.0.0.1", new AsyncResultHandler&lt;DatagramSocket&gt;() {
+            socket.listenMulticastGroup("230.0.0.1", new AsyncResultHandler&lt;DatagramSocket&gt;() {
                 public void handle(AsyncResult&lt;DatagramSocket&gt; asyncResult) {
                     if (asyncResult.successed()) {
 

@@ -595,7 +595,7 @@ eb.registerHandler("test.address", myHandler) { println "The handler has been re
 <p>That message will then be delivered to all handlers registered against the address "test.address".</p>
 <h3 id="sending-messages">Sending messages</h3><br/>
 <p>Sending a message will result in only one handler registered at the address receiving the message. This is the point to point messaging pattern. The handler is chosen in a non strict round-robin fashion.</p>
-<pre class="prettyprint">eb.send("test.address", "hello world")
+<pre class="prettyprint">eb.publish("test.address", "hello world")
 </pre>
 <h3 id="replying-to-messages">Replying to messages</h3><br/>
 <p>Sometimes after you send a message you want to receive a reply from the recipient. This is known as the <em>request-response pattern</em>.</p>
@@ -1781,7 +1781,7 @@ def sockJSServer = vertx.createSockJSServer(httpServer)
 
 def sockJSServer = vertx.createSockJSServer(httpServer)
 
-def config = ["prefix: "/echo"]
+def config = ["prefix": "/echo"]
 
 sockJSServer.installApp(config) { sock -&gt;
     Pump.createPump(sock, sock).start()

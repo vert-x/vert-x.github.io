@@ -485,7 +485,7 @@ end
 <p>Any verticles that you deploy programmatically from within a verticle and all of their children are automatically undeployed when the parent verticle is undeployed, so in most cases you will not need to undeploy a verticle manually, however if you do want to do this, it can be done by calling the function <code>Vertx.undeploy_verticle</code> passing in the deployment id.</p>
 <pre class="prettyprint">Vertx.deploy_verticle('my_verticle.rb') do |err, deployment_id|
     # Immediately undeploy it
-    Vertx.undeploy_verticle(deploymentID) if !err
+    Vertx.undeploy_verticle(deployment_id) if !err
 end
 </pre>
 <h1 id="scaling-your-application">Scaling your application</h1><br/>
