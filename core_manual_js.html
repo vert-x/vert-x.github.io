@@ -347,7 +347,7 @@
 <p>For now, let's try writing a simple raw verticle.</p>
 <p>As an example we'll write a simple TCP echo server. The server just accepts connections and any data received by it is echoed back on the connection.</p>
 <p>Copy the following into a text editor and save it as <code>server.js</code></p>
-<pre class="prettyprint">var vertx = require('vertx')
+<pre class="prettyprint">var vertx = require('vertx');
 
 vertx.createNetServer().connectHandler(function(sock) {
     new vertx.Pump(sock, sock).start();
@@ -404,8 +404,9 @@ console.log("hello world!);
 </pre>
 <h2 id="loading-other-scripts-in-the-current-scope">Loading other scripts in the current scope</h2><br/>
 <p>To load and execute another JavaScript file in the current scope, you can use the <code>load</code> function:</p>
-<p>load("somescript.js");</p>
-<p>foo(); // Call a function defined in the script</p>
+<pre class="prettyprint">load("somescript.js");
+foo(); // Call a function defined in the script
+</pre>
 <h2 id="getting-configuration-in-a-verticle">Getting Configuration in a Verticle</h2><br/>
 <p>You can pass configuration to a module or verticle from the command line using the <code>-conf</code> option, for example:</p>
 <pre class="prettyprint">vertx runmod com.mycompany~my-mod~1.0 -conf myconf.json
@@ -2076,6 +2077,7 @@ sockJSServer.bridge({prefix : '/eventbus'},
     }
   ]
   );
+
 
 server.listen(8080);
 </pre>

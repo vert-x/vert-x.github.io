@@ -22,7 +22,7 @@ As an example we'll write a simple TCP echo server. The server just accepts conn
 
 Copy the following into a text editor and save it as `server.js`
 
-    var vertx = require('vertx')
+    var vertx = require('vertx');
 
     vertx.createNetServer().connectHandler(function(sock) {
         new vertx.Pump(sock, sock).start();
@@ -106,9 +106,8 @@ If you want to log stuff to the console, you need to require the console object:
 
    To load and execute another JavaScript file in the current scope, you can use the `load` function:
 
-   load("somescript.js");
-
-   foo(); // Call a function defined in the script
+    load("somescript.js");
+    foo(); // Call a function defined in the script
 
         
 ## Getting Configuration in a Verticle
