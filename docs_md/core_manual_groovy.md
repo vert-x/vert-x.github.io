@@ -55,14 +55,14 @@ You can also write Vert.x verticles as compiled Groovy classes. Here's an exampl
     import org.vertx.groovy.core.Vertx
          
     class EchoServer extends Verticle {
-        override def start() {
+        def start() {
             vertx.createNetServer().connectHandler { socket ->
                 createPump(socket, socket).start()
             }.listen(1234)
         }
 
-	override def stop() {        
-        }
+	   def stop() {        
+       }
     }
 
 Once you've compiled it, you run it by specifing the classname prefixed with `groovy:`. We need the prefix to tell Vert.x to treat it as a Groovy class, not a Java class.
@@ -76,7 +76,7 @@ In some cases your Verticle has to do some other stuff asynchronous in its `star
 
 If this is the case for your compiled Groovy verticle you can override the asynchronous version of the `start()` method:
 
-    override def start(Future<Void> startedResult) {    
+    def start(Future<Void> startedResult) {    
       // For example - deploy some other verticle
       container.deployVerticle("foo.js") { deployResult ->
         if (deployResult.succeeded) {

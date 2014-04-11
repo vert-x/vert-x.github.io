@@ -1329,7 +1329,7 @@ So to listen on a specific address and port and also receive packets for the Mul
                 });
 
                 // join the multicast group
-                socket.listMulticastGroup("230.0.0.1", new AsyncResultHandler<DatagramSocket>() {
+                socket.listenMulticastGroup("230.0.0.1", new AsyncResultHandler<DatagramSocket>() {
                     public void handle(AsyncResult<DatagramSocket> asyncResult) {
                         log.info("Listen succeeded? " + asyncResult.succeeded());
                     }
@@ -1360,7 +1360,7 @@ This is shown here:
                 });  
 
                 // join the multicast group
-                socket.listMulticastGroup("230.0.0.1", new AsyncResultHandler<DatagramSocket>() {
+                socket.listenMulticastGroup("230.0.0.1", new AsyncResultHandler<DatagramSocket>() {
                     public void handle(AsyncResult<DatagramSocket> asyncResult) {
                         if (asyncResult.successed()) {
 
