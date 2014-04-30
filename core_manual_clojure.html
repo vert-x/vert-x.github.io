@@ -1874,7 +1874,7 @@ see the headers.</p>
       #(-&gt; %
            (http/server-response)
            (http/put-header "Content-Type" "text/plain")
-           (http/end (pr-str (http/headers request)))))
+           (http/end (pr-str (http/headers %)))))
     (http/listen 8080)
 </pre>
 <h4 id="request-params">Request params</h4><br/>
