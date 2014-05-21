@@ -342,18 +342,17 @@
 
           <p>Save the following in <code>server.clj</code></p>
                   <pre class="prettyprint">
-  (ns sample.server
-    (:require [vertx.html :as html]))
+  (ns example.server
+  (:require [vertx.http :as http]))
 
-  (-> http/server
-    (http/on-request 
+  (-> (http/server)
+    (http/on-request
       (fn [req]
         (let [uri (.uri req)]
           (-> req
-            http/server-response
+            (http/server-response)
             (http/send-file (str "webroot/" (if (= "/" uri) "index.html" uri)))))))
-    (http/listen 8080))
-                
+    (http/listen 8080))                
                   </pre>
 
           <p>Run it:</p>
