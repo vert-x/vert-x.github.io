@@ -56,24 +56,24 @@ h3 {
     float: left;
     width: 200px;
     background: white;
-    padding: 50px 30px;
+    padding: 30px 30px;
     margin: 0 25px 25px 0;
 }
-.hp .hero-unit .title { 
+.hp .hero-unit .title {
     font-size:33px; line-height:40px !important;
 }
-.hp .features { 
-    -webkit-column-count:4; 
+.hp .features {
+    -webkit-column-count:4;
     -moz-column-count:4;
     column-count:4;
     -webkit-column-gap:2.9em;
     -moz-column-gap:2.9em;
     column-gap:2.9em;
 }
-.hp .features li { 
-    margin-top:18px; 
-    padding-bottom:18px; 
-    border-bottom:1px dashed #ccc; 
+.hp .features li {
+    margin-top:18px;
+    padding-bottom:18px;
+    border-bottom:1px dashed #ccc;
     list-style:none;
 }
 
