@@ -2257,8 +2257,9 @@ The following example bridges the event bus to client side JavaScript:
     val server = vertx.createHttpServer()
     
     val config = Json.obj("prefix" -> "/echo")
-    
-    vertx.createSockJSServer(server).bridge(config, new JsonArray(), new JsonArray())
+    val permitAll = new JsonArray()
+    permitAll.add(new JsonObject())
+    vertx.createSockJSServer(server).bridge(config, permitAll, permitAll)
     
     server.listen(8080)
     
