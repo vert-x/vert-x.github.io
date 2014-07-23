@@ -181,7 +181,7 @@ If you want to enable auto-redeploy for all modules in a multi-module project th
 
 Then in each module project directory execute:
 
-    vertx create-link <module_name>
+    vertx create-module-link <module_name>
 
 This only has to be done once.
 
