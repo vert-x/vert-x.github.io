@@ -595,7 +595,7 @@ container.deployWorkerVerticle("verticle5.js", verticle5Config, 10);
 
 Handler&lt;Message&gt; myHandler = new Handler&lt;Message&gt;() {
     public void handle(Message message) {
-        System.out.println("I received a message " + message.body);
+        System.out.println("I received a message " + message.body());
     }
 };
 
@@ -606,7 +606,7 @@ eb.registerHandler("test.address", myHandler);
 <p>If you know you'll always be receiving messages of a particular type you can use the specific type in your handler, e.g:</p>
 <pre class="prettyprint">Handler&lt;Message&lt;String&gt;&gt; myHandler = new Handler&lt;Message&lt;String&gt;&gt;() {
     public void handle(Message&lt;String&gt; message) {
-        String body = message.body;
+        String body = message.body();
     }
 };
 </pre>
@@ -645,7 +645,7 @@ eb.registerHandler("test.address", myHandler);
 <p>The receiver:</p>
 <pre class="prettyprint">Handler&lt;Message&lt;String&gt;&gt; myHandler = new Handler&lt;Message&lt;String&gt;&gt;() {
     public void handle(Message&lt;String&gt; message) {
-        System.out.println("I received a message " + message.body);
+        System.out.println("I received a message " + message.body());
 
         // Do some stuff
 
@@ -660,7 +660,7 @@ eb.registerHandler("test.address", myHandler);
 <p>The sender:</p>
 <pre class="prettyprint">eb.send("test.address", "This is a message", new Handler&lt;Message&lt;String&gt;&gt;() {
     public void handle(Message&lt;String&gt; message) {
-        System.out.println("I received a reply " + message.body);
+        System.out.println("I received a reply " + message.body());
     }
 });
 </pre>
@@ -673,7 +673,7 @@ eb.registerHandler("test.address", myHandler);
 <pre class="prettyprint">eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
     public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
         if (result.succeeded()) {
-            System.out.println("I received a reply " + message.body);
+            System.out.println("I received a reply " + message.body());
         } else {
 
             System.err.println("No reply was received before the 1 second timeout!");
@@ -695,7 +695,7 @@ eb.send("test.address", "This is a message", new Handler&lt;Message&lt;String&gt
 <pre class="prettyprint">message.replyWithTimeout("This is a reply", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
     public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
         if (result.succeeded()) {
-            System.out.println("I received a reply to the reply" + message.body);
+            System.out.println("I received a reply to the reply" + message.body());
         } else {
             System.err.println("No reply to the reply was received before the 1 second timeout!");
         }
@@ -715,12 +715,12 @@ eb.send("test.address", "This is a message", new Handler&lt;Message&lt;String&gt
 eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
     public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
         if (result.succeeded()) {
-            System.out.println("I received a reply " + message.body);
+            System.out.println("I received a reply " + message.body());
         } else {
             ReplyException ex = (ReplyException)result.cause();
             System.err.println("Failure type: " + ex.failureType();
             System.err.println("Failure code: " + ex.failureCode();
-            System.err.println("Failure message: " + ex.message();
+            System.err.println("Failure message: " + ex.getMessage();
         }
     }
 });
@@ -859,8 +859,8 @@ eb.send("some-address", obj);
 // And in a handler somewhere:
 
 public void handle(Message&lt;JsonObject&gt; message) {
-    System.out.println("foo is " + message.body.getString("foo");
-    System.out.println("age is " + message.body.getNumber("age");
+    System.out.println("foo is " + message.body().getString("foo");
+    System.out.println("age is " + message.body().getNumber("age");
 }
 </pre>
 <p>Methods also existing for converting this objects to and from their JSON serialized forms.</p>
