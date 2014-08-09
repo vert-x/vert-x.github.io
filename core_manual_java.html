@@ -404,7 +404,7 @@ public class Server extends Verticle {
       if (deployResult.succeeded()) {
         startedResult.setResult(null);
       } else {
-        startedResult.setFailure(deployResult.cause());
+        startedResult.setFailure(deployResult.getCause());
       }
     }
   });
@@ -542,7 +542,7 @@ container.deployWorkerVerticle("verticle5.js", verticle5Config, 10);
         if (asyncResult.succeeded()) {
             System.out.println("The verticle has been deployed, deployment ID is " + asyncResult.result());
         } else {
-            asyncResult.cause().printStackTrace();
+            asyncResult.getCause().printStackTrace();
         }
     }
 });
@@ -717,10 +717,10 @@ eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler&lt;Asy
         if (result.succeeded()) {
             System.out.println("I received a reply " + message.body);
         } else {
-            ReplyException ex = (ReplyException)result.cause();
+            ReplyException ex = (ReplyException)result.getCause();
             System.err.println("Failure type: " + ex.failureType();
             System.err.println("Failure code: " + ex.failureCode();
-            System.err.println("Failure message: " + ex.message();
+            System.err.println("Failure message: " + ex.getMessage();
         }
     }
 });
@@ -1126,7 +1126,7 @@ client.connect(1234, "localhost", new AsyncResultHandler&lt;NetSocket&gt;() {
         if (asyncResult.succeeded()) {
           log.info("We have connected! Socket is " + asyncResult.result());
     } else {
-          asyncResult.cause().printStackTrace();
+          asyncResult.getCause().printStackTrace();
         }
     }
 });
@@ -1265,7 +1265,7 @@ socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
                 }
             });
         } else {
-            log.warn("Listen failed", asyncResult.cause());
+            log.warn("Listen failed", asyncResult.getCause());
         }
     }
 });
@@ -1323,7 +1323,7 @@ socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
                 }
             });
         } else {
-            log.warn("Listen failed", asyncResult.cause());
+            log.warn("Listen failed", asyncResult.getCause());
         }
     }
 });
@@ -1361,13 +1361,13 @@ socket.listen("0.0.0.0", 1234, new AsyncResultHandler&lt;DatagramSocket&gt;() {
                         });
 
                     } else {
-                       log.warn("Listen failed", asyncResult.cause());
+                       log.warn("Listen failed", asyncResult.getCause());
                     }
 
                 }
             });
         } else {
-            log.warn("Listen failed", asyncResult.cause());
+            log.warn("Listen failed", asyncResult.getCause());
         }
     }
 });
@@ -2532,7 +2532,7 @@ server.listen(8080);
         if (ar.succeeded()) {
             log.info("Copy was successful");
         } else {
-            log.error("Failed to copy", ar.cause());
+            log.error("Failed to copy", ar.getCause());
         }
     }
 });
@@ -2585,7 +2585,7 @@ r--r--r--
             log.info("Last accessed: " + ar.result().lastAccessTime());
             // etc
         } else {
-            log.error("Failed to get props", ar.cause());
+            log.error("Failed to get props", ar.getCause());
         }
     }
 });
@@ -2614,7 +2614,7 @@ r--r--r--
         if (ar.succeeded()) {
             log.info("Link points at  " + ar.result());
         } else {
-            log.error("Failed to read", ar.cause());
+            log.error("Failed to read", ar.getCause());
         }
     }
 });
@@ -2646,7 +2646,7 @@ r--r--r--
         if (ar.suceeded()) {
             log.info("Directory created ok");
         } else {
-            log.error("Failed to mkdir", ar.cause());
+            log.error("Failed to mkdir", ar.getCause());
         }
     }
 });
@@ -2674,7 +2674,7 @@ r--r--r--
               log.info(ar.result()[i]);
             }
         } else {
-            log.error("Failed to read", ar.cause());
+            log.error("Failed to read", ar.getCause());
         }
     }
 });
@@ -2690,7 +2690,7 @@ r--r--r--
         if (ar.succeeded()) {
             log.info("File contains: " + ar.result().length() + " bytes");
         } else {
-            log.error("Failed to read", ar.cause());
+            log.error("Failed to read", ar.getCause());
         }
     }
 });
@@ -2710,7 +2710,7 @@ r--r--r--
         if (ar.succeeded()) {
             log.info("File " + (ar.result() ? "exists" : "does not exist"));
         } else {
-            log.error("Failed to check existence", ar.cause());
+            log.error("Failed to check existence", ar.getCause());
         }
     }
 });
@@ -2731,7 +2731,7 @@ r--r--r--
             log.info("total space: " + ar.result().totalSpace());
             // etc
         } else {
-            log.error("Failed to check existence", ar.cause());
+            log.error("Failed to check existence", ar.getCause());
         }
     }
 });
@@ -2766,7 +2766,7 @@ r--r--r--
             log.info("File opened ok!");
             // etc
         } else {
-            log.error("Failed to open file", ar.cause());
+            log.error("Failed to open file", ar.getCause());
         }
     }
 });
@@ -2797,13 +2797,13 @@ r--r--r--
                             log.info("Written ok!");
                             // etc
                         } else {
-                            log.error("Failed to write", ar.cause());
+                            log.error("Failed to write", ar.getCause());
                         }
                     }
                 });
             }
         } else {
-            log.error("Failed to open file", ar.cause());
+            log.error("Failed to open file", ar.getCause());
         }
     }
 });
@@ -2831,13 +2831,13 @@ r--r--r--
                             log.info("Read ok!");
                             // etc
                         } else {
-                            log.error("Failed to write", ar.cause());
+                            log.error("Failed to write", ar.getCause());
                         }
                     }
                 });
             }
         } else {
-            log.error("Failed to open file", ar.cause());
+            log.error("Failed to open file", ar.getCause());
         }
     }
 });
@@ -2869,7 +2869,7 @@ vertx.fileSystem().open("some-file.dat", new AsyncResultHandler&lt;AsyncFile&gt;
                 }
             });
         } else {
-            log.error("Failed to open file", ar.cause());
+            log.error("Failed to open file", ar.getCause());
         }
     }
 });
@@ -2891,7 +2891,7 @@ client.lookup("vertx.io", new AsyncResultHandler&lt;InetAddress&gt;() {
         if (ar.succeeded()) {
             System.out.println(ar.result());
         } else {
-            log.error("Failed to resolve entry", ar.cause());
+            log.error("Failed to resolve entry", ar.getCause());
         }
     }
 });
@@ -2906,7 +2906,7 @@ client.lookup4("vertx.io", new AsyncResultHandler&lt;Inet4Address&gt;() {
         if (ar.succeeded()) {
             System.out.println(ar.result());
         } else {
-            log.error("Failed to resolve entry", ar.cause());
+            log.error("Failed to resolve entry", ar.getCause());
         }
     }
 });
@@ -2921,7 +2921,7 @@ client.lookup6("vertx.io", new AsyncResultHandler&lt;Inet6Address&gt;() {
         if (ar.succeeded()) {
             System.out.println(ar.result());
         } else {
-            log.error("Failed to resolve entry", ar.cause());
+            log.error("Failed to resolve entry", ar.getCause());
         }
     }
 });
@@ -2939,7 +2939,7 @@ client.resolveA("vertx.io", new AsyncResultHandler&lt;List&lt;Inet4Address&gt;&g
                 System.out.println(record);
             }
         } else {
-            log.error("Failed to resolve entry", ar.cause());
+            log.error("Failed to resolve entry", ar.getCause());
         }
     }
 });
@@ -2957,7 +2957,7 @@ client.resolveAAAA("vertx.io", new AsyncResultHandler&lt;List&lt;Inet6Address&gt
                 System.out.println(record);
             }
         } else {
-            log.error("Failed to resolve entry", ar.cause());
+            log.error("Failed to resolve entry", ar.getCause());
         }
     }
 });
@@ -2975,7 +2975,7 @@ client.resolveCNAME("vertx.io", new AsyncResultHandler&lt;List&lt;String&gt;&gt;
                 System.out.println(record);
             }
         } else {
-            log.error("Failed to resolve entry", ar.cause());
+            log.error("Failed to resolve entry", ar.getCause());
         }
     }
 });
@@ -2992,7 +2992,7 @@ client.resolveMX("vertx.io", new AsyncResultHandler&lt;List&lt;MxRecord&gt;&gt;(
                 System.out.println(record);
             }
         } else {
-            log.error("Failed to resolve entry", ar.cause());
+            log.error("Failed to resolve entry", ar.getCause());
         }
     }
 });
@@ -3015,7 +3015,7 @@ client.resolveTXT("vertx.io", new AsyncResultHandler&lt;List&lt;String&gt;&gt;()
                 System.out.println(record);
             }
         } else {
-            log.error("Failed to resolve entry", ar.cause());
+            log.error("Failed to resolve entry", ar.getCause());
         }
     }
 });
@@ -3032,7 +3032,7 @@ client.resolveNS("vertx.io", new AsyncResultHandler&lt;List&lt;String&gt;&gt;() 
                 System.out.println(record);
             }
         } else {
-            log.error("Failed to resolve entry", ar.cause());
+            log.error("Failed to resolve entry", ar.getCause());
         }
     }
 });
@@ -3049,7 +3049,7 @@ client.resolveMX("vertx.io", new AsyncResultHandler&lt;List&lt;SrvRecord&gt;&gt;
                 System.out.println(record);
             }
         } else {
-            log.error("Failed to resolve entry", ar.cause());
+            log.error("Failed to resolve entry", ar.getCause());
         }
     }
 });
@@ -3077,7 +3077,7 @@ client.resolveTXT("1.0.0.10.in-addr.arpa", new AsyncResultHandler&lt;String&gt;(
             String record = ar.result());
             System.out.println(record);
         } else {
-            log.error("Failed to resolve entry", ar.cause());
+            log.error("Failed to resolve entry", ar.getCause());
         }
     }
 });
@@ -3092,7 +3092,7 @@ client.reverseLookup("10.0.0.1", new AsyncResultHandler&lt;String&gt;() {
             String record = ar.result());
             System.out.println(record);
         } else {
-            log.error("Failed to resolve entry", ar.cause());
+            log.error("Failed to resolve entry", ar.getCause());
         }
     }
 });
@@ -3137,13 +3137,13 @@ client.lookup("nonexisting.vert.xio", new AsyncResultHandler&lt;InetAddress&gt;(
             InetAddress record = ar.result());
             System.out.println(record);
         } else {
-            Throwable cause = ar.cause();
+            Throwable cause = ar.getCause();
             if (cause instanceof DnsException) {
                 DnsException exception = (DnsException) cause;
                 DnsResponseCode code = exception.code();
                 ...
             } else {
-                log.error("Failed to resolve entry", ar.cause());
+                log.error("Failed to resolve entry", ar.getCause());
             }
         }
     }
