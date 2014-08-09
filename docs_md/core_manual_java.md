@@ -67,7 +67,7 @@ If this is the case for your verticle you can implement the asynchronous version
       // For example - deploy some other verticle
       container.deployVerticle("foo.js", new AsyncResultHandler<String>() {
         public void handle(AsyncResult<String> deployResult) {
-          if (deployResult.succeeded()) {
+          if (deployResult.isSucceeded()) {
             startedResult.setResult(null);
           } else {
             startedResult.setFailure(deployResult.cause());
@@ -259,7 +259,7 @@ The actual verticle deployment is asynchronous and might not complete until some
 
     container.deployVerticle("foo.ChildVerticle", new AsyncResultHandler<String>() {
         public void handle(AsyncResult<String> asyncResult) {
-            if (asyncResult.succeeded()) {
+            if (asyncResult.isSucceeded()) {
             	System.out.println("The verticle has been deployed, deployment ID is " + asyncResult.result());
             } else {
                 asyncResult.cause().printStackTrace();
@@ -357,7 +357,7 @@ To set a message handler on the address `test.address`, you do something like th
 
     Handler<Message> myHandler = new Handler<Message>() {
         public void handle(Message message) {
-            System.out.println("I received a message " + message.body);
+            System.out.println("I received a message " + message.body());
         }
     };
 
@@ -371,7 +371,7 @@ If you know you'll always be receiving messages of a particular type you can use
 
     Handler<Message<String>> myHandler = new Handler<Message<String>>() {
         public void handle(Message<String> message) {
-            String body = message.body;
+            String body = message.body();
         }
     };
 
@@ -381,7 +381,7 @@ When you register a handler on an address and you're in a cluster it can take so
 
     eb.registerHandler("test.address", myHandler, new AsyncResultHandler<Void>() {
         public void handle(AsyncResult<Void> asyncResult) {
-            System.out.println("The handler has been registered across the cluster ok? " + asyncResult.succeeded());
+            System.out.println("The handler has been registered across the cluster ok? " + asyncResult.isSucceeded());
         }
     });
 
@@ -395,7 +395,7 @@ As with registering, when you unregister a handler and you're in a cluster it ca
 
     eb.unregisterHandler("test.address", myHandler, new AsyncResultHandler<Void>() {
         public void handle(AsyncResult<Void> asyncResult) {
-            System.out.println("The handler has been unregistered across the cluster ok? " + asyncResult.succeeded());
+            System.out.println("The handler has been unregistered across the cluster ok? " + asyncResult.isSucceeded());
         }
     });
 
@@ -425,7 +425,7 @@ The receiver:
 
     Handler<Message<String>> myHandler = new Handler<Message<String>>() {
         public void handle(Message<String> message) {
-            System.out.println("I received a message " + message.body);
+            System.out.println("I received a message " + message.body());
 
             // Do some stuff
 
@@ -441,7 +441,7 @@ The sender:
 
     eb.send("test.address", "This is a message", new Handler<Message<String>>() {
         public void handle(Message<String> message) {
-            System.out.println("I received a reply " + message.body);
+            System.out.println("I received a reply " + message.body());
         }
     });
 
@@ -459,8 +459,8 @@ Here's an example:
 
     eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler<AsyncResult<Message<String>>>() {
         public void handle(AsyncResult<Message<String>> result) {
-            if (result.succeeded()) {
-                System.out.println("I received a reply " + message.body);
+            if (result.isSucceeded()) {
+                System.out.println("I received a reply " + message.body());
             } else {
 
                 System.err.println("No reply was received before the 1 second timeout!");
@@ -485,8 +485,8 @@ When replying to messages you can also provide a timeout and a `Handler<AsyncRes
 
     message.replyWithTimeout("This is a reply", 1000, new Handler<AsyncResult<Message<String>>>() {
         public void handle(AsyncResult<Message<String>> result) {
-            if (result.succeeded()) {
-                System.out.println("I received a reply to the reply" + message.body);
+            if (result.isSucceeded()) {
+                System.out.println("I received a reply to the reply" + message.body());
             } else {
                 System.err.println("No reply to the reply was received before the 1 second timeout!");
             }
@@ -509,8 +509,8 @@ For example
 
     eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler<AsyncResult<Message<String>>>() {
         public void handle(AsyncResult<Message<String>> result) {
-            if (result.succeeded()) {
-                System.out.println("I received a reply " + message.body);
+            if (result.isSucceeded()) {
+                System.out.println("I received a reply " + message.body());
             } else {
                 ReplyException ex = (ReplyException)result.cause();
                 System.err.println("Failure type: " + ex.failureType();
@@ -706,8 +706,8 @@ A usage example would be using a Java verticle to send or receive JSON messages 
     // And in a handler somewhere:
 
     public void handle(Message<JsonObject> message) {
-        System.out.println("foo is " + message.body.getString("foo");
-        System.out.println("age is " + message.body.getNumber("age");
+        System.out.println("foo is " + message.body().getString("foo");
+        System.out.println("age is " + message.body().getNumber("age");
     }
 
 Methods also existing for converting this objects to and from their JSON serialized forms.
@@ -803,7 +803,7 @@ The actual bind is asynchronous so the server might not actually be listening un
 
     server.listen(1234, "myhost", new AsyncResultHandler<Void>() {
         public void handle(AsyncResult<NetServer> asyncResult) {
-            log.info("Listen succeeded? " + asyncResult.succeeded());
+            log.info("Listen succeeded? " + asyncResult.isSucceeded());
         }
     });
 
@@ -857,7 +857,7 @@ This handler will then be called when the close has fully completed.
 
     server.close(new AsyncResultHandler<Void>() {
         public void handle(AsyncResult<Void> asyncResult) {
-            log.info("Close succeeded? " + asyncResult.succeeded());
+            log.info("Close succeeded? " + asyncResult.isSucceeded());
         }
     });
 
@@ -1057,7 +1057,7 @@ To actually connect to a server you invoke the `connect` method:
 
     client.connect(1234, "localhost", new AsyncResultHandler<NetSocket>() {
         public void handle(AsyncResult<NetSocket> asyncResult) {
-            if (asyncResult.succeeded()) {
+            if (asyncResult.isSucceeded()) {
               log.info("We have connected! Socket is " + asyncResult.result());
 	    } else {
               asyncResult.cause().printStackTrace();
@@ -1222,13 +1222,13 @@ Sending packets is as easy as shown here:
     // Send a Buffer
     socket.send(buffer, "10.0.0.1", 1234, new AsyncResultHandler<DatagramSocket>() {
         public void handle(AsyncResult<DatagramSocket> asyncResult) {
-            log.info("Send succeeded? " + asyncResult.succeeded());
+            log.info("Send succeeded? " + asyncResult.isSucceeded());
         }
     });
     // Send a String
     socket.send("A string used as content", "10.0.0.1", 1234, new AsyncResultHandler<DatagramSocket>() {
         public void handle(AsyncResult<DatagramSocket> asyncResult) {
-            log.info("Send succeeded? " + asyncResult.succeeded());
+            log.info("Send succeeded? " + asyncResult.isSucceeded());
         }
     });
 
@@ -1252,7 +1252,7 @@ So to listen on a specific address and port you would do something like shown he
     final DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
     socket.listen("0.0.0.0", 1234, new AsyncResultHandler<DatagramSocket>() {
         public void handle(AsyncResult<DatagramSocket> asyncResult) {
-            if (asyncResult.succeeded()) {
+            if (asyncResult.isSucceeded()) {
                socket.dataHandler(new Handler<DatagramPacket>() {
                     public void handle(DatagramPacket packet) {
                         // Do something with the packet
@@ -1291,7 +1291,7 @@ This is show here:
     // Send a Buffer to a multicast address
     socket.send(buffer, "230.0.0.1", 1234, new AsyncResultHandler<DatagramSocket>() {
         public void handle(AsyncResult<DatagramSocket> asyncResult) {
-            log.info("Send succeeded? " + asyncResult.succeeded());
+            log.info("Send succeeded? " + asyncResult.isSucceeded());
         }
     });
 
@@ -1321,7 +1321,7 @@ So to listen on a specific address and port and also receive packets for the Mul
     final DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
     socket.listen("0.0.0.0", 1234, new AsyncResultHandler<DatagramSocket>() {
         public void handle(AsyncResult<DatagramSocket> asyncResult) {
-            if (asyncResult.succeeded()) {
+            if (asyncResult.isSucceeded()) {
                 socket.dataHandler(new Handler<DatagramPacket>() {
                     public void handle(DatagramPacket packet) {
                         // Do something with the packet
@@ -1331,7 +1331,7 @@ So to listen on a specific address and port and also receive packets for the Mul
                 // join the multicast group
                 socket.listenMulticastGroup("230.0.0.1", new AsyncResultHandler<DatagramSocket>() {
                     public void handle(AsyncResult<DatagramSocket> asyncResult) {
-                        log.info("Listen succeeded? " + asyncResult.succeeded());
+                        log.info("Listen succeeded? " + asyncResult.isSucceeded());
                     }
                 });
             } else {
@@ -1352,7 +1352,7 @@ This is shown here:
     final DatagramSocket socket = vertx.createDatagramSocket(InternetProtocolFamily.IPV4);
     socket.listen("0.0.0.0", 1234, new AsyncResultHandler<DatagramSocket>() {
         public void handle(AsyncResult<DatagramSocket> asyncResult) {
-            if (asyncResult.succeeded()) {
+            if (asyncResult.isSucceeded()) {
                 socket.dataHandler(new Handler<DatagramPacket>() {
                     public void handle(DatagramPacket packet) {
                         // Do something with the packet
@@ -1372,7 +1372,7 @@ This is shown here:
                             ..
                             socket.unlisten("230.0.0.1", new AsyncResultHandler<DatagramSocket>() {
                                 public void handle(AsyncResult<DatagramSocket> asyncResult) {
-                                    log.info("Unlisten succeeded? " + asyncResult.succeeded());
+                                    log.info("Unlisten succeeded? " + asyncResult.isSucceeded());
                                 }
                             });
 
@@ -1406,7 +1406,7 @@ To block multicast from a specic address you can call `blockMulticastGroup(...)`
     // This would block packets which are send from 10.0.0.2
     socket.blockMulticastGroup("230.0.0.1", "10.0.0.2", new AsyncResultHandler<DatagramSocket>() {
         public void handle(AsyncResult<DatagramSocket> asyncResult) {
-            log.info("block succeeded? " + asyncResult.succeeded());
+            log.info("block succeeded? " + asyncResult.isSucceeded());
         }
     });
 
@@ -1629,7 +1629,7 @@ The actual bind is asynchronous so the server might not actually be listening un
 
     server.listen(8080, "myhost", new AsyncResultHandler<Void>() {
         public void handle(AsyncResult<HttpServer> asyncResult) {
-            log.info("Listen succeeded? " + asyncResult.succeeded());
+            log.info("Listen succeeded? " + asyncResult.isSucceeded());
         }
     });
 
@@ -2911,7 +2911,7 @@ Here's an example:
 
     vertx.fileSystem().copy("foo.dat", "bar.dat", new AsyncResultHandler<Void>() {
         public void handle(AsyncResult ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 log.info("Copy was successful");
             } else {
                 log.error("Failed to copy", ar.cause());
@@ -2978,7 +2978,7 @@ Here's an example:
 
     vertx.fileSystem().props("foo.dat", "bar.dat", new AsyncResultHandler<FileProps>() {
         public void handle(AsyncResult<FileProps> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 log.info("File props are:");
                 log.info("Last accessed: " + ar.result().lastAccessTime());
                 // etc
@@ -3028,7 +3028,7 @@ Reads a symbolic link. I.e returns the path representing the file that the symbo
 
     vertx.fileSystem().readSymLink("somelink", new AsyncResultHandler<String>() {
         public void handle(AsyncResult<String> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 log.info("Link points at  " + ar.result());
             } else {
                 log.error("Failed to read", ar.cause());
@@ -3094,7 +3094,7 @@ List only the contents of a directory which match the filter. Here's an example 
 
     vertx.fileSystem().readDir("mydirectory", ".*\\.txt", new AsyncResultHandler<String[]>() {
         public void handle(AsyncResult<String[]> ar) {
-            if (ar.succeeded() {
+            if (ar.isSucceeded() {
                 log.info("Directory contains these .txt files");
                 for (int i = 0; i < ar.result().length; i++) {
                   log.info(ar.result()[i]);
@@ -3119,7 +3119,7 @@ Here is an example:
 
     vertx.fileSystem().readFile("myfile.dat", new AsyncResultHandler<Buffer>() {
         public void handle(AsyncResult<Buffer> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 log.info("File contains: " + ar.result().length() + " bytes");
             } else {
                 log.error("Failed to read", ar.cause());
@@ -3149,7 +3149,7 @@ The result is returned in the handler.
 
     vertx.fileSystem().exists("some-file.txt", new AsyncResultHandler<Boolean>() {
         public void handle(AsyncResult<Boolean> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 log.info("File " + (ar.result() ? "exists" : "does not exist"));
             } else {
                 log.error("Failed to check existence", ar.cause());
@@ -3173,7 +3173,7 @@ Here is an example:
 
     vertx.fileSystem().fsProps("mydir", new AsyncResultHandler<FileSystemProps>() {
         public void handle(AsyncResult<FileSystemProps> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 log.info("total space: " + ar.result().totalSpace());
                 // etc
             } else {
@@ -3213,7 +3213,7 @@ When the file is opened, an instance of `org.vertx.java.core.file.AsyncFile` is 
 
     vertx.fileSystem().open("some-file.dat", new AsyncResultHandler<AsyncFile>() {
         public void handle(AsyncResult<AsyncFile> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 log.info("File opened ok!");
                 // etc
             } else {
@@ -3245,14 +3245,14 @@ Here is an example of random access writes:
 
     vertx.fileSystem().open("some-file.dat", new AsyncResultHandler<AsyncFile>() {
         public void handle(AsyncResult<AsyncFile> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 AsyncFile asyncFile = ar.result();
                 // File open, write a buffer 5 times into a file
                 Buffer buff = new Buffer("foo");
                 for (int i = 0; i < 5; i++) {
                     asyncFile.write(buff, buff.length() * i, new AsyncResultHandler<Void>() {
                         public void handle(AsyncResult ar) {
-                            if (ar.succeeded()) {
+                            if (ar.isSucceeded()) {
                                 log.info("Written ok!");
                                 // etc
                             } else {
@@ -3284,13 +3284,13 @@ Here's an example of random access reads:
 
     vertx.fileSystem().open("some-file.dat", new AsyncResultHandler<AsyncFile>() {
         public void handle(AsyncResult<AsyncFile> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 AsyncFile asyncFile = ar.result();
                 Buffer buff = new Buffer(1000);
                 for (int i = 0; i < 10; i++) {
                     asyncFile.read(buff, i * 100, i * 100, 100, new AsyncResultHandler<Buffer>() {
                         public void handle(AsyncResult<Buffer> ar) {
-                            if (ar.succeeded()) {
+                            if (ar.isSucceeded()) {
                                 log.info("Read ok!");
                                 // etc
                             } else {
@@ -3323,7 +3323,7 @@ Here's an example of pumping data from a file on a client to a HTTP request:
 
     vertx.fileSystem().open("some-file.dat", new AsyncResultHandler<AsyncFile>() {
         public void handle(AsyncResult<AsyncFile> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 final HttpClientRequest request = client.put("/uploads", new Handler<HttpClientResponse>() {
                     public void handle(HttpClientResponse resp) {
                         log.info("Received response: " + resp.statusCode());
@@ -3367,7 +3367,7 @@ To lookup the A / AAAA record for "vertx.io" you would typically use it like:
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.lookup("vertx.io", new AsyncResultHandler<InetAddress>() {
         public void handle(AsyncResult<InetAddress> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 System.out.println(ar.result());
             } else {
                 log.error("Failed to resolve entry", ar.cause());
@@ -3387,7 +3387,7 @@ To lookup the A record for "vertx.io" you would typically use it like:
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.lookup4("vertx.io", new AsyncResultHandler<Inet4Address>() {
         public void handle(AsyncResult<Inet4Address> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 System.out.println(ar.result());
             } else {
                 log.error("Failed to resolve entry", ar.cause());
@@ -3407,7 +3407,7 @@ To lookup the A record for "vertx.io" you would typically use it like:
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.lookup6("vertx.io", new AsyncResultHandler<Inet6Address>() {
         public void handle(AsyncResult<Inet6Address> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 System.out.println(ar.result());
             } else {
                 log.error("Failed to resolve entry", ar.cause());
@@ -3427,7 +3427,7 @@ To lookup all the A records for "vertx.io" you would typically do:
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.resolveA("vertx.io", new AsyncResultHandler<List<Inet4Address>>() {
         public void handle(AsyncResult<List<Inet4Address>> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 List<Inet4Address> records = ar.result());
                 for (Inet4Address record: records) {
                 	System.out.println(record);
@@ -3450,7 +3450,7 @@ To lookup all the AAAAA records for "vertx.io" you would typically do:
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.resolveAAAA("vertx.io", new AsyncResultHandler<List<Inet6Address>>() {
         public void handle(AsyncResult<List<Inet6Address>> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 List<Inet6Address> records = ar.result());
                 for (Inet6Address record: records) {
                 	System.out.println(record);
@@ -3473,7 +3473,7 @@ To lookup all the CNAME records for "vertx.io" you would typically do:
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.resolveCNAME("vertx.io", new AsyncResultHandler<List<String>>() {
         public void handle(AsyncResult<List<String>> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 List<String> records = ar.result());
                 for (String record: records) {
                 	System.out.println(record);
@@ -3494,7 +3494,7 @@ To lookup all the MX records for "vertx.io" you would typically do:
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.resolveMX("vertx.io", new AsyncResultHandler<List<MxRecord>>() {
         public void handle(AsyncResult<List<MxRecord>> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 List<MxRecord> records = ar.result());
                 for (MxRecord record: records) {
                 	System.out.println(record);
@@ -3523,7 +3523,7 @@ To resolve all the TXT records for "vertx.io" you could use something along thes
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.resolveTXT("vertx.io", new AsyncResultHandler<List<String>>() {
         public void handle(AsyncResult<List<String>> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 List<String> records = ar.result());
                 for (String record: records) {
                 	System.out.println(record);
@@ -3543,7 +3543,7 @@ To resolve all the NS records for "vertx.io" you could use something along these
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.resolveNS("vertx.io", new AsyncResultHandler<List<String>>() {
         public void handle(AsyncResult<List<String>> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 List<String> records = ar.result());
                 for (String record: records) {
                 	System.out.println(record);
@@ -3564,7 +3564,7 @@ To lookup all the SRV records for "vertx.io" you would typically do:
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.resolveMX("vertx.io", new AsyncResultHandler<List<SrvRecord>>() {
         public void handle(AsyncResult<List<SrvRecord>> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 List<SrvRecord> records = ar.result());
                 for (SrvRecord record: records) {
                 	System.out.println(record);
@@ -3601,7 +3601,7 @@ To resolve the PTR record for the ipaddress 10.0.0.1 you would use the PTR notio
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.resolveTXT("1.0.0.10.in-addr.arpa", new AsyncResultHandler<String>() {
         public void handle(AsyncResult<String> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 String record = ar.result());
                 System.out.println(record);
             } else {
@@ -3620,7 +3620,7 @@ To do a reverse lookup for the ipaddress 10.0.0.1 do something similar like this
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.reverseLookup("10.0.0.1", new AsyncResultHandler<String>() {
         public void handle(AsyncResult<String> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 String record = ar.result());
                 System.out.println(record);
             } else {
@@ -3683,7 +3683,7 @@ You can obtain the DnsResponseCode from the DnsException like:
     DnsClient client = vertx.createDnsClient(new InetSocketAddress("10.0.0.1", 53));
     client.lookup("nonexisting.vert.xio", new AsyncResultHandler<InetAddress>() {
         public void handle(AsyncResult<InetAddress> ar) {
-            if (ar.succeeded()) {
+            if (ar.isSucceeded()) {
                 InetAddress record = ar.result());
                 System.out.println(record);
             } else {
