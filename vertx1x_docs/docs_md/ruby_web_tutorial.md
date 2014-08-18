@@ -22,7 +22,7 @@ If you'd rather just run the complete code, the working example is present in th
 
 There's also a version of the tutorial using AngularJS in the `angularjs` directory of the distribution.
 
-You can also see the code in [github](https://github.com/vert-x/vert.x/tree/master/vertx-examples/src/main/ruby/webapp).
+You can also see the code in [github](https://github.com/eclipse/vert.x/tree/master/vertx-examples/src/main/ruby/webapp).
 
 ## Step 1. Install vert.x
 
