@@ -106,7 +106,7 @@ The logger has the functions:
 
 Which have the normal meanings you would expect.
 
-The log files by default go in a file called `vertx.log` in the system temp directory. On my Linux box this is `\tmp`.
+The log files by default go in a file called `vertx.log` in the system temp directory. On my Linux box this is `/tmp`.
 
 For more information on configuring logging, please see the [main manual](manual.html#logging).
 

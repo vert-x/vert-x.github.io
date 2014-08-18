@@ -457,7 +457,7 @@ vertx run sender.js -cluster
 <p><a id="logging"> </a></p>
 <h1 id="logging">Logging</h1><br/>
 <p>Each verticle instance gets its own logger which can be retrieved from inside the verticle. For information on how to get the logger please see the API reference guide for the language you are using.</p>
-<p>The log files by default go in a file called <code>vertx.log</code> in the system temp directory. On my Linux box this is <code>\tmp</code>.</p>
+<p>The log files by default go in a file called <code>vertx.log</code> in the system temp directory. On my Linux box this is <code>/tmp</code>.</p>
 <p>By default <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/logging/overview.html">JUL</a> logging is used. This can be configured using the file <code>$VERTX_HOME\conf\logging.properties</code>. Where <code>VERTX_HOME</code> is the directory in which you installed Vert.x.</p>
 <p>Advanced note: If you'd rather use a different logging framework, e.g. log4j you can do this by specifying a system property when running Vert.x (edit the vertx.sh script), e.g.</p>
 <pre class="prettyprint">-Dorg.vertx.logger-delegate-factory-class-name=org.vertx.java.core.logging.impl.Log4jLogDelegateFactory
