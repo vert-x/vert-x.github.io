@@ -1134,10 +1134,9 @@ This example won't run out of RAM but we'll end up losing data if the write queu
     def connect_handler(sock):
 	@sock.data_handler
         def data_handler(buffer):
+            sock.write(buffer)
             if sock.write_queue_full:
                 sock.pause()
-            else:
-                sock.write(buffer)
        
     server.listen(1234, 'localhost')
 
@@ -1150,13 +1149,12 @@ We're almost there, but not quite. The `NetSocket` now gets paused when the file
     def connect_handler(sock):
 	@sock.data_handler
         def data_handler(buffer):
+            sock.write(buffer)
             if sock.write_queue_full:
                 sock.pause()
                 @sock.drain_handler
                 def drain_handler(): 
                	    sock.resume()
-            else:
-                sock.write(buffer)
             
     server.listen(1234, 'localhost')
 

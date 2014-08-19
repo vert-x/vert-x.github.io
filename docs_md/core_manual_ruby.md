@@ -1076,10 +1076,9 @@ This example won't run out of RAM but we'll end up losing data if the write queu
 
         sock.data_handler do |buffer|
 
+            sock.write(buffer)
             if sock.write_queue_full?
                 sock.pause
-            else
-                sock.write(buffer)
             end
             
         end
@@ -1094,11 +1093,10 @@ We're almost there, but not quite. The `NetSocket` now gets paused when the file
 
         sock.data_handler do |buffer|
 
+            sock.write(buffer)
             if sock.write_queue_full?
                 sock.pause
                 sock.drain_handler { sock.resume }
-            else
-                sock.write(buffer)
             end
             
         end

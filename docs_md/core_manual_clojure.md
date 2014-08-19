@@ -1719,9 +1719,9 @@ write queue gets full. What we really want to do is pause the
           (fn [sock]
             (stream/on-data sock
               (fn [buffer]
+                (stream/write sock buffer)
                 (if (.writeQueueFull sock)
-                  (.pause sock)
-                  (stream/write sock buffer))))))
+                  (.pause sock))))))
         (net/listen 1234 "localhost"))
     
 We're almost there, but not quite. The `NetSocket` now gets paused
@@ -1733,11 +1733,11 @@ write queue has processed its backlog:
           (fn [sock]
             (stream/on-data sock
               (fn [buffer]
+                (stream/write sock buffer)
                 (if (.writeQueueFull sock)
                   (do 
                     (.pause sock)
-                    (stream/on-drain #(.resume sock)))
-                  (stream/write sock buffer))))))
+                    (stream/on-drain #(.resume sock))))))))
         (net/listen 1234 "localhost"))
         
 And there we have it. The `drain_handler` event handler will get
