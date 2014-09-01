@@ -2275,7 +2275,7 @@ The following example bridges the event bus to client side JavaScript:
 
     sockJSServer.bridge({prefix : '/eventbus'}, [], [] );
 
-    server.listen(8080);
+    httpServer.listen(8080);
     
 ## Using the Event Bus from client side JavaScript
 
@@ -2390,7 +2390,7 @@ Here is an example:
       );
 
 
-    server.listen(8080);
+    httpServer.listen(8080);
    
     
 To let all messages through you can specify two JSON array with a single empty JSON object which will match all messages.
