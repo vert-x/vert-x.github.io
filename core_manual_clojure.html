@@ -782,7 +782,6 @@ handler function will be called with an exception map of the form:</p>
   (fn [m]
     (eb/fail 123 "Not enough aardvarks")))
 
-
 (eb/send "test.address" "This is a message" 1000 
   (fn [err m]
     (if err
@@ -1682,9 +1681,9 @@ write queue gets full. What we really want to do is pause the
       (fn [sock]
         (stream/on-data sock
           (fn [buffer]
+            (stream/write sock buffer)
             (if (.writeQueueFull sock)
-              (.pause sock)
-              (stream/write sock buffer))))))
+              (.pause sock))))))
     (net/listen 1234 "localhost"))
 </pre>
 <p>We're almost there, but not quite. The <code>NetSocket</code> now gets paused
@@ -1695,11 +1694,11 @@ write queue has processed its backlog:</p>
       (fn [sock]
         (stream/on-data sock
           (fn [buffer]
+            (stream/write sock buffer)
             (if (.writeQueueFull sock)
               (do 
                 (.pause sock)
-                (stream/on-drain #(.resume sock)))
-              (stream/write sock buffer))))))
+                (stream/on-drain #(.resume sock))))))))
     (net/listen 1234 "localhost"))
 </pre>
 <p>And there we have it. The <code>drain_handler</code> event handler will get

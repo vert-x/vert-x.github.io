@@ -392,7 +392,7 @@ public class Server extends Verticle {
 <p>And notice how data you send (and hit enter) is echoed back to you.</p>
 <p>Congratulations! You've written your first verticle.</p>
 <p>Notice how you didn't have to first compile the <code>.java</code> file to a <code>.class</code> file. Vert.x understands how to run <code>.java</code> files directly - internally doing the compilation on the fly. (It also supports running .class files too if you prefer)</p>
-<p>Every Java verticle must extend the class <code>org.vertx.java.platform.Verticle</code>. You must override the <code>start</code> method - this is called by Vert.x when the verticle is started.</p>
+<p>Every Java verticle must extend the class <code>org.vertx.java.deploy.Verticle</code>. You must override the <code>start</code> method - this is called by Vert.x when the verticle is started.</p>
 <p><em>In the rest of this manual we'll assume the code snippets are running inside a verticle.</em></p>
 <h2 id="asynchronous-start">Asynchronous start</h2><br/>
 <p>In some cases your Verticle has to do some other stuff asynchronously in its <code>start()</code> method, e.g. start other verticles, and the verticle shouldn't be considered started until those other actions are complete.</p>
@@ -448,7 +448,7 @@ logger.info("I am logging something");
 <li>fatal</li>
 </ul>
 <p>Which have the normal meanings you would expect.</p>
-<p>The log files by default go in a file called <code>vertx.log</code> in the system temp directory. On my Linux box this is <code>/tmp</code>.</p>
+<p>The log files by default go in a file called <code>vertx.log</code> in the system temp directory. On my Linux box this is <code>\tmp</code>.</p>
 <p>For more information on configuring logging, please see the <a href="manual.html#logging">main manual</a>.</p>
 <h2 id="accessing-environment-variables-from-a-verticle">Accessing environment variables from a Verticle</h2><br/>
 <p>You can access the map of environment variables from a Verticle with the <code>env()</code> method on the <code>container</code> object.</p>
@@ -595,7 +595,7 @@ container.deployWorkerVerticle("verticle5.js", verticle5Config, 10);
 
 Handler&lt;Message&gt; myHandler = new Handler&lt;Message&gt;() {
     public void handle(Message message) {
-        System.out.println("I received a message " + message.body());
+        System.out.println("I received a message " + message.body);
     }
 };
 
@@ -606,7 +606,7 @@ eb.registerHandler("test.address", myHandler);
 <p>If you know you'll always be receiving messages of a particular type you can use the specific type in your handler, e.g:</p>
 <pre class="prettyprint">Handler&lt;Message&lt;String&gt;&gt; myHandler = new Handler&lt;Message&lt;String&gt;&gt;() {
     public void handle(Message&lt;String&gt; message) {
-        String body = message.body();
+        String body = message.body;
     }
 };
 </pre>
@@ -645,7 +645,7 @@ eb.registerHandler("test.address", myHandler);
 <p>The receiver:</p>
 <pre class="prettyprint">Handler&lt;Message&lt;String&gt;&gt; myHandler = new Handler&lt;Message&lt;String&gt;&gt;() {
     public void handle(Message&lt;String&gt; message) {
-        System.out.println("I received a message " + message.body());
+        System.out.println("I received a message " + message.body);
 
         // Do some stuff
 
@@ -660,7 +660,7 @@ eb.registerHandler("test.address", myHandler);
 <p>The sender:</p>
 <pre class="prettyprint">eb.send("test.address", "This is a message", new Handler&lt;Message&lt;String&gt;&gt;() {
     public void handle(Message&lt;String&gt; message) {
-        System.out.println("I received a reply " + message.body());
+        System.out.println("I received a reply " + message.body);
     }
 });
 </pre>
@@ -673,7 +673,7 @@ eb.registerHandler("test.address", myHandler);
 <pre class="prettyprint">eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
     public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
         if (result.succeeded()) {
-            System.out.println("I received a reply " + message.body());
+            System.out.println("I received a reply " + message.body);
         } else {
 
             System.err.println("No reply was received before the 1 second timeout!");
@@ -695,7 +695,7 @@ eb.send("test.address", "This is a message", new Handler&lt;Message&lt;String&gt
 <pre class="prettyprint">message.replyWithTimeout("This is a reply", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
     public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
         if (result.succeeded()) {
-            System.out.println("I received a reply to the reply" + message.body());
+            System.out.println("I received a reply to the reply" + message.body);
         } else {
             System.err.println("No reply to the reply was received before the 1 second timeout!");
         }
@@ -715,12 +715,12 @@ eb.send("test.address", "This is a message", new Handler&lt;Message&lt;String&gt
 eb.sendWithTimeout("test.address", "This is a message", 1000, new Handler&lt;AsyncResult&lt;Message&lt;String&gt;&gt;&gt;() {
     public void handle(AsyncResult&lt;Message&lt;String&gt;&gt; result) {
         if (result.succeeded()) {
-            System.out.println("I received a reply " + message.body());
+            System.out.println("I received a reply " + message.body);
         } else {
             ReplyException ex = (ReplyException)result.cause();
             System.err.println("Failure type: " + ex.failureType();
             System.err.println("Failure code: " + ex.failureCode();
-            System.err.println("Failure message: " + ex.getMessage();
+            System.err.println("Failure message: " + ex.message();
         }
     }
 });
@@ -859,8 +859,8 @@ eb.send("some-address", obj);
 // And in a handler somewhere:
 
 public void handle(Message&lt;JsonObject&gt; message) {
-    System.out.println("foo is " + message.body().getString("foo");
-    System.out.println("age is " + message.body().getNumber("age");
+    System.out.println("foo is " + message.body.getString("foo");
+    System.out.println("age is " + message.body.getNumber("age");
 }
 </pre>
 <p>Methods also existing for converting this objects to and from their JSON serialized forms.</p>
@@ -1481,9 +1481,8 @@ server.connectHandler(new Handler&lt;NetSocket&gt;() {
 
         sock.dataHandler(new Handler&lt;Buffer&gt;() {
             public void handle(Buffer buffer) {
-                if (!sock.writeQueueFull()) {
-                    sock.write(buffer);
-                } else {
+                sock.write(buffer);
+                if (sock.writeQueueFull()) {
                     sock.pause();
                 }
             }
@@ -1500,9 +1499,8 @@ server.connectHandler(new Handler&lt;NetSocket&gt;() {
 
         sock.dataHandler(new Handler&lt;Buffer&gt;() {
             public void handle(Buffer buffer) {
-                if (!sock.writeQueueFull()) {
-                    sock.write(buffer);
-                } else {
+                sock.write(buffer);
+                if (sock.writeQueueFull()) {
                     sock.pause();
                     sock.drainHandler(new VoidHandler() {
                         public void handle() {

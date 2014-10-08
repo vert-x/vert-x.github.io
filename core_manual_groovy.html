@@ -1076,9 +1076,8 @@ server.connectHandler { sock -&gt;
 
 server.connectHandler { sock -&gt;
     sock.dataHandler { buffer -&gt;
-        if (!sock.writeQueueFull) {
-            sock.write(buffer)
-        } else {
+        sock.write(buffer)
+        if (sock.writeQueueFull) {
             sock.pause()
         }
     }
@@ -1089,9 +1088,8 @@ server.connectHandler { sock -&gt;
 
 server.connectHandler { sock -&gt;
     sock.dataHandler { buffer -&gt;
-        if (!sock.writeQueueFull) {
-            sock.write(buffer)
-        } else {
+        sock.write(buffer)
+        if (sock.writeQueueFull) {
             sock.pause()
             sock.drainHandler { sock.resume() }
         }

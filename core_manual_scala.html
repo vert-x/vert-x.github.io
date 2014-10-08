@@ -367,9 +367,7 @@ vertx.createNetServer().connectHandler({ socket: NetSocket =&gt;
 <p>And notice how data you send (and hit enter) is echoed back to you. </p>
 <p>Congratulations! You've written your first verticle.</p>
 <p>Notice how you didn't have to first compile the <code>.scala</code> file to a <code>.class</code> file. Vert.x understands how to run <code>.scala</code> files directly - internally doing the compilation on the fly. (It also supports running .class files too if you prefer)          </p>
-<p>Just as in Java, you can also write classes that extend Verticle like this,
-assuming you move the Verticle to the correct package directory structure:</p>
-<pre class="prettyprint">package echo
+<p>Just as in Java, you can also write classes that extend Verticle like this:</p>
 <pre class="prettyprint">import org.vertx.scala.core.net.NetSocket
 import org.vertx.scala.core.streams.Pump
 import org.vertx.scala.platform.Verticle
@@ -383,8 +381,7 @@ class Server extends Verticle {
   }
 }
 </pre>
-<p>To run it, change directory to the root and execute:</p>
-<pre class="prettyprint">vertx run echo/Server.scala</pre>
+<p>Running this works the same way as the script before.</p>
 <p>Every Scala verticle must extend the class <code>org.vertx.scala.platform.Verticle</code>. You must override the <code>start</code> method - this is called by Vert.x when the verticle is started.</p>
 <p><em>In the rest of this manual we'll assume the code snippets are running inside a verticle.</em></p>
 <h2 id="asynchronous-start">Asynchronous start</h2><br/>
@@ -1172,9 +1169,8 @@ client.setReconnectInterval(500)
 <p>This example won't run out of RAM but we'll end up losing data if the write queue gets full. What we really want to do is pause the <code>NetSocket</code> when the write queue is full. Let's do that:</p>
 <pre class="prettyprint">vertx.createNetServer.connectHandler({ sock: NetSocket =&gt;
     sock.dataHandler({ buffer: Buffer
-        if (!sock.writeQueueFull()) {
-            sock.write(buffer)
-        } else {
+        sock.write(buffer)
+        if (sock.writeQueueFull()) {
             sock.pause()
         }
     })
@@ -1183,9 +1179,8 @@ client.setReconnectInterval(500)
 <p>We're almost there, but not quite. The <code>NetSocket</code> now gets paused when the file is full, but we also need to <em>unpause</em> it when the write queue has processed its backlog:</p>
 <pre class="prettyprint">vertx.createNetServer.connectHandler({ sock: NetSocket =&gt;
     sock.dataHandler({ buffer: Buffer =&gt;
-        if (!sock.writeQueueFull()) {
-            sock.write(buffer)
-        } else {
+        sock.write(buffer)
+        if (sock.writeQueueFull()) {
             sock.pause()
             sock.drainHandler({
                 sock.resume()
@@ -1937,8 +1932,9 @@ httpServer.listen(8080)
 <pre class="prettyprint">val server = vertx.createHttpServer()
 
 val config = Json.obj("prefix" -&gt; "/echo")
-
-vertx.createSockJSServer(server).bridge(config, new JsonArray(), new JsonArray())
+val permitAll = new JsonArray()
+permitAll.add(new JsonObject())
+vertx.createSockJSServer(server).bridge(config, permitAll, permitAll)
 
 server.listen(8080)
 </pre>

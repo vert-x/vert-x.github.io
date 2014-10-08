@@ -1144,10 +1144,9 @@ server = vertx.create_net_server()
 def connect_handler(sock):
 @sock.data_handler
     def data_handler(buffer):
+        sock.write(buffer)
         if sock.write_queue_full:
             sock.pause()
-        else:
-            sock.write(buffer)
 
 server.listen(1234, 'localhost')
 </pre>
@@ -1159,13 +1158,12 @@ server = vertx.create_net_server()
 def connect_handler(sock):
 @sock.data_handler
     def data_handler(buffer):
+        sock.write(buffer)
         if sock.write_queue_full:
             sock.pause()
             @sock.drain_handler
             def drain_handler(): 
                 sock.resume()
-        else:
-            sock.write(buffer)
 
 server.listen(1234, 'localhost')
 </pre>

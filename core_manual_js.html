@@ -1166,9 +1166,8 @@ server.connectHandler(function(sock) {
 
     sock.dataHandler(function(buffer) {
 
-        if (!sock.writeQueueFull()) {      
-            sock.write(buffer); 
-        } else {
+        sock.write(buffer); 
+        if (sock.writeQueueFull()) {      
             sock.pause();
         }
     });
@@ -1182,9 +1181,8 @@ server.connectHandler(function(sock) {
 
     sock.dataHandler(function(buffer) {
 
-        if (!sock.writeQueueFull()) {      
-            sock.write(buffer); 
-        } else {
+        sock.write(buffer); 
+        if (sock.writeQueueFull()) {      
             sock.pause();
 
             sock.drainHandler(function() {
@@ -1978,7 +1976,7 @@ var sockJSServer = vertx.createSockJSServer(httpServer);
 
 sockJSServer.bridge({prefix : '/eventbus'}, [], [] );
 
-server.listen(8080);
+httpServer.listen(8080);
 </pre>
 <h2 id="using-the-event-bus-from-client-side-javascript">Using the Event Bus from client side JavaScript</h2><br/>
 <p>Once you've set up a bridge, you can use the event bus from the client side as follows:</p>
@@ -2078,7 +2076,7 @@ sockJSServer.bridge({prefix : '/eventbus'},
   ]
   );
 
-server.listen(8080);
+httpServer.listen(8080);
 </pre>
 <p>To let all messages through you can specify two JSON array with a single empty JSON object which will match all messages.</p>
 <pre class="prettyprint">...

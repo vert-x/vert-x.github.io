@@ -1092,10 +1092,9 @@ server.connect_handler do |sock|
 
     sock.data_handler do |buffer|
 
+        sock.write(buffer)
         if sock.write_queue_full?
             sock.pause
-        else
-            sock.write(buffer)
         end
 
     end
@@ -1109,11 +1108,10 @@ server.connect_handler do |sock|
 
     sock.data_handler do |buffer|
 
+        sock.write(buffer)
         if sock.write_queue_full?
             sock.pause
             sock.drain_handler { sock.resume }
-        else
-            sock.write(buffer)
         end
 
     end
