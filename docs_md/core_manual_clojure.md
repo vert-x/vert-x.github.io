@@ -2639,7 +2639,7 @@ head of the request.
 An example will illustrate this:
 
     (let [request (-> (http/client {:host "foo.com})
-                      (http/get-now "/some-path"
+                      (http/request :GET "/some-path"
                         #(println "Got a response:" (.statusCode %))))]
       (http/add-header request "Expect" "100-Continue")
       (.setChunked request true)
