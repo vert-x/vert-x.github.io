@@ -367,7 +367,9 @@ vertx.createNetServer().connectHandler({ socket: NetSocket =&gt;
 <p>And notice how data you send (and hit enter) is echoed back to you. </p>
 <p>Congratulations! You've written your first verticle.</p>
 <p>Notice how you didn't have to first compile the <code>.scala</code> file to a <code>.class</code> file. Vert.x understands how to run <code>.scala</code> files directly - internally doing the compilation on the fly. (It also supports running .class files too if you prefer)          </p>
-<p>Just as in Java, you can also write classes that extend Verticle like this:</p>
+<p>Just as in Java, you can also write classes that extend Verticle like this,
+assuming you move the Verticle to the correct package directory structure:</p>
+<pre class="prettyprint">package echo
 <pre class="prettyprint">import org.vertx.scala.core.net.NetSocket
 import org.vertx.scala.core.streams.Pump
 import org.vertx.scala.platform.Verticle
@@ -381,7 +383,8 @@ class Server extends Verticle {
   }
 }
 </pre>
-<p>Running this works the same way as the script before.</p>
+<p>To run it, change directory to the root and execute:</p>
+<pre class="prettyprint">vertx run echo/Server.scala</pre>
 <p>Every Scala verticle must extend the class <code>org.vertx.scala.platform.Verticle</code>. You must override the <code>start</code> method - this is called by Vert.x when the verticle is started.</p>
 <p><em>In the rest of this manual we'll assume the code snippets are running inside a verticle.</em></p>
 <h2 id="asynchronous-start">Asynchronous start</h2><br/>
