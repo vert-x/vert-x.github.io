@@ -392,7 +392,7 @@ public class Server extends Verticle {
 <p>And notice how data you send (and hit enter) is echoed back to you.</p>
 <p>Congratulations! You've written your first verticle.</p>
 <p>Notice how you didn't have to first compile the <code>.java</code> file to a <code>.class</code> file. Vert.x understands how to run <code>.java</code> files directly - internally doing the compilation on the fly. (It also supports running .class files too if you prefer)</p>
-<p>Every Java verticle must extend the class <code>org.vertx.java.deploy.Verticle</code>. You must override the <code>start</code> method - this is called by Vert.x when the verticle is started.</p>
+<p>Every Java verticle must extend the class <code>org.vertx.java.platform.Verticle</code>. You must override the <code>start</code> method - this is called by Vert.x when the verticle is started.</p>
 <p><em>In the rest of this manual we'll assume the code snippets are running inside a verticle.</em></p>
 <h2 id="asynchronous-start">Asynchronous start</h2><br/>
 <p>In some cases your Verticle has to do some other stuff asynchronously in its <code>start()</code> method, e.g. start other verticles, and the verticle shouldn't be considered started until those other actions are complete.</p>
