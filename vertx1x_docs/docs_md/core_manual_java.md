@@ -83,7 +83,7 @@ The logger is an instance of the class `org.vertx.core.logging.Logger` and has t
 
 Which have the normal meanings you would expect.
 
-The log files by default go in a file called `vertx.log` in the system temp directory. On my Linux box this is `\tmp`.
+The log files by default go in a file called `vertx.log` in the system temp directory. On my Linux box this is `/tmp`.
 
 For more information on configuring logging, please see the main manual.
 

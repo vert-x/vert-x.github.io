@@ -8,8 +8,8 @@ a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, Calif
 
 The easiest way to get hold of a distribution is to [download a binary distro](downloads.html).
 
-Alternatively you can build from source. To do that clone the [github repository](https://github.com/vert-x/vert.x)
-and read the file [`BUILD_README.md`](https://github.com/vert-x/vert.x/blob/master/BUILD_README.md).
+Alternatively you can build from source. To do that clone the [github repository](https://github.com/eclipse/vert.x)
+and read the file [`BUILD_README.md`](https://github.com/eclipse/vert.x/blob/master/BUILD_README.md).
 
 # Pre-requisites
 

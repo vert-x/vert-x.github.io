@@ -447,7 +447,7 @@ Quora can also be used in conjunction with ha groups.
 
 Each verticle instance gets its own logger which can be retrieved from inside the verticle. For information on how to get the logger please see the API reference guide for the language you are using.
 
-The log files by default go in a file called `vertx.log` in the system temp directory. On my Linux box this is `\tmp`.
+The log files by default go in a file called `vertx.log` in the system temp directory. On my Linux box this is `/tmp`.
 
 By default [JUL](http://docs.oracle.com/javase/7/docs/technotes/guides/logging/overview.html) logging is used. This can be configured using the file `$VERTX_HOME\conf\logging.properties`. Where `VERTX_HOME` is the directory in which you installed Vert.x.
 
