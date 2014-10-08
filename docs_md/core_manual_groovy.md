@@ -1064,9 +1064,8 @@ This example won't run out of RAM but we'll end up losing data if the write queu
 
     server.connectHandler { sock ->
         sock.dataHandler { buffer ->
-            if (!sock.writeQueueFull) {
-                sock.write(buffer)
-            } else {
+            sock.write(buffer)
+            if (sock.writeQueueFull) {
                 sock.pause()
             }
         }
@@ -1078,9 +1077,8 @@ We're almost there, but not quite. The `NetSocket` now gets paused when the file
 
     server.connectHandler { sock ->
         sock.dataHandler { buffer ->
-            if (!sock.writeQueueFull) {
-                sock.write(buffer)
-            } else {
+            sock.write(buffer)
+            if (sock.writeQueueFull) {
                 sock.pause()
                 sock.drainHandler { sock.resume() }
             }

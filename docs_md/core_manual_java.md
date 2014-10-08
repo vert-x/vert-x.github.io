@@ -1512,9 +1512,8 @@ This example won't run out of RAM but we'll end up losing data if the write queu
 
             sock.dataHandler(new Handler<Buffer>() {
                 public void handle(Buffer buffer) {
-                    if (!sock.writeQueueFull()) {
-                        sock.write(buffer);
-                    } else {
+                    sock.write(buffer);
+                    if (sock.writeQueueFull()) {
                         sock.pause();
                     }
                 }
@@ -1532,9 +1531,8 @@ We're almost there, but not quite. The `NetSocket` now gets paused when the file
 
             sock.dataHandler(new Handler<Buffer>() {
                 public void handle(Buffer buffer) {
-                    if (!sock.writeQueueFull()) {
-                        sock.write(buffer);
-                    } else {
+                    sock.write(buffer);
+                    if (sock.writeQueueFull()) {
                         sock.pause();
                         sock.drainHandler(new VoidHandler() {
                             public void handle() {
