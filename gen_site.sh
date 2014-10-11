@@ -23,6 +23,7 @@
 ./gen_section.sh docs_md/core_manual_groovy.md core_manual_groovy_templ.html core_manual_groovy.html
 ./gen_section.sh docs_md/core_manual_clojure.md core_manual_clojure_templ.html core_manual_clojure.html
 ./gen_section.sh docs_md/core_manual_scala.md core_manual_scala_templ.html core_manual_scala.html
+./gen_section.sh docs_md/core_manual_ceylon.md core_manual_ceylon_templ.html core_manual_ceylon.html
 ./gen_section.sh docs_md/install.md install_manual_templ.html install.html
 ./gen_section.sh docs_md/dev_guide.md dev_guide_templ.html dev_guide.html
 ./gen_section.sh docs_md/gradle_dev.md gradle_dev_templ.html gradle_dev.html
