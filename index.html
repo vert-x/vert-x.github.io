@@ -235,7 +235,6 @@
       <li><a href="#ws_groovy" data-toggle="tab">Groovy</a></li>
       <li><a href="#ws_python" data-toggle="tab">Python</a></li>
       <li><a href="#ws_clojure" data-toggle="tab">Clojure</a></li>
-      <li><a href="#ws_ceylon" data-toggle="tab">Ceylon</a></li>
       
     </ul>
 
@@ -362,31 +361,6 @@
 
         </div>
         
-        <div class="tab-pane" id="ws_ceylon">
-
-          <p>Save the following in <code>Server.ceylon</code></p>
-                  <pre class="prettyprint">
-  import io.vertx.ceylon.platform { ... }
-  import io.vertx.ceylon.core { ... }
-  import io.vertx.ceylon.core.http { ... }
-  shared class Server() extends Verticle() {
-      start(Vertx vertx, Container container) => vertx.createHttpServer().requestHandler(
-          void (req) {
-              value file = req.path == "/" then "index.html" else req.path;
-              req.response.sendFile("webroot/" + file);
-          }
-      ).listen(8080);
-  }
-                  </pre>
-
-          <p class="text-warning"><a href="core_manual_ceylon.html#installation">Install</a> Ceylon support in Vert.x (until it is supported out of the box)</p>
-
-          <p>Run it:</p>
-
-          <p><code>vertx run Server.ceylon</code></p>
-          
-
-        </div>
         
       </div>
 
