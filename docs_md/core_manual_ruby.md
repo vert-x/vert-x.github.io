@@ -75,7 +75,7 @@ The configuration is available in the verticle using the `Vertx.config` method. 
 
     # Do something with config
     
-    puts "number of wibbles is #{config.wibble_number}"
+    puts "number of wibbles is #{config["wibble_number"]}"
 
 The config returned is a Ruby Hash. You can use this object to configure the verticle. Allowing verticles to be configured in a consistent way like this allows configuration to be easily passed to them irrespective of the language.
 
