@@ -632,9 +632,9 @@ The return value of the method is a unique timer id. You can use this to subsequ
 
 You can also set a timer to fire periodically by using the `set_periodic` function. There will be an initial delay equal to the period. The return value of `set_periodic` is a unique timer id (number). This can be later used if the timer needs to be cancelled. The argument passed into the timer event handler is also the unique timer id:
 
-    timer_id = Vertx.set_timer(1000) do |timer_id|
+    timer_id = Vertx.set_periodic(1000) do |timer_id|
         puts 'And every second this is printed'
-    end
+    end   
 
     puts 'First this is printed'
 
