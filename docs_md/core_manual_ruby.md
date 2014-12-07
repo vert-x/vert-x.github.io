@@ -634,7 +634,7 @@ You can also set a timer to fire periodically by using the `set_periodic` functi
 
     timer_id = Vertx.set_periodic(1000) do |timer_id|
         puts 'And every second this is printed'
-    end   
+    end
 
     puts 'First this is printed'
 
