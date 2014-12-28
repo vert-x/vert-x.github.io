@@ -2772,7 +2772,7 @@ In your web page, you need to load the script `vertxbus.js`, then you can access
 
           eb.registerHandler('some-address', function(message) {
 
-            console.log('received a message: ' + JSON.stringify(message);
+            console.log('received a message: ' + JSON.stringify(message));
 
           });
 
