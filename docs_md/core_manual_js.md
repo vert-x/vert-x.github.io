@@ -100,7 +100,7 @@ If you want to log stuff to the console, you need to require the console object:
 
     var console = require('vertx/console');
 
-    console.log("hello world!);
+    console.log("hello world!");
 
 ## Loading other scripts in the current scope
 
