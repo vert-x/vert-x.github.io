@@ -510,12 +510,6 @@ And then, in a different verticle:
 Most data in vert.x is shuffled around using instances of `org.vertx.groovy.core.buffer.Buffer`.
 
 A Buffer represents a sequence of zero or more bytes that can be written to or read from, and which expands automatically as necessary to accomodate any bytes written to it. You can perhaps think of a buffer as smart byte array.
-        
-# Buffers
-
-Most data in vert.x is shuffled around using instances of `org.vertx.groovy.core.buffer.Buffer`.
-
-A Buffer represents a sequence of zero or more bytes that can be written to or read from, and which expands automatically as necessary to accomodate any bytes written to it. You can perhaps think of a buffer as smart byte array.
 
 ## Creating Buffers
 
