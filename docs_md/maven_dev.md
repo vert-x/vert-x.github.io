@@ -28,7 +28,7 @@ You'll also be prompted for:
 
 If you prefer you can specify these parameters on the command line, for example:
 
-    mvn archetype:generate -Dfilter=io.vertx: -DgroupId=com.mycompany -DartifactId=my-module -Dversion=0.1
+    mvn archetype:generate -Dfilter=io.vertx: -DgroupId=com.mycompany -DartifactId=my-vertx-module -Dversion=0.1
 
 A directory with a name corresponding to `artifactId` will be created for you, with the example project in it. Let's go into it:
 
