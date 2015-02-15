@@ -669,12 +669,12 @@ map["some-key"] = 123
 </pre>
 <h2 id="shared-sets">Shared Sets</h2><br/>
 <p>To use a shared set to share data between verticles first we get a reference to the set.</p>
-<pre class="prettyprint">def set = vertx.sharedData.getMap('demo.myset')
+<pre class="prettyprint">def set = vertx.sharedData.getSet('demo.myset')
 
 set &lt;&lt; "some-value"
 </pre>
 <p>And then, in a different verticle:</p>
-<pre class="prettyprint">def set = vertx.sharedData.getMap('demo.myset')
+<pre class="prettyprint">def set = vertx.sharedData.getSet('demo.myset')
 
 // etc
 </pre>

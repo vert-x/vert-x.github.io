@@ -495,13 +495,13 @@ And then, in a different verticle you can access it:
 
 To use a shared set to share data between verticles first we get a reference to the set.
 
-    def set = vertx.sharedData.getMap('demo.myset')
+    def set = vertx.sharedData.getSet('demo.myset')
 
     set << "some-value"
 
 And then, in a different verticle:
 
-    def set = vertx.sharedData.getMap('demo.myset')
+    def set = vertx.sharedData.getSet('demo.myset')
 
     // etc
 
