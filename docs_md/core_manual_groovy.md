@@ -392,7 +392,7 @@ That message will then be delivered to all handlers registered against the addre
 
 Sending a message will result in only one handler registered at the address receiving the message. This is the point to point messaging pattern. The handler is chosen in a non strict round-robin fashion.
 
-    eb.publish("test.address", "hello world")
+    eb.send("test.address", "hello world")
 
 ### Replying to messages
 
