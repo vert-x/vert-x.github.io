@@ -173,7 +173,7 @@ For example, you could create a verticle `app.py` as follows:
     vertx.deploy_worker_verticle("verticle4.py", app_config["verticle4_conf"])
     vertx.deploy_worker_verticle("verticle5.py", app_config["verticle5_conf"], 10)
 
-Then create a file 'config.json" with the actual JSON config in it
+Then create a file `config.json` with the actual JSON config in it
     
     {
         "verticle1_conf": {

@@ -213,7 +213,7 @@ For example, you could create a verticle `AppStarter.groovy` as follows:
     container.deployWorkerVerticle("foo.Verticle4", appConfig["verticle4_conf"])
     container.deployWorkerVerticle("verticle5.js", appConfig["verticle5_conf"], 10)
         
-Then create a file 'config.json" with the actual JSON config in it
+Then create a file `config.json` with the actual JSON config in it
     
     {
         "verticle1_conf": {

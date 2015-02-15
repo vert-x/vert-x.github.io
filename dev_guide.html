@@ -173,7 +173,7 @@ This tells Vert.x which verticle to run when the module is deployed.</p>
 <pre class="prettyprint">./gradlew runMod -i
 </pre>
 <p>This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.</p>
-<p>If you want to provide command line arguments to the running module, e.g. you want to specify a config file you can edit the <code>runModArgs</code> property in `gradle.properties".</p>
+<p>If you want to provide command line arguments to the running module, e.g. you want to specify a config file you can edit the <code>runModArgs</code> property in <code>gradle.properties</code>.</p>
 <p>Note that we use the -i switch when running <code>gradlew</code> - this tells Gradle not to swallow INFO level debug output when running. By default Gradle swallows all logging output (!)</p>
 <p>If you're using Maven you can run the following from a console in your project directory:</p>
 <pre class="prettyprint">mvn clean vertx:runMod

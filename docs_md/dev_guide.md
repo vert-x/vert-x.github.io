@@ -142,7 +142,7 @@ Then, if you're using the standard Vert.x Gradle Template project, you can run t
 
 This will start Vert.x running and it will monitor the file system to changes to your module as you edit them and save your changes.
 
-If you want to provide command line arguments to the running module, e.g. you want to specify a config file you can edit the `runModArgs` property in `gradle.properties".
+If you want to provide command line arguments to the running module, e.g. you want to specify a config file you can edit the `runModArgs` property in `gradle.properties`.
 
 Note that we use the -i switch when running `gradlew` - this tells Gradle not to swallow INFO level debug output when running. By default Gradle swallows all logging output (!)
 

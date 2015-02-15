@@ -236,7 +236,7 @@ For example, you could create a verticle `AppStarter` as follows:
     container.deployWorkerVerticle("foo.Verticle4", verticle4Config)
     container.deployWorkerVerticle("verticle5.js", verticle5Config, 10)
         
-Then create a file 'config.json" with the actual JSON config in it
+Then create a file `config.json` with the actual JSON config in it
     
     {
         "verticle1_conf": {
