@@ -317,7 +317,7 @@ To unregister a handler it's just as straightforward. You simply call `unregiste
 
     Vertx::EventBus.unregister_handler('test.address', id)
 
-As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire to cluster. If you want to be notified when that has completed you can optionally specify another block to the `unregister_handler` method:
+As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire cluster. If you want to be notified when that has completed you can optionally specify another block to the `unregister_handler` method:
 
     Vertx::EventBus.unregister_handler(id) do
         puts 'Yippee! The handler unregister has been propagated across the cluster'

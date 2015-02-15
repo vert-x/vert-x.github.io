@@ -23,7 +23,7 @@ This will search for any artifacts with group id `io.vertx` and interactively pr
 You'll also be prompted for:
 
 * `groupId`. This is the `groupId` for the module that we're going to generate, e.g. `com.mycompany`.
-* `artifactId`. This the `artifactId` for the module that we're going to generate, e.g. `my-vertx-module`.
+* `artifactId`. This is the `artifactId` for the module that we're going to generate, e.g. `my-vertx-module`.
 * `version`. This is the `version` for the module that we're going to generate, e.g. `2.0`, or `0.1-SNAPSHOT`.
 
 If you prefer you can specify these parameters on the command line, for example:

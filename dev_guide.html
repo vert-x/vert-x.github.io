@@ -110,7 +110,7 @@
 <p>If you prefer to use some other build tool (e.g. ant), that's fine - Vert.x is agnostic about build tool, but you'll have to provide your own build script (perhaps someone could contribute one?) for now.</p>
 <p>We'll now explore the standard layout.</p>
 <h1 id="the-module">The module</h1><br/>
-<p>All Vert.x modules contain a <code>mod.json</code> descriptor. This a file containing some JSON which describes the module. Amongst other things it usually contains a <code>main</code> field.
+<p>All Vert.x modules contain a <code>mod.json</code> descriptor. This is a file containing some JSON which describes the module. Amongst other things it usually contains a <code>main</code> field.
 This tells Vert.x which verticle to run when the module is deployed.</p>
 <p>The <code>mod.json</code> file is in the <code>src/main/resources</code> directory of the project. Any files in this directory are copied to the root of the module during packaging.</p>
 <p>The thing that is run is called a <code>Verticle</code>. A <code>Verticle</code> can be written in any of the languages that Vert.x supports.</p>
@@ -168,7 +168,7 @@ This tells Vert.x which verticle to run when the module is deployed.</p>
 </pre>
 <p>Now open your project file in your IDE, and set your project in your IDE to automatically compile when source files are saved - how to do this depends on your particular IDE so consult your IDE documentation if in doubt.</p>
 <p>Now, make sure your IDE has built your project at least once (e.g. hit CTRL-F9 in IntelliJ IDEA).</p>
-<p><em>Note you should make sure there is no previously built module lurking in the <code>target/mods</code> directory - of one is found there then <code>runMod</code> will deploy that, not the module corresponding to the resources in your IDE. So delete target/mods if it exists before running <code>runMod</code>.</em></p>
+<p><em>Note you should make sure there is no previously built module lurking in the <code>target/mods</code> directory - if one is found there then <code>runMod</code> will deploy that, not the module corresponding to the resources in your IDE. So delete target/mods if it exists before running <code>runMod</code>.</em></p>
 <p>Then, if you're using the standard Vert.x Gradle Template project, you can run the following from a console in your project directory:</p>
 <pre class="prettyprint">./gradlew runMod -i
 </pre>

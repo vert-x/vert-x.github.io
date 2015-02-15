@@ -26,7 +26,7 @@ We'll now explore the standard layout.
 
 # The module
 
-All Vert.x modules contain a `mod.json` descriptor. This a file containing some JSON which describes the module. Amongst other things it usually contains a `main` field.
+All Vert.x modules contain a `mod.json` descriptor. This is a file containing some JSON which describes the module. Amongst other things it usually contains a `main` field.
 This tells Vert.x which verticle to run when the module is deployed.
 
 The `mod.json` file is in the `src/main/resources` directory of the project. Any files in this directory are copied to the root of the module during packaging.
@@ -134,7 +134,7 @@ Now open your project file in your IDE, and set your project in your IDE to auto
 
 Now, make sure your IDE has built your project at least once (e.g. hit CTRL-F9 in IntelliJ IDEA).
 
-*Note you should make sure there is no previously built module lurking in the `target/mods` directory - of one is found there then `runMod` will deploy that, not the module corresponding to the resources in your IDE. So delete target/mods if it exists before running `runMod`.*
+*Note you should make sure there is no previously built module lurking in the `target/mods` directory - if one is found there then `runMod` will deploy that, not the module corresponding to the resources in your IDE. So delete target/mods if it exists before running `runMod`.*
 
 Then, if you're using the standard Vert.x Gradle Template project, you can run the following from a console in your project directory:
 

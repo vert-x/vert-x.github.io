@@ -282,7 +282,7 @@ JSON configuration can be passed to a verticle that is deployed programmatically
 Then, in `ChildVerticle` you can access the config via [`Container.config`](https://modules.ceylon-lang.org/repo/1/io/vertx/ceylon/platform/1.0.0/module-doc/api/Container.type.html#config) as previously explained.
 ## Using a Verticle to co-ordinate loading of an application
 
-If you have an appplication that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.
+If you have an application that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.
 
 For example, you could create a verticle AppStarter as follows:
 

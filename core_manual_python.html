@@ -433,7 +433,7 @@ vertx.deploy_verticle('my_verticle.py', config)
 </pre>
 <p>Then, in <code>my_verticle.py</code> you can access the config via <code>vertx.config</code> method as previously explained.</p>
 <h2 id="using-a-verticle-to-co-ordinate-loading-of-an-application">Using a Verticle to co-ordinate loading of an application</h2><br/>
-<p>If you have an appplication that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.</p>
+<p>If you have an application that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.</p>
 <p>For example, you could create a verticle <code>app.py</code> as follows:</p>
 <pre class="prettyprint">import vertx
 
@@ -2084,6 +2084,7 @@ sockJSServer.bridge({'prefix' : '/eventbus'},
     }
   ], [{}])
 
+
 server.listen(8080)
 </pre>
 <p>To let all messages through you can specify two arrays with a single empty JSON object which will match all messages.</p>
@@ -2333,6 +2334,7 @@ if err:
                 else:
                     print 'Written ok'  
             async_file.write(buff, buff.length() * i, write_handler)
+
 
 fs.open('some-file.dat', handler=handler)
 </pre>
