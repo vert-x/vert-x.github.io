@@ -1960,7 +1960,7 @@ see the headers.
         (http/on-request
           #(-> %
                (http/server-response)
-               (http/put-header "Content-Type" "text/plain")
+               (http/add-header "Content-Type" "text/plain")
                (http/end (pr-str (http/headers %)))))
         (http/listen 8080)
 
