@@ -42,7 +42,7 @@ Copy the following into a text editor and save it as `server.clj`
       (-> server
           (net/on-connect #(stream/pump % %))
           (net/listen 1234 "localhost"))
-          
+
       (core/on-stop
         (.close server)))
 
@@ -92,12 +92,12 @@ JSON object.
 
 The configuration is available in the verticle as a Clojure map using
 the `vertx.core/config` function. For example:
-    
+
     (require '[vertx.core :as core])
-        
+
     ;; Do something with config
-    
-    (println "number of wibbles is #{config.wibble_number}" 
+
+    (println "number of wibbles is #{config.wibble_number}"
              (:wibble-number (core/config)))
 
 The config returned is a Clojure map with keyword keys. You can use
@@ -111,7 +111,7 @@ Each verticle is given its own logger. You can log to it using the
 functions in `vertx.logging`:
 
     (require '[vertx.logging :as log])
-    
+
     (log/info "I am logging something")
 
 `vertx.logging` provides the following macros:
@@ -153,7 +153,7 @@ To deploy a verticle programmatically call the
 `vertx.core/deploy-verticle` function.
 
 To deploy a single instance of a verticle :
-        
+
     (core/deploy-verticle main)
 
 Where `main` is the name of the Verticle (i.e. the name of the script
@@ -169,12 +169,12 @@ worker) verticles. If you want to deploy worker verticles use the
 `vertx.core/deploy-worker-verticle` function. This function takes the
 same parameters as `vertx.core/deploy-verticle` with the same
 meanings.
-    
+
 ## Deploying a module programmatically
 
 You should use `vertx.core/deploy-module` to deploy a module, for example:
 
-    (core/deploy-module "io.vertx~mod-mailer~2.0.0-beta1" 
+    (core/deploy-module "io.vertx~mod-mailer~2.0.0-beta1"
                         :config config)
 
 Would deploy an instance of the `io.vertx~mod-mailer~2.0.0-beta1`
@@ -187,7 +187,7 @@ Configuration can be passed to a verticle that is deployed
 programmatically. Inside the deployed verticle the configuration is
 accessed with the `vertx.core/config` function. For example:
 
-    (core/deploy-verticle "my_verticle.clj" 
+    (core/deploy-verticle "my_verticle.clj"
                           :config {:name "foo" :age 234})
 
 Then, in `my_verticle.clj` you can access the config via
@@ -206,21 +206,21 @@ For example, you could create a verticle `app.clj` as follows:
     (ns my.app
       (:require [vertx.core :refer
                 [config deploy-verticle deploy-worker-verticle]]))
-                
+
     (let [cfg (config)]
       ;; start the verticles that make up the app
-      
-      (deploy-verticle "verticle1.clj" 
+
+      (deploy-verticle "verticle1.clj"
                        :config (:verticle1Config cfg))
-      (deploy-verticle "verticle2.clj" 
-                       :config (:verticle2Config cfg) 
+      (deploy-verticle "verticle2.clj"
+                       :config (:verticle2Config cfg)
                        :instances 5)
-      (deploy-verticle "verticle3.clj" 
+      (deploy-verticle "verticle3.clj"
                        :config (:verticle3Config cfg))
-      (deploy-worker-verticle "verticle4.clj" 
+      (deploy-worker-verticle "verticle4.clj"
                               :config (:verticle4Config cfg))
-      (deploy-worker-verticle "verticle5.clj" 
-                              :config (:verticle5Config cfg) 
+      (deploy-worker-verticle "verticle5.clj"
+                              :config (:verticle5Config cfg)
                               :instances 10))
 
 Then set the `app.clj` verticle as the main of your module and then
@@ -237,7 +237,7 @@ Where conf.json is a config file like:
         },
         verticle2Config: {
             // Config for verticle2
-        }, 
+        },
         verticle3Config: {
             // Config for verticle3
         },
@@ -246,8 +246,8 @@ Where conf.json is a config file like:
         },
         verticle5Config: {
             // Config for verticle5
-        }  
-    }  
+        }
+    }
 
 If your application is large and actually composed of multiple modules
 rather than verticles you can use the same technique.
@@ -263,14 +263,14 @@ Vert.x scales by deploying many verticle instances concurrently.
 If you want more than one instance of a particular verticle or module
 to be deployed, you can specify the number of instances as follows:
 
-    (core/deploy-verticle "foo.ChildVerticle" 
-                          :instances 10) 
+    (core/deploy-verticle "foo.ChildVerticle"
+                          :instances 10)
 
 Or
-    
-    (core/deploy-module "io.vertx~some-mod~1.0" 
+
+    (core/deploy-module "io.vertx~some-mod~1.0"
                         :instances 10)
-  
+
 The above examples would deploy 10 instances.
 
 ## Getting Notified when Deployment is complete
@@ -281,7 +281,7 @@ has returned. If you want to be notified when the verticle/module has
 completed being deployed, you can pass a function to `deploy-verticle`,
 which will be called when it's complete:
 
-    (core/deploy-verticle "my_verticle.clj" 
+    (core/deploy-verticle "my_verticle.clj"
       :handler (fn [err deploy-id]
                  (when-not err
                    (println "It's been deployed OK!"))))
@@ -303,7 +303,7 @@ a verticle manually, however if you do want to do this, it can be done
 by calling the `vertx.core/undeploy-verticle` function, passing in the
 deployment id.
 
-    (core/deploy-verticle "my_verticle.rb" 
+    (core/deploy-verticle "my_verticle.rb"
       :handler (fn [err deploy-id]
                  ;; Immediately undeploy it
                  (when-not err
@@ -323,7 +323,7 @@ verticles there are and of what type.
 You can deploy more verticle instances programmatically or on the
 command line when deploying your module using the `-instances` command
 line option.
-            
+
 
 # The Event Bus
 
@@ -426,7 +426,7 @@ To set a message handler on the address `test.address`, you call the
 
     (eb/on-message "test.address"
       (fn [message]
-        (println "Got message body" (eb/body message))))
+        (println "Got message body" message)))
 
 It's as simple as that. The handler will then receive any messages
 sent to that address. The object passed into the handler is an
@@ -444,10 +444,10 @@ that has completed you can optionally specify a function to the
 be called once the information has reached all nodes of the
 cluster. E.g. :
 
-    (eb/on-message "test.address" my-handler 
+    (eb/on-message "test.address" my-handler
       (fn [err]
         (println "Yippee! The handler info has been propagated across the cluster")))
-    
+
 To unregister a handler it's just as straightforward. You simply call
 `unregister-handler` passing in the id of the handler:
 
@@ -491,7 +491,7 @@ Sometimes after you send a message you want to receive a reply from
 the recipient. This is known as the *request-response pattern*.
 
 To do this you send a message, and specify a function as a reply
-handler. When the receiver receives the message, it can use the 
+handler. When the receiver receives the message, it can use the
 `vertx.eventbus/reply` function to send a reply.
 
 When this function is invoked it causes a reply to be sent back to the
@@ -502,18 +502,18 @@ The receiver:
 
     (eb/on-message "test.address"
       (fn [message]
-        (println "I received a message" (eb/body message))
+        (println "I received a message" message))
 
         ;; Do some stuff...
         ;; Now reply to it
-        
+
         (eb/reply message "This is a reply")))
 
 The sender:
 
     (eb/send "test.address" "This is a message"
       (fn [reply-msg]
-        (println "I received a reply" (eb/body reply-msg))))
+        (println "I received a reply" reply-msg)))
 
 It is legal also to send an empty reply or null reply.
 
@@ -535,7 +535,7 @@ exception-map as the first parameter you can deal with it in your code.
 
 Here's an example:
 
-    (eb/send "test.address" "This is a message" 1000 
+    (eb/send "test.address" "This is a message" 1000
       (fn [err m]
         (if err
           (println "No reply was received before the 1 second timeout!")
@@ -547,7 +547,7 @@ an exception map of the form:
     {:type :TIMEOUT
      :message "Timed out waiting for reply"
      :basis the-ReplyException-object}
-     
+
 
 You can also set a default timeout on the event bus itself - this
 timeout will be used if you are using the `send` function without a
@@ -565,7 +565,7 @@ timeout. The API used is similar to before:
 
     (eb/on-message "test.address"
       (fn [m]
-        (eb/reply "This is a reply" 1000 
+        (eb/reply "This is a reply" 1000
           (fn [err m]
             (if err
               (println "No reply was received before the 1 second timeout!")
@@ -592,9 +592,9 @@ For example:
     (eb/on-message "test.address"
       (fn [m]
         (eb/fail 123 "Not enough aardvarks")))
-        
-    
-    (eb/send "test.address" "This is a message" 1000 
+
+
+    (eb/send "test.address" "This is a message" 1000
       (fn [err m]
         (if err
           (do
@@ -602,7 +602,7 @@ For example:
             (println "Failure code:" (:code err))
             (println "Failure message: (:message err)))
           (println "I received a reply" m))))
-          
+
 ### Message types
 
 The message you send can be any of the following types:
@@ -617,7 +617,7 @@ The message you send can be any of the following types:
 * clojure.lang.Ratio - will be converted to a double
 * String
 * Boolean
-* clojure.lang.Seqable (includes clojure lists, vectors, sets) - converted to a JSON array 
+* clojure.lang.Seqable (includes clojure lists, vectors, sets) - converted to a JSON array
 * map - converted to a JSON map
 * byte[]
 * Vert.x Buffer
@@ -646,7 +646,7 @@ Send a map (will be converted to a JSON object):
 Send a vector (will be converted to a JSON array):
 
     (eb/send "test.address" ["a" :b 0xC])
-    
+
 `nil` messages can also be sent:
 
     (eb/send "test.address" nil)
@@ -672,7 +672,7 @@ will merge to form a distributed event bus.
 
 Sometimes it makes sense to allow different verticles instances to
 share data in a safe way. Vert.x allows simple *Map* and *Set* data
-structures to be shared between verticles. 
+structures to be shared between verticles.
 
 There is a caveat: Vert.x ensures that objects are copied where
 appropriate on insertion to prevent other verticles having access to
@@ -680,7 +680,7 @@ the same instance which could lead to race conditions.
 
 Currently data can only be shared between verticles in the *same
 vert.x instance*. In later versions of vert.x we aim to extend this to
-allow data to be shared by all vert.x instances in the cluster. 
+allow data to be shared by all vert.x instances in the cluster.
 
 All Clojure verticles deployed in a single vert.x instance share the
 same Clojure runtime, so you can use the Clojure's existing mechanisms
@@ -695,7 +695,7 @@ reference to the map, and then we just use map operations to put and
 get the data:
 
     (require '[vertx.shareddata :as sd])
-    
+
     (-> (sd/get-map "demo.mymap")
         (sd/put! "some-key" "some-value"))
 
@@ -714,7 +714,7 @@ reference to the set:
         (sd/add! "some-value"))
 
 And then, in a different verticle:
-    
+
     (println "does the set contain some-value?"
       (-> (sd/get-set "demo.myset")
           (contains? "some-key")))
@@ -746,7 +746,7 @@ to accomodate any bytes written to it.
 ## Creating Buffers
 
 Create an empty buffer:
-    
+
     (require '[vertx.buffer :as buf])
 
     (buf/buffer)
@@ -755,12 +755,12 @@ Create a buffer from a String. The String will be encoded in the
 buffer using UTF-8:
 
     (buf/buffer "some-string")
-    
+
 Create a buffer from a String. The String will be encoded using the
 specified encoding, e.g:
 
     (buf/buffer "some-string" "UTF-16")
-    
+
 Create a buffer with an initial size hint. If you know your buffer
 will have a certain amount of data written to it you can create the
 buffer and specify this size. This makes the buffer initially allocate
@@ -768,17 +768,17 @@ that much memory and is more efficient than the buffer automatically
 resizing multiple times as data is written to it:
 
     (buf/buffer 100000)
-    
+
 Note that buffers created this way *are empty*. It does not create a
 buffer filled with zeros up to the specified size.
-        
+
 Also note that buffers are *mutable*. To emphasize that, we recommend
 naming any vars that point to buffers with a trailing `!`. Example:
 
     (let [some-buf! (buf/buffer)
       ;;mutate away!
       )
-      
+
 ## Writing to a Buffer
 
 There are two ways to write to a buffer: appending, and random
@@ -801,7 +801,7 @@ chained:
         (buf/append! "hi") ;; as UTF-8
         (buf/append! "hello" "UTF-16")
         (buf/append! some-other-buffer))
-    
+
 ### Random access buffer writes
 
 You can also write into the buffer at a specific index, by using
@@ -819,7 +819,7 @@ chained:
         (buf/set! 23 "hi") ;; as UTF-8
         (buf/set! 99 "hello" "UTF-16")
         (buf/set! 2000 some-other-buffer))
-           
+
 ## Reading from a Buffer
 
 Data is read from a buffer using the `vertx.buffer/get-XXX`
@@ -836,8 +836,8 @@ is an index in the buffer from where to get the data.
     (buf/get-string a-buf 100 "UTF-16")  ;; Get a float from pos 100 as UTF-8
 
     (buf/get-buffer a-buf 100 110)       ;; Get 10 bytes as a new buffer starting at position 100
-    
-    
+
+
 # Delayed and Periodic Tasks
 
 It's very common in vert.x to want to perform an action after a delay,
@@ -859,7 +859,7 @@ passing in the delay and specifying a handler body which will be
 called after the delay:
 
     (require '[vertx.core :as core])
-    
+
     (core/timer 1000
       (println "And one second later this is printed"))
 
@@ -892,7 +892,7 @@ execution time:
 
     (core/periodic* 1000
       #(println "The timer id is" %))
-      
+
 ## Cancelling timers
 
 To cancel a timer, call the `vertx.core/cancel-timer` function
@@ -901,11 +901,11 @@ specifying the timer id. For example:
     (let [timer-id (core/periodic 1000
                      ;; This will never be called
                      )]
-     
+
       ;; And immediately cancel it
-      
+
       (core/cancel-timer timer-id)
-     
+
 Or you can cancel it from inside the event handler. The following
 example cancels the timer after it has fired 10 times:
 
@@ -928,9 +928,9 @@ Creating TCP servers and clients is very easy with vert.x.
 To create a TCP server we simply call `vertx.net/server`:
 
     (require '[vertx.net :as net])
-    
+
     (net/server)
-    
+
 ### Start the Server Listening
 
 To tell that server to listen for connections we do:
@@ -953,9 +953,9 @@ listening until some time *after* the call to listen has returned. If
 you want to be notified when the server is actually listening you can
 provide a handler function to the `listen` call. For example:
 
-    (net/listen server 1234 "myhost" 
+    (net/listen server 1234 "myhost"
       (fn [err server]
-	    (when-not err 
+	    (when-not err
           (println "Now listening!"))))
 
 ### Getting Notified of Incoming Connections
@@ -967,7 +967,7 @@ is made, getting the NetSocket. `on-connect` returns the server,
 allowing invocations to be threaded:
 
     (-> (net/socket)
-        (net/on-connect 
+        (net/on-connect
           (fn [socket]
             (println "A client has connected!")))
         (net/listen 1234))
@@ -991,8 +991,8 @@ This function will then be called when the close has fully completed.
     (net/close server (fn [err]
                         (when-not err
                           (println "The server is now fully closed."))))
-    
-    
+
+
 In most cases you don't need to close a net server explicitly since
 vert.x will close them for you when the verticle stops.
 
@@ -1026,7 +1026,7 @@ You can set these properties at server creation time by passing them
 as a map to `vertx.net/server`:
 
     (net/server {:tcp-no-delay false})
-    
+
 Or set them on an existing server object, either by passing them as a
 map to `vertx.utils/set-properties`:
 
@@ -1036,7 +1036,7 @@ Or by calling the corresponding java setter methods on the server
 object:
 
     (.setTcpNoDelay server false)
-    
+
 Net servers have a further set of properties which are used to
 configure SSL. We'll discuss those later on.
 
@@ -1062,7 +1062,7 @@ following code and telnet to it to send some data:
 
     (require '[vertx.net :as net]
              '[vertx.stream :as stream])
-             
+
     (-> (net/server)
         (net/on-connect
           (fn [sock]
@@ -1070,10 +1070,10 @@ following code and telnet to it to send some data:
               (fn [buffer]
                 (println "I received" (.length buffer) "bytes of data")))))
         (net/listen 1234 "localhost"))
-        
+
 #### Writing Data to a Socket
 
-To write data to a socket, you invoke the `vertx.stream/write` function. 
+To write data to a socket, you invoke the `vertx.stream/write` function.
 
 With a single buffer:
 
@@ -1100,7 +1100,7 @@ Here's an example of a simple TCP echo server which simply writes back
 
     (require '[vertx.net :as net]
              '[vertx.stream :as stream])
-             
+
     (-> (net/server)
         (net/on-connect
           (fn [sock]
@@ -1125,7 +1125,7 @@ closed handler on the socket via `vertx.net/on-close`:
             (net/on-close sock
               (partial println "The socket is now closed"))))
         (net/listen 1234 "localhost"))
-    
+
 The closed handler will be called irrespective of whether the close
 was initiated by the client or server.
 
@@ -1139,7 +1139,7 @@ an exception occurs (note that we're using a function from the
         (net/on-connect
           (fn [sock]
             (stream/on-exception sock
-              (fn [ex-map] 
+              (fn [ex-map]
                 (println "Oops. Something went wrong" (:message ex-map))))))
     (net/listen 1234 "localhost"))
 
@@ -1160,10 +1160,10 @@ method.
 For example to write some data to the NetSocket from a completely
 different verticle you could do:
 
-    ;; retrieve the write handler ID and share it via 
+    ;; retrieve the write handler ID and share it via
     ;; some mechanism (eventbus, shared data, atom, etc)
     (.writeHandlerID sock)
-    
+
     ;; in another verticle, get the ID and send a buffer
     (eb/send write-handler-id (buf/buffer "some data"))
 
@@ -1198,7 +1198,7 @@ the server, e.g.
 Or for a raw verticle
 
     vertx run foo.MyApp -instances 20
-    
+
 The above would run 20 instances of the module/verticle in the same
 Vert.x instance.
 
@@ -1282,7 +1282,7 @@ You can set these properties at client creation time by passing them
 as a map to `vertx.net/client`:
 
     (net/client {:reconnect-attempts -1})
-    
+
 Or set them on an existing client object, either by passing them as a
 map to `vertx.utils/set-properties`:
 
@@ -1337,24 +1337,24 @@ required.
 
 To configure a server to use server certificates only:
 
-    (net/server 
+    (net/server
       {:ssl true
        :key-store-path "/path/to/your/keystore/server-keystore.jks"
        :key-store-password "password"})
-       
+
 Making sure that `server-keystore.jks` contains the server
 certificate.
 
 To configure a server to also require client certificates:
 
-    (net/server 
+    (net/server
       {:ssl true
        :key-store-path "/path/to/your/keystore/server-keystore.jks"
        :key-store-password "password"
        :client-auth-required true
        :trust-store-path "/path/to/your/truststore/server-truststore.jks"
        :trust-store-password "password"})
-       
+
 Making sure that `server-truststore.jks` contains the certificates of
 any clients who the server trusts.
 
@@ -1399,7 +1399,7 @@ To configure a client to trust all server certificates (dangerous):
     (net/client
       {:ssl true
        :trust-all true})
-    
+
 To configure a client to only trust those certificates it has in its
 trust store:
 
@@ -1418,9 +1418,9 @@ trust store, and also to supply a client certificate:
        :key-store-path "/path/to/keystore/holding/client/cert/client-keystore.jks"
        :key-store-password "password"})
 
-# User Datagram Protocol (UDP) 
+# User Datagram Protocol (UDP)
 
-Using User Datagram Protocol (UDP) with Vert.x is a piece of cake. 
+Using User Datagram Protocol (UDP) with Vert.x is a piece of cake.
 
 UDP is a connection-less transport which basically means you have no
 persistent connection to a remote peer.
@@ -1455,16 +1455,16 @@ which can be handled by the NetServer and NetClient (see above).
 To use send or receive UDP, you first need to create a datagram socket:
 
     (require '[vertx.datagram :as udp])
-    
+
     (udp/socket)
-    
+
     ;; or specify :ipv4/:ipv6 specifically
     (udp/socket :ipv6)
-    
+
 The `socket` function takes additional options - See the 'Datagram
 socket properties' section below.
 
-The returned socket is not bound to a specific port. 
+The returned socket is not bound to a specific port.
 
 ## Sending Datagram packets
 
@@ -1478,7 +1478,7 @@ Sending packets is as easy as shown here:
 
     (-> (udp/socket)
         (udp/send "content" 1234 "10.0.0.1"))
-        
+
     ;; send with a result handler
     (-> (udp/socket)
         (udp/send "content" 1234 "10.0.0.1"
@@ -1486,16 +1486,16 @@ Sending packets is as easy as shown here:
                     (println err))))
 
 Be aware that even if `err` is nil, it only means the data was written
-to the network stack, but gives no guarantee that it ever reached or 
+to the network stack, but gives no guarantee that it ever reached or
 will reach the remote peer at all.
 
-If you need such a guarantee then you want to use TCP with some 
+If you need such a guarantee then you want to use TCP with some
 handshaking logic build on top.
 
 ## Receiving Datagram packets
 
-If you want to receive packets you need to bind the datagram socket by 
-calling `vertx.datagram/listen` on it, and register a function to 
+If you want to receive packets you need to bind the datagram socket by
+calling `vertx.datagram/listen` on it, and register a function to
 receive the packets via `vertx.datagram/on-data`:
 
     (-> (udp/socket)
@@ -1528,10 +1528,10 @@ address to the send method:
 
     (-> (udp/socket)
         (udp/send "content" 1234 "230.0.0.1"))
-        
+
 All sockets that have joined the multicast group 230.0.0.1 will
 receive the packet.
-   
+
 ### Receiving Multicast packets
 
 If you want to receive packets for a specific multicast group you need
@@ -1555,10 +1555,10 @@ here:
           (fn [packet] ...))
         (udp/join-multicast-group "230.0.0.1"
           (fn [err socket]
-            (if-not err 
+            (if-not err
               (println "join succeeded")))))
 
-### Leaving a Multicast group 
+### Leaving a Multicast group
 
 There are sometimes situations where you want to receive packets for a
 multicast group for a limited time.
@@ -1588,7 +1588,7 @@ This an expert feature.
 
 To block multicast from a specic address you can call
  `vertx.datagram/block-multicast-sender`:
- 
+
     (-> (udp/socket)
         (udp/join-multicast-group "230.0.0.1")
         ;; This would block packets which are sent from 10.0.0.2
@@ -1607,12 +1607,12 @@ There are several properties you can set on a datagram socket:
 
 * `:traffic-class` - ??
 
-* `:broadcast` - controls the SO_BROADCAST socket option. When this option is set, 
+* `:broadcast` - controls the SO_BROADCAST socket option. When this option is set,
                  Datagram (UDP) packets may be sent to a local interface's broadcast address.
 
 * `:multicast-loopback-mode` - controls the IP_MULTICAST_LOOP socket option.
                                When this option is set, multicast packets will
-                               also be received on the local interface. 
+                               also be received on the local interface.
 
 * `:multicast-time-to-live` - controls the IP_MULTICAST_TTL socket option. TTL stands for "Time to Live,"
                               but in this context it specifies the number of IP hops that a packet is
@@ -1625,7 +1625,7 @@ You can set these properties at socket creation time by passing them
 as a map to `vertx.datagram/socket`:
 
     (udp/socket :ipv4 {:broadcast true})
-    
+
 Or set them on an existing socket object, either by passing them as a
 map to `vertx.utils/set-properties`:
 
@@ -1643,13 +1643,13 @@ You can find out the local address of the socket (i.e. the address of
  this side of the UDP Socket) by calling
  `vertx.datagram/local-address`. This will only return an address-map
  if the socket is actually listening.
-    
+
 ## Closing a DatagramSocket
 
 You can close a socket by passing it to the `vertx.datagram/close`
 function.  This will close the socket and release all its resources.
 
-<a id="flow-control"> </a> 
+<a id="flow-control"> </a>
 # Flow Control - Streams and Pumps
 
 There are several objects in vert.x that allow data to be read from
@@ -1723,7 +1723,7 @@ write queue gets full. What we really want to do is pause the
                 (if (.writeQueueFull sock)
                   (.pause sock))))))
         (net/listen 1234 "localhost"))
-    
+
 We're almost there, but not quite. The `NetSocket` now gets paused
 when the file is full, but we also need to *unpause* it when the file
 write queue has processed its backlog:
@@ -1735,11 +1735,11 @@ write queue has processed its backlog:
               (fn [buffer]
                 (stream/write sock buffer)
                 (if (.writeQueueFull sock)
-                  (do 
+                  (do
                     (.pause sock)
                     (stream/on-drain #(.resume sock))))))))
         (net/listen 1234 "localhost"))
-        
+
 And there we have it. The `drain_handler` event handler will get
 called when the write queue is ready to accept more data, this resumes
 the `NetSocket` which allows it to read more data.
@@ -1752,7 +1752,7 @@ work for you. You just feed it the `ReadStream` and the `WriteStream`:
         (net/on-connect
           (stream/pump sock sock))
         (net/listen 1234 "localhost"))
-        
+
 Which does exactly the same thing as the more verbose example.
 
 Let's look at the methods on `ReadStream` and `WriteStream` in more
@@ -1815,7 +1815,7 @@ A pump can be started and stopped multiple times.
 
 By default, `vertx.stream/pump` calls `.start` on the `Pump` before
 returning. To prevent that, pass `false` as a third parameter:
-   
+
     (stream/pump read-stream write-stream false)
 
 # Writing HTTP Servers and Clients
@@ -1838,7 +1838,7 @@ To tell that server to listen for incoming requests you use the
 
     (-> (http/server)
         (http/listen 8080 "myhost"))
-    
+
 The first parameter to `listen` is the port. The second parameter is
 the hostname or ip address. If the hostname is omitted it will default
 to `0.0.0.0` which means it will listen at all available interfaces.
@@ -1862,7 +1862,7 @@ handler. This is done by calling the `vertx.http/on-request` function,
 passing in the handler:
 
     (-> (http/server)
-        (http/on-request 
+        (http/on-request
           (fn [request]
             (println "An HTTP request has been received")))
         (http/listen 8080))
@@ -1908,8 +1908,8 @@ The request object has a property `.uri` which contains the full URI
 (Uniform Resource Locator) of the request. For example, if the request
 URI was:
 
-    /a/b/c/page.html?param1=abc&param2=xyz    
-    
+    /a/b/c/page.html?param1=abc&param2=xyz
+
 Then `(.uri request)` would return the string
 `/a/b/c/page.html?param1=abc&param2=xyz`.
 
@@ -1955,7 +1955,7 @@ response. Run it and point your browser at `http://localhost:8080` to
 see the headers.
 
     (require '[vertx.http :as http])
-    
+
     (-> (http/server)
         (http/on-request
           #(-> %
@@ -2014,7 +2014,7 @@ chunk of the request body arrives. Here's an example:
             (fn [buf]
               (println "I received" (.length buf) "bytes"))))
         (http/listen 8080))
-            
+
 The data handler function may be called more than once depending on
 the size of the body.
 
@@ -2035,10 +2035,10 @@ following:
               ;; Append the chunk to the buffer
               (stream/on-data request (partial buf/append! body!))
               ;; invoked when the entire body has been read
-              (stream/on-end 
+              (stream/on-end
                 #(println "The total body received was" (.length body!) "bytes")))))
         (http/listen 8080))
-              
+
 Like any `ReadStream` the end handler is invoked when the end of
 stream is reached - in this case at the end of the request.
 
@@ -2062,8 +2062,8 @@ Here's an example using a body handler:
           #(http/on-body %
             (fn [buf]
               (println "The total body received" (.length buf) "bytes"))))
-        (http/listen 8080))   
-        
+        (http/listen 8080))
+
 #### Handling Multipart Form Uploads
 
 Vert.x understands file uploads submitted from HTML forms in
@@ -2097,7 +2097,7 @@ available as `:save-fn`:
     (http/on-upload request
       (fn [upload]
        ((:save-fn upload) (format "uploads/%s" (:filename upload)))))
-       
+
 #### Handling Multipart Form Attributes
 
 If the request corresponds to an HTML form that was submitted you can
@@ -2117,7 +2117,7 @@ is read in order for the form attributes to be available.
       (http/expect-multi-part request)
       ;; The request has been full read, so now we can look at the form attributes
       #(do-something-with-form-attributes (http/form-attributes request)))
-      
+
 ### HTTP Server Responses
 
 As previously mentioned, you can use `vertx.http/server-response` to
@@ -2137,12 +2137,12 @@ setter methods (`.setStatusCode`, `.setStatusMessage`).
     (-> (http/server)
         (http/on-request
           #(-> %
-               (http/server-response 
+               (http/server-response
                  {:status-code 404
                   :status-message "Too many gerbils"})
                http/end))
         (http/listen 8080))
-    
+
 The default value for `:status-code` is `200`.
 
 #### Writing HTTP responses
@@ -2191,7 +2191,7 @@ same way `vertx.stream/write` is called. In this case it's just the
 same as calling `write` with a string or bufferable followed by
 calling `end` with no arguments. For example:
 
-    
+
     (http/end response "That's all folks")
 
 #### Closing the underlying connection
@@ -2225,13 +2225,13 @@ You put the HTTP response into chunked mode by setting the `:chunked`
 property.
 
     (http/server-response request {:chunked true})
-    
+
     ;; or
-    
+
     (utils/set-property response :chunked true)
-    
+
     ;; or
-    
+
     (.setChunked response true)
 
 Default is non-chunked. When in chunked mode, each call to
@@ -2277,19 +2277,19 @@ directory:
           (fn [req]
             (-> req
                 http/server-response
-                (http/send-file 
+                (http/send-file
                   (str "web/"
                     (let [path (.path req)]
-                      (cond 
+                      (cond
                         (= path "/") "index.html"
                         (not (re-find #"\.\." path)) path
                         :default "error.html"))))))
         (http/listen 8080))
-                    
+
 There's also a variant of `send-file` which takes the name of a file
 to serve if the specified file cannot be found:
 
-    (http/send-file response (str "web/" file) 
+    (http/send-file response (str "web/" file)
       :not-found "handler_404.html")
 
 *Note: If you use `send-file` while using HTTPS it will copy through
@@ -2312,14 +2312,14 @@ the HTTP request body is much larger than can fit in memory at any one
 time:
 
     (-> (http/server)
-        (on-request 
+        (on-request
           (fn [req]
             (let [response (http/server-response req)]
               (http/add-headers response (http/headers req))
               (stream/pump req response)
               (stream/on-end req (partial http/end response)))))
         (listen 8080))
-        
+
 ## Writing HTTP Clients
 
 ### Creating an HTTP Client
@@ -2332,7 +2332,7 @@ You set the port and hostname (or ip address) that the client will
 connect to using the `:host` and `:port` properties:
 
     (http/client {:port 8181 :host "foo.com"})
-    
+
 A single `HttpClient` always connects to the same host and port. If
 you want to connect to different servers, create more instances.
 
@@ -2358,7 +2358,7 @@ You can set the maximum number of connections that the client will
 pool as follows:
 
     (http/client {:max-pool-size 10})
-    
+
 The default value is `1`.
 
 ### Closing the client
@@ -2379,7 +2379,7 @@ For example, to make a `POST` request:
         (http/post "/some-path/"
           #(println "got response" (.statusCode %)))
         (http/end))
-        
+
 To make a PUT request use the `put` function, to make a GET request use
 the `get` function, etc.
 
@@ -2416,7 +2416,7 @@ general `request` function which takes the HTTP method as a parameter:
         (http/request :POST "/some-path/"
           #(println "got response" (.statusCode %)))
         (http/end))
-        
+
 There is also a function called `get-now` which does the same as
 `get`, but automatically ends the request. This is useful for simple
 GETs which don't have a request body:
@@ -2482,7 +2482,7 @@ same way `vertx.stream/write` is called. In this case it's just the
 same as calling `write` with a string or bufferable followed by
 calling `end` with no arguments. For example:
 
-    
+
     (http/end request "That's all folks")
 
 
@@ -2556,7 +2556,7 @@ HTTP response arrive. Here's an example:
         (http/get-now "/some-path"
           (fn [resp]
             (stream/on-data resp
-              (fn [buf] 
+              (fn [buf]
                 (println "I received" (.length buf) "bytes"))))))
 
 
@@ -2713,7 +2713,7 @@ deploying more instances of the verticle. For example:
 Or, for a raw verticle:
 
     vertx run foo.MyServer -instances 20
-    
+
 The scaling works in the same way as scaling a `NetServer`. Please see
 the chapter on scaling Net Servers for a detailed explanation of how
 this works.
@@ -2749,7 +2749,7 @@ requests with path `/animals/cats` to another handler you would do:
                    (-> (http/server-response req)
                        (http/end "You requested cats"))))))
         (http/listen 8080))
-        
+
 Corresponding functions exist for each HTTP method - `get`, `post`,
 `put`, `delete`, `head`, `options`, `trace`, `connect` and `patch`.
 
@@ -2822,11 +2822,11 @@ For example:
                                  (:param0 params)
                                  (:param1 params))))))))
         (http/listen 8080))
-        
+
 Run the above and point your browser at
 `http://localhost:8080/animals/cats`.
 
-It will display 'first is animals and second is cats'.    
+It will display 'first is animals and second is cats'.
 
 ## Handling requests where nothing matches
 
@@ -2834,11 +2834,11 @@ You can use the `no-match` function to specify a handler that will be
 called if nothing matches. If you don't specify a no match handler and
 nothing matches, a 404 will be returned.
 
-    (route/no-match 
+    (route/no-match
       (fn [req]
         (http/end (server-response req) "Nothing matched")))
-    
-# WebSockets 
+
+# WebSockets
 
 
 [WebSockets](http://en.wikipedia.org/wiki/WebSocket) are a web
@@ -2852,12 +2852,12 @@ but instead of setting a request handler you set a websocket handler
 on the server via `vertx.http.websocket/on-websocket`.
 
     (-> (http/server)
-        (ws/on-websocket 
+        (ws/on-websocket
           (fn [ws]
             ;; A WebSocket has connected!
             ))
         (http/listen 8080))
-            
+
 ### Reading from and Writing to WebSockets
 
 The `websocket` instance passed into the handler implements both
@@ -2871,7 +2871,7 @@ information.
 For example, to echo all data received on a WebSocket:
 
     (-> (http/server)
-        (ws/on-websocket 
+        (ws/on-websocket
           #(stream/pump % %))
         (listen 8080))
 
@@ -2889,13 +2889,13 @@ websocket. You can then call the `.reject` method to reject the
 websocket.
 
     (-> (http/server)
-        (ws/on-websocket 
+        (ws/on-websocket
           (fn [ws]
             (if (= "/services/echo" (.path ws))
               (stream/pump ws ws)
               (.reject ws))))
         (http/listen 8080))
-        
+
 ### Event Bus Write Handler
 
 Like NetSockets, every WebSocket automatically registers handlers on
@@ -2933,10 +2933,10 @@ Here's an example of WebSockets on the client:
           (fn [ws]
             (stream/on-data ws #(partial println "got"))
             (ws/write-text-frame ws "foo"))))
-              
+
 Note that the host (and port) is set on the `HttpClient` instance, and
 the uri passed in the connect is typically a *relative* URI.
-    
+
 Again, the client side WebSocket implements `ReadStream` and
 `WriteStream`, so you can read and write to it in the same way as any
 other stream object.
@@ -3028,7 +3028,7 @@ and pass it in to function that creates a SockJS server.
 
     (require `[vertx.http :as http]
              `[vertx.http.sockjs :as sockjs])
-             
+
     (-> (http/server) (sockjs/sockjs-server))
 
 Each SockJS server can host multiple *applications*.
@@ -3118,8 +3118,8 @@ SockJS website. A simple example:
            console.log('close');
        };
     </script>
-    
-As you can see the API is very similar to the WebSockets API.    
+
+As you can see the API is very similar to the WebSockets API.
 
 # SockJS - EventBus Bridge
 
@@ -3154,9 +3154,9 @@ bridge any events sent to the path `eventbus` on to the server side
 event bus.
 
     (let [http-server (http/server)]
-      (sockjs/bridge 
+      (sockjs/bridge
         (sockjs/sockjs-server http-server)
-        {:prefix "/eventbus"} [{}] [{}]) 
+        {:prefix "/eventbus"} [{}] [{}])
       (http/listen http-server 8080 "localhost"))
 
 ## Using the Event Bus from client-side JavaScript
@@ -3174,9 +3174,9 @@ it. For a full working examples, please consult the bundled examples.
     <script>
 
         var eb = new vertx.EventBus('http://localhost:8080/eventbus');
-        
+
         eb.onopen = function() {
-        
+
           eb.register_handler('some-address', function(message) {
 
             console.log('received a message: ' + JSON.stringify(message);
@@ -3184,9 +3184,9 @@ it. For a full working examples, please consult the bundled examples.
           });
 
           eb.send('some-address', {name: 'tim', age: 587});
-        
+
         }
-       
+
     </script>
 
 You can find `vertxbus.js` in the `client` directory of the vert.x
@@ -3220,13 +3220,13 @@ using the wrapper:
 
     (ns demo.client
       (:require [vertx.client.eventbus :as eb]))
-      
+
     (def eb (atom nil))
-    
-    (defn register-handler [] 
+
+    (defn register-handler []
       (eb/on-message @eb "some-address"
         #(.log js/console (str "received a message: " %))))
-        
+
     (reset! eb (eb/eventbus "http://localhost:8080/eventbus"))
     (eb/on-open @eb register-handler)
     (eb/on-open @eb #(eb/send @eb "some-address" {:name "tim" :age 587}))
@@ -3308,33 +3308,33 @@ available permitted entries.
 Here is an example:
 
     (let [http-server (http/server)
-          sockjs-server 
+          sockjs-server
           auth-inbound [
                      ;;Let through any messages sent to 'demo.orderMgr'
                      {:address "demo.orderMgr"}
-                     
+
                      ;; Allow calls to the address 'demo.persistor' as long as the messages
                      ;; have an action field with value 'find' and a collection field with value
                      ;; 'albums'
                      {:address "demo.persistor" :match {:action "find" :collection "albums"}}
-                     
+
                      ;; Allow through any message with a field `wibble` with value `foo`.
                      {:match {:wibble "foo"}}]
           auth-outbound [
                      ;; Let through any messages coming from address 'ticker.mystock'
                      {:address "ticker.mystock"}
-                     
+
                      ;;Let through any messages from addresses starting with "news." (e.g. news.europe, news.usa, etc)
                      {:address_re "news\\..+"}]
-        (sockjs/bridge 
+        (sockjs/bridge
           (sockjs/sockjs-server http-server)
-          {:prefix "/eventbus"} auth-inbound auth-outbound) 
+          {:prefix "/eventbus"} auth-inbound auth-outbound)
         (http/listen http-server 8080 "localhost"))
 
 To let all messages through you can specify two arrays with a single
 empty JSON object which will match all messages.
 
-     (sockjs/bridge sockjs-server {:prefix "/eventbus"} [{}] [{}]) 
+     (sockjs/bridge sockjs-server {:prefix "/eventbus"} [{}] [{}])
 
 **Be very careful!**
 
@@ -3360,7 +3360,7 @@ following match:
       }
       :requires_auth true
     }
-    
+
 This tells the bridge that any messages to find orders in the `albums`
 collection, will only be passed if the user is successful
 authenticated (i.e. logged in ok) first.
@@ -3506,7 +3506,7 @@ Here's an example:
         (if err
             (println "Failed to retrieve file props:" err)
             (println "Last accessed:" (:last-access-time props)))))
-        
+
 ## link
 
 Create a link.
@@ -3569,7 +3569,7 @@ successful. This will not create any missing parent dirs by default.
 * `(mkdir dirname create-parents? handler)`
 
 If `create-parents?` is `true`, this creates a new directory and
-creates any of its parents too. 
+creates any of its parents too.
 
 * `(mkdir dirname create-parents? perms handler)`
 
@@ -3600,7 +3600,7 @@ directory:
         (when !err
           (println "Directory contains these .txt files:")
           (mapv println files))))
-    
+
 ## read-file
 
 Read the entire contents of a file in one go. *Be careful if using
@@ -3615,9 +3615,9 @@ the file contents.
 
 ## write-file
 
-Writes data to a new file on disk. 
+Writes data to a new file on disk.
 
-`(write-file file data handler)` 
+`(write-file file data handler)`
 
 Where `file` is the file name. `data` is anything bufferable.
 `handler` is called with the error, or `nil` if successful.
@@ -3631,7 +3631,7 @@ This method can be called in two ways:
 * `(create-file file handler)`
 
 Where `file` is the file name. `handler` is called with the error, or
-`nil` if successful. 
+`nil` if successful.
 
 The file is created with the default permissions.
 
@@ -3652,7 +3652,7 @@ Where `file` is the file name. `handler` is called with the error
 
 Get properties for the file system.
 
-`(file-system-properties file handler)`. 
+`(file-system-properties file handler)`.
 
 Where `file` is any file on the file system. `handler` is called with the error
 (`nil` if successful), along with a map of properties:
@@ -3699,7 +3699,7 @@ To use an AsyncFile for random access writing you use the
 
 `(write file-obj data position handler)`.
 
-The parameters to the function are: 
+The parameters to the function are:
 
 * `file-obj`: the `AsyncFile`.
 * `data`: the data to write. Can be anything bufferable.
@@ -3723,7 +3723,7 @@ Here is an example of random access writes:
                   (if err
                     (println "Failed to write" err)
                     (println "Written ok")))))))))
-                    
+
 ### Random access reads
 
 To use an AsyncFile for random access reads you use the `read`
@@ -3732,7 +3732,7 @@ function.
 * `(read file-obj position length handler)`
 * `(read file-obj buffer offset position length handler)`
 
-The parameters to the method are: 
+The parameters to the method are:
 
 * `file-obj`: the `AsyncFile` to be read.
 * `buffer`: the `Buffer` into which the data will be read. If not
@@ -3745,7 +3745,7 @@ The parameters to the method are:
   `handler` is called with the error, or `nil` if successful.
 
 Here's an example of random access reads:
-    
+
       (fs/open "some-file.dat"
       (fn [err file]
         (if err
@@ -3757,7 +3757,7 @@ Here's an example of random access reads:
                   (if err
                     (println "Failed to read" err)
                     (println "Read ok")))))))))
-                    
+
 If you attempt to read past the end of file, the read will not fail
 but it will simply read zero bytes.
 
@@ -3779,16 +3779,16 @@ request:
     (let [client (http/client {:host "foo.com"})]
       (fs/open "some-file.dat"
         (fn [err file]
-          (if err 
+          (if err
             (println "Failed to open file" err)
-            (let [request 
+            (let [request
                   (http/request client :PUT "/uploads"
                     (fn [resp]
                       (println "Response status code:" (.statusCode resp))))]
               ;; end the HTTP request when the file is fully sent
               (stream/on-end file (partial http/end request))
               (stream/pump file request))))))
-            
+
 ### Closing an AsyncFile
 
 To close an AsyncFile call the `close` function. Closing is asynchronous
@@ -3803,7 +3803,7 @@ possible with the API that is shipped with Java itself. Because of
 this Vert.x offers it's own API for DNS resolution which is fully
 asynchronous.
 
-The DNS client functionality is provided by the `vertx.dns` namespace. 
+The DNS client functionality is provided by the `vertx.dns` namespace.
 
 All of the functions in the namespace return the DnsClient object that
 was used to perform the lookup, and take several different
@@ -3823,11 +3823,11 @@ next when the current server returns an error.
 Tries to lookup the A (ipv4) or AAAA (ipv6) record for a given
 name. The first which is returned will be used, so it behaves the same
 way as `nslookup`.
-	
+
 To lookup the A / AAAA record for "vertx.io" you would typically use it like:
 
     (require '[vertx.dns :as dns])
-    
+
     (dns/lookup "10.0.0.1" "vertx.io"
                 (fn [err r]
                    (if err
@@ -3839,7 +3839,7 @@ the lookup to a particular IP version:
 
         (dns/lookup "10.0.0.1" "vertx.io" :ipv4
                 (fn [err r] ...))
-                
+
 See the API documentation for more details.
 
 ## resolve
@@ -3852,7 +3852,7 @@ NS, PTR, SRV, or TXT.
 
 The data passed to the handler function depends on the type of record
 requested.
-    
+
 To lookup all the A records for "vertx.io" you would typically do:
 
     (dns/resolve ["10.0.0.1" "10.0.0.2"] :A "vertx.io"
@@ -3860,7 +3860,7 @@ To lookup all the A records for "vertx.io" you would typically do:
                    (if err
                      (println "ERROR:" (:type err))
                      (doseq [x r] (println x)))))
-    
+
 See the API documentation for more details.
 
 ## reverseLookup
@@ -3869,14 +3869,14 @@ Tries to do a reverse lookup for an ip address. This is basically the
 same as `resolve` for a PTR record, but allows you to just pass in the
 ip address and not a valid PTR query string.
 
-To do a reverse lookup for the ip address 127.0.0.1: 
+To do a reverse lookup for the ip address 127.0.0.1:
 
     (dns/reverse-lookup ["10.0.0.1" "10.0.0.2"] "127.0.0.1"
                  (fn [err r]
                    (if err
                      (println "ERROR:" (:type err))
                      (println r))))
-                     
+
 See the API documentation for more details.
 
 ## Error handling
@@ -3888,7 +3888,7 @@ exception-map provides a `type` entry that specifies the error type.
 The error types are:
 
 * :NOERROR - No record was found for a given query
-* :FORMERROR - Format error 
+* :FORMERROR - Format error
 * :SERVFAIL - Server failure
 * :NXDOMAIN - Name error
 * :NOTIMPL - Not implemented by DNS Server
@@ -3910,8 +3910,8 @@ port on localhost, or you can pass a port or port and host:
 
     (repl/start)
 
-`start` returns the id of the nREPL server, and can be passed to 
-`vertx.repl/stop` to shut it down. 
+`start` returns the id of the nREPL server, and can be passed to
+`vertx.repl/stop` to shut it down.
 
 Any number of nREPL servers can be active at one time. The nREPL
 servers run inside of a worker verticle, so code evaluated in the repl
