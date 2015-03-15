@@ -1485,7 +1485,8 @@ If the request corresponds to an HTML form that was submitted you can use the fu
     request.endHandler(function() {
         // The request has been all ready so now we can look at the form attributes
         var attrs = request.formAttributes();
-        // Do something with them
+        // Do something with them:
+        myCode.login(attrs.get('username'), attrs.get('password'));
     });
     
     
