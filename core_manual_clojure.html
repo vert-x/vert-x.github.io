@@ -782,6 +782,7 @@ handler function will be called with an exception map of the form:</p>
   (fn [m]
     (eb/fail 123 "Not enough aardvarks")))
 
+
 (eb/send "test.address" "This is a message" 1000 
   (fn [err m]
     (if err

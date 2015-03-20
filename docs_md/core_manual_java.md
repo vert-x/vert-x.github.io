@@ -2010,7 +2010,8 @@ There's also a version of `sendFile` which takes the name of a file to serve if 
 
 Since the HTTP Response implements `WriteStream` you can pump to it from any `ReadStream`, e.g. an `AsyncFile`, `NetSocket`, `WebSocket` or `HttpServerRequest`.
 
-Here's an example which echoes HttpRequest headers and body back in the HttpResponse. It uses a pump for the body, so it will work even if the HTTP request body is much larger than can fit in memory at any one time:
+Here's an example which echoes HttpRequest headers and body back in the HttpResponse.
+ It uses a pump for the body, so it will work even if the HTTP request body is much larger than can fit in memory at any one time:
 
     HttpServer server = vertx.createHttpServer();
 
@@ -2724,7 +2725,8 @@ As you can see the API is very similar to the WebSockets API.
 
 ## Setting up the Bridge
 
-By connecting up SockJS and the Vert.x event bus we create a distributed event bus which not only spans multiple Vert.x instances on the server side, but can also include client side JavaScript running in browsers.
+By connecting up SockJS and the Vert.x event bus we create a distributed event bus which not only spans multiple Vert.x
+ instances on the server side, but can also include client side JavaScript running in browsers.
 
 We can therefore create a huge distributed bus encompassing many browsers and servers. The browsers don't have to be connected to the same server as long as the servers are connected.
 

@@ -855,6 +855,7 @@ JsonObject obj = new JsonObject().putString("foo", "wibble")
 
 eb.send("some-address", obj);
 
+
 // ....
 // And in a handler somewhere:
 
@@ -1850,7 +1851,8 @@ server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
 <p><strong>If you're going to write web servers using Vert.x be careful that users cannot exploit the path to access files outside the directory from which you want to serve them.</strong></p>
 <h3 id="pumping-responses">Pumping Responses</h3><br/>
 <p>Since the HTTP Response implements <code>WriteStream</code> you can pump to it from any <code>ReadStream</code>, e.g. an <code>AsyncFile</code>, <code>NetSocket</code>, <code>WebSocket</code> or <code>HttpServerRequest</code>.</p>
-<p>Here's an example which echoes HttpRequest headers and body back in the HttpResponse. It uses a pump for the body, so it will work even if the HTTP request body is much larger than can fit in memory at any one time:</p>
+<p>Here's an example which echoes HttpRequest headers and body back in the HttpResponse.
+ It uses a pump for the body, so it will work even if the HTTP request body is much larger than can fit in memory at any one time:</p>
 <pre class="prettyprint">HttpServer server = vertx.createHttpServer();
 
 server.requestHandler(new Handler&lt;HttpServerRequest&gt;() {
@@ -2381,7 +2383,8 @@ httpServer.listen(8080);
 <p>As you can see the API is very similar to the WebSockets API.</p>
 <h1 id="sockjs-eventbus-bridge">SockJS - EventBus Bridge</h1><br/>
 <h2 id="setting-up-the-bridge">Setting up the Bridge</h2><br/>
-<p>By connecting up SockJS and the Vert.x event bus we create a distributed event bus which not only spans multiple Vert.x instances on the server side, but can also include client side JavaScript running in browsers.</p>
+<p>By connecting up SockJS and the Vert.x event bus we create a distributed event bus which not only spans multiple Vert.x
+ instances on the server side, but can also include client side JavaScript running in browsers.</p>
 <p>We can therefore create a huge distributed bus encompassing many browsers and servers. The browsers don't have to be connected to the same server as long as the servers are connected.</p>
 <p>On the server side we have already discussed the event bus API.</p>
 <p>We also provide a client side JavaScript library called <code>vertxbus.js</code> which provides the same event bus API, but on the client side.</p>
