@@ -535,7 +535,7 @@ vertx.deploy_verticle('my_verticle.py', handler=deploy_handler)
 <pre class="prettyprint">from core.event_bus import EventBus
 
 def msg_handler(message):
-print "Got message body %s"% message.body
+    print "Got message body %s"% message.body
 id = EventBus.register_handler('test.address', handler=msg_handler)
 </pre>
 <p>It's as simple as that. The handler will then receive any messages sent to that address. The object passed into the handler is an instance of class <code>core.Message</code>. The body of the message is available via the <code>body</code> attribute. </p>
@@ -563,15 +563,15 @@ EventBus.send('test.address', 'hello world')
 <pre class="prettyprint">def msg_handler(message):
     print "I received a message %s"% message.body
 
-# Do some stuff...
-# Now reply to it
-message.reply('This is a reply')
+    # Do some stuff...
+    # Now reply to it
+    message.reply('This is a reply')
 
 EventBus.register_handler('test.address', handler = msg_handler)
 </pre>
 <p>The sender:</p>
 <pre class="prettyprint">def reply_handler(message):
-print "I received a reply %s"%message.body
+    print "I received a reply %s"%message.body
 
 EventBus.send('test.address', 'This is a message', reply_handler)
 </pre>
@@ -767,7 +767,7 @@ str = buff.get_string(100, 110, 'UTF-16') # Get 10 bytes from pos 100 interprete
 <pre class="prettyprint">import vertx
 
 def handler(tid):
-print 'And one second later this is printed'
+    print 'And one second later this is printed'
 
 tid = vertx.set_timer(1000, handler)
 
@@ -861,10 +861,10 @@ server.listen(1234, 'localhost')
 <p>This function will then be called when the close has fully completed.</p>
 <pre class="prettyprint">def close_handler(err):
 
-if err is None:
+    if err is None:
         print 'Server is closed!'
     else:
-       err.printStackTrace()
+        err.printStackTrace()
 
 server.close(close_handler)
 </pre>
@@ -906,8 +906,8 @@ server = vertx.create_net_server()
 
 @server.connect_handler
 def connect_handler(sock):
-def data_handler(buffer):
-    print "I received %s bytes of data"% buffer.length
+    def data_handler(buffer):
+        print "I received %s bytes of data"% buffer.length
     sock.data_handler(data_handler)
 
 server.listen(1234, 'localhost')
@@ -956,8 +956,8 @@ server = vertx.create_net_server()
 
 @server.connect_handler
 def connect_handler(sock):
-def closed_handler():
-    print 'The socket is now closed'
+    def closed_handler():
+        print 'The socket is now closed'
     sock.closed_handler(closed_handler)
 </pre>
 <p>The closed handler will be called irrespective of whether the close was initiated by the client or server.</p>
@@ -968,7 +968,7 @@ server = vertx.create_net_server()
 
 @server.connect_handler
 def connect_handler(sock):
-@sock.exception_handler
+    @sock.exception_handler
     def exception_handler(e):
         print 'Oops. Something went wrong'
 </pre>
@@ -1017,7 +1017,7 @@ client = vertx.create_net_client()
 
 def connect_handler(err, sock):
     if err is None:
-    print 'We have connected'
+        print 'We have connected'
 
 client.connect(1234, 'localhost', connect_handler)
 </pre>
@@ -1115,7 +1115,7 @@ server = vertx.create_net_server()
 
 @server.connect_handler
 def connect_handler(sock):
-@sock.data_handler
+    @sock.data_handler
     def data_handler(buffer):
         # Write the data straight back
         sock.write(buffer)
@@ -1129,9 +1129,9 @@ server = vertx.create_net_server()
 
 @server.connect_handler
 def connect_handler(sock):
-@sock.data_handler
+    @sock.data_handler
     def data_handler(buffer):
-    if not sock.write_queue_full:
+        if not sock.write_queue_full:
             sock.write(buffer)
 
 server.listen(1234, 'localhost')
@@ -1142,7 +1142,7 @@ server = vertx.create_net_server()
 
 @server.connect_handler
 def connect_handler(sock):
-@sock.data_handler
+    @sock.data_handler
     def data_handler(buffer):
         sock.write(buffer)
         if sock.write_queue_full:
@@ -1156,7 +1156,7 @@ server = vertx.create_net_server()
 
 @server.connect_handler
 def connect_handler(sock):
-@sock.data_handler
+    @sock.data_handler
     def data_handler(buffer):
         sock.write(buffer)
         if sock.write_queue_full:
@@ -1282,7 +1282,7 @@ def request_handler(request):
     str = "Headers are\n"
     @request.headers.each
     def each(key, value):
-    str += "#{key}: #{value}\n"
+        str += "#{key}: #{value}\n"
 
     request.response.end(str)
 
@@ -1306,7 +1306,7 @@ param2: 'xyz
 <p>To receive the body, you set the <code>data_handler</code> on the request object. This will then get called every time a chunk of the request body arrives. Here's an example:</p>
 <pre class="prettyprint">@server.request_handler
 def request_handler(request):
-@request.data_handler
+    @request.data_handler
     def data_handler(buffer):
         print "I received %d bytes"% buffer.length
 server.listen(8080, 'localhost')
@@ -1350,7 +1350,7 @@ server = vertx.create_http_server()
 
 @server.request_handler
 def request_handler(request):
-@request.body_handler 
+    @request.body_handler 
     def body_handler(body):
         print "The total body received was %d bytes"% body.length
 
@@ -1463,7 +1463,7 @@ server = vertx.create_http_server()
 
 @server.request_handler
 def request_handler(request):
-file = ''
+    file = ''
     if req.path == '/':
         file = 'index.html'
     elif '..' not in req.path:
@@ -1607,7 +1607,7 @@ client.host = 'foo.com'
 def response_handler(resp): print "got response %s"% resp.status_code
 
 request = client.post('/some-path', response_handler). 
-put_header('Some-Header', 'Some-Value').
+    put_header('Some-Header', 'Some-Value').
     put_header('Some-Other-Header', 'Some-Other-Value').
     end()
 </pre>
@@ -1625,8 +1625,8 @@ put_header('Some-Header', 'Some-Value').
 client.host = 'foo.com'
 
 def response_handler(resp): 
-print "server returned status code:  %s"% resp.status_code
-print "server returned status message: %s"% resp.status_message
+    print "server returned status code:  %s"% resp.status_code
+    print "server returned status message: %s"% resp.status_message
 
 client.get_now('/some-path', response_handler)
 </pre>
@@ -1639,8 +1639,8 @@ client.host = 'foo.com'
 
 def response_handler(resp): 
     @resp.data_handler
-def data_handler(buffer):
-    print "I received %s bytes"% buffer.length
+    def data_handler(buffer):
+        print "I received %s bytes"% buffer.length
 
 client.get_now('/some-path', response_handler)
 </pre>
@@ -1652,17 +1652,17 @@ client.host = 'foo.com'
 
 def response_handler(resp):
 
-# Create a buffer to hold the entire response body
-body = Buffer.create(0)
+    # Create a buffer to hold the entire response body
+    body = Buffer.create(0)
 
-@resp.data_handler
-def data_handler(buffer):
-    # Add chunk to the buffer
-    body.append_buffer(buffer)
+    @resp.data_handler
+    def data_handler(buffer):
+        # Add chunk to the buffer
+        body.append_buffer(buffer)
 
-@resp.end_handler
-def end_handler():
-    # The entire response body has been received
+    @resp.end_handler
+    def end_handler():
+        # The entire response body has been received
         print "The total body received was %s bytes"% body.length
 
 client.get_now('/some-path', response_handler)
@@ -1677,9 +1677,9 @@ client.get_now('/some-path', response_handler)
 client.host = 'foo.com'
 
 def response_handler(resp): 
-@resp.body_handler
-def body_handler(body):
-    print "The total body received was %s bytes"% body.length
+    @resp.body_handler
+    def body_handler(body):
+        print "The total body received was %s bytes"% body.length
 client.get_now('/some-path', response_handler)
 </pre>
 <h4 id="reading-cookies">Reading cookies</h4><br/>
@@ -1695,16 +1695,15 @@ client.get_now('/some-path', response_handler)
 client.host = 'foo.com'
 
 def response_handler(resp): 
-print "Got a response: %s"% resp.status_code
-request = client.put('/some-path', response_handler)
+    print "Got a response: %s"% resp.status_code
 
+request = client.put('/some-path', response_handler)
 request.put_header('Expect', '100-Continue')
 request.chunked = True
 
 @request.continue_handler
 def continue_handler():
     # OK to send rest of body
-
     request.write_str('Some data').end()
 
 request.send_head()
@@ -1765,7 +1764,7 @@ server.request_handler(route_matcher).listen(8080, 'localhost')
 route_matcher = RouteMatcher()
 
 def matched(req):
-blogName = req.params['blogname']
+    blogName = req.params['blogname']
     post = req.params['post']
     req.response.end("blogname is %s post is %s" %(blogName, post))
 
@@ -1849,11 +1848,11 @@ server = vertx.create_http_server()
 
 @server.websocket_handler 
 def websocket_handler(websocket):
-
     if websocket.path == '/services/echo':
         Pump(websocket, websocket).start()
     else:
         websocket.reject()
+
 server.listen(8080, 'localhost')
 </pre>
 <h3 id="headers-on-the-websocket">Headers on the websocket</h3><br/>
@@ -1867,7 +1866,7 @@ client.host = "foo.com"
 client.port = 8080
 
 def websocket_handler(websocket):
-@websocket.data_handler
+    @websocket.data_handler
     def data_handler(buff): print "got %s"% buff
 
     websocket.write_text_frame('foo')
@@ -1953,9 +1952,9 @@ sockJSServer = vertx.create_sockjs_server(httpServer)
 config = { 'prefix' : '/echo' }
 
 def connect_handler(sock):
-@sock.data_handler
-def data_handler(buffer):
-    sock.write(buffer)
+    @sock.data_handler
+    def data_handler(buffer):
+        sock.write(buffer)
 sockJSServer.install_app(config, connect_hander)
 
 httpServer.listen(8080)
@@ -2125,7 +2124,7 @@ server.listen(8080)
 fs = vertx.file_system()
 
 def handler(err, res):
-if not err: print 'Copy was successful'         
+    if not err: print 'Copy was successful'         
 fs.copy('foo.dat', 'bar.dat', handler)
 </pre>
 <ul>
@@ -2170,7 +2169,7 @@ r--r--r--
 </ul>
 <p>Here's an example:</p>
 <pre class="prettyprint">def props_handler(err, props):
-    if err:
+        if err:
         print "Failed to retrieve file props: %s"% err
     else:
         print 'File props are:'
@@ -2244,11 +2243,11 @@ fs.mkdir('a/b/c', True, handler=handler)
 </ul>
 <p>List only the contents of a directory which match the filter. Here's an example which only lists files with an extension <code>txt</code> in a directory.</p>
 <pre class="prettyprint">def handler(err,res):
-if not err:
-print 'Directory contains these .txt files'
-@res.each
-def each(filename):
-    print filename
+    if not err:
+        print 'Directory contains these .txt files'
+        @res.each
+        def each(filename):
+            print filename
 fs.read_dir('mydirectory', '.*\.txt', handler=handler)
 </pre>
 <p>The filter is a regular expression.    </p>
@@ -2258,7 +2257,7 @@ fs.read_dir('mydirectory', '.*\.txt', handler=handler)
 <p>The body of the file will be returned as a <code>Buffer</code> in the handler.</p>
 <p>Here is an example:</p>
 <pre class="prettyprint">def handler(err,res):
-if not err: "File contains: %s bytes"% res.length
+    if not err: "File contains: %s bytes"% res.length
 fs.read_file_as_buffer('myfile.dat', handler=handler)
 </pre>
 <h2 id="write_to_file">write_to_file</h2><br/>
@@ -2272,9 +2271,9 @@ fs.read_file_as_buffer('myfile.dat', handler=handler)
 <p><code>exists(file)</code>. Where <code>file</code> is the file name.</p>
 <p>The result is returned in the handler.</p>
 <pre class="prettyprint">def handler(err,res):
-if not err:
-    if res: print 'exists'
-    else: print 'does not exist'
+    if not err:
+        if res: print 'exists'
+        else: print 'does not exist'
 fs.exists('some-file.txt', handler)
 </pre>
 <h2 id="fs_props">fs_props</h2><br/>
@@ -2288,7 +2287,7 @@ fs.exists('some-file.txt', handler)
 </ul>
 <p>Here is an example:</p>
 <pre class="prettyprint">def handler(err,res):
-if not err: print "total space: %s"% res.total_space
+    if not err: print "total space: %s"% res.total_space
 fs.fs_props('mydir', handler)
 </pre>
 <h2 id="open">open</h2><br/>
@@ -2298,11 +2297,11 @@ fs.fs_props('mydir', handler)
 </ul>
 <p>When the file is opened, an instance of <code>AsyncFile</code> is passed into the result handler block:</p>
 <pre class="prettyprint">def handler(err, file):
-if err:
-    print "Failed to open file ", err
-else:
-    print 'File opened ok'
-    file.close()
+    if err:
+        print "Failed to open file ", err
+    else:
+        print 'File opened ok'
+        file.close()
 fs.open('some-file.dat', handler=handler)
 </pre>
 <p>If <code>read</code> is <code>True</code>, the file will be opened for reading. If <code>write</code> is <code>True</code> the file will be opened for writing. If <code>create_new</code> is <code>True</code>, the file will be created if it doesn't already exist. If <code>flush</code> is <code>True</code> then every write on the file will be automatically flushed (synced) from the OS cache.  <br/>
@@ -2322,13 +2321,13 @@ If the file is created, <code>perms</code> is a Unix-style permissions string us
 </ul>
 <p>Here is an example of random access writes:</p>
 <pre class="prettyprint">def handler(err, async_file):
-if err:
+    if err:
         print "Failed to open file ",err
     else:
         # File open, write a buffer 5 times into a file
         buff = Buffer.create('foo')
         for i in range(1, 6):
-            def write_handler(err, res):          
+            def write_handler(err, res):
                 if err:
                     print "Failed to write ", err
                 else:
@@ -2351,13 +2350,13 @@ fs.open('some-file.dat', handler=handler)
 </ul>
 <p>Here's an example of random access reads:</p>
 <pre class="prettyprint">def open_handler(err, async_file):
-if err:
+    if err:
         print "Failed to open file ", err
     else:
         buff = Buffer.create(1000)
         for i in range(1,11):
             def read_handler(err, res):
-            if err:
+                if err:
                     print "Failed to read ", err
                 else:
                     print 'Read ok'
@@ -2377,11 +2376,12 @@ def open_handler(err, async_file):
         print "Failed to open file ", err
     else:
         def handler(resp):
-        print "resp status code %s"% resp.status_code
+            print "resp status code %s"% resp.status_code
         request = client.put('/uploads', handler)
 
         pump = Pump(async_file, request)
         pump.start()
+
         @async_file.end_handler
         def end_handler(): 
             # File sent, end HTTP requuest
@@ -2406,7 +2406,7 @@ def handler(err, result):
     if err:
         print "Failed to resolve entry ", err
     else:
-        println result
+        print result
 
 client.lookup('vertx.io', handler)
 </pre>
@@ -2420,7 +2420,7 @@ def handler(err, result):
     if err:
         print "Failed to resolve entry ", err
     else:
-        println result
+        print result
 
 client.lookup_4('vertx.io', handler)
 </pre>
@@ -2434,7 +2434,7 @@ def handler(err, result):
     if err:
         print "Failed to resolve entry ", err
     else:
-        println result
+        print result
 
 client.lookup_6('vertx.io', handler)
 </pre>
@@ -2449,7 +2449,7 @@ def handler(err, records):
         print "Failed to resolve entry ", err
     else:
         for r in records:
-            println r
+            print r
 
 client.resolve_a('vertx.io', handler)
 </pre>
@@ -2464,7 +2464,7 @@ def handler(err, records):
         print "Failed to resolve entry ", err
     else:
         for r in records:
-            println r
+            print r
 
 client.resolve_aaaa('vertx.io', handler)
 </pre>
@@ -2479,7 +2479,7 @@ def handler(err, records):
         print "Failed to resolve entry ", err
     else:
         for r in records:
-            println r
+            print r
 
 client.resolve_cname('vertx.io', handler)
 </pre>
@@ -2493,7 +2493,7 @@ def handler(err, records):
         print "Failed to resolve entry ", err
     else:
         for r in records:
-            println r
+            print r
 
 client.resolve_mx('vertx.io', handler)
 </pre>
@@ -2513,7 +2513,7 @@ def handler(err, records):
         print "Failed to resolve entry ", err
     else:
         for r in records:
-            println r
+            print r
 
 client.resolve_txt('vertx.io', handler)
 </pre>
@@ -2527,7 +2527,7 @@ def handler(err, records):
         print "Failed to resolve entry ", err
     else:
         for r in records:
-            println r
+            print r
 
 client.resolve_ns('vertx.io', handler)
 </pre>
@@ -2541,7 +2541,7 @@ def handler(err, records):
         print "Failed to resolve entry ", err
     else:
         for r in records:
-            println r
+            print r
 
 client.resolve_srv('vertx.io', handler)
 </pre>
@@ -2567,7 +2567,7 @@ def handler(err, result):
     if err:
         print "Failed to resolve entry ", err
     else:
-        println result
+        print result
 
 client.resolve_ptr('1.0.0.10.in-addr.arpa', handler)
 </pre>
@@ -2579,7 +2579,7 @@ client.resolve_ptr('1.0.0.10.in-addr.arpa', handler)
     if err:
         print "Failed to resolve entry ", err
     else:
-        println result
+        print result
 
 client.reverse_lookup('10.0.0.1', handler)
 </pre>
@@ -2616,20 +2616,20 @@ client.reverse_lookup('10.0.0.1', handler)
 <p>Bad timestamp</p>
 <p>All of those errors are "generated" by the DNS Server itself.</p>
 <p>You can obtain the DnsResponseCode from the DnsException like:</p>
-<pre class="prettyprint">client = vertx.create_dns_client(('10.0.0.1', 53))
+<pre class="prettyprint">import vertx
+import org.vertx.java.core.dns.DnsException
 
 def handler(err, result):
     if err:
-        if err instanceof org.vertx.java.core.dns.DnsException:
-            exception = (org.vertx.java.core.dns.DnsException) err
-            code = exception.code()
+        if isinstance(err, org.vertx.java.core.dns.DnsException):
+            code = err.code()
             ...
-        } else {
+        else:
             print "Failed to resolve entry ", err
-        }
     else:
-        println result
+        print result
 
+client = vertx.create_dns_client(('10.0.0.1', 53))
 client.lookup('nonexisting.vert.io', handler)
 </pre></div>
       </div>
