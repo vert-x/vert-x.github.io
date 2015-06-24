@@ -76,11 +76,11 @@ The argument to `-conf` is the name of a text file containing a valid JSON objec
 That configuration is available to the verticle using the `vertx.config()` method. For example:
 
     import vertx
-	
+
     config = vertx.config()
 
     # Do something with config
-    
+
     print "number of wibbles is %s" % str(config.wibble_number)
 
 The config returned is a Python dict. You can use this object to configure the verticle. Allowing verticles to be configured in a consistent way like this allows configuration to be easily passed to them irrespective of the language.
@@ -137,7 +137,7 @@ See the chapter on ["running Vert.x"](manual.html#running-vertx) in the main man
 ## Deploying Worker Verticles
 
 The `deploy_verticle` function deploys standard (non worker) verticles. If you want to deploy worker verticles use the `deploy_worker_verticle` function. This method takes the same parameters as `deploy_verticle` with the same meanings.
-    
+
 ## Deploying a module programmatically
 
 You should use `deploy_module` to deploy a module, for example:
@@ -162,7 +162,7 @@ If you have an appplication that is composed of multiple verticles that all need
 For example, you could create a verticle `app.py` as follows:
 
     import vertx
-	
+
     app_config = vertx.config()
 
     # Start the verticles that make up the app
@@ -174,7 +174,7 @@ For example, you could create a verticle `app.py` as follows:
     vertx.deploy_worker_verticle("verticle5.py", app_config["verticle5_conf"], 10)
 
 Then create a file 'config.json" with the actual JSON config in it
-    
+
     {
         "verticle1_conf": {
             "foo": "wibble"
@@ -215,7 +215,7 @@ If you want more than one instance of a particular verticle or module to be depl
 Or
 
     vertx.deploy_module('io.vertx~some-mod~1.0', 10)
-  
+
 The above examples would deploy 10 instances.
 
 ## Getting Notified when Deployment is complete
@@ -235,7 +235,7 @@ The first argument to the handler is a Java exception if the deployment failed o
 ## Undeploying a Verticle or Module
 
 Any verticles that you deploy programmatically from within a verticle and all of their children are automatically undeployed when the parent verticle is undeployed, so in many cases you will not need to undeploy a verticle manually, however if you do want to do this, it can be done by calling the function `vertx.undeploy_verticle` or `vertx.undeploy_module` passing in the deployment id.
-	
+
     vertx.undeploy_verticle(deployment_id)
 
 You can also provide a handler to the undeploy method if you want to be informed when undeployment is complete.
@@ -311,15 +311,15 @@ Let's jump into the API
 To set a message handler on the address `test.address`, you call the method `register_handler` on the `EventBus` class
 
     from core.event_bus import EventBus
-	
+
     def msg_handler(message):
-	print "Got message body %s"% message.body
+        print "Got message body %s"% message.body
     id = EventBus.register_handler('test.address', handler=msg_handler)
 
 It's as simple as that. The handler will then receive any messages sent to that address. The object passed into the handler is an instance of class `core.Message`. The body of the message is available via the `body` attribute. 
 
 The return value of `register_handler` is a unique handler id which can used later to unregister the handler.
-    
+
 To unregister a handler it's just as straightforward. You simply call `unregister_handler` passing in the id of the handler:
 
     EventBus.unregister_handler('test.address', id)
@@ -340,7 +340,7 @@ That message will then be delivered to all handlers registered against the addre
 Sending a message will result in only one handler registered at the address receiving the message. This is the point to point messaging pattern. The handler is chosen in a non strict round-robin fashion.
 
     from core.event_bus import EventBus
-    
+
     EventBus.send('test.address', 'hello world')
 
 
@@ -356,17 +356,17 @@ The receiver:
 
     def msg_handler(message):
         print "I received a message %s"% message.body
-	
-	# Do some stuff...
-	# Now reply to it
-	message.reply('This is a reply')
+
+        # Do some stuff...
+        # Now reply to it
+        message.reply('This is a reply')
 
     EventBus.register_handler('test.address', handler = msg_handler)
 
 The sender:
 
     def reply_handler(message):
-	print "I received a reply %s"%message.body    	
+        print "I received a reply %s"%message.body            
 
     EventBus.send('test.address', 'This is a message', reply_handler)
 
@@ -444,7 +444,7 @@ And then, in a different verticle:
 To use a shared set to share data between verticles first get a reference to the set.
 
     from core.shared_data import SharedData
-    
+
     set = SharedData.get_set('demo.myset')
 
     set.add('some-value')
@@ -464,24 +464,24 @@ A Buffer represents a sequence of zero or more bytes that can be written to or r
 ## Creating Buffers
 
 Create an empty buffer
-	
+
     from core.buffer import Buffer
     buff = Buffer.create()
 
 Create a buffer from a String. The String will be encoded in the buffer using UTF-8.
 
     buff = Buffer.create_from_str('some-string')
-    
+
 Create a buffer from a String: The String will be encoded using the specified encoding, e.g:
 
     buff = Buffer.create_from_str('some-string', 'UTF-16')
-    
+
 Create a buffer with an initial size hint. If you know your buffer will have a certain amount of data written to it you can create the buffer and specify this size. This makes the buffer initially allocate that much memory and is more efficient than the buffer automatically resizing multiple times as data is written to it.
 
 Note that buffers created this way *are empty*. It does not create a buffer filled with zeros up to the specified size.
-        
+
     buff = Buffer.create(100000)        
-    
+
 ## Writing to a Buffer
 
 There are two ways to write to a buffer: appending, and random access. In either case buffers will always expand automatically to encompass the bytes. It's not possible to write outside the bounds of the buffer.
@@ -497,39 +497,39 @@ When appending a Float you have to specify how many bytes you want to append thi
 The return value of the `append_XXX` methods is the buffer itself, so these can be chained:
 
     from core.buffer import Buffer
-    
+
     buff = Buffer.create
-    
+
     buff.append_fixnum(100, 1) # Append a single byte in the buffer
     buff.append_fixnum(231243, 8) # Append number as 8 bytes in the buffer
     buff.append_str('foo').append_float(23.4232, 4) # Appends can be chained
-    
+
     socket.write(buff)
-    
+
 Appending FixNums:
 
     buff.append_fixnum(100, 1)   # Append number as single signed byte
-    
+
     buff.append_fixnum(100, 2)   # Append number as signed integer in two bytes
-    
+
     buff.append_fixnum(100, 4)   # Append number as signed integer in four bytes    
-    
+
     buff.append_fixnum(100, 8)   # Append number as signed integer in eight bytes    
-    
+
 Appending Floats:
 
     buff.append_float(12.234, 4)    # Append number as a 32-bit IEEE 754 floating point number (4 bytes)
-    
+
     buff.append_float(12.234, 8)    # Append number as a 64-bit IEEE 754 floating point number (8 bytes)    
-    
+
 Appending buffers
 
     buff.append_buffer(other_buffer)    # Append other_buffer to buff    
-    
+
 Appending strings
 
     buff.append_str(str)                      # Append string as UTF-8 encoded bytes    
-    
+
     buff.append_str(str, 'UTF-16')            # Append string as sequence of bytes in specified encodingt
 
 ### Random access buffer writes
@@ -543,38 +543,38 @@ When setting a Float you have to specify how many bytes you want to set this as 
 The buffer will always expand as necessary to accomodate the data.
 
     from core.buffer import Buffer
-    
+
     buff = Buffer.create
-    
+
     buff.set_fixnum(0, 4, 123123) # Set number as 4 bytes written at index 0 
     buff.set_float(1000, 8, 414.123123123) # Set float as 8 bytes at index 1000
-    
+
 To set FixNums:
 
     buff.set_fixnum(100, 123, 1)    # Set number as a single signed byte at position 100     
-    
+
     buff.set_fixnum(100, 123, 2)    # Set number as a signed two byte integer at position 100         
-    
+
     buff.set_fixnum(100, 123, 4)    # Set number as a signed four byte integer at position 100             
-    
+
     buff.set_fixnum(100, 123, 8)    # Set number as a signed eight byte integer at position 100             
-    
+
 To set Floats:
 
     buff.set_float(100, 1.234, 4)   # Set the number as a 32-bit IEEE 754 floating point number (4 bytes) at pos 100   
-    
+
     buff.set_float(100, 1.234, 8)   # Set the number as a 64-bit IEEE 754 floating point number (4 bytes) at pos 100    
-    
+
 To set a buffer
 
     buff.set_buffer(100, other_buffer)
-    
+
 To set a string
 
     buff.set_string(100, str) # Set the string using UTF-8 encoding        
-           
+
     buff.set_string(100, str, 'UTF-16') # Set the string using the specified encoding
-           
+
 ## Reading from a Buffer
 
 Data is read from a buffer using the `get_XXX` methods. Get methods exist for byte, FixNum and Float. The first argument to these methods is an index in the buffer from where to get the data.
@@ -582,32 +582,32 @@ Data is read from a buffer using the `get_XXX` methods. Get methods exist for by
 When reading FixNum values the data in the buffer is interpreted as a signed integer value.
 
     num = buff.get_byte(100)                 # Get a byte from pos 100 in buffer
-    
+
     num = buff.get_fixnum(100, 1)            # Same as get_byte
-    
+
     num = buff.get_fixnum(100, 2)            # Get two bytes as signed integer from pos 100
-    
+
     num = buff.get_fixnum(100, 4)            # Get four bytes as signed integer from pos 100 
-    
+
     num = buff.get_fixnum(100, 8)            # Get eight bytes as signed integer from pos 100       
-    
+
 Floats:
 
     num = buff.get_float(100, 4)             # Get four bytes as a 32-bit IEEE 754 floating point number from pos 100
-    
+
     num = buff.get_float(100, 8)             # Get eight bytes as a 32-bit IEEE 754 floating point number from pos 100    
 
 Strings:
 
     str = buff.get_string(100, 110)           # Get 10 bytes from pos 100 interpreted as UTF-8 string
-    
+
     str = buff.get_string(100, 110, 'UTF-16') # Get 10 bytes from pos 100 interpreted in specified encoding
-    
+
 Buffers:
 
     other_buff = buff.get_buffer(100, 110)    # Get 10 bytes as a new buffer starting at position 100      
-    
-    
+
+
 ## Other buffer methods:
 
 * `length`: To obtain the length of the buffer. The length of a buffer is the index of the byte in the buffer with the largest index + 1.
@@ -630,9 +630,9 @@ A one shot timer calls an event handler after a certain delay, expressed in mill
 To set a timer to fire once you use the `vertx.set_timer` function passing in the delay and specifying a handler function which will be called when after the delay:
 
     import vertx
-	
+
     def handler(tid):
-	print 'And one second later this is printed'
+        print 'And one second later this is printed'
 
     tid = vertx.set_timer(1000, handler)
 
@@ -645,10 +645,10 @@ The timer id is returned from the call to `set_timer` and can be used to subsequ
 You can also set a timer to fire periodically by using the `set_periodic` function. There will be an initial delay equal to the period. The return value of `set_periodic` is a unique timer id (number). This can be later used if the timer needs to be cancelled. The argument passed into the timer event handler is also the unique timer id:
 
     import vertx
-    
+
     def handler(tid):
-    	print 'And every second this is printed'
-    
+        print 'And every second this is printed'
+
     tid = vertx.set_periodic(1000, handler)
 
     print 'First this is printed'
@@ -658,11 +658,11 @@ You can also set a timer to fire periodically by using the `set_periodic` functi
 To cancel a timer, call the `cancel_timer` function specifying the timer id. For example:
 
     import vertx
-    
+
     def handler(tid):
-    	# This will never be called
-    	pass
-    	
+        # This will never be called
+        pass
+
     tid = vertx.set_periodic(1000, handler)
 
     # And immediately cancel it
@@ -726,14 +726,14 @@ The actual bind is asynchronous so the server might not actually be listening un
 ### Getting Notified of Incoming Connections
 
 To be notified when a connection occurs we need to call the `connect_handler` function of the server, specifying a block which represents the handler. The handler will be called when a connection is made:
-	
+
     import vertx
 
     server = vertx.create_net_server()
 
     @server.connect_handler
     def connect_handler(sock):
-    	print 'A client has connected!'
+        print 'A client has connected!'
 
     server.listen(1234, 'localhost')
 
@@ -751,13 +751,13 @@ This function will then be called when the close has fully completed.
 
     def close_handler(err):
 
-	if err is None:
+        if err is None:
             print 'Server is closed!'
         else:
-           err.printStackTrace()
+            err.printStackTrace()
 
     server.close(close_handler)
-    
+
 In most cases you don't need to close a net server explicitly since vert.x will close them for you when the verticle stops.    
 
 
@@ -799,8 +799,8 @@ To read data from the socket you need to set the `data_handler` on the socket. T
 
     @server.connect_handler
     def connect_handler(sock):
-	def data_handler(buffer):
-	    print "I received %s bytes of data"% buffer.length
+        def data_handler(buffer):
+            print "I received %s bytes of data"% buffer.length
         sock.data_handler(data_handler)
 
     server.listen(1234, 'localhost')
@@ -833,14 +833,14 @@ Let's put it all together.
 Here's an example of a simple TCP echo server which simply writes back (echoes) everything that it receives on the socket:
 
     import vertx
-    
+
     server = vertx.create_net_server()
 
     @server.connect_handler
     def connect_handler(sock):
-    	def data_handler(buffer):
-    	    sock.write(buffer)
-    	sock.data_handler(data_handler)
+        def data_handler(buffer):
+            sock.write(buffer)
+        sock.data_handler(data_handler)
 
     server.listen(1234, 'localhost')
 
@@ -851,7 +851,7 @@ You can find out the remote address of the socket (i.e. the address of the other
 ### Socket Local Address
 
 You can find out the local address of the socket (i.e. the address of this side of the TCP IP connection) by calling `local_address()`.
-    
+
 ### Closing a socket
 
 You can close a socket by invoking the `close` method. This will close the underlying TCP connection.
@@ -861,15 +861,15 @@ You can close a socket by invoking the `close` method. This will close the under
 If you want to be notified when a socket is closed, you can set the `closed_handler':
 
     import vertx
-    
+
     server = vertx.create_net_server()
-	
+
     @server.connect_handler
     def connect_handler(sock):
-	def closed_handler():
-	    print 'The socket is now closed'
+        def closed_handler():
+            print 'The socket is now closed'
         sock.closed_handler(closed_handler)
-        
+
 
 The closed handler will be called irrespective of whether the close was initiated by the client or server.
 
@@ -882,7 +882,7 @@ You can set an exception handler on the socket that will be called if an excepti
 
     @server.connect_handler
     def connect_handler(sock):
-	@sock.exception_handler
+        @sock.exception_handler
         def exception_handler(e):
             print 'Oops. Something went wrong'
 
@@ -921,7 +921,7 @@ To remedy this you can simply deploy more instances of the module in the server,
 Or for a raw verticle
 
     vertx run myapp.py -instances 20
-    
+
 The above would run 20 instances of the module/verticle in the same Vert.x instance.
 
 Once you do this you will find the echo server works functionally identically to before, but, *as if by magic*, all your cores on your server can be utilised and more work can be handled.
@@ -943,9 +943,9 @@ A NetClient is used to make TCP connections to servers.
 ### Creating a Net Client
 
 To create a TCP client we simply create an instance of `core.net.NetClient`.
-	
+
     import vertx
-	
+
     client = vertx.create_net_client()
 
 ### Making a Connection
@@ -955,11 +955,11 @@ To actually connect to a server you invoke the `connect` method
     import vertx
 
     client = vertx.create_net_client()
-	
+
     def connect_handler(err, sock):
         if err is None:
-	    print 'We have connected'
-		
+            print 'We have connected'
+
     client.connect(1234, 'localhost', connect_handler)
 
 The connect method takes the port number as the first parameter, followed by the hostname or ip address of the server. It takes a block as the connect handler. This handler will be called when the connection actually occurs.
@@ -975,7 +975,7 @@ You can also close it, set the closed handler, set the exception handler and use
 A NetClient can be configured to automatically retry connecting or reconnecting to the server in the event that it cannot connect or has lost its connection. This is done by invoking setting the properties `reconnect_attempts` and `reconnect_interval`:
 
     import vertx
-    
+
     client = vertx.create_net_client()
 
     client.reconnect_attempts = 1000
@@ -1102,11 +1102,11 @@ A naive way to do this would be to directly take the data that's been read and i
 
     @server.connect_handler
     def connect_handler(sock):
-	@sock.data_handler
+        @sock.data_handler
         def data_handler(buffer):
             # Write the data straight back
             sock.write(buffer)
-       
+
     server.listen(1234, 'localhost')
 
 There's a problem with the above example: If data is read from the socket faster than it can be written back to the socket, it will build up in the write queue of the NetSocket, eventually running out of RAM. This might happen, for example if the client at the other end of the socket wasn't reading very fast, effectively putting back-pressure on the connection.
@@ -1118,11 +1118,11 @@ Since `NetSocket` implements `WriteStream`, we can check if the `WriteStream` is
 
     @server.connect_handler
     def connect_handler(sock):
-	@sock.data_handler
+        @sock.data_handler
         def data_handler(buffer):
-	    if not sock.write_queue_full:
-            	sock.write(buffer) 
-       
+            if not sock.write_queue_full:
+                sock.write(buffer) 
+
     server.listen(1234, 'localhost')
 
 This example won't run out of RAM but we'll end up losing data if the write queue gets full. What we really want to do is pause the `NetSocket` when the write queue is full. Let's do that:
@@ -1132,12 +1132,12 @@ This example won't run out of RAM but we'll end up losing data if the write queu
 
     @server.connect_handler
     def connect_handler(sock):
-	@sock.data_handler
+        @sock.data_handler
         def data_handler(buffer):
             sock.write(buffer)
             if sock.write_queue_full:
                 sock.pause()
-       
+
     server.listen(1234, 'localhost')
 
 We're almost there, but not quite. The `NetSocket` now gets paused when the file is full, but we also need to *unpause* it when the file write queue has processed its backlog:
@@ -1147,15 +1147,15 @@ We're almost there, but not quite. The `NetSocket` now gets paused when the file
 
     @server.connect_handler
     def connect_handler(sock):
-	@sock.data_handler
+        @sock.data_handler
         def data_handler(buffer):
             sock.write(buffer)
             if sock.write_queue_full:
                 sock.pause()
                 @sock.drain_handler
                 def drain_handler(): 
-               	    sock.resume()
-            
+                    sock.resume()
+
     server.listen(1234, 'localhost')
 
 And there we have it. The `drain_handler` event handler will get called when the write queue is ready to accept more data, this resumes the `NetSocket` which allows it to read more data.
@@ -1170,7 +1170,7 @@ It's very common to want to do this when writing vert.x applications, so we prov
     def connect_handler(sock):
 
         Pump(sock, sock).start()
-        
+
     server.listen(1234, 'localhost')
 
 Which does exactly the same thing as the more verbose example.
@@ -1255,7 +1255,7 @@ To be notified when a request arrives you need to set a request handler. This is
     server = vertx.create_http_server()
     @server.request_handler
     def request_handler(request):
-    	print 'An HTTP request has been received'
+        print 'An HTTP request has been received'
 
     server.listen(8080, 'localhost')
 
@@ -1284,7 +1284,7 @@ The request object has a function `version` which returns a string representing 
 The request object has a property `uri` which contains the full URI (Uniform Resource Locator) of the request. For example, if the request URI was:
 
     /a/b/c/page.html?param1=abc&param2=xyz    
-    
+
 Then `request.uri` would contain the string `/a/b/c/page.html?param1=abc&param2=xyz`.
 
 Request URIs can be relative or absolute (with a domain) depending on what the client sent. In most cases they will be relative.
@@ -1317,14 +1317,14 @@ Here's an example that echoes the headers to the output of the response. Run it 
     def request_handler(request):
 
         request.response.put_header('Content-Type', 'text/plain')
-         
+
         str = "Headers are\n"
         @request.headers.each
         def each(key, value):
-	    str += "#{key}: #{value}\n"
-      
+            str += "#{key}: #{value}\n"
+
         request.response.end(str)
-      
+
     server.listen(8080, 'localhost')
 
 #### Request params
@@ -1356,7 +1356,7 @@ To receive the body, you set the `data_handler` on the request object. This will
 
     @server.request_handler
     def request_handler(request):
-	@request.data_handler
+        @request.data_handler
         def data_handler(buffer):
             print "I received %d bytes"% buffer.length
     server.listen(8080, 'localhost')
@@ -1373,7 +1373,7 @@ In many cases, you know the body is not large and you just want to receive it in
     from core.buffer import Buffer
 
     server = vertx.create_http_server()
-	
+
     @server.request_handler
     def request_handler(request):
 
@@ -1410,7 +1410,7 @@ Here's an example using `body_handler`:
 
     @server.request_handler
     def request_handler(request):
-	@request.body_handler 
+        @request.body_handler 
         def body_handler(body):
             print "The total body received was %d bytes"% body.length
 
@@ -1442,7 +1442,7 @@ You can also stream it directly to disk using the convenience method `streamToFi
 
 If the request corresponds to an HTML form that was submitted you can use the method `form_attributes` to retrieve a Multi Map of the form attributes. This should only be called after *all* of the request has been read - this is because form attributes are encoded in the request *body* not in the request headers.
 
-    
+
     @request.end_handler
     def end_handler():
         # The request has been all ready so now we can look at the form attributes
@@ -1469,7 +1469,7 @@ To set the HTTP status code for the response use the `status_code` property. You
       request.response.end()
 
     server.listen(8080, 'localhost')
-    
+
 The default value for `status_code` is `200`.    
 
 #### Writing HTTP responses
@@ -1568,7 +1568,7 @@ To do this use the `send_file` function on the HTTP response. Here's a simple HT
 
     @server.request_handler
     def request_handler(request):
-	file = ''
+        file = ''
         if req.path == '/':
             file = 'index.html'
         elif '..' not in req.path:
@@ -1657,13 +1657,13 @@ To make a request using the client you invoke one the methods named after the HT
 For example, to make a `POST` request:
 
     import vertx
-	
+
     client = vertx.create_http_client()
     client.host = 'foo.com'
-    
+
     def response_handler(resp): print "got response %s"% resp.status_code
     request = client.post('/some-path/', response_handler)
-    
+
     request.end()
 
 To make a PUT request use the `put` method, to make a GET request use the `get` method, etc.
@@ -1683,7 +1683,7 @@ Once you have finished with the request you must call the `end` method.
 If you don't know the name of the request method in advance there is a general `request` method which takes the HTTP method as a parameter:
 
     import vertx
-	
+
     client = vertx.create_http_client()
     client.host = 'foo.com'
     def response_handler(resp): print "got response %s"% resp.status_code
@@ -1694,10 +1694,10 @@ If you don't know the name of the request method in advance there is a general `
 There is also a method called `get_now` which does the same as `get`, but automatically ends the request. This is useful for simple GETs which don't have a request body:
 
     import vertx
-	
+
     client = vertx.create_http_client()
     client.host = 'foo.com'
-    
+
     def response_handler(resp): print "got response %s"% resp.status_code
     client.get_now('/some-path/', response_handler)
 
@@ -1751,14 +1751,14 @@ To write headers to the request, add them to the `headers` MultiMap
 
     client = vertx.create_http_client()
     client.host = 'foo.com'
-    
+
     def response_handler(resp): print "got response %s"% resp.status_code
 
     request = client.post('/some-path', response_handler)
 
     request.headers['Some-Header'] = 'Some-Value'
     request.end()
-    
+
 You can also use the `put_header` method to enable a more fluent API:    
 
     client = vertx.create_http_client()
@@ -1767,7 +1767,7 @@ You can also use the `put_header` method to enable a more fluent API:
     def response_handler(resp): print "got response %s"% resp.status_code
 
     request = client.post('/some-path', response_handler). 
-	put_header('Some-Header', 'Some-Value').
+        put_header('Some-Header', 'Some-Value').
         put_header('Some-Other-Header', 'Some-Other-Value').
         end()
 
@@ -1793,8 +1793,8 @@ To query the status code of the response use the `status_code` property. The `st
     client.host = 'foo.com'
 
     def response_handler(resp): 
-	print "server returned status code:  %s"% resp.status_code
-	print "server returned status message: %s"% resp.status_message
+        print "server returned status code:  %s"% resp.status_code
+        print "server returned status message: %s"% resp.status_message
 
     client.get_now('/some-path', response_handler)
 
@@ -1811,9 +1811,9 @@ To receive the response body, you set a `data_handler` on the response object wh
 
     def response_handler(resp): 
         @resp.data_handler
-	def data_handler(buffer):
-	    print "I received %s bytes"% buffer.length
-			
+        def data_handler(buffer):
+            print "I received %s bytes"% buffer.length
+
     client.get_now('/some-path', response_handler)
 
 The response object implements the `ReadStream` interface so you can pump the response body to a `WriteStream`.
@@ -1826,18 +1826,18 @@ As with a server request, if you wanted to read the entire response body before 
     client.host = 'foo.com'
 
     def response_handler(resp): 
-		
-	# Create a buffer to hold the entire response body
-	body = Buffer.create(0)
-		
-	@resp.data_handler
-	def data_handler(buffer):
-	    # Add chunk to the buffer
-	    body.append_buffer(buffer)
 
-	@resp.end_handler
-	def end_handler():
-	    # The entire response body has been received
+        # Create a buffer to hold the entire response body
+        body = Buffer.create(0)
+
+        @resp.data_handler
+        def data_handler(buffer):
+            # Add chunk to the buffer
+            body.append_buffer(buffer)
+
+        @resp.end_handler
+        def end_handler():
+            # The entire response body has been received
             print "The total body received was %s bytes"% body.length
 
     client.get_now('/some-path', response_handler)
@@ -1859,9 +1859,9 @@ Here's an example using `body_handler`:
     client.host = 'foo.com'
 
     def response_handler(resp): 
-	@resp.body_handler
-	def body_handler(body):
-	    print "The total body received was %s bytes"% body.length
+        @resp.body_handler
+        def body_handler(body):
+            print "The total body received was %s bytes"% body.length
     client.get_now('/some-path', response_handler)
 
 #### Reading cookies
@@ -1887,16 +1887,15 @@ An example will illustrate this:
     client.host = 'foo.com'
 
     def response_handler(resp): 
-	print "Got a response: %s"% resp.status_code
-    request = client.put('/some-path', response_handler)
+        print "Got a response: %s"% resp.status_code
 
+    request = client.put('/some-path', response_handler)
     request.put_header('Expect', '100-Continue')
     request.chunked = True
-	
+
     @request.continue_handler
     def continue_handler():
         # OK to send rest of body
-        
         request.write_str('Some data').end()
 
     request.send_head()
@@ -1929,7 +1928,7 @@ Scaling an HTTP or HTTPS server over multiple cores is as simple as deploying mo
 Or, for a raw verticle:
 
     vertx run foo.MyServer -instances 20
-    
+
 The scaling works in the same way as scaling a `NetServer`. Please see the chapter on scaling Net Servers for a detailed explanation of how this works.
 
 # Routing HTTP requests with Pattern Matching
@@ -1984,7 +1983,7 @@ If you want to extract parameters from the path, you can do this too, by using t
     route_matcher = RouteMatcher()
 
     def matched(req):
-	blogName = req.params['blogname']
+        blogName = req.params['blogname']
         post = req.params['post']
         req.response.end("blogname is %s post is %s" %(blogName, post))
 
@@ -2016,7 +2015,7 @@ For example:
     server = vertx.create_http_server()
 
     route_matcher = RouteMatcher()
-    
+
     def matched(req):
         first = req.params['param0']
         second = req.params['param1']
@@ -2025,7 +2024,7 @@ For example:
     route_matcher.all_re("\/([^\/]+)\/([^\/]+)", matched)
 
     server.request_handler(route_matcher).listen(8080, 'localhost')
-    
+
 Run the above and point your browser at `http://localhost:8080/animals/cats`.
 
 It will display 'first is animals and second is cats'.    
@@ -2094,11 +2093,11 @@ To check the path, you can query the `path` property of the `websocket`. You can
 
     @server.websocket_handler 
     def websocket_handler(websocket):
-
         if websocket.path == '/services/echo':
             Pump(websocket, websocket).start()
         else:
             websocket.reject()
+
     server.listen(8080, 'localhost')
 
 ### Headers on the websocket
@@ -2117,13 +2116,13 @@ Here's an example of WebSockets on the client:
     client = vertx.create_http_client()
     client.host = "foo.com"
     client.port = 8080
-	
+
     def websocket_handler(websocket):
-	@websocket.data_handler
+        @websocket.data_handler
         def data_handler(buff): print "got %s"% buff
-      
+
         websocket.write_text_frame('foo')
-      
+
     client.connect_web_socket('/services/echo', websocket_handler)
 
 Note that the host (and port) is set on the `HttpClient` instance, and the uri passed in the connect is typically a *relative* URI.    
@@ -2195,7 +2194,7 @@ For example, to create a SockJS echo application:
     sockJSServer = vertx.create_sockjs_server(httpServer)
 
     config = { 'prefix' : '/echo' }
-	
+
     def connect_handler(sock):
         Pump(sock, sock).start()
 
@@ -2226,9 +2225,9 @@ The object passed into the SockJS handler implements `ReadStream` and `WriteStre
     config = { 'prefix' : '/echo' }
 
     def connect_handler(sock):
-	@sock.data_handler
-	def data_handler(buffer):
-	    sock.write(buffer)
+        @sock.data_handler
+        def data_handler(buffer):
+            sock.write(buffer)
     sockJSServer.install_app(config, connect_hander)
 
     httpServer.listen(8080)
@@ -2252,7 +2251,7 @@ For full information on using the SockJS client library please see the SockJS we
            console.log('close');
        };
     </script>
-    
+
 As you can see the API is very similar to the WebSockets API.    
 
 # SockJS - EventBus Bridge
@@ -2276,7 +2275,7 @@ You will also need to secure the bridge (see below).
 The following example creates and starts a SockJS bridge which will bridge any events sent to the path `eventbus` on to the server side event bus.
 
     server = vertx.create_http_server()
-    
+
     sockJSServer = create_sockjs_server(server)
 
     sockJSServer.bridge({'prefix' : '/eventbus'}, [], [])
@@ -2295,9 +2294,9 @@ In your web page, you need to load the script `vertxbus.js`, then you can access
     <script>
 
         var eb = new vertx.EventBus('http://localhost:8080/eventbus');
-        
+
         eb.onopen = function() {
-        
+
           eb.registerHandler('some-address', function(message) {
 
             console.log('received a message: ' + JSON.stringify(message);
@@ -2305,11 +2304,11 @@ In your web page, you need to load the script `vertxbus.js`, then you can access
           });
 
           eb.send('some-address', {name: 'tim', age: 587});
-        
+
         }
-       
+
     </script>
-        
+
 You can now communicate seamlessly between different browsers and server side components using the event bus [Read the section on securing the bridge!]
 
 You can find `vertxbus.js` in the `client` directory of the vert.x distribution.
@@ -2357,7 +2356,7 @@ When a message arrives at the bridge, it will look through the available permitt
 Here is an example:
 
     server = vertx.create_http_server()
-    
+
     sockJSServer = vertx.create_sockjs_server(server)
 
     sockJSServer.bridge({'prefix' : '/eventbus'},
@@ -2409,9 +2408,9 @@ To tell the bridge that certain messages require authorisation before being pass
       },
       'requires_auth` : true
     }
-    
+
 This tells the bridge that any messages to save orders in the `orders` collection, will only be passed if the user is successful authenticated (i.e. logged in ok) first.    
-    
+
 # File System
 
 Vert.x lets you manipulate files on the file system. File system operations are asynchronous and take a function handler as the last argument.
@@ -2441,9 +2440,9 @@ Here's an example:
     import vertx
 
     fs = vertx.file_system()
-	
+
     def handler(err, res):
-	if not err: print 'Copy was successful'         
+        if not err: print 'Copy was successful'         
     fs.copy('foo.dat', 'bar.dat', handler)
 
 
@@ -2505,13 +2504,13 @@ Retrieve properties of a file.
 Here's an example:
 
     def props_handler(err, props):
-    	if err:
+            if err:
             print "Failed to retrieve file props: %s"% err
         else:
             print 'File props are:'
             print "Last accessed: %s"% props.lastAccessTime
             // etc
-    
+
     fs.props('some-file.txt', props_handler)
 
 ## lprops
@@ -2553,7 +2552,7 @@ Reads a symbolic link. I.e returns the path representing the file that the symbo
 `link` is the name of the link to read. An usage example would be:
 
     def handler(err, res):
-    	if not err: print "Link points at %s"% res
+        if not err: print "Link points at %s"% res
     fs.read_sym_link('somelink', handler)
 
 ## delete
@@ -2585,7 +2584,7 @@ Makes a new empty directory with name `dirname`, and default permissions `
 If `create_parents` is `true`, this creates a new directory and creates any of its parents too. Here's an example
 
     def handler(err, res):
-    	if not err: print "Directory created ok"
+        if not err: print "Directory created ok"
     fs.mkdir('a/b/c', True, handler=handler)
 
 * `mkdir(dirname, create_parents, perms)`
@@ -2605,15 +2604,15 @@ Lists the contents of a directory
 * `read_dir(dir_name, filter)`
 
 List only the contents of a directory which match the filter. Here's an example which only lists files with an extension `txt` in a directory.
-	
+
     def handler(err,res):
-    if not err:
-	print 'Directory contains these .txt files'
-	@res.each
-	def each(filename):
-	    print filename
+        if not err:
+            print 'Directory contains these .txt files'
+            @res.each
+            def each(filename):
+                print filename
     fs.read_dir('mydirectory', '.*\.txt', handler=handler)
-    
+
 The filter is a regular expression.    
 
 ## read_file_as_buffer
@@ -2625,9 +2624,9 @@ Read the entire contents of a file in one go. *Be careful if using this with lar
 The body of the file will be returned as a `Buffer` in the handler.
 
 Here is an example:
-	
+
     def handler(err,res):
-	if not err: "File contains: %s bytes"% res.length
+        if not err: "File contains: %s bytes"% res.length
     fs.read_file_as_buffer('myfile.dat', handler=handler)
 
 ## write_to_file
@@ -2649,11 +2648,11 @@ Checks if a file exists.
 `exists(file)`. Where `file` is the file name.
 
 The result is returned in the handler.
-	
+
     def handler(err,res):
-	if not err:
-	    if res: print 'exists'
-	    else: print 'does not exist'
+        if not err:
+            if res: print 'exists'
+            else: print 'does not exist'
     fs.exists('some-file.txt', handler)
 
 ## fs_props
@@ -2671,7 +2670,7 @@ The result is returned in the handler. The result object has the following field
 Here is an example:
 
     def handler(err,res):
-	if not err: print "total space: %s"% res.total_space
+        if not err: print "total space: %s"% res.total_space
     fs.fs_props('mydir', handler)
 
 ## open
@@ -2683,13 +2682,13 @@ Opens an asynchronous file for reading \ writing.
 When the file is opened, an instance of `AsyncFile` is passed into the result handler block:
 
     def handler(err, file):
-	if err:
-	    print "Failed to open file ", err
-	else:
-	    print 'File opened ok'
-	    file.close()
+        if err:
+            print "Failed to open file ", err
+        else:
+            print 'File opened ok'
+            file.close()
     fs.open('some-file.dat', handler=handler)
-    
+
 If `read` is `True`, the file will be opened for reading. If `write` is `True` the file will be opened for writing. If `create_new` is `True`, the file will be created if it doesn't already exist. If `flush` is `True` then every write on the file will be automatically flushed (synced) from the OS cache.    
 If the file is created, `perms` is a Unix-style permissions string used to describe the file permissions for the newly created file.
 
@@ -2716,19 +2715,19 @@ The parameters to the method are:
 Here is an example of random access writes:
 
     def handler(err, async_file):
-	if err:
+        if err:
             print "Failed to open file ",err
         else:
             # File open, write a buffer 5 times into a file
             buff = Buffer.create('foo')
             for i in range(1, 6):
-            	def write_handler(err, res):          
-            	    if err:
+                def write_handler(err, res):
+                    if err:
                         print "Failed to write ", err
                     else:
                         print 'Written ok'  
                 async_file.write(buff, buff.length() * i, write_handler)
-                    
+
 
     fs.open('some-file.dat', handler=handler)
 
@@ -2749,13 +2748,13 @@ The parameters to the method are:
 Here's an example of random access reads:
 
     def open_handler(err, async_file):
-	if err:
+        if err:
             print "Failed to open file ", err
         else:
             buff = Buffer.create(1000)
             for i in range(1,11):
-            	def read_handler(err, res):
-	            if err:
+                def read_handler(err, res):
+                    if err:
                         print "Failed to read ", err
                     else:
                         print 'Read ok'
@@ -2776,15 +2775,16 @@ Here's an example of pumping data from a file on a client to a HTTP request:
     client.host = 'foo.com'
 
     def open_handler(err, async_file):
-    	if err:
+        if err:
             print "Failed to open file ", err
         else:
             def handler(resp):
-        	print "resp status code %s"% resp.status_code
+                print "resp status code %s"% resp.status_code
             request = client.put('/uploads', handler)
-            
+
             pump = Pump(async_file, request)
             pump.start()
+
             @async_file.end_handler
             def end_handler(): 
                 # File sent, end HTTP requuest
@@ -2810,7 +2810,7 @@ Be aware that you can pass in a varargs of InetSocketAddress arguments to specif
 ## lookup
 
 Try to lookup the A (ipv4) or AAAA (ipv6) record for a given name. The first which is returned will be used, so it behaves the same way as you may be used from when using "nslookup" on your operation system.
-    
+
 To lookup the A / AAAA record for "vertx.io" you would typically use it like:
 
     client = vertx.create_dns_client(('10.0.0.1', 53))
@@ -2819,8 +2819,8 @@ To lookup the A / AAAA record for "vertx.io" you would typically use it like:
         if err:
             print "Failed to resolve entry ", err
         else:
-            println result
- 
+            print result
+
     client.lookup('vertx.io', handler)
 
 Be aware that it either would use an Inet4Address or Inet6Address in the AsyncResult depending on if an A or AAAA record was resolved.
@@ -2829,7 +2829,7 @@ Be aware that it either would use an Inet4Address or Inet6Address in the AsyncRe
 ## lookup_4
 
 Try to lookup the A (ipv4) record for a given name. The first which is returned will be used, so it behaves the same way as you may be used from when using "nslookup" on your operation system.
-    
+
 To lookup the A record for "vertx.io" you would typically use it like:
 
     client = vertx.create_dns_client(('10.0.0.1', 53))
@@ -2838,17 +2838,17 @@ To lookup the A record for "vertx.io" you would typically use it like:
         if err:
             print "Failed to resolve entry ", err
         else:
-            println result
- 
+            print result
+
     client.lookup_4('vertx.io', handler)
- 
+
   As it only resolves A records and so is ipv4 only it will use Inet4Address as result.  
- 
+
 
 ## lookup_6
 
 Try to lookup the AAAA (ipv5) record for a given name. The first which is returned will be used, so it behaves the same way as you may be used from when using "nslookup" on your operation system.
-    
+
 To lookup the A record for "vertx.io" you would typically use it like:
 
     client = vertx.create_dns_client(('10.0.0.1', 53))
@@ -2857,17 +2857,17 @@ To lookup the A record for "vertx.io" you would typically use it like:
         if err:
             print "Failed to resolve entry ", err
         else:
-            println result
- 
+            print result
+
     client.lookup_6('vertx.io', handler)
- 
+
  As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.  
 
 
 ## resolve_a
 
 Try to resolve all A (ipv4) records for a given name. This is quite similar to using "dig" on unix like operation systems.
-    
+
 To lookup all the A records for "vertx.io" you would typically do:
 
     client = vertx.create_dns_client(('10.0.0.1', 53))
@@ -2877,8 +2877,8 @@ To lookup all the A records for "vertx.io" you would typically do:
             print "Failed to resolve entry ", err
         else:
             for r in records:
-                println r
- 
+                print r
+
     client.resolve_a('vertx.io', handler)
 
 As it only resolves A records and so is ipv4 only it will use Inet4Address as result.  
@@ -2887,7 +2887,7 @@ As it only resolves A records and so is ipv4 only it will use Inet4Address as re
 ## resolve_aaaa
 
 Try to resolve all AAAA (ipv6) records for a given name. This is quite similar to using "dig" on unix like operation systems.
-    
+
 To lookup all the AAAAA records for "vertx.io" you would typically do:
 
     client = vertx.create_dns_client(('10.0.0.1', 53))
@@ -2897,8 +2897,8 @@ To lookup all the AAAAA records for "vertx.io" you would typically do:
             print "Failed to resolve entry ", err
         else:
             for r in records:
-                println r
- 
+                print r
+
     client.resolve_aaaa('vertx.io', handler)
 
  As it only resolves AAAA records and so is ipv6 only it will use Inet6Address as result.  
@@ -2907,7 +2907,7 @@ To lookup all the AAAAA records for "vertx.io" you would typically do:
 ## resolve_cname
 
 Try to resolve all CNAME records for a given name. This is quite similar to using "dig" on unix like operation systems.
-    
+
 To lookup all the CNAME records for "vertx.io" you would typically do:
 
     client = vertx.create_dns_client(('10.0.0.1', 53))
@@ -2917,15 +2917,15 @@ To lookup all the CNAME records for "vertx.io" you would typically do:
             print "Failed to resolve entry ", err
         else:
             for r in records:
-                println r
- 
+                print r
+
     client.resolve_cname('vertx.io', handler)
 
 
 ## resolve_mx
 
 Try to resolve all MX records for a given name. The MX records are used to define which Mail-Server accepts emails for a given domain.
-    
+
 To lookup all the MX records for "vertx.io" you would typically do:
 
     client = vertx.create_dns_client(('10.0.0.1', 53))
@@ -2935,8 +2935,8 @@ To lookup all the MX records for "vertx.io" you would typically do:
             print "Failed to resolve entry ", err
         else:
             for r in records:
-                println r
- 
+                print r
+
     client.resolve_mx('vertx.io', handler)
 
 Be aware that the List will contain the MxRecords sorted by the priority of them, which means MxRecords with smaller priority coming first in the List.
@@ -2951,7 +2951,7 @@ The MxRecord allows you to access the priority and the name of the MX record by 
 ## resolve_txt
 
 Try to resolve all TXT records for a given name. TXT records are often used to define extra informations for a domain.
-    
+
 To resolve all the TXT records for "vertx.io" you could use something along these lines:
 
     client = vertx.create_dns_client(('10.0.0.1', 53))
@@ -2961,14 +2961,14 @@ To resolve all the TXT records for "vertx.io" you could use something along thes
             print "Failed to resolve entry ", err
         else:
             for r in records:
-                println r
- 
+                print r
+
     client.resolve_txt('vertx.io', handler)
 
 ## resolve_ns
 
 Try to resolve all NS records for a given name. The NS records specify which DNS Server hosts the DNS informations for a given domain.
-    
+
 To resolve all the NS records for "vertx.io" you could use something along these lines:
 
     client = vertx.create_dns_client(('10.0.0.1', 53))
@@ -2978,15 +2978,15 @@ To resolve all the NS records for "vertx.io" you could use something along these
             print "Failed to resolve entry ", err
         else:
             for r in records:
-                println r
- 
+                print r
+
     client.resolve_ns('vertx.io', handler)
 
 
 ## resolve_srv
 
 Try to resolve all SRV records for a given name. The SRV records are used to define extra informations like port and hostname of services. Some protocols need this extra informations.
-    
+
 To lookup all the SRV records for "vertx.io" you would typically do:
 
     client = vertx.create_dns_client(('10.0.0.1', 53))
@@ -2996,8 +2996,8 @@ To lookup all the SRV records for "vertx.io" you would typically do:
             print "Failed to resolve entry ", err
         else:
             for r in records:
-                println r
- 
+                print r
+
     client.resolve_srv('vertx.io', handler)
 
 Be aware that the List will contain the SrvRecords sorted by the priority of them, which means SrvRecords with smaller priority coming first in the List.
@@ -3020,7 +3020,7 @@ Please refer to the API docs for the exact details.
 ## resolve_ptr
 
 Try to resolve the PTR record for a given name. The PTR record maps an ipaddress to a name.
-    
+
 To resolve the PTR record for the ipaddress 10.0.0.1 you would use the PTR notion of "1.0.0.10.in-addr.arpa"
 
     client = vertx.create_dns_client(('10.0.0.1', 53))
@@ -3029,8 +3029,8 @@ To resolve the PTR record for the ipaddress 10.0.0.1 you would use the PTR notio
         if err:
             print "Failed to resolve entry ", err
         else:
-            println result
- 
+            print result
+
     client.resolve_ptr('1.0.0.10.in-addr.arpa', handler)
 
 
@@ -3046,8 +3046,8 @@ client = vertx.create_dns_client(('10.0.0.1', 53))
         if err:
             print "Failed to resolve entry ", err
         else:
-            println result
- 
+            print result
+
     client.reverse_lookup('10.0.0.1', handler)
 
 ## Error handling
@@ -3101,21 +3101,20 @@ All of those errors are "generated" by the DNS Server itself.
 
 You can obtain the DnsResponseCode from the DnsException like:
 
-
-    client = vertx.create_dns_client(('10.0.0.1', 53))
+    import vertx
+    import org.vertx.java.core.dns.DnsException
 
     def handler(err, result):
         if err:
-            if err instanceof org.vertx.java.core.dns.DnsException:
-                exception = (org.vertx.java.core.dns.DnsException) err
-                code = exception.code()
+            if isinstance(err, org.vertx.java.core.dns.DnsException):
+                code = err.code()
                 ...
-            } else {
+            else:
                 print "Failed to resolve entry ", err
-            }
         else:
-            println result
- 
+            print result
+
+    client = vertx.create_dns_client(('10.0.0.1', 53))
     client.lookup('nonexisting.vert.io', handler)
 
 
