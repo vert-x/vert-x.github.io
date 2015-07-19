@@ -391,7 +391,7 @@ To unregister a handler it's just as straightforward. You simply call `unregiste
     
 A single handler can be registered multiple times on the same, or different, addresses so in order to identify it uniquely you have to specify both the address and the handler. 
 
-As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire to cluster. If you want to be notified when that has completed you can optionally specify another function to the registerHandler as the third argument. E.g. :
+As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire cluster. If you want to be notified when that has completed you can optionally specify another function to the registerHandler as the third argument. E.g. :
 
     eb.unregisterHandler('test.address', myHandler, function() {
         console.log('Yippee! The handler unregister has been propagated across the cluster');

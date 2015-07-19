@@ -455,7 +455,7 @@ To unregister a handler it's just as straightforward. You simply call
 
 As with registering, when you unregister a handler and you're in a
 cluster it can also take some time for the knowledge of that
-unregistration to be propagated across the entire to cluster. If you
+unregistration to be propagated across the entire cluster. If you
 want to be notified when that has completed you can optionally specify
 another function to the `unregister-handler` method:
 

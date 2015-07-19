@@ -201,7 +201,7 @@ Then, in `ChildVerticle` you can access the config via the `config` property as 
     
 ## Using a Verticle to co-ordinate loading of an application
 
-If you have an appplication that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.
+If you have an application that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.
 
 For example, you could create a verticle `AppStarter.groovy` as follows:
         
@@ -213,7 +213,7 @@ For example, you could create a verticle `AppStarter.groovy` as follows:
     container.deployWorkerVerticle("foo.Verticle4", appConfig["verticle4_conf"])
     container.deployWorkerVerticle("verticle5.js", appConfig["verticle5_conf"], 10)
         
-Then create a file 'config.json" with the actual JSON config in it
+Then create a file `config.json` with the actual JSON config in it
     
     {
         "verticle1_conf": {
@@ -374,7 +374,7 @@ To unregister a handler it's just as straightforward. You simply call `unregiste
     
 A single handler can be registered multiple times on the same, or different, addresses so in order to identify it uniquely you have to specify both the address and the handler.
 
-As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire to cluster. If you want to be notified when that has completed you can optionally specify another function to the registerHandler as the third argument. E.g. :
+As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire cluster. If you want to be notified when that has completed you can optionally specify another function to the registerHandler as the third argument. E.g. :
 
     eb.unregisterHandler("test.address", myHandler) { println "The handler has been unregistered across the cluster" }
     
@@ -392,13 +392,13 @@ That message will then be delivered to all handlers registered against the addre
 
 Sending a message will result in only one handler registered at the address receiving the message. This is the point to point messaging pattern. The handler is chosen in a non strict round-robin fashion.
 
-    eb.publish("test.address", "hello world")
+    eb.send("test.address", "hello world")
 
 ### Replying to messages
 
 Sometimes after you send a message you want to receive a reply from the recipient. This is known as the *request-response pattern*.
 
-To do this you send a message, and specify a reply handler as the third argument. When the receiver receives the message they can reply to it by calling the `reply` method on the message.. When this method is invoked it causes a reply to be sent back to the sender where the reply handler is invoked. An example will make this clear:
+To do this you send a message, and specify a reply handler as the third argument. When the receiver receives the message they can reply to it by calling the `reply` method on the message. When this method is invoked it causes a reply to be sent back to the sender where the reply handler is invoked. An example will make this clear:
 
 The receiver:
 
@@ -495,22 +495,16 @@ And then, in a different verticle you can access it:
 
 To use a shared set to share data between verticles first we get a reference to the set.
 
-    def set = vertx.sharedData.getMap('demo.myset')
+    def set = vertx.sharedData.getSet('demo.myset')
 
     set << "some-value"
 
 And then, in a different verticle:
 
-    def set = vertx.sharedData.getMap('demo.myset')
+    def set = vertx.sharedData.getSet('demo.myset')
 
     // etc
 
-# Buffers
-
-Most data in vert.x is shuffled around using instances of `org.vertx.groovy.core.buffer.Buffer`.
-
-A Buffer represents a sequence of zero or more bytes that can be written to or read from, and which expands automatically as necessary to accomodate any bytes written to it. You can perhaps think of a buffer as smart byte array.
-        
 # Buffers
 
 Most data in vert.x is shuffled around using instances of `org.vertx.groovy.core.buffer.Buffer`.
@@ -942,7 +936,7 @@ Just like `NetServer`, `NetClient` also has a set of TCP properties you can set 
 
 ## SSL Servers
 
-NNet servers can also be configured to work with [Transport Layer Security](http://en.wikipedia.org/wiki/Transport_Layer_Security) (previously known as SSL).
+Net servers can also be configured to work with [Transport Layer Security](http://en.wikipedia.org/wiki/Transport_Layer_Security) (previously known as SSL).
 
 When a `NetServer` is working as an SSL Server the API of the `NetServer` and `NetSocket` is identical compared to when it working with standard sockets. Getting the server to use SSL is just a matter of configuring the `NetServer` before `listen` is called.
 

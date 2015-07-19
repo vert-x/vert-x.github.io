@@ -185,7 +185,7 @@ Then, in `ChildVerticle` you can access the config via `config()` as previously 
 
 ## Using a Verticle to co-ordinate loading of an application
 
-If you have an appplication that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.
+If you have an application that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.
 
 For example, you could create a verticle `AppStarter` as follows:
 
@@ -207,7 +207,7 @@ For example, you could create a verticle `AppStarter` as follows:
     container.deployWorkerVerticle("foo.Verticle4", verticle4Config);
     container.deployWorkerVerticle("verticle5.js", verticle5Config, 10);
 
-Then create a file 'config.json" with the actual JSON config in it
+Then create a file `config.json` with the actual JSON config in it
 
     {
         "verticle1_conf": {
@@ -391,7 +391,7 @@ To unregister a handler it's just as straightforward. You simply call `unregiste
 
 A single handler can be registered multiple times on the same, or different, addresses so in order to identify it uniquely you have to specify both the address and the handler.
 
-As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire to cluster. If you want to be notified when that has completed you can optionally specify another function to the registerHandler as the third argument. E.g. :
+As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire cluster. If you want to be notified when that has completed you can optionally specify another function to the registerHandler as the third argument. E.g. :
 
     eb.unregisterHandler("test.address", myHandler, new AsyncResultHandler<Void>() {
         public void handle(AsyncResult<Void> asyncResult) {
@@ -419,7 +419,7 @@ Sending a message will result in only one handler registered at the address rece
 
 Sometimes after you send a message you want to receive a reply from the recipient. This is known as the *request-response pattern*.
 
-To do this you send a message, and specify a reply handler as the third argument. When the receiver receives the message they can reply to it by calling the `reply` method on the message.. When this method is invoked it causes a reply to be sent back to the sender where the reply handler is invoked. An example will make this clear:
+To do this you send a message, and specify a reply handler as the third argument. When the receiver receives the message they can reply to it by calling the `reply` method on the message. When this method is invoked it causes a reply to be sent back to the sender where the reply handler is invoked. An example will make this clear:
 
 The receiver:
 

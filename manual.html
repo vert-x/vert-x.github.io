@@ -337,7 +337,7 @@ vertx run sender.js -cluster
 </pre>
 <p>The config will be available inside the verticle via the core API.    </p>
 <h3 id="forcing-language-implementation-to-use">Forcing language implementation to use</h3><br/>
-<p>Vert.x works out what language implementation module to use based on the file prefix using the mapping in the file <code>langs.properties</code> in the Vert.x distribution. If there is some ambiguity, e.g. you want to specify a class as a verticle, but it's a Groovy class, not a Java class, then you can prefix the main with the language implementation name, e.g. to run a compiled class as a Groovy verticle:</p>
+<p>Vert.x works out what language implementation module to use based on the file extension using the mapping in the file <code>langs.properties</code> in the Vert.x distribution. If there is some ambiguity, e.g. you want to specify a class as a verticle, but it's a Groovy class, not a Java class, then you can prefix the main with the language implementation name, e.g. to run a compiled class as a Groovy verticle:</p>
 <pre class="prettyprint">vertx run groovy:com.mycompany.MyGroovyMainVerticle
 </pre>
 <p><a id="running-mods"> </a>       </p>
@@ -359,12 +359,12 @@ vertx run sender.js -cluster
 <p><code>-cluster-host</code> - same meaning as in <code>vertx run</code></p>
 </li>
 <li>
-<p><code>-cp</code> If this option is specified for a <em>module</em> then it overrides the standard module classpath and Vert.x will search for the <code>mod.json</code> and other module resources using the specified classpath instead. This can be really useful when, for example, developing a module in an IDE - you can run the module in a different classpath and specify the classpath to point to where the idea stores the project resources. Couple this with auto-redeploy of modules and you can have your module immediately reloaded and reflecting the changes in your IDE as you make them.</p>
+<p><code>-cp</code> If this option is specified for a <em>module</em> then it overrides the standard module classpath and Vert.x will search for the <code>mod.json</code> and other module resources using the specified classpath instead. This can be really useful when, for example, developing a module in an IDE - you can run the module in a different classpath and specify the classpath to point to where the IDE stores the project resources. Couple this with auto-redeploy of modules and you can have your module immediately reloaded and reflecting the changes in your IDE as you make them.</p>
 </li>
 </ul>
 <p>If you attempt to run a module and it hasn't been installed locally, then Vert.x will attempt to install it from one of the configured repositories. Out of the box Vert.x is configured to install modules from Maven Central, Sonatype Nexus, Bintray and your local Maven repository. You can also configure it to use any other Maven or bintray repository by configuring the <code>repos.txt</code> file in the Vert.x <code>conf</code> directory. See the modules manual for more on this.</p>
 <p>Some examples of running modules directly:</p>
-<p>Run an module called <code>com.acme~my-mod~2.1</code></p>
+<p>Run a module called <code>com.acme~my-mod~2.1</code></p>
 <pre class="prettyprint">vertx runmod com.acme~my-mod~2.1
 </pre>
 <p>Run a module called <code>com.acme~other-mod~1.0.beta1</code> specifying number of instances and some config</p>

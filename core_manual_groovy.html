@@ -125,8 +125,7 @@
 <li><a href="#shared-sets">Shared Sets</a></li>
 </ul>
 </li>
-<li><a href="#buffers">Buffers</a></li>
-<li><a href="#buffers_1">Buffers</a><ul>
+<li><a href="#buffers">Buffers</a><ul>
 <li><a href="#creating-buffers">Creating Buffers</a></li>
 <li><a href="#writing-to-a-buffer">Writing to a Buffer</a><ul>
 <li><a href="#appending-to-a-buffer">Appending to a Buffer</a></li>
@@ -471,7 +470,7 @@ container.deployVerticle("foo.ChildVerticle", config)
 </pre>
 <p>Then, in <code>ChildVerticle</code> you can access the config via the <code>config</code> property as previously explained.</p>
 <h2 id="using-a-verticle-to-co-ordinate-loading-of-an-application">Using a Verticle to co-ordinate loading of an application</h2><br/>
-<p>If you have an appplication that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.</p>
+<p>If you have an application that is composed of multiple verticles that all need to be started at application start-up, then you can use another verticle that maintains the application configuration and starts all the other verticles. You can think of this as your application starter verticle.</p>
 <p>For example, you could create a verticle <code>AppStarter.groovy</code> as follows:</p>
 <pre class="prettyprint">// Start the verticles that make up the app
 
@@ -481,7 +480,7 @@ container.deployVerticle("foo.Verticle3", appConfig["verticle3_conf"])
 container.deployWorkerVerticle("foo.Verticle4", appConfig["verticle4_conf"])
 container.deployWorkerVerticle("verticle5.js", appConfig["verticle5_conf"], 10)
 </pre>
-<p>Then create a file 'config.json" with the actual JSON config in it</p>
+<p>Then create a file <code>config.json</code> with the actual JSON config in it</p>
 <pre class="prettyprint">{
     "verticle1_conf": {
         "foo": "wibble"
@@ -584,7 +583,7 @@ eb.registerHandler("test.address", myHandler) { println "The handler has been re
 <pre class="prettyprint">eb.unregisterHandler("test.address", myHandler)
 </pre>
 <p>A single handler can be registered multiple times on the same, or different, addresses so in order to identify it uniquely you have to specify both the address and the handler.</p>
-<p>As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire to cluster. If you want to be notified when that has completed you can optionally specify another function to the registerHandler as the third argument. E.g. :</p>
+<p>As with registering, when you unregister a handler and you're in a cluster it can also take some time for the knowledge of that unregistration to be propagated across the entire cluster. If you want to be notified when that has completed you can optionally specify another function to the registerHandler as the third argument. E.g. :</p>
 <pre class="prettyprint">eb.unregisterHandler("test.address", myHandler) { println "The handler has been unregistered across the cluster" }
 </pre>
 <p>If you want your handler to live for the full lifetime of your verticle there is no need to unregister it explicitly - Vert.x will automatically unregister any handlers when the verticle is stopped.</p>
@@ -595,11 +594,11 @@ eb.registerHandler("test.address", myHandler) { println "The handler has been re
 <p>That message will then be delivered to all handlers registered against the address "test.address".</p>
 <h3 id="sending-messages">Sending messages</h3><br/>
 <p>Sending a message will result in only one handler registered at the address receiving the message. This is the point to point messaging pattern. The handler is chosen in a non strict round-robin fashion.</p>
-<pre class="prettyprint">eb.publish("test.address", "hello world")
+<pre class="prettyprint">eb.send("test.address", "hello world")
 </pre>
 <h3 id="replying-to-messages">Replying to messages</h3><br/>
 <p>Sometimes after you send a message you want to receive a reply from the recipient. This is known as the <em>request-response pattern</em>.</p>
-<p>To do this you send a message, and specify a reply handler as the third argument. When the receiver receives the message they can reply to it by calling the <code>reply</code> method on the message.. When this method is invoked it causes a reply to be sent back to the sender where the reply handler is invoked. An example will make this clear:</p>
+<p>To do this you send a message, and specify a reply handler as the third argument. When the receiver receives the message they can reply to it by calling the <code>reply</code> method on the message. When this method is invoked it causes a reply to be sent back to the sender where the reply handler is invoked. An example will make this clear:</p>
 <p>The receiver:</p>
 <pre class="prettyprint">def myHandler = { message -&gt;
     println "I received a message ${message.body}"
@@ -669,19 +668,16 @@ map["some-key"] = 123
 </pre>
 <h2 id="shared-sets">Shared Sets</h2><br/>
 <p>To use a shared set to share data between verticles first we get a reference to the set.</p>
-<pre class="prettyprint">def set = vertx.sharedData.getMap('demo.myset')
+<pre class="prettyprint">def set = vertx.sharedData.getSet('demo.myset')
 
 set &lt;&lt; "some-value"
 </pre>
 <p>And then, in a different verticle:</p>
-<pre class="prettyprint">def set = vertx.sharedData.getMap('demo.myset')
+<pre class="prettyprint">def set = vertx.sharedData.getSet('demo.myset')
 
 // etc
 </pre>
 <h1 id="buffers">Buffers</h1><br/>
-<p>Most data in vert.x is shuffled around using instances of <code>org.vertx.groovy.core.buffer.Buffer</code>.</p>
-<p>A Buffer represents a sequence of zero or more bytes that can be written to or read from, and which expands automatically as necessary to accomodate any bytes written to it. You can perhaps think of a buffer as smart byte array.</p>
-<h1 id="buffers_1">Buffers</h1><br/>
 <p>Most data in vert.x is shuffled around using instances of <code>org.vertx.groovy.core.buffer.Buffer</code>.</p>
 <p>A Buffer represents a sequence of zero or more bytes that can be written to or read from, and which expands automatically as necessary to accomodate any bytes written to it. You can perhaps think of a buffer as smart byte array.</p>
 <h2 id="creating-buffers">Creating Buffers</h2><br/>
@@ -992,7 +988,7 @@ client.reconnectInterval = 500
 <p>Just like <code>NetServer</code>, <code>NetClient</code> also has a set of TCP properties you can set which affect its behaviour. They have the same meaning as those on <code>NetServer</code>.</p>
 <p><code>NetClient</code> also has a further set of properties which are used to configure SSL. We'll discuss those later on.</p>
 <h2 id="ssl-servers">SSL Servers</h2><br/>
-<p>NNet servers can also be configured to work with <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Transport Layer Security</a> (previously known as SSL).</p>
+<p>Net servers can also be configured to work with <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Transport Layer Security</a> (previously known as SSL).</p>
 <p>When a <code>NetServer</code> is working as an SSL Server the API of the <code>NetServer</code> and <code>NetSocket</code> is identical compared to when it working with standard sockets. Getting the server to use SSL is just a matter of configuring the <code>NetServer</code> before <code>listen</code> is called.</p>
 <p>To enable SSL the property <code>SSL</code> to <code>true</code> on the Net Server.</p>
 <p>The server must also be configured with a <em>key store</em> and an optional <em>trust store</em>.</p>
