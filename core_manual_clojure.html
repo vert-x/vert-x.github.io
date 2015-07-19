@@ -1999,8 +1999,8 @@ this is because form attributes are encoded in the request <em>body</em> not
 in the request headers. You must also call
 <code>vertx.http/expect-multi-part</code> on the request <em>before</em> any of the body
 is read in order for the form attributes to be available.</p>
-<pre class="prettyprint">(stream/on-end request
-  (http/expect-multi-part request)
+<pre class="prettyprint">(http/expect-multi-part request)
+(stream/on-end request
   ;; The request has been full read, so now we can look at the form attributes
   #(do-something-with-form-attributes (http/form-attributes request)))
 </pre>
