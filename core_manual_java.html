@@ -930,7 +930,7 @@ server.listen(1234, "myhost");
 <p>The first parameter to <code>listen</code> is the port. A wildcard port of <code>0</code> can be specified which means a random available port will be chosen to actually listen at. Once the server has completed listening you can then call the <code>port()</code> method of the server to find out the real port it is using.</p>
 <p>The second parameter is the hostname or ip address. If it is omitted it will default to <code>0.0.0.0</code> which means it will listen at all available interfaces.</p>
 <p>The actual bind is asynchronous so the server might not actually be listening until some time <em>after</em> the call to listen has returned. If you want to be notified when the server is actually listening you can provide a handler to the <code>listen</code> call. For example:</p>
-<pre class="prettyprint">server.listen(1234, "myhost", new AsyncResultHandler&lt;Void&gt;() {
+<pre class="prettyprint">server.listen(1234, "myhost", new AsyncResultHandler&lt;NetServer&gt;() {
     public void handle(AsyncResult&lt;NetServer&gt; asyncResult) {
         log.info("Listen succeeded? " + asyncResult.succeeded());
     }
@@ -1573,7 +1573,7 @@ server.listen(8080, "myhost");
 <p>The first parameter to <code>listen</code> is the port.</p>
 <p>The second parameter is the hostname or ip address. If it is omitted it will default to <code>0.0.0.0</code> which means it will listen at all available interfaces.</p>
 <p>The actual bind is asynchronous so the server might not actually be listening until some time <em>after</em> the call to listen has returned. If you want to be notified when the server is actually listening you can provide a handler to the <code>listen</code> call. For example:</p>
-<pre class="prettyprint">server.listen(8080, "myhost", new AsyncResultHandler&lt;Void&gt;() {
+<pre class="prettyprint">server.listen(8080, "myhost", new AsyncResultHandler&lt;HttpServer&gt;() {
     public void handle(AsyncResult&lt;HttpServer&gt; asyncResult) {
         log.info("Listen succeeded? " + asyncResult.succeeded());
     }
