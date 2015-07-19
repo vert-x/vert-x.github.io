@@ -1482,10 +1482,13 @@ You can also stream it directly to disk using the convenience method `streamToFi
 
 If the request corresponds to an HTML form that was submitted you can use the function `formAttributes` to retrieve a Multi Map of the form attributes. This should only be called after *all* of the request has been read - this is because form attributes are encoded in the request *body* not in the request headers.
 
+    request.expectMultiPart(true);
+    
     request.endHandler(function() {
         // The request has been all ready so now we can look at the form attributes
         var attrs = request.formAttributes();
-        // Do something with them
+        // Do something with them:
+        myCode.login(attrs.get('username'), attrs.get('password'));
     });
     
     
