@@ -1761,11 +1761,11 @@ server.requestHandler(routeMatcher).listen(8080, 'localhost');
 var routeMatcher = new vertx.RouteMatcher();
 
 routeMatcher.get('/animals/dogs', function(req) {
-    req.response().end('You requested dogs');
+    req.response.end('You requested dogs');
 });
 
 routeMatcher.get('/animals/cats', function(req) {
-    req.response().end('You requested cats');    
+    req.response.end('You requested cats');    
 });
 
 server.requestHandler(routeMatcher).listen(8080, 'localhost');
@@ -1784,7 +1784,7 @@ var routeMatcher = new vertx.RouteMatcher();
 routeMatcher.put('/:blogname/:post', function(req) {        
     var blogName = req.params().get('blogname');
     var post = req.params().get('post');
-    req.response().end('blogname is ' + blogName + ', post is ' + post);
+    req.response.end('blogname is ' + blogName + ', post is ' + post);
 });
 
 server.requestHandler(routeMatcher).listen(8080, 'localhost');
@@ -1815,7 +1815,7 @@ server.requestHandler(routeMatcher).listen(8080, 'localhost');
 <h2 id="handling-requests-where-nothing-matches">Handling requests where nothing matches</h2><br/>
 <p>You can use the <code>noMatch</code> method to specify a handler that will be called if nothing matches. If you don't specify a no match handler and nothing matches, a 404 will be returned.</p>
 <pre class="prettyprint">routeMatcher.noMatch(function(req) {
-    req.response().end('Nothing matched');
+    req.response.end('Nothing matched');
 });
 </pre>
 <h1 id="websockets">WebSockets</h1><br/>
