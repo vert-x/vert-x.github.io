@@ -12,4 +12,4 @@ To run local web server for development: ./runserver.sh
 
 Point browser at http://localhost:8181
 
-Each new release create new version dir and search and replace old dir for new dir in all files
+Each new release will create new version dir and will search and replace old dir instead of new dir in all files.
